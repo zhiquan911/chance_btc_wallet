@@ -26,5 +26,6 @@
 /* 其它应用组件库 */
 #import "SVProgressHUD.h"
 #import "ZYQAssetPickerController.h"
+#import "LMDropdownView.h"
 
 #endif /* chance_btc_wallet_Bridging_Header_h */

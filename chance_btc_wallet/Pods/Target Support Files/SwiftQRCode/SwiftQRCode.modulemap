@@ -1,0 +1,6 @@
+framework module SwiftQRCode {
+  umbrella header "SwiftQRCode-umbrella.h"
+
+  export *
+  module * { export * }
+}

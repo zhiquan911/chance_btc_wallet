@@ -13,9 +13,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    class func sharedInstance() -> AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    //隐藏键盘
+    func closeKeyBoard() {
+        self.window?.endEditing(false)
+    }
+    
+    /**
+     设置SVProgressHUD的样式
+     */
+    func setupSVProgressHUDStyle() {
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
+        SVProgressHUD.setMinimumDismissTimeInterval(1)
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //清空钱包所有数据，用于调试
+        //CHWalletWrapper.deleteAllWallets()
+        
+        self.setupSVProgressHUDStyle()
+        
         return true
     }
 

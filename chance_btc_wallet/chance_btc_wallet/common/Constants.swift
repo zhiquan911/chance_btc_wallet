@@ -216,3 +216,53 @@ enum Language {
     }
     
 }
+
+
+/**
+ 故事板资源
+ 
+ - main:
+ - welcome:
+ - wallet:
+ - setting:
+ */
+enum StoryBoard {
+    
+    case main
+    case welcome
+    case wallet
+    case setting
+    
+    /// board实体
+    var board: UIStoryboard {
+        switch self {
+        case .main:
+            return UIStoryboard.init(name: "Main", bundle: nil)
+        case .welcome:
+            return UIStoryboard.init(name: "Welcome", bundle: nil)
+        case .wallet:
+            return UIStoryboard.init(name: "Wallet", bundle: nil)
+        case .setting:
+            return UIStoryboard.init(name: "Setting", bundle: nil)
+        }
+        
+    }
+    
+    
+    /// 初始界面
+    ///
+    /// - Parameter type:   类
+    func initView<T : UIViewController>(type: T.Type) -> T? {
+        let fullName: String = String(describing: type)
+        let vc = self.board.instantiateViewController(withIdentifier: fullName)
+        return vc as? T
+    }
+    
+    /// 初始界面
+    ///
+    /// - Parameter name:   id名字
+    func initView(name: String) -> UIViewController? {
+        let vc = self.board.instantiateViewController(withIdentifier: name)
+        return vc
+    }
+}

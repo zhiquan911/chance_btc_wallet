@@ -53,6 +53,12 @@ class CHWalletWrapper: NSObject {
     
     /// MARK: - 类方法
     
+    
+    /// 清空所有钱包数据
+    class func deleteAllWallets() {
+        CHWalletWrapper.keychain.clear()
+    }
+    
     /**
      用短语和密码生成一个可恢复的钱包
      

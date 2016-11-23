@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C58870131DE3F37500C45B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58870121DE3F37500C45B43 /* AppDelegate.swift */; };
-		C58870151DE3F37500C45B43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58870141DE3F37500C45B43 /* ViewController.swift */; };
 		C58870181DE3F37500C45B43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C58870161DE3F37500C45B43 /* Main.storyboard */; };
 		C588701A1DE3F37500C45B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58870191DE3F37500C45B43 /* Assets.xcassets */; };
 		C588701D1DE3F37500C45B43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C588701B1DE3F37500C45B43 /* LaunchScreen.storyboard */; };
@@ -127,8 +126,40 @@
 		C58871B31DE4138000C45B43 /* TouchIDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871A31DE4138000C45B43 /* TouchIDUtils.swift */; };
 		C58871B61DE4197700C45B43 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871B41DE4197700C45B43 /* LogUtils.swift */; };
 		C58871B71DE4197700C45B43 /* LocalizeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871B51DE4197700C45B43 /* LocalizeUtils.swift */; };
+		C59CD0311DE52F8900A23CE2 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C59CD0301DE52F8900A23CE2 /* Welcome.storyboard */; };
+		C59CD03B1DE5476100A23CE2 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59CD0391DE5476100A23CE2 /* Realm.framework */; };
+		C59CD03C1DE5476100A23CE2 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C59CD0391DE5476100A23CE2 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C59CD03D1DE5476100A23CE2 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59CD03A1DE5476100A23CE2 /* RealmSwift.framework */; };
+		C59CD03E1DE5476100A23CE2 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C59CD03A1DE5476100A23CE2 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C59CD0411DE5478B00A23CE2 /* RealmDBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0401DE5478B00A23CE2 /* RealmDBHelper.swift */; };
+		C59CD0431DE5611B00A23CE2 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C59CD0421DE5611B00A23CE2 /* Wallet.storyboard */; };
+		C59CD04E1DE5621100A23CE2 /* AddressScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0451DE5621100A23CE2 /* AddressScanViewController.swift */; };
+		C59CD04F1DE5621100A23CE2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0461DE5621100A23CE2 /* BaseViewController.swift */; };
+		C59CD0501DE5621100A23CE2 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0471DE5621100A23CE2 /* RootNavigationController.swift */; };
+		C59CD0511DE5621100A23CE2 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0481DE5621100A23CE2 /* TabBarViewController.swift */; };
+		C59CD0521DE5621100A23CE2 /* WelcomeCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD04B1DE5621100A23CE2 /* WelcomeCreateAccountViewController.swift */; };
+		C59CD0531DE5621100A23CE2 /* WelcomeHDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD04C1DE5621100A23CE2 /* WelcomeHDViewController.swift */; };
+		C59CD0541DE5621100A23CE2 /* WelcomePhraseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD04D1DE5621100A23CE2 /* WelcomePhraseViewController.swift */; };
+		C59CD0561DE5723A00A23CE2 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0551DE5723A00A23CE2 /* WalletViewController.swift */; };
+		C59CD05A1DE578BA00A23CE2 /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0581DE578BA00A23CE2 /* MenuItemCell.swift */; };
+		C59CD05B1DE578BA00A23CE2 /* UserTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0591DE578BA00A23CE2 /* UserTransactionCell.swift */; };
 		D7370CD84FEEB4F4E4522FC6 /* Pods_chance_btc_wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C59CD03F1DE5476100A23CE2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C59CD03E1DE5476100A23CE2 /* RealmSwift.framework in Embed Frameworks */,
+				C59CD03C1DE5476100A23CE2 /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chance_btc_wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +167,6 @@
 		AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.release.xcconfig"; sourceTree = "<group>"; };
 		C588700F1DE3F37500C45B43 /* chance_btc_wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chance_btc_wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58870121DE3F37500C45B43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C58870141DE3F37500C45B43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C58870171DE3F37500C45B43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C58870191DE3F37500C45B43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C588701C1DE3F37500C45B43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -414,6 +444,22 @@
 		C58871A31DE4138000C45B43 /* TouchIDUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchIDUtils.swift; sourceTree = "<group>"; };
 		C58871B41DE4197700C45B43 /* LogUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogUtils.swift; sourceTree = "<group>"; };
 		C58871B51DE4197700C45B43 /* LocalizeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizeUtils.swift; sourceTree = "<group>"; };
+		C59CD0301DE52F8900A23CE2 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Welcome.storyboard; path = resources/Welcome.storyboard; sourceTree = "<group>"; };
+		C59CD0391DE5476100A23CE2 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = framework/Realm.framework; sourceTree = "<group>"; };
+		C59CD03A1DE5476100A23CE2 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = framework/RealmSwift.framework; sourceTree = "<group>"; };
+		C59CD0401DE5478B00A23CE2 /* RealmDBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDBHelper.swift; sourceTree = "<group>"; };
+		C59CD0421DE5611B00A23CE2 /* Wallet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Wallet.storyboard; path = resources/Wallet.storyboard; sourceTree = "<group>"; };
+		C59CD0451DE5621100A23CE2 /* AddressScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressScanViewController.swift; sourceTree = "<group>"; };
+		C59CD0461DE5621100A23CE2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C59CD0471DE5621100A23CE2 /* RootNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		C59CD0481DE5621100A23CE2 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		C59CD04B1DE5621100A23CE2 /* WelcomeCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeCreateAccountViewController.swift; sourceTree = "<group>"; };
+		C59CD04C1DE5621100A23CE2 /* WelcomeHDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeHDViewController.swift; sourceTree = "<group>"; };
+		C59CD04D1DE5621100A23CE2 /* WelcomePhraseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomePhraseViewController.swift; sourceTree = "<group>"; };
+		C59CD0551DE5723A00A23CE2 /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		C59CD0581DE578BA00A23CE2 /* MenuItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
+		C59CD0591DE578BA00A23CE2 /* UserTransactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTransactionCell.swift; sourceTree = "<group>"; };
+		C59CD05C1DE588C100A23CE2 /* chance_btc_wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = chance_btc_wallet.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +467,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C59CD03B1DE5476100A23CE2 /* Realm.framework in Frameworks */,
+				C59CD03D1DE5476100A23CE2 /* RealmSwift.framework in Frameworks */,
 				C58871881DE3F3E600C45B43 /* libssl-ios.a in Frameworks */,
 				C58871871DE3F3E600C45B43 /* libcrypto-ios.a in Frameworks */,
 				D7370CD84FEEB4F4E4522FC6 /* Pods_chance_btc_wallet.framework in Frameworks */,
@@ -433,6 +481,8 @@
 		307361EA0898258898B2B7B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C59CD0391DE5476100A23CE2 /* Realm.framework */,
+				C59CD03A1DE5476100A23CE2 /* RealmSwift.framework */,
 				3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */,
 			);
 			name = Frameworks;
@@ -468,16 +518,16 @@
 		C58870111DE3F37500C45B43 /* chance_btc_wallet */ = {
 			isa = PBXGroup;
 			children = (
+				C59CD05C1DE588C100A23CE2 /* chance_btc_wallet.entitlements */,
 				C58870391DE3F3E600C45B43 /* lib */,
 				C58870241DE3F3E600C45B43 /* extension */,
 				C588719F1DE4138000C45B43 /* common */,
 				C58871911DE4138000C45B43 /* service */,
 				C58871951DE4138000C45B43 /* model */,
+				C59CD02E1DE52C5900A23CE2 /* viewcontrollers */,
+				C59CD02F1DE52C6400A23CE2 /* resources */,
 				C58870121DE3F37500C45B43 /* AppDelegate.swift */,
-				C58870141DE3F37500C45B43 /* ViewController.swift */,
-				C58870161DE3F37500C45B43 /* Main.storyboard */,
 				C58870191DE3F37500C45B43 /* Assets.xcassets */,
-				C588701B1DE3F37500C45B43 /* LaunchScreen.storyboard */,
 				C588701E1DE3F37500C45B43 /* Info.plist */,
 				C58871901DE3F43900C45B43 /* chance-btc-wallet-Bridging-Header.h */,
 			);
@@ -859,8 +909,72 @@
 				C58871A11DE4138000C45B43 /* CHWalletWrapper.swift */,
 				C58871A21DE4138000C45B43 /* Constants.swift */,
 				C58871A31DE4138000C45B43 /* TouchIDUtils.swift */,
+				C59CD0401DE5478B00A23CE2 /* RealmDBHelper.swift */,
 			);
 			path = common;
+			sourceTree = "<group>";
+		};
+		C59CD02E1DE52C5900A23CE2 /* viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				C59CD0441DE5621100A23CE2 /* public */,
+				C59CD0491DE5621100A23CE2 /* wallet */,
+				C59CD04A1DE5621100A23CE2 /* welcome */,
+			);
+			name = viewcontrollers;
+			sourceTree = "<group>";
+		};
+		C59CD02F1DE52C6400A23CE2 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				C588701B1DE3F37500C45B43 /* LaunchScreen.storyboard */,
+				C58870161DE3F37500C45B43 /* Main.storyboard */,
+				C59CD0301DE52F8900A23CE2 /* Welcome.storyboard */,
+				C59CD0421DE5611B00A23CE2 /* Wallet.storyboard */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		C59CD0441DE5621100A23CE2 /* public */ = {
+			isa = PBXGroup;
+			children = (
+				C59CD0451DE5621100A23CE2 /* AddressScanViewController.swift */,
+				C59CD0461DE5621100A23CE2 /* BaseViewController.swift */,
+				C59CD0471DE5621100A23CE2 /* RootNavigationController.swift */,
+				C59CD0481DE5621100A23CE2 /* TabBarViewController.swift */,
+			);
+			name = public;
+			path = viewcontrollers/public;
+			sourceTree = "<group>";
+		};
+		C59CD0491DE5621100A23CE2 /* wallet */ = {
+			isa = PBXGroup;
+			children = (
+				C59CD0571DE578A100A23CE2 /* component */,
+				C59CD0551DE5723A00A23CE2 /* WalletViewController.swift */,
+			);
+			name = wallet;
+			path = viewcontrollers/wallet;
+			sourceTree = "<group>";
+		};
+		C59CD04A1DE5621100A23CE2 /* welcome */ = {
+			isa = PBXGroup;
+			children = (
+				C59CD04B1DE5621100A23CE2 /* WelcomeCreateAccountViewController.swift */,
+				C59CD04C1DE5621100A23CE2 /* WelcomeHDViewController.swift */,
+				C59CD04D1DE5621100A23CE2 /* WelcomePhraseViewController.swift */,
+			);
+			name = welcome;
+			path = viewcontrollers/welcome;
+			sourceTree = "<group>";
+		};
+		C59CD0571DE578A100A23CE2 /* component */ = {
+			isa = PBXGroup;
+			children = (
+				C59CD0581DE578BA00A23CE2 /* MenuItemCell.swift */,
+				C59CD0591DE578BA00A23CE2 /* UserTransactionCell.swift */,
+			);
+			name = component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -876,6 +990,7 @@
 				C588700D1DE3F37500C45B43 /* Resources */,
 				B8D8CF1195C627F539A675F9 /* [CP] Embed Pods Frameworks */,
 				F707CBD7DAB0CE1A0D8E70F5 /* [CP] Copy Pods Resources */,
+				C59CD03F1DE5476100A23CE2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -900,6 +1015,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 768U2S2GPR;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -927,10 +1047,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C588701D1DE3F37500C45B43 /* LaunchScreen.storyboard in Resources */,
+				C59CD0431DE5611B00A23CE2 /* Wallet.storyboard in Resources */,
 				C588718E1DE3F3E600C45B43 /* ZYQAssetPicker.Bundle in Resources */,
 				C588701A1DE3F37500C45B43 /* Assets.xcassets in Resources */,
 				C58870181DE3F37500C45B43 /* Main.storyboard in Resources */,
 				C588718B1DE3F3E600C45B43 /* SVProgressHUD.bundle in Resources */,
+				C59CD0311DE52F8900A23CE2 /* Welcome.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -993,10 +1115,13 @@
 				C58871561DE3F3E600C45B43 /* BTCCurrencyConverter+Tests.m in Sources */,
 				C58871311DE3F3E600C45B43 /* Double+extension.swift in Sources */,
 				C58871A81DE4138000C45B43 /* CHBTCWallets.swift in Sources */,
+				C59CD0561DE5723A00A23CE2 /* WalletViewController.swift in Sources */,
 				C58871721DE3F3E600C45B43 /* BTCPaymentMethodRequest.m in Sources */,
+				C59CD0541DE5621100A23CE2 /* WelcomePhraseViewController.swift in Sources */,
 				C588718C1DE3F3E600C45B43 /* SVProgressHUD.m in Sources */,
 				C58871531DE3F3E600C45B43 /* BTCBlockchainInfo.m in Sources */,
 				C588714B1DE3F3E600C45B43 /* BTCBigNumber+Tests.m in Sources */,
+				C59CD04E1DE5621100A23CE2 /* AddressScanViewController.swift in Sources */,
 				C588714F1DE3F3E600C45B43 /* BTCBlindSignature+Tests.m in Sources */,
 				C58871691DE3F3E600C45B43 /* BTCMerkleTree.m in Sources */,
 				C588717E1DE3F3E600C45B43 /* BTCScriptMachine.m in Sources */,
@@ -1011,6 +1136,7 @@
 				C58871661DE3F3E600C45B43 /* BTCKeychain+Tests.m in Sources */,
 				C588717D1DE3F3E600C45B43 /* BTCScript.m in Sources */,
 				C58871811DE3F3E600C45B43 /* BTCTransaction.m in Sources */,
+				C59CD0531DE5621100A23CE2 /* WelcomeHDViewController.swift in Sources */,
 				C588715B1DE3F3E600C45B43 /* BTCData.m in Sources */,
 				C588717B1DE3F3E600C45B43 /* BTCQRCode.m in Sources */,
 				C58871461DE3F3E600C45B43 /* BTCAssetAddress.m in Sources */,
@@ -1045,6 +1171,7 @@
 				C588714C1DE3F3E600C45B43 /* BTCBigNumber.m in Sources */,
 				C58871381DE3F3E600C45B43 /* UIColor+extension.swift in Sources */,
 				C58871451DE3F3E600C45B43 /* BTCAddress.m in Sources */,
+				C59CD04F1DE5621100A23CE2 /* BaseViewController.swift in Sources */,
 				C58871741DE3F3E600C45B43 /* BTCPaymentRequest.m in Sources */,
 				C588716F1DE3F3E600C45B43 /* BTCOutpoint.m in Sources */,
 				C588715C1DE3F3E600C45B43 /* BTCEncryptedBackup+Tests.m in Sources */,
@@ -1073,6 +1200,8 @@
 				C58871361DE3F3E600C45B43 /* String+extension.swift in Sources */,
 				C588716A1DE3F3E600C45B43 /* BTCMnemonic+Tests.m in Sources */,
 				C58871541DE3F3E600C45B43 /* BTCBlockHeader.m in Sources */,
+				C59CD0511DE5621100A23CE2 /* TabBarViewController.swift in Sources */,
+				C59CD0411DE5478B00A23CE2 /* RealmDBHelper.swift in Sources */,
 				C588712F1DE3F3E600C45B43 /* BTCAmount+extension.swift in Sources */,
 				C58871A91DE4138000C45B43 /* MessageModule.swift in Sources */,
 				C58871491DE3F3E600C45B43 /* BTCBase58+Tests.m in Sources */,
@@ -1083,20 +1212,23 @@
 				C588717F1DE3F3E600C45B43 /* BTCSecretSharing.m in Sources */,
 				C588714D1DE3F3E600C45B43 /* BTCBitcoinURL+Tests.m in Sources */,
 				C588716E1DE3F3E600C45B43 /* BTCOpcode.m in Sources */,
+				C59CD05A1DE578BA00A23CE2 /* MenuItemCell.swift in Sources */,
 				C58871B31DE4138000C45B43 /* TouchIDUtils.swift in Sources */,
 				C58871351DE3F3E600C45B43 /* NSTimer+extension.swift in Sources */,
 				C58871711DE3F3E600C45B43 /* BTCPaymentMethodDetails.m in Sources */,
+				C59CD0521DE5621100A23CE2 /* WelcomeCreateAccountViewController.swift in Sources */,
 				C588716B1DE3F3E600C45B43 /* BTCMnemonic.m in Sources */,
 				C58871611DE3F3E600C45B43 /* BTCFancyEncryptedMessage+Tests.m in Sources */,
 				C58871411DE3F3E600C45B43 /* ZYQAssetPickerController+extension.swift in Sources */,
 				C588717A1DE3F3E600C45B43 /* BTCProtocolSerialization.m in Sources */,
-				C58870151DE3F37500C45B43 /* ViewController.swift in Sources */,
 				C58871AB1DE4138000C45B43 /* TransactionUnit.swift in Sources */,
 				C58871B71DE4197700C45B43 /* LocalizeUtils.swift in Sources */,
 				C58870131DE3F37500C45B43 /* AppDelegate.swift in Sources */,
 				C58871A61DE4138000C45B43 /* RemoteService.swift in Sources */,
 				C58871471DE3F3E600C45B43 /* BTCAssetID.m in Sources */,
+				C59CD0501DE5621100A23CE2 /* RootNavigationController.swift in Sources */,
 				C58871891DE3F3E600C45B43 /* SVIndefiniteAnimatedView.m in Sources */,
+				C59CD05B1DE578BA00A23CE2 /* UserTransactionCell.swift in Sources */,
 				C58871321DE3F3E600C45B43 /* Float+extension.swift in Sources */,
 				C588713D1DE3F3E600C45B43 /* UITextView+extension.swift in Sources */,
 				C58871771DE3F3E600C45B43 /* BTCProcessor.m in Sources */,
@@ -1167,7 +1299,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1211,7 +1343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1225,11 +1357,13 @@
 			baseConfigurationReference = 41948111B0FF5B5DA3FA755D /* Pods-chance_btc_wallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = chance_btc_wallet/chance_btc_wallet.entitlements;
 				DEVELOPMENT_TEAM = 768U2S2GPR;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/framework",
 				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/chance_btc_wallet/lib/3rd/**";
 				INFOPLIST_FILE = chance_btc_wallet/Info.plist;
@@ -1242,6 +1376,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "chance_btc_wallet/chance-btc-wallet-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
 			};
 			name = Debug;
 		};
@@ -1250,11 +1385,13 @@
 			baseConfigurationReference = AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = chance_btc_wallet/chance_btc_wallet.entitlements;
 				DEVELOPMENT_TEAM = 768U2S2GPR;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/framework",
 				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/chance_btc_wallet/lib/3rd/**";
 				INFOPLIST_FILE = chance_btc_wallet/Info.plist;
@@ -1267,6 +1404,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "chance_btc_wallet/chance-btc-wallet-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
 			};
 			name = Release;
 		};

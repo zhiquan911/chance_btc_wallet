@@ -67,16 +67,11 @@ class CHBTCWallets: NSObject {
         return self.getBIP44KeyChain()
     }
     
-    //单例结构体
-    fileprivate struct Singleton{
-        static var predicate:Int = 0
-        static var instance:CHBTCWallets? = nil
-    }
-    
+
     /// MARK: - 类方法
 
     //全局唯一实例
-    static let sharedInstance: CHBTCWallets = {
+    static var sharedInstance: CHBTCWallets = {
         let instance = CHBTCWallets()
         return instance
     }()
@@ -128,7 +123,7 @@ class CHBTCWallets: NSObject {
     class func setDefaultWallet(_ phrase: String, password: String) -> Bool {
         let wallet = CHBTCWallets.createWallet(phrase, password: password)
         if wallet != nil {
-            Singleton.instance = wallet
+            CHBTCWallets.sharedInstance = wallet!
             return true
         } else {
             return false
@@ -179,7 +174,7 @@ class CHBTCWallets: NSObject {
      
      - returns:
      */
-    func getHDAccount(_ index: Int = 0) -> CHBTCAcounts? {
+    func getAccount(_ index: Int = 0) -> CHBTCAcounts? {
         let childKeys = self.rootKeys.derivedKeychain(at: UInt32(index),
                                                              hardened: true)
         if childKeys != nil {
@@ -219,10 +214,7 @@ class CHBTCWallets: NSObject {
         var accounts = [CHBTCAcounts]()
         if self.accountsCount > 0 {
             for i in 0...self.accountsCount - 1 {
-                let childKeys = self.rootKeys.derivedKeychain(at: UInt32(i),
-                    hardened: true)
-                if childKeys != nil {
-                    let account = CHBTCAcounts(index: i, exprvKey: childKeys!)
+                if let account = self.getAccount(i) {
                     accounts.append(account)
                 }
             }

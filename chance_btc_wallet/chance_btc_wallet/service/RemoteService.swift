@@ -60,7 +60,10 @@ extension RemoteService {
                          parameters: [String: Any], useCache: Bool = false,
                          response: @escaping (_ json: JSON, _ isCache: Bool) -> Void) {
         
-        Alamofire.request(url, method: .post, parameters: parameters)
+        Log.debug("接口地址: \(url)")
+        Log.debug("传入参数: \(parameters)")
+        
+        Alamofire.request(url, method: method, parameters: parameters)
             .responseJSON {
                 resp in
                 let result = resp.result
