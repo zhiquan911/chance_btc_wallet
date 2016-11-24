@@ -143,6 +143,10 @@
 		C59CD0561DE5723A00A23CE2 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0551DE5723A00A23CE2 /* WalletViewController.swift */; };
 		C59CD05A1DE578BA00A23CE2 /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0581DE578BA00A23CE2 /* MenuItemCell.swift */; };
 		C59CD05B1DE578BA00A23CE2 /* UserTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0591DE578BA00A23CE2 /* UserTransactionCell.swift */; };
+		C59CD0611DE59D7B00A23CE2 /* BTCMultiSigTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD05D1DE59D7B00A23CE2 /* BTCMultiSigTransactionViewController.swift */; };
+		C59CD0621DE59D7B00A23CE2 /* BTCReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD05E1DE59D7B00A23CE2 /* BTCReceiveViewController.swift */; };
+		C59CD0631DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD05F1DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift */; };
+		C59CD0641DE59D7B00A23CE2 /* BTCSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0601DE59D7B00A23CE2 /* BTCSendViewController.swift */; };
 		D7370CD84FEEB4F4E4522FC6 /* Pods_chance_btc_wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */; };
 /* End PBXBuildFile section */
 
@@ -460,6 +464,10 @@
 		C59CD0581DE578BA00A23CE2 /* MenuItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 		C59CD0591DE578BA00A23CE2 /* UserTransactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTransactionCell.swift; sourceTree = "<group>"; };
 		C59CD05C1DE588C100A23CE2 /* chance_btc_wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = chance_btc_wallet.entitlements; sourceTree = "<group>"; };
+		C59CD05D1DE59D7B00A23CE2 /* BTCMultiSigTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCMultiSigTransactionViewController.swift; sourceTree = "<group>"; };
+		C59CD05E1DE59D7B00A23CE2 /* BTCReceiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCReceiveViewController.swift; sourceTree = "<group>"; };
+		C59CD05F1DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCSendMultiSigViewController.swift; sourceTree = "<group>"; };
+		C59CD0601DE59D7B00A23CE2 /* BTCSendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCSendViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -951,6 +959,10 @@
 			isa = PBXGroup;
 			children = (
 				C59CD0571DE578A100A23CE2 /* component */,
+				C59CD05D1DE59D7B00A23CE2 /* BTCMultiSigTransactionViewController.swift */,
+				C59CD05E1DE59D7B00A23CE2 /* BTCReceiveViewController.swift */,
+				C59CD05F1DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift */,
+				C59CD0601DE59D7B00A23CE2 /* BTCSendViewController.swift */,
 				C59CD0551DE5723A00A23CE2 /* WalletViewController.swift */,
 			);
 			name = wallet;
@@ -1128,6 +1140,7 @@
 				C58871511DE3F3E600C45B43 /* BTCBlock.m in Sources */,
 				C58871B61DE4197700C45B43 /* LogUtils.swift in Sources */,
 				C58871581DE3F3E600C45B43 /* BTCCurvePoint+Tests.m in Sources */,
+				C59CD0611DE59D7B00A23CE2 /* BTCMultiSigTransactionViewController.swift in Sources */,
 				C58871A71DE4138000C45B43 /* CHBTCAcounts.swift in Sources */,
 				C58871681DE3F3E600C45B43 /* BTCMerkleTree+Tests.m in Sources */,
 				C58871AD1DE4138000C45B43 /* UserBalance.swift in Sources */,
@@ -1156,6 +1169,7 @@
 				C588713C1DE3F3E600C45B43 /* UITableView+extension.swift in Sources */,
 				C58871AE1DE4138000C45B43 /* UserInfo.swift in Sources */,
 				C58871341DE3F3E600C45B43 /* NSDate+extension.swift in Sources */,
+				C59CD0621DE59D7B00A23CE2 /* BTCReceiveViewController.swift in Sources */,
 				C58871621DE3F3E600C45B43 /* BTCFancyEncryptedMessage.m in Sources */,
 				C58871701DE3F3E600C45B43 /* BTCPaymentMethod.m in Sources */,
 				C58871831DE3F3E600C45B43 /* BTCTransactionInput.m in Sources */,
@@ -1195,6 +1209,8 @@
 				C58871B11DE4138000C45B43 /* CHWalletWrapper.swift in Sources */,
 				C588713F1DE3F3E600C45B43 /* UIView+MotionEffect.swift in Sources */,
 				C58871651DE3F3E600C45B43 /* BTCKey.m in Sources */,
+				C59CD0641DE59D7B00A23CE2 /* BTCSendViewController.swift in Sources */,
+				C59CD0631DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift in Sources */,
 				C58871301DE3F3E600C45B43 /* BTCScript+extension.swift in Sources */,
 				C588715F1DE3F3E600C45B43 /* BTCEncryptedMessage.m in Sources */,
 				C58871361DE3F3E600C45B43 /* String+extension.swift in Sources */,

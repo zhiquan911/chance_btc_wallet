@@ -47,6 +47,7 @@ class WalletViewController: BaseViewController {
             name: Notification.Name(rawValue: "updateUserWallet"),
             object: nil)
         
+        //创建刷新定时器，获取最新的交易记录
         if self.refreshTimer == nil {
             self.refreshTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateUserWallet), userInfo: nil, repeats: true)
         }
@@ -54,6 +55,8 @@ class WalletViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        //停止定时器
         self.refreshTimer?.invalidate()
         self.refreshTimer = nil
     }
@@ -184,9 +187,11 @@ extension WalletViewController {
      */
     @IBAction func handleReceivePress(_ sender: AnyObject?) {
         
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "BTCReceiveViewController") as! BTCReceiveViewController
-//        vc.address = self.address
-//        self.navigationController?.pushViewController(vc, animated: true)
+        guard let vc = StoryBoard.wallet.initView(type: BTCReceiveViewController.self) else {
+            return
+        }
+        vc.address = self.address
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     /**
@@ -195,35 +200,37 @@ extension WalletViewController {
      - parameter sender:
      */
     @IBAction func handleSendPress(_ sender: AnyObject?) {
-//        if BBKeyStore.sharedInstance.selectedAccountType == BKAccountType.Normal {
-//            self.gotoBTCSendView()
-//        } else {
+        if let type = self.currentAccount?.accountType, type == .Normal {
+            self.gotoBTCSendView()
+        } else {
             self.showMultiSigTransactionMenu()
-//        }
+        }
     }
     
     /**
      弹出多重签名发送btc选择的菜单
      */
     func showMultiSigTransactionMenu() {
-        let actionSheet = UIAlertController(title: "选择发送方式", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet = UIAlertController(title: "You can".localized(), message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "创建新交易", style: UIAlertActionStyle.default, handler: {
+        actionSheet.addAction(UIAlertAction(title: "Send Bitcoin".localized(), style: UIAlertActionStyle.default, handler: {
             (action) -> Void in
             self.gotoBTCSendView()
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "粘贴来至他人的交易", style: UIAlertActionStyle.default, handler: {
+        //多重签名账户可以粘贴别人的签名交易
+        actionSheet.addAction(UIAlertAction(title: "Paste from Clipboard".localized(), style: UIAlertActionStyle.default, handler: {
             (action) -> Void in
             let pasteboard = UIPasteboard.general
             if pasteboard.string?.length ?? 0 > 0 {
                 self.gotoMultiSigTransactionView(pasteboard.string!)
             } else {
-                SVProgressHUD.showInfo(withStatus: "剪贴板没有内容")
+                SVProgressHUD.showInfo(withStatus: "Clipboard is empty".localized())
             }
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: {
+    
+        actionSheet.addAction(UIAlertAction(title: "Cancel".localized(), style: UIAlertActionStyle.cancel, handler: {
             (action) -> Void in
             
         }))
@@ -238,14 +245,16 @@ extension WalletViewController {
         
         let msgs = message.components(separatedBy: "&")
         if msgs.count == 3 {
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "BTCMultiSigTransactionViewController") as! BTCMultiSigTransactionViewController
-//            
-//            vc.transactionHex = msgs[0]
-//            vc.multiSigHexs = msgs[1]
-//            vc.redeemScriptHex = msgs[2]
-//            self.navigationController?.pushViewController(vc, animated: true)
+            guard let vc = StoryBoard.wallet.initView(type: BTCMultiSigTransactionViewController.self) else {
+                return
+            }
+            vc.currentAccount = self.currentAccount!
+            vc.transactionHex = msgs[0]
+            vc.multiSigHexs = msgs[1]
+            vc.redeemScriptHex = msgs[2]
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
-            SVProgressHUD.showError(withStatus: "解析交易信息出错")
+            SVProgressHUD.showError(withStatus: "Transaction parsing error".localized())
         }
 
     }
@@ -255,9 +264,11 @@ extension WalletViewController {
      进入发送比特币界面
      */
     func gotoBTCSendView() {
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "BTCSendViewController") as! BTCSendViewController
-//        vc.availableTotal = self.balance
-//        self.navigationController?.pushViewController(vc, animated: true)
+        guard let vc = StoryBoard.wallet.initView(type: BTCSendViewController.self) else {
+            return
+        }
+        vc.availableTotal = self.balance
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     /**
@@ -477,7 +488,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             let localDateString = Date.getShortTimeByStamp(Int64(tx.blocktime))
             
             if (tx.confirmations == 0) {
-                cell.labelTime.text = "unconfirmed";
+                cell.labelTime.text = "unconfirmed".localized()
             } else {
                 cell.labelTime.text = localDateString;
             }
@@ -490,16 +501,16 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             let isTransactionToSelf = self.isTransactionToSelf(tx)
             if (isTransactionToSelf) {
                 cell.labelChange.textColor =  UIColor(hex: 0x7d2b8b)
-                cell.labelChange.text = "To: me";
+                cell.labelChange.text = "To: me".localized();
             } else {
                 if (transactionValue < 0) {
                     //发送
                     cell.labelChange.textColor =  UIColor(hex: 0xf76b6b)
-                    cell.labelAddress.text = "To: \(self.addressesString(tx.voutTxs))"
+                    cell.labelAddress.text = "To:".localized() + " \(self.addressesString(tx.voutTxs))"
                 } else {
                     // 接收
                     cell.labelChange.textColor =  UIColor(hex: 0x7fdf40)
-                    cell.labelAddress.text = "From: \(self.addressesString(tx.vinTxs))"
+                    cell.labelAddress.text = "From:".localized() + " \(self.addressesString(tx.vinTxs))"
                 }
             }
             
@@ -527,6 +538,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 let btcAccount = CHBTCWallets.sharedInstance.getAccount(indexPath.row)!
                 self.currentAccount = btcAccount       //记录当前账户对象
+                
                 self.userName = btcAccount.userNickname
                 self.address = btcAccount.address.string
                 

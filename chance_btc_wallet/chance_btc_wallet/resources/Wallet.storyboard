@@ -146,7 +146,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e0P-pz-OuJ" id="cBO-Vl-Jgn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To: 123456789qwertyuiopasdfghjkl" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGH-JO-Fx2">
@@ -220,7 +220,7 @@
                     <navigationItem key="navigationItem" id="VFC-2u-vdR">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="T5j-8L-T54">
-                            <rect key="frame" x="124" y="6" width="128" height="33"/>
+                            <rect key="frame" x="123.5" y="5.5" width="128" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1v2-df-ExK">
@@ -254,8 +254,8 @@
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
-                                    <exclude reference="UIO-g6-Y03"/>
                                     <exclude reference="8Uv-1Q-QJ3"/>
+                                    <exclude reference="UIO-g6-Y03"/>
                                 </mask>
                             </variation>
                         </view>
@@ -362,7 +362,7 @@
         <!--Receive View Controller-->
         <scene sceneID="Fva-Vl-fRI">
             <objects>
-                <viewController storyboardIdentifier="BTCReceiveViewController" hidesBottomBarWhenPushed="YES" id="FIT-Xp-7de" customClass="BTCReceiveViewController" customModule="bitbank_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BTCReceiveViewController" hidesBottomBarWhenPushed="YES" id="FIT-Xp-7de" customClass="BTCReceiveViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rd2-7v-b0A"/>
                         <viewControllerLayoutGuide type="bottom" id="L4V-5u-Cle"/>
@@ -372,14 +372,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ycL-Qd-RjT">
-                                <rect key="frame" x="87.5" y="30" width="200" height="200"/>
+                                <rect key="frame" x="88" y="30" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="AFj-2v-45g"/>
                                     <constraint firstAttribute="height" constant="200" id="QQX-LH-G2J"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1vY-gX-R16">
-                                <rect key="frame" x="42.5" y="280" width="290" height="60"/>
+                                <rect key="frame" x="43" y="280" width="290" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="290" id="fpX-zP-TmF"/>
                                     <constraint firstAttribute="height" constant="60" id="tBe-PB-mlZ"/>
@@ -424,17 +424,17 @@
         <!--比特币发送-->
         <scene sceneID="jtL-Ir-6KV">
             <objects>
-                <tableViewController storyboardIdentifier="BTCSendViewController" hidesBottomBarWhenPushed="YES" id="8XK-yh-RZ5" userLabel="比特币发送" customClass="BTCSendViewController" customModule="bitbank_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="BTCSendViewController" hidesBottomBarWhenPushed="YES" id="8XK-yh-RZ5" userLabel="比特币发送" customClass="BTCSendViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" id="tKl-tm-xEk">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94999998809999997" green="0.94999998809999997" blue="0.94999998809999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="47u-Jb-a23">
-                            <rect key="frame" x="0.0" y="275" width="375" height="70"/>
+                            <rect key="frame" x="0.0" y="220" width="375" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sd-Ew-Gu1">
-                                    <rect key="frame" x="20" y="20" width="280" height="40"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sd-Ew-Gu1">
+                                    <rect key="frame" x="20" y="20" width="335" height="40"/>
                                     <color key="backgroundColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="cmQ-bb-zzq"/>
@@ -470,8 +470,8 @@
                                                         <constraint firstAttribute="width" constant="21" id="Zdh-Xl-aMg"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="414-jY-BMf">
-                                                    <rect key="frame" x="131" y="11" width="25.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="414-jY-BMf">
+                                                    <rect key="frame" x="152" y="11" width="25.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="JWz-wQ-tTI"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="KHT-qd-VvK"/>
@@ -487,8 +487,8 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="可用：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cew-8J-09J">
-                                                    <rect key="frame" x="37" y="11" width="39" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avalible：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cew-8J-09J">
+                                                    <rect key="frame" x="37" y="11" width="60" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Sx5-zV-xvY"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="bNJ-iP-Au5"/>
@@ -502,8 +502,8 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2999.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3f-n5-U8P">
-                                                    <rect key="frame" x="76" y="11" width="51.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2999.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3f-n5-U8P">
+                                                    <rect key="frame" x="97" y="11" width="51.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Anq-YF-vA0"/>
                                                         <constraint firstAttribute="height" constant="21" id="yJl-pa-ZoW"/>
@@ -550,8 +550,8 @@
                                                         <constraint firstAttribute="width" constant="21" id="iMB-MI-x4r"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="请选付币地址或扫码录入" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="fcC-tQ-tbc">
-                                                    <rect key="frame" x="33" y="0.0" width="244" height="43.5"/>
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input btc address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="fcC-tQ-tbc">
+                                                    <rect key="frame" x="33" y="0.0" width="299" height="43.5"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -560,8 +560,8 @@
                                                         <outletCollection property="gestureRecognizers" destination="ddH-Az-GkS" appends="YES" id="cZR-zy-ecT"/>
                                                     </connections>
                                                 </label>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgD-oU-hOa">
-                                                    <rect key="frame" x="285" y="0.0" width="35" height="44"/>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgD-oU-hOa">
+                                                    <rect key="frame" x="340" y="0.0" width="35" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="WLB-gS-yKf"/>
                                                         <constraint firstAttribute="width" constant="35" id="xLy-RU-qRN"/>
@@ -616,8 +616,8 @@
                                                         <constraint firstAttribute="height" constant="21" id="VNF-uH-JeL"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入比特币数量" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Q1I-E5-70U">
-                                                    <rect key="frame" x="37" y="7" width="275" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Input btc amount" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Q1I-E5-70U">
+                                                    <rect key="frame" x="37" y="7" width="330" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="7Ax-3f-Cnr"/>
                                                     </constraints>
@@ -652,17 +652,17 @@
                                                         <constraint firstAttribute="height" constant="18" id="nPZ-PM-q2a"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="实际到账：--BTC，矿工费：0.0001BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHz-xY-fMH">
-                                                    <rect key="frame" x="30" y="4" width="200.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actual：--BTC，Fees：0.0001BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHz-xY-fMH">
+                                                    <rect key="frame" x="30" y="4" width="196.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="zhI-gX-LeT"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.39808627959999998" green="0.39808627959999998" blue="0.39808627959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nog-0q-vlb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nog-0q-vlb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
                                                     <color key="backgroundColor" red="0.94117647059999998" green="0.94509803920000002" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="IxS-rl-QaJ"/>
@@ -689,45 +689,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="iZG-vw-7er">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wwL-IF-iyP">
-                                        <rect key="frame" x="0.0" y="230" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wwL-IF-iyP" id="hUE-0J-Sry">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_mark_form" translatesAutoresizingMaskIntoConstraints="NO" id="hPs-0D-5aH">
-                                                    <rect key="frame" x="8" y="12" width="21" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="21" id="Ikk-t2-5M6"/>
-                                                        <constraint firstAttribute="height" constant="21" id="jR3-2q-Vfp"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入备注信息" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="K6k-aE-Ds8">
-                                                    <rect key="frame" x="37" y="7" width="275" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Amv-Lw-R0d"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="8XK-yh-RZ5" id="Gq7-C3-QUh"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="K6k-aE-Ds8" firstAttribute="leading" secondItem="hPs-0D-5aH" secondAttribute="trailing" constant="8" id="6ci-xX-xrJ"/>
-                                                <constraint firstItem="K6k-aE-Ds8" firstAttribute="centerY" secondItem="hPs-0D-5aH" secondAttribute="centerY" id="bhr-LS-Vc2"/>
-                                                <constraint firstAttribute="trailing" secondItem="K6k-aE-Ds8" secondAttribute="trailing" constant="8" id="dvc-p7-jLE"/>
-                                                <constraint firstItem="hPs-0D-5aH" firstAttribute="leading" secondItem="hUE-0J-Sry" secondAttribute="leading" constant="8" id="uvc-bz-zt6"/>
-                                                <constraint firstItem="hPs-0D-5aH" firstAttribute="centerY" secondItem="hUE-0J-Sry" secondAttribute="centerY" id="wK2-4X-02U"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="8XK-yh-RZ5" id="lLd-QW-6Ao"/>
@@ -740,7 +701,6 @@
                         <outlet property="labelAvailableTotal" destination="L3f-n5-U8P" id="oGu-UA-SYT"/>
                         <outlet property="labelCurrency" destination="414-jY-BMf" id="rhu-i9-4QS"/>
                         <outlet property="labelInfo" destination="mHz-xY-fMH" id="njc-R6-i5N"/>
-                        <outlet property="textFieldNote" destination="K6k-aE-Ds8" id="PYr-CX-D4A"/>
                         <outlet property="textFieldNumber" destination="Q1I-E5-70U" id="HYX-95-JbA"/>
                         <segue destination="qp6-Q3-02e" kind="show" id="KIX-q7-ViU">
                             <nil key="action"/>
@@ -759,7 +719,7 @@
         <!--多重签名未完成-->
         <scene sceneID="xrK-L9-Rft">
             <objects>
-                <viewController storyboardIdentifier="BTCSendMultiSigViewController" id="qp6-Q3-02e" userLabel="多重签名未完成" customClass="BTCSendMultiSigViewController" customModule="bitbank_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BTCSendMultiSigViewController" id="qp6-Q3-02e" userLabel="多重签名未完成" customClass="BTCSendMultiSigViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A9r-Wa-XIF"/>
                         <viewControllerLayoutGuide type="bottom" id="3dS-1k-yaY"/>
@@ -768,8 +728,8 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="交易签名未完成，请发送给其他签名拥有者继续签名" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnw-pg-7K8">
-                                <rect key="frame" x="8" y="8" width="304" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易签名未完成，请发送给其他签名拥有者继续签名" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnw-pg-7K8">
+                                <rect key="frame" x="8" y="8" width="359" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Ll8-oU-6Ov"/>
                                 </constraints>
@@ -777,8 +737,8 @@
                                 <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="交易文本" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aD-sH-gjf">
-                                <rect key="frame" x="8" y="44" width="304" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易文本" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aD-sH-gjf">
+                                <rect key="frame" x="8" y="44" width="359" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="u7g-fU-94X"/>
                                 </constraints>
@@ -791,8 +751,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2es-Z5-g2u">
-                                <rect key="frame" x="20" y="81" width="280" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2es-Z5-g2u">
+                                <rect key="frame" x="20" y="81" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="FcG-hL-bgt"/>
@@ -828,6 +788,7 @@
                     <connections>
                         <outlet property="buttonCopy" destination="2es-Z5-g2u" id="IOm-ga-jhv"/>
                         <outlet property="labelTransactionHex" destination="5aD-sH-gjf" id="bmw-mR-xNg"/>
+                        <segue destination="XMF-hZ-LMU" kind="show" id="XwS-AH-8z8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Pa-Wn-FCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -837,17 +798,17 @@
         <!--多重签名再签名-->
         <scene sceneID="l2q-bu-YBr">
             <objects>
-                <viewController storyboardIdentifier="BTCMultiSigTransactionViewController" hidesBottomBarWhenPushed="YES" id="XMF-hZ-LMU" userLabel="多重签名再签名" customClass="BTCMultiSigTransactionViewController" customModule="bitbank_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BTCMultiSigTransactionViewController" hidesBottomBarWhenPushed="YES" id="XMF-hZ-LMU" userLabel="多重签名再签名" customClass="BTCMultiSigTransactionViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kyz-mM-ZAM"/>
                         <viewControllerLayoutGuide type="bottom" id="DiP-Rl-Fge"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1EJ-Ob-5yx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="签名这笔交易" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-29-3lX">
-                                <rect key="frame" x="8" y="28" width="304" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="签名这笔交易" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-29-3lX">
+                                <rect key="frame" x="8" y="8" width="359" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="NQp-mG-JDn"/>
                                 </constraints>
@@ -855,8 +816,8 @@
                                 <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="交易文本" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQT-a9-vvQ">
-                                <rect key="frame" x="8" y="64" width="304" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易文本" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQT-a9-vvQ">
+                                <rect key="frame" x="8" y="44" width="359" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="iaR-qc-EhT"/>
                                 </constraints>
@@ -869,8 +830,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1e-xi-3eo">
-                                <rect key="frame" x="20" y="101" width="280" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1e-xi-3eo">
+                                <rect key="frame" x="20" y="81" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gH8-NC-6SK"/>
@@ -918,7 +879,6 @@
         <image name="ico_address_form" width="21" height="21"/>
         <image name="ico_asset" width="21" height="21"/>
         <image name="ico_close_top" width="21" height="21"/>
-        <image name="ico_mark_form" width="21" height="21"/>
         <image name="ico_more_address" width="21" height="21"/>
         <image name="ico_payout_form" width="21" height="21"/>
         <image name="ico_user" width="21" height="21"/>

@@ -55,7 +55,7 @@ class CHBTCAcounts: NSObject {
     
     /// 获取公钥
     var publicKey: BTCKey {
-        let pubkey = self.privateKey?.publicKey
+        let pubkey = self.privateKey?.compressedPublicKey
         let key = BTCKey(publicKey: pubkey as Data!)
         return key!;
     }
