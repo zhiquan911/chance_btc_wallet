@@ -23,13 +23,14 @@ class TabBarViewController: UITabBarController {
             let vc = StoryBoard.welcome.initView(name: "WelcomeNavController") as! UINavigationController
             self.present(vc, animated: true, completion: nil)
         } else {
-            if CHWalletWrapper.selectedAccount == nil {
+            if CHWalletWrapper.selectedAccountIndex == -1 {
                 let account = CHBTCWallets.sharedInstance.getAccount()
-                CHWalletWrapper.selectedAccount = account?.address.string
+                CHWalletWrapper.selectedAccountIndex = account!.index
             }
-            //配置默认账户数据库
-            _ = RealmDBHelper.setDefaultAccountDB(address: CHWalletWrapper.selectedAccount!)
+            
         }
+        
+        //导入keychain中保存的地址账户数据到本地数据库
         
         //如果没有私钥，进入欢迎界面
 //        if BBKeyStore.sharedInstance.key == nil {
@@ -61,11 +62,12 @@ class TabBarViewController: UITabBarController {
             .withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         self.viewControllers![0].tabBarItem = tabBarItem1
         
-//        let tabBarItem2 = self.tabBar.items?[1]
-//        tabBarItem2?.image = UIImage(named: "menu_ico_user")?
-//            .withRenderingMode(UIImageRenderingMode.alwaysOriginal)
-//        tabBarItem2?.selectedImage = UIImage(named: "menu_ico_user_active")?
-//            .withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        let tabBarItem2 = self.tabBar.items?[1]
+        tabBarItem2?.image = UIImage(named: "menu_ico_user")?
+            .withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        tabBarItem2?.selectedImage = UIImage(named: "menu_ico_user_active")?
+            .withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        self.viewControllers![1].tabBarItem = tabBarItem2
         
         //改变UITabBarItem 字体颜色
         UITabBarItem.appearance().setTitleTextAttributes(

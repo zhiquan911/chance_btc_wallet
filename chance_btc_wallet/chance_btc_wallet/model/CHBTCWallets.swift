@@ -8,6 +8,7 @@
 
 import UIKit
 import KeychainSwift
+import SwiftyJSON
 
 class CHBTCWallets: NSObject {
     
@@ -50,8 +51,8 @@ class CHBTCWallets: NSObject {
         }
     }
     
-    //已有账户个数
-    var accountsCount: Int {
+    //已有账户序列号
+    var accountsSeq: Int {
         get {
             let value = self.keychain.get(CHWalletsKeys.BTCWalletAccountsCount) ?? "0"
             return Int(value)!;
@@ -59,6 +60,29 @@ class CHBTCWallets: NSObject {
         
         set {
             self.keychain.set(String(newValue), forKey: CHWalletsKeys.BTCWalletAccountsCount)
+        }
+    }
+    
+    
+    //HD账户的数据读写保存在keychain
+    var accountsJson: [String: String] {
+        get {
+            
+            guard let value = self.keychain.get(CHWalletsKeys.BTCWalletAccountsJSON) else {
+                return [String: String]()
+            }
+            
+            guard let dataFromString = value.data(using: .utf8, allowLossyConversion: false) else {
+                return [String: String]()
+            }
+            
+            let json = JSON(data: dataFromString)
+            return json.rawValue as! [String: String]
+        }
+        
+        set {
+            let json = JSON(newValue)
+            self.keychain.set(json.rawString()!, forKey: CHWalletsKeys.BTCWalletAccountsJSON)
         }
     }
     
@@ -152,14 +176,21 @@ class CHBTCWallets: NSObject {
      */
     func createHDAccount(_ name: String) -> CHBTCAcounts? {
         //读取钱包钥匙串中第0位作为钱包普通账户
-        let accoutsCount = CHBTCWallets.sharedInstance.accountsCount
-        let childKeys = CHBTCWallets.sharedInstance.rootKeys.derivedKeychain(at: UInt32(accoutsCount), hardened: true)
+        let accoutsCount = self.accountsSeq
+        let childKeys = self.rootKeys.derivedKeychain(at: UInt32(accoutsCount), hardened: true)
         if childKeys != nil {
             let account = CHBTCAcounts()
             account.extendedPrivateKey = childKeys!      //私钥
             account.userNickname = name
+            
+            //把新账户添加到JSON中保存到keychain
+            var json = self.accountsJson
+            json[accoutsCount.toString()] = account.address.string
+            self.accountsJson = json
+            
             //增加钱包账户数
-            CHBTCWallets.sharedInstance.accountsCount = (accoutsCount + 1)
+            CHBTCWallets.sharedInstance.accountsSeq = (accoutsCount + 1)
+
             return  account
         } else {
             return nil
@@ -212,11 +243,10 @@ class CHBTCWallets: NSObject {
      */
     func getAccounts() -> [CHBTCAcounts] {
         var accounts = [CHBTCAcounts]()
-        if self.accountsCount > 0 {
-            for i in 0...self.accountsCount - 1 {
-                if let account = self.getAccount(i) {
-                    accounts.append(account)
-                }
+        let accountsJSON = self.accountsJson
+        for (i, _) in accountsJSON {
+            if let account = self.getAccount(i.toInt()) {
+                accounts.append(account)
             }
         }
         

@@ -93,7 +93,7 @@ extension BTCMultiSigTransactionViewController {
         
         //把自己的签名加入到签名数组中
         
-        let myIndex = pubkeys!.1.index(of: self.currentAccount.publicKey.address.string)!
+        let myIndex = pubkeys!.1.index(of: self.currentAccount.extendedPublicKey)!
         self.signatureDic[myIndex] = data
         
         //按顺序合并签名数据

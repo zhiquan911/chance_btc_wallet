@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C508D8861DE938AE00107EDA /* CHTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508D8851DE938AE00107EDA /* CHTextView.swift */; };
 		C58870131DE3F37500C45B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58870121DE3F37500C45B43 /* AppDelegate.swift */; };
 		C58870181DE3F37500C45B43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C58870161DE3F37500C45B43 /* Main.storyboard */; };
 		C588701A1DE3F37500C45B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58870191DE3F37500C45B43 /* Assets.xcassets */; };
@@ -126,13 +127,11 @@
 		C58871B31DE4138000C45B43 /* TouchIDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871A31DE4138000C45B43 /* TouchIDUtils.swift */; };
 		C58871B61DE4197700C45B43 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871B41DE4197700C45B43 /* LogUtils.swift */; };
 		C58871B71DE4197700C45B43 /* LocalizeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871B51DE4197700C45B43 /* LocalizeUtils.swift */; };
-		C59CD0311DE52F8900A23CE2 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C59CD0301DE52F8900A23CE2 /* Welcome.storyboard */; };
 		C59CD03B1DE5476100A23CE2 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59CD0391DE5476100A23CE2 /* Realm.framework */; };
 		C59CD03C1DE5476100A23CE2 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C59CD0391DE5476100A23CE2 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C59CD03D1DE5476100A23CE2 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59CD03A1DE5476100A23CE2 /* RealmSwift.framework */; };
 		C59CD03E1DE5476100A23CE2 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C59CD03A1DE5476100A23CE2 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C59CD0411DE5478B00A23CE2 /* RealmDBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0401DE5478B00A23CE2 /* RealmDBHelper.swift */; };
-		C59CD0431DE5611B00A23CE2 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C59CD0421DE5611B00A23CE2 /* Wallet.storyboard */; };
 		C59CD04E1DE5621100A23CE2 /* AddressScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0451DE5621100A23CE2 /* AddressScanViewController.swift */; };
 		C59CD04F1DE5621100A23CE2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0461DE5621100A23CE2 /* BaseViewController.swift */; };
 		C59CD0501DE5621100A23CE2 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0471DE5621100A23CE2 /* RootNavigationController.swift */; };
@@ -147,6 +146,14 @@
 		C59CD0621DE59D7B00A23CE2 /* BTCReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD05E1DE59D7B00A23CE2 /* BTCReceiveViewController.swift */; };
 		C59CD0631DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD05F1DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift */; };
 		C59CD0641DE59D7B00A23CE2 /* BTCSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0601DE59D7B00A23CE2 /* BTCSendViewController.swift */; };
+		C5EAEF941DE6C52400324B60 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EAEF921DE6C52400324B60 /* Setting.storyboard */; };
+		C5EAEF991DE6C55800324B60 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EAEF951DE6C55800324B60 /* Wallet.storyboard */; };
+		C5EAEF9A1DE6C55800324B60 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EAEF971DE6C55800324B60 /* Welcome.storyboard */; };
+		C5EAEFA11DE6C97B00324B60 /* ExportKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF9C1DE6C97B00324B60 /* ExportKeyViewController.swift */; };
+		C5EAEFA21DE6C97B00324B60 /* ImportKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF9D1DE6C97B00324B60 /* ImportKeyViewController.swift */; };
+		C5EAEFA31DE6C97B00324B60 /* PasswordModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF9E1DE6C97B00324B60 /* PasswordModifyViewController.swift */; };
+		C5EAEFA41DE6C97B00324B60 /* PasswordSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF9F1DE6C97B00324B60 /* PasswordSettingViewController.swift */; };
+		C5EAEFA51DE6C97B00324B60 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEFA01DE6C97B00324B60 /* SettingViewController.swift */; };
 		D7370CD84FEEB4F4E4522FC6 /* Pods_chance_btc_wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */; };
 /* End PBXBuildFile section */
 
@@ -169,6 +176,7 @@
 		3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chance_btc_wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41948111B0FF5B5DA3FA755D /* Pods-chance_btc_wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.release.xcconfig"; sourceTree = "<group>"; };
+		C508D8851DE938AE00107EDA /* CHTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CHTextView.swift; path = viewcontrollers/setting/CHTextView.swift; sourceTree = "<group>"; };
 		C588700F1DE3F37500C45B43 /* chance_btc_wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chance_btc_wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58870121DE3F37500C45B43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C58870171DE3F37500C45B43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -448,11 +456,9 @@
 		C58871A31DE4138000C45B43 /* TouchIDUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchIDUtils.swift; sourceTree = "<group>"; };
 		C58871B41DE4197700C45B43 /* LogUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogUtils.swift; sourceTree = "<group>"; };
 		C58871B51DE4197700C45B43 /* LocalizeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizeUtils.swift; sourceTree = "<group>"; };
-		C59CD0301DE52F8900A23CE2 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Welcome.storyboard; path = resources/Welcome.storyboard; sourceTree = "<group>"; };
 		C59CD0391DE5476100A23CE2 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = framework/Realm.framework; sourceTree = "<group>"; };
 		C59CD03A1DE5476100A23CE2 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = framework/RealmSwift.framework; sourceTree = "<group>"; };
 		C59CD0401DE5478B00A23CE2 /* RealmDBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDBHelper.swift; sourceTree = "<group>"; };
-		C59CD0421DE5611B00A23CE2 /* Wallet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Wallet.storyboard; path = resources/Wallet.storyboard; sourceTree = "<group>"; };
 		C59CD0451DE5621100A23CE2 /* AddressScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressScanViewController.swift; sourceTree = "<group>"; };
 		C59CD0461DE5621100A23CE2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C59CD0471DE5621100A23CE2 /* RootNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
@@ -468,6 +474,14 @@
 		C59CD05E1DE59D7B00A23CE2 /* BTCReceiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCReceiveViewController.swift; sourceTree = "<group>"; };
 		C59CD05F1DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCSendMultiSigViewController.swift; sourceTree = "<group>"; };
 		C59CD0601DE59D7B00A23CE2 /* BTCSendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCSendViewController.swift; sourceTree = "<group>"; };
+		C5EAEF931DE6C52400324B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
+		C5EAEF961DE6C55800324B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Wallet.storyboard; sourceTree = "<group>"; };
+		C5EAEF981DE6C55800324B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
+		C5EAEF9C1DE6C97B00324B60 /* ExportKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExportKeyViewController.swift; path = viewcontrollers/setting/ExportKeyViewController.swift; sourceTree = "<group>"; };
+		C5EAEF9D1DE6C97B00324B60 /* ImportKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportKeyViewController.swift; path = viewcontrollers/setting/ImportKeyViewController.swift; sourceTree = "<group>"; };
+		C5EAEF9E1DE6C97B00324B60 /* PasswordModifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordModifyViewController.swift; path = viewcontrollers/setting/PasswordModifyViewController.swift; sourceTree = "<group>"; };
+		C5EAEF9F1DE6C97B00324B60 /* PasswordSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordSettingViewController.swift; path = viewcontrollers/setting/PasswordSettingViewController.swift; sourceTree = "<group>"; };
+		C5EAEFA01DE6C97B00324B60 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = viewcontrollers/setting/SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -503,6 +517,14 @@
 				AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C508D8841DE9388200107EDA /* component */ = {
+			isa = PBXGroup;
+			children = (
+				C508D8851DE938AE00107EDA /* CHTextView.swift */,
+			);
+			name = component;
 			sourceTree = "<group>";
 		};
 		C58870061DE3F37500C45B43 = {
@@ -925,9 +947,10 @@
 		C59CD02E1DE52C5900A23CE2 /* viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
-				C59CD0441DE5621100A23CE2 /* public */,
+				C5EAEF9B1DE6C92300324B60 /* setting */,
 				C59CD0491DE5621100A23CE2 /* wallet */,
 				C59CD04A1DE5621100A23CE2 /* welcome */,
+				C59CD0441DE5621100A23CE2 /* public */,
 			);
 			name = viewcontrollers;
 			sourceTree = "<group>";
@@ -935,10 +958,11 @@
 		C59CD02F1DE52C6400A23CE2 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				C5EAEF951DE6C55800324B60 /* Wallet.storyboard */,
+				C5EAEF971DE6C55800324B60 /* Welcome.storyboard */,
 				C588701B1DE3F37500C45B43 /* LaunchScreen.storyboard */,
 				C58870161DE3F37500C45B43 /* Main.storyboard */,
-				C59CD0301DE52F8900A23CE2 /* Welcome.storyboard */,
-				C59CD0421DE5611B00A23CE2 /* Wallet.storyboard */,
+				C5EAEF921DE6C52400324B60 /* Setting.storyboard */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -987,6 +1011,19 @@
 				C59CD0591DE578BA00A23CE2 /* UserTransactionCell.swift */,
 			);
 			name = component;
+			sourceTree = "<group>";
+		};
+		C5EAEF9B1DE6C92300324B60 /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				C508D8841DE9388200107EDA /* component */,
+				C5EAEF9C1DE6C97B00324B60 /* ExportKeyViewController.swift */,
+				C5EAEF9D1DE6C97B00324B60 /* ImportKeyViewController.swift */,
+				C5EAEF9E1DE6C97B00324B60 /* PasswordModifyViewController.swift */,
+				C5EAEF9F1DE6C97B00324B60 /* PasswordSettingViewController.swift */,
+				C5EAEFA01DE6C97B00324B60 /* SettingViewController.swift */,
+			);
+			name = setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1059,12 +1096,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C588701D1DE3F37500C45B43 /* LaunchScreen.storyboard in Resources */,
-				C59CD0431DE5611B00A23CE2 /* Wallet.storyboard in Resources */,
+				C5EAEF991DE6C55800324B60 /* Wallet.storyboard in Resources */,
 				C588718E1DE3F3E600C45B43 /* ZYQAssetPicker.Bundle in Resources */,
 				C588701A1DE3F37500C45B43 /* Assets.xcassets in Resources */,
 				C58870181DE3F37500C45B43 /* Main.storyboard in Resources */,
+				C5EAEF9A1DE6C55800324B60 /* Welcome.storyboard in Resources */,
 				C588718B1DE3F3E600C45B43 /* SVProgressHUD.bundle in Resources */,
-				C59CD0311DE52F8900A23CE2 /* Welcome.storyboard in Resources */,
+				C5EAEF941DE6C52400324B60 /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1130,6 +1168,7 @@
 				C59CD0561DE5723A00A23CE2 /* WalletViewController.swift in Sources */,
 				C58871721DE3F3E600C45B43 /* BTCPaymentMethodRequest.m in Sources */,
 				C59CD0541DE5621100A23CE2 /* WelcomePhraseViewController.swift in Sources */,
+				C5EAEFA31DE6C97B00324B60 /* PasswordModifyViewController.swift in Sources */,
 				C588718C1DE3F3E600C45B43 /* SVProgressHUD.m in Sources */,
 				C58871531DE3F3E600C45B43 /* BTCBlockchainInfo.m in Sources */,
 				C588714B1DE3F3E600C45B43 /* BTCBigNumber+Tests.m in Sources */,
@@ -1145,8 +1184,11 @@
 				C58871681DE3F3E600C45B43 /* BTCMerkleTree+Tests.m in Sources */,
 				C58871AD1DE4138000C45B43 /* UserBalance.swift in Sources */,
 				C588716D1DE3F3E600C45B43 /* BTCNumberFormatter.m in Sources */,
+				C5EAEFA51DE6C97B00324B60 /* SettingViewController.swift in Sources */,
+				C5EAEFA41DE6C97B00324B60 /* PasswordSettingViewController.swift in Sources */,
 				C58871841DE3F3E600C45B43 /* BTCTransactionOutput.m in Sources */,
 				C58871661DE3F3E600C45B43 /* BTCKeychain+Tests.m in Sources */,
+				C5EAEFA21DE6C97B00324B60 /* ImportKeyViewController.swift in Sources */,
 				C588717D1DE3F3E600C45B43 /* BTCScript.m in Sources */,
 				C58871811DE3F3E600C45B43 /* BTCTransaction.m in Sources */,
 				C59CD0531DE5621100A23CE2 /* WelcomeHDViewController.swift in Sources */,
@@ -1187,6 +1229,7 @@
 				C58871451DE3F3E600C45B43 /* BTCAddress.m in Sources */,
 				C59CD04F1DE5621100A23CE2 /* BaseViewController.swift in Sources */,
 				C58871741DE3F3E600C45B43 /* BTCPaymentRequest.m in Sources */,
+				C508D8861DE938AE00107EDA /* CHTextView.swift in Sources */,
 				C588716F1DE3F3E600C45B43 /* BTCOutpoint.m in Sources */,
 				C588715C1DE3F3E600C45B43 /* BTCEncryptedBackup+Tests.m in Sources */,
 				C588713B1DE3F3E600C45B43 /* UITabBar+extension.swift in Sources */,
@@ -1221,6 +1264,7 @@
 				C588712F1DE3F3E600C45B43 /* BTCAmount+extension.swift in Sources */,
 				C58871A91DE4138000C45B43 /* MessageModule.swift in Sources */,
 				C58871491DE3F3E600C45B43 /* BTCBase58+Tests.m in Sources */,
+				C5EAEFA11DE6C97B00324B60 /* ExportKeyViewController.swift in Sources */,
 				C58871441DE3F3E600C45B43 /* BTCAddress+Tests.m in Sources */,
 				C58871501DE3F3E600C45B43 /* BTCBlindSignature.m in Sources */,
 				C58871801DE3F3E600C45B43 /* BTCTransaction+Tests.m in Sources */,
@@ -1270,6 +1314,30 @@
 				C588701C1DE3F37500C45B43 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C5EAEF921DE6C52400324B60 /* Setting.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C5EAEF931DE6C52400324B60 /* Base */,
+			);
+			name = Setting.storyboard;
+			sourceTree = "<group>";
+		};
+		C5EAEF951DE6C55800324B60 /* Wallet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C5EAEF961DE6C55800324B60 /* Base */,
+			);
+			name = Wallet.storyboard;
+			sourceTree = "<group>";
+		};
+		C5EAEF971DE6C55800324B60 /* Welcome.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C5EAEF981DE6C55800324B60 /* Base */,
+			);
+			name = Welcome.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1391,7 +1459,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.chance.app.chance-btc-wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "chance_btc_wallet/chance-btc-wallet-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
 			};
 			name = Debug;
@@ -1419,7 +1487,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.chance.app.chance-btc-wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "chance_btc_wallet/chance-btc-wallet-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
 			};
 			name = Release;

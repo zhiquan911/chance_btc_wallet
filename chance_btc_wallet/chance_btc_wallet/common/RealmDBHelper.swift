@@ -16,7 +16,7 @@ class RealmDBHelper {
     static var databaseFilePath: URL {
         let fileManager = FileManager.default
         var directoryURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        directoryURL = directoryURL.appendingPathComponent("api_cache_data")
+        directoryURL = directoryURL.appendingPathComponent("wallet_data")
         
         if !fileManager.fileExists(atPath: directoryURL.path) {
             try! fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
@@ -24,14 +24,10 @@ class RealmDBHelper {
         return directoryURL
     }
     
-    /// 全局唯一实例
-    static var sharedInstance: Realm!
-    
-    
-    //获取某个用户独立的数据库
-    class func setDefaultAccountDB(address: String) -> Realm {
+    /// 全局唯一实例, 获取钱包数据库
+    static var sharedInstance: Realm = {
         // 通过配置打开 Realm 数据库
-        var path = RealmDBHelper.databaseFilePath.appendingPathComponent("database_\(address)")
+        var path = RealmDBHelper.databaseFilePath.appendingPathComponent("wallet_db")
         path = path.appendingPathExtension("realm")
         let config = Realm.Configuration(fileURL: path,
                                          schemaVersion: RealmDBHelper.kRealmDBVersion,
@@ -41,9 +37,10 @@ class RealmDBHelper {
                                             }
         })
         let realm = try! Realm(configuration: config)
-        RealmDBHelper.sharedInstance = realm
         return realm
-    }
+    }()
+    
+
 }
 
 // MARK: - 扩展Results

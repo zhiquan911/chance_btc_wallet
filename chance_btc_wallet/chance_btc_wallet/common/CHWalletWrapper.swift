@@ -31,10 +31,10 @@ class CHWalletWrapper: NSObject {
     }
     
     /// 获取默认选的账户
-    class var selectedAccount: String? {
+    class var selectedAccountIndex: Int {
         get {
-            let value = UserDefaults.standard.value(forKey: CHWalletsKeys.SelectedAccount) as? String
-            return value;
+            let value = UserDefaults.standard.value(forKey: CHWalletsKeys.SelectedAccount) as? Int
+            return value ?? -1
         }
         
         set {

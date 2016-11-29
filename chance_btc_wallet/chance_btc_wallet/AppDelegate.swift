@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //清空钱包所有数据，用于调试
-        //CHWalletWrapper.deleteAllWallets()
+//        CHWalletWrapper.deleteAllWallets()
         
         self.setupSVProgressHUDStyle()
         

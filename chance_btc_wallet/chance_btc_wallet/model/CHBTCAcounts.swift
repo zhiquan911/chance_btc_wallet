@@ -64,12 +64,12 @@ class CHBTCAcounts: NSObject {
     var redeemScript: BTCScript? {
         set {
             let newRedeemScript = newValue!.hex
-            self.keychain.set(newRedeemScript!, forKey: CHWalletsKeys.BTCRedeemScript)
+            self.keychain.set(newRedeemScript!, forKey: CHWalletsKeys.BTCRedeemScript+"_\(index)")
             
             
         }
         get {
-            let redeemScript = self.keychain.get(CHWalletsKeys.BTCRedeemScript)
+            let redeemScript = self.keychain.get(CHWalletsKeys.BTCRedeemScript+"_\(index)")
             if redeemScript == nil || redeemScript == "" {
                 return nil
             }

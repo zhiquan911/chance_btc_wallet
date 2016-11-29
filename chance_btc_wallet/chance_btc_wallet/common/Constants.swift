@@ -27,6 +27,7 @@ struct CHWalletsKeys {
     static let BTCExtendedPubkey = prefix + "btc_extended_pubkey"                    //用户公钥
     static let BTCWalletPassword = prefix + "btc_wallet_password"           //用户密码
     static let BTCWalletAccountsCount = prefix + "btc_wallet_account_count"           //钱包账户个数
+    static let BTCWalletAccountsJSON = prefix + "btc_wallet_accounts_json"           //钱包账户地址的json数组
     
     /** 系统设置类 **/
     static let EnableTouchID = prefix + "enable_touchid"           //是否开启指纹验证

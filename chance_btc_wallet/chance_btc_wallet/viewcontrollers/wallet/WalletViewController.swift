@@ -20,6 +20,8 @@ class WalletViewController: BaseViewController {
     @IBOutlet var tableViewTransactions: UITableView!
     @IBOutlet var tableViewUserMenu: UITableView!
     
+    let kHeightOfUserMenuCell: CGFloat = 50       //选择账户的高度
+    
     var dropdownView: LMDropdownView!
     var userName = ""
     var address = ""
@@ -79,11 +81,11 @@ extension WalletViewController {
      配置UI
      */
     func setupUI() {
-        
+        let count = CHBTCWallets.sharedInstance.getAccounts().count
         //导航栏弹出下拉菜单的尺寸适应当前view的宽度
         self.tableViewUserMenu.frame = CGRect(x: 0, y: 0,
             width: self.view.bounds.width,
-            height: min(self.view.bounds.height/2, 100))
+            height: min(self.view.bounds.height/2, CGFloat(count + 1) * self.kHeightOfUserMenuCell))
         
     }
     
@@ -123,7 +125,7 @@ extension WalletViewController {
     func updateUserWallet() {
         let accounts = CHBTCWallets.sharedInstance.getAccounts()
         for account in accounts {
-            if account.address.string == CHWalletWrapper.selectedAccount {
+            if account.index == CHWalletWrapper.selectedAccountIndex {
                 self.currentAccount = account       //记录当前账户对象
                 self.userName = account.userNickname
                 self.address = account.address.string
@@ -521,7 +523,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView === self.tableViewUserMenu {
-            return 50
+            return self.kHeightOfUserMenuCell
         } else {
             return 80
         }
@@ -538,7 +540,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 let btcAccount = CHBTCWallets.sharedInstance.getAccount(indexPath.row)!
                 self.currentAccount = btcAccount       //记录当前账户对象
-                
+                CHWalletWrapper.selectedAccountIndex = btcAccount.index //记录系统保存的选中用户
                 self.userName = btcAccount.userNickname
                 self.address = btcAccount.address.string
                 

@@ -60,7 +60,7 @@ extension BTCSendMultiSigViewController {
         let redeemScript = BTCScript(hex: redeemScriptHex)
         let pubkeys = redeemScript?.getMultisigPublicKeys()
         
-        let index = pubkeys!.1.index(of: self.currentAccount.publicKey.address.string)
+        let index = pubkeys!.1.index(of: self.currentAccount.extendedPublicKey)
         let number = String(format:"%02x", index!)
         
         if multiSigHexs.isEmpty {

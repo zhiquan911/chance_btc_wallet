@@ -71,20 +71,25 @@ extension WelcomeCreateAccountViewController {
      */
     @IBAction func handleConfirmPress(_ sender: AnyObject?) {
         if self.checkValue() {
-            
+            let password = self.textFieldPassword.text!.trim()
             //创建钱包
-            let wallet = CHBTCWallets.createWallet(self.phrase, password: self.textFieldPassword.text!)
-            //创建默认HD账户
-            if wallet != nil {
-                let nickName = self.textFieldUserName.text!
-                let account = wallet?.createHDAccount(nickName)
-                CHWalletWrapper.selectedAccount = account?.address.string
-                //配置默认账户数据库
-                _ = RealmDBHelper.setDefaultAccountDB(address: CHWalletWrapper.selectedAccount!)
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                SVProgressHUD.showError(withStatus: "Create wallet fail".localized())
+            guard let wallet = CHBTCWallets.createWallet(self.phrase, password: password) else {
+                SVProgressHUD.showError(withStatus: "Create wallet failed".localized())
+                return
             }
+            
+            //创建默认HD账户
+            let nickName = self.textFieldUserName.text!
+            guard let account = wallet.createHDAccount(nickName) else {
+                SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
+                return
+            }
+            CHBTCWallets.sharedInstance.password = password
+            CHWalletWrapper.selectedAccountIndex = account.index
+            
+            //配置默认账户数据库
+            //_ = RealmDBHelper.setDefaultAccountDB(address: CHWalletWrapper.selectedAccount!)
+            self.dismiss(animated: true, completion: nil)
             
             
         }
