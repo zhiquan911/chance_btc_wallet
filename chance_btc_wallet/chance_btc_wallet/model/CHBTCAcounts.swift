@@ -39,17 +39,23 @@ class CHBTCAcounts: NSObject {
     }
     
     /// 获取可扩展的私钥
-    var extendedPrivateKey: BTCKeychain?
+    var btcKeychain: BTCKeychain?
     
     
     /// 获取私钥
     var privateKey: BTCKey? {
-        return extendedPrivateKey?.key
+        return btcKeychain?.key
+    }
+    
+    /// 获取扩展公钥
+    var extendedPrivateKey: String {
+        let pubkey = self.btcKeychain?.extendedPrivateKey
+        return pubkey!
     }
     
     /// 获取扩展公钥
     var extendedPublicKey: String {
-        let pubkey = self.extendedPrivateKey?.extendedPublicKey
+        let pubkey = self.btcKeychain?.extendedPublicKey
         return pubkey!;
     }
     
@@ -94,6 +100,6 @@ class CHBTCAcounts: NSObject {
     convenience init(index: Int, exprvKey: BTCKeychain) {
         self.init()
         self.index = index
-        self.extendedPrivateKey = exprvKey
+        self.btcKeychain = exprvKey
     }
 }

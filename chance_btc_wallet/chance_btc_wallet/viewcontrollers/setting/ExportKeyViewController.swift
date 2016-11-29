@@ -9,7 +9,7 @@
 import UIKit
 import SwiftQRCode
 
-class ExportKeyViewController: UIViewController {
+class ExportKeyViewController: BaseViewController {
 
     /// MARK: - 成员变量
     @IBOutlet var imageViewQRCode: UIImageView!
@@ -17,12 +17,13 @@ class ExportKeyViewController: UIViewController {
     
     var address: String {
         if keyType == .PrivateKey {
-            return self.currentAccount.privateKey!.address.string
+            return self.currentAccount.extendedPrivateKey
         } else if keyType == .PublicKey {
+            Log.debug("extendedPublicKey = \(currentAccount.extendedPublicKey)")
+            Log.debug("publicKey = \(BTCBase58StringWithData(currentAccount.privateKey!.compressedPublicKey as Data!))")
             return currentAccount.extendedPublicKey
         } else if keyType == .RedeemScript {
             let redeemScript = currentAccount.redeemScript!
-//            let keyAndAddress = redeemScript.getMultisigPublicKeys()
             return redeemScript.hex
         } else {
             return ""

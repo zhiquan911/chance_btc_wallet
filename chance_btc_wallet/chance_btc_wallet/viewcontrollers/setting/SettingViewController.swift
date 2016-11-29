@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingViewController: UITableViewController {
+class SettingViewController: BaseTableViewController {
     
     var currentAccount: CHBTCAcounts? {
         let i = CHWalletWrapper.selectedAccountIndex
@@ -42,7 +42,7 @@ class SettingViewController: UITableViewController {
                 return 0
             }
 
-        } else if section == 0 {
+        } else if section == 1 {
             return 2
         } else {
             return 1
@@ -83,24 +83,34 @@ class SettingViewController: UITableViewController {
                 vc.currentAccount = self.currentAccount!
                 vc.keyType = keyType
                 vc.navigationItem.title = title
+                vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             } else if indexPath.section == 1 {
+                var isRestore = false
+                var title = ""
                 if indexPath.row == 0 {
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImportKeyViewController") as! ImportKeyViewController
-                    vc.navigationItem.title = "Restore wallet by Mnemonic phases".localized()
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    isRestore = false
+                    title = "Export wallet's Mnemonic phases".localized()
                 } else {
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImportKeyViewController") as! ImportKeyViewController
-                    vc.navigationItem.title = "Export wallet's Mnemonic phases".localized()
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    isRestore = true
+                    title = "Restore wallet by Mnemonic phases".localized()
                 }
+                
+                guard let vc = StoryBoard.setting.initView(type: RestoreWalletViewController.self) else {
+                    return
+                }
+                vc.isRestore = isRestore
+                vc.navigationItem.title = title
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+                
             } else if indexPath.section == 2 {
                 if indexPath.row == 0 {
                     
                     guard let vc = StoryBoard.setting.initView(type: PasswordSettingViewController.self) else {
                         return
                     }
-                    
+                    vc.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             } else if indexPath.section == 3 {

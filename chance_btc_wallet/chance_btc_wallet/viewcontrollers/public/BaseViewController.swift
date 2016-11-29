@@ -8,32 +8,31 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.setupNavigationBar()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-    }
+extension UIViewController {
     
     /**
      配置导航栏
      */
-    func setupNavigationBar() {
+    func ch_setupNavigationBar() {
         //配置返回按钮文字
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "back".localized(), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back".localized(), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
     }
-    
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+class BaseViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.ch_setupNavigationBar()
     }
     
+}
+
+class BaseTableViewController: UITableViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.ch_setupNavigationBar()
+    }
 }

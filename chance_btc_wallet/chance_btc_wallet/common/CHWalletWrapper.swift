@@ -68,9 +68,11 @@ class CHWalletWrapper: NSObject {
      - returns: 钱包记忆体
      */
     class func generateMnemonicPassphrase(_ phrase:String? = nil, password: String? = nil) -> BTCMnemonic? {
-        let mnemonic: BTCMnemonic
+        let mnemonic: BTCMnemonic?
         if phrase != nil {
-            mnemonic = BTCMnemonic(words: phrase!.components(separatedBy: " "), password: password, wordListType: .english)
+            let words = phrase!.components(separatedBy: " ")
+            //Log.debug("words = \(words)")
+            mnemonic = BTCMnemonic(words: words, password: password, wordListType: .english)
         } else {
             mnemonic = BTCMnemonic(entropy: BTCRandomDataWithLength(16) as Data!, password: password, wordListType: .english)
         }
@@ -140,10 +142,12 @@ class CHWalletWrapper: NSObject {
                 
                 let settingsAction = UIAlertAction(title: "Validate".localized(), style: .default) { (alertAction) in
                     let password = alertController.textFields![0]
+                    //password.text = "123456"    //debug
                     if password.text!.length > 0 {
                         if password.text! == CHBTCWallets.sharedInstance.password {
                             complete?(true, "")
                         } else {
+                            Log.debug("correct is: \(CHBTCWallets.sharedInstance.password)")
                             complete?(false, "Password wrong".localized())
                         }
                     } else {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PasswordSettingViewController: UITableViewController {
+class PasswordSettingViewController: BaseTableViewController {
 
     /// MARK - 成员变量
     @IBOutlet var switchTouchID: UISwitch!

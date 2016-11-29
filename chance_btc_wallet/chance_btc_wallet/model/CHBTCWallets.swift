@@ -127,6 +127,9 @@ class CHBTCWallets: NSObject {
             let mnemonic = CHWalletWrapper.generateMnemonicPassphrase(phrase, password: password)
             let wallet: CHBTCWallets
             if mnemonic != nil {
+                //3.清空用户的keychain数据
+                CHWalletWrapper.deleteAllWallets()
+                
                 wallet = CHBTCWallets()
                 wallet.passphrase = CHWalletWrapper.getPassphraseByMnemonic(mnemonic!)
                 wallet.password = password
@@ -180,7 +183,7 @@ class CHBTCWallets: NSObject {
         let childKeys = self.rootKeys.derivedKeychain(at: UInt32(accoutsCount), hardened: true)
         if childKeys != nil {
             let account = CHBTCAcounts()
-            account.extendedPrivateKey = childKeys!      //私钥
+            account.btcKeychain = childKeys!      //私钥
             account.userNickname = name
             
             //把新账户添加到JSON中保存到keychain

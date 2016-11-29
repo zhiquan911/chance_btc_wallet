@@ -8,15 +8,13 @@
 
 import UIKit
 
-class PasswordModifyViewController: UITableViewController {
+class PasswordModifyViewController: BaseTableViewController {
     
     //MARK: - 成员变量
-    @IBOutlet var textFieldOldPassword: UITextField!
     @IBOutlet var textFieldNewPassword: UITextField!
     @IBOutlet var textFieldConfirmPassword: UITextField!
     @IBOutlet var buttonSave: UIButton!
     
-    @IBOutlet var tableViewCellOldPassword: UITableViewCell!
     @IBOutlet var tableViewCellNewPassword: UITableViewCell!
     @IBOutlet var tableViewCellConfirmPassword: UITableViewCell!
     
@@ -40,7 +38,7 @@ extension PasswordModifyViewController {
      */
     func setupUI() {
         
-        self.navigationItem.title = "Password Setting".localized()
+        self.navigationItem.title = "Reset password".localized()
         
         //按钮样式
         self.buttonSave.layer.cornerRadius = 4
@@ -50,12 +48,6 @@ extension PasswordModifyViewController {
     
     //检测输入值是否合法
     func checkValue() -> Bool {
-        if CHBTCWallets.sharedInstance.password != "" {
-            if self.textFieldOldPassword.text!.isEmpty {
-                SVProgressHUD.showInfo(withStatus: "Old password is empty".localized())
-                return false
-            }
-        }
         
         if self.textFieldNewPassword.text!.isEmpty {
             SVProgressHUD.showInfo(withStatus: "New password is empty".localized())
@@ -91,9 +83,7 @@ extension PasswordModifyViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField === self.textFieldOldPassword {
-            self.textFieldNewPassword.becomeFirstResponder()
-        } else if textField == self.textFieldNewPassword {
+        if textField == self.textFieldNewPassword {
             textFieldConfirmPassword.becomeFirstResponder()
         } else if textField == self.textFieldConfirmPassword {
             textFieldConfirmPassword.resignFirstResponder()
@@ -104,8 +94,7 @@ extension PasswordModifyViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let maxCharOfPassword = 50
         
-        if(textField == self.textFieldOldPassword
-            || textField == self.textFieldNewPassword
+        if(textField == self.textFieldNewPassword
             || textField == self.textFieldConfirmPassword) {
                 if (range.location>(maxCharOfPassword - 1)) {
                     return false
@@ -122,27 +111,12 @@ extension PasswordModifyViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if CHBTCWallets.sharedInstance.password == "" {
-            return 2
-        } else {
-            return 3
-        }
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            if CHBTCWallets.sharedInstance.password == "" {
-                return self.tableViewCellNewPassword
-            } else {
-                return self.tableViewCellOldPassword
-            }
-            
-        } else if indexPath.row == 1 {
-            if CHBTCWallets.sharedInstance.password == "" {
-                return self.tableViewCellConfirmPassword
-            } else {
-                return self.tableViewCellNewPassword
-            }
+            return self.tableViewCellNewPassword
         } else {
             return self.tableViewCellConfirmPassword
         }
