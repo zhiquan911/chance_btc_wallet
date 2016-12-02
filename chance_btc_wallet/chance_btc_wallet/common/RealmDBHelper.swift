@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 
 class RealmDBHelper {
+    
     static let kRealmDBVersion: UInt64 = 0
     
     //数据库路径
@@ -25,10 +26,18 @@ class RealmDBHelper {
     }
     
     /// 全局唯一实例, 获取钱包数据库
-    static var sharedInstance: Realm = {
+    static var txDB: Realm = {
         // 通过配置打开 Realm 数据库
-        var path = RealmDBHelper.databaseFilePath.appendingPathComponent("wallet_db")
-        path = path.appendingPathExtension("realm")
+        var path = RealmDBHelper.databaseFilePath.appendingPathComponent("tx")
+        
+        //创建子目录
+        let fileManager = FileManager.default
+        if !fileManager.fileExists(atPath: path.path) {
+            try! fileManager.createDirectory(atPath: path.path, withIntermediateDirectories: true, attributes: nil)
+        }
+        
+        path.appendPathComponent("wallet_tx")
+        path.appendPathExtension("realm")
         let config = Realm.Configuration(fileURL: path,
                                          schemaVersion: RealmDBHelper.kRealmDBVersion,
                                          migrationBlock: { (migration, oldSchemaVersion) in
@@ -40,6 +49,52 @@ class RealmDBHelper {
         return realm
     }()
     
+
+    /// 账户体系数据库
+    static var acountDB: Realm {
+        return try! Realm()
+    }
+    
+    
+    /// 检查种子对应的用户体系数据库存不存在
+    ///
+    /// - Parameter seedHash:
+    /// - Returns: 
+    class func checkRealmForWalletExist(seedHash: String) -> Bool {
+        var path = RealmDBHelper.databaseFilePath.appendingPathComponent("accounts")
+        
+        path.appendPathComponent("wallet_\(seedHash)")
+        path.appendPathExtension("realm")
+        
+        let fileManager = FileManager.default
+        return fileManager.fileExists(atPath: path.path)
+    }
+    
+    /// 使用钱包的种子哈希切换默认的数据
+    ///
+    /// - Parameter seedHash: 种子哈希
+    class func setDefaultRealmForWallet(seedHash: String) {
+        // 通过配置打开 Realm 数据库
+        var path = RealmDBHelper.databaseFilePath.appendingPathComponent("accounts")
+        
+        //创建子目录
+        let fileManager = FileManager.default
+        if !fileManager.fileExists(atPath: path.path) {
+            try! fileManager.createDirectory(atPath: path.path, withIntermediateDirectories: true, attributes: nil)
+        }
+        
+        path.appendPathComponent("wallet_\(seedHash)")
+        path.appendPathExtension("realm")
+        let config = Realm.Configuration(fileURL: path,
+                                         schemaVersion: RealmDBHelper.kRealmDBVersion,
+                                         migrationBlock: { (migration, oldSchemaVersion) in
+                                            if (oldSchemaVersion < RealmDBHelper.kRealmDBVersion) {
+                                                
+                                            }
+        })
+        Log.debug("db path = \(path.absoluteString)")
+        Realm.Configuration.defaultConfiguration = config
+    }
 
 }
 

@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C508D8861DE938AE00107EDA /* CHTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508D8851DE938AE00107EDA /* CHTextView.swift */; };
-		C54D1ACB1DEDB119008913CC /* account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C54D1AC91DEDB119008913CC /* account.storyboard */; };
+		C52ACB8E1DEECF2B00E79C5C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */; };
+		C54D1ACB1DEDB119008913CC /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C54D1AC91DEDB119008913CC /* Account.storyboard */; };
 		C58870131DE3F37500C45B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58870121DE3F37500C45B43 /* AppDelegate.swift */; };
 		C58870181DE3F37500C45B43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C58870161DE3F37500C45B43 /* Main.storyboard */; };
 		C588701A1DE3F37500C45B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58870191DE3F37500C45B43 /* Assets.xcassets */; };
@@ -114,8 +115,8 @@
 		C58871A41DE4138000C45B43 /* BlockchainRemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871921DE4138000C45B43 /* BlockchainRemoteService.swift */; };
 		C58871A51DE4138000C45B43 /* InsightRemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871931DE4138000C45B43 /* InsightRemoteService.swift */; };
 		C58871A61DE4138000C45B43 /* RemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871941DE4138000C45B43 /* RemoteService.swift */; };
-		C58871A71DE4138000C45B43 /* CHBTCAcounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871961DE4138000C45B43 /* CHBTCAcounts.swift */; };
-		C58871A81DE4138000C45B43 /* CHBTCWallets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871971DE4138000C45B43 /* CHBTCWallets.swift */; };
+		C58871A71DE4138000C45B43 /* CHBTCAcount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871961DE4138000C45B43 /* CHBTCAcount.swift */; };
+		C58871A81DE4138000C45B43 /* CHBTCWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871971DE4138000C45B43 /* CHBTCWallet.swift */; };
 		C58871A91DE4138000C45B43 /* MessageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871981DE4138000C45B43 /* MessageModule.swift */; };
 		C58871AA1DE4138000C45B43 /* PageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871991DE4138000C45B43 /* PageModule.swift */; };
 		C58871AB1DE4138000C45B43 /* TransactionUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C588719A1DE4138000C45B43 /* TransactionUnit.swift */; };
@@ -149,6 +150,10 @@
 		C59CD0621DE59D7B00A23CE2 /* BTCReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD05E1DE59D7B00A23CE2 /* BTCReceiveViewController.swift */; };
 		C59CD0631DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD05F1DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift */; };
 		C59CD0641DE59D7B00A23CE2 /* BTCSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CD0601DE59D7B00A23CE2 /* BTCSendViewController.swift */; };
+		C5B0B9EC1DF10B8700F7F80A /* CreateHDMAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9EB1DF10B8700F7F80A /* CreateHDMAccountViewController.swift */; };
+		C5B0B9EF1DF1157A00F7F80A /* CHPublicKeyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9EE1DF1157A00F7F80A /* CHPublicKeyCell.swift */; };
+		C5B0B9F21DF1158400F7F80A /* MultiSigAccountCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9F01DF1158400F7F80A /* MultiSigAccountCreateViewController.swift */; };
+		C5B0B9F31DF1158400F7F80A /* MultiSigInputKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9F11DF1158400F7F80A /* MultiSigInputKeyViewController.swift */; };
 		C5EAEF941DE6C52400324B60 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EAEF921DE6C52400324B60 /* Setting.storyboard */; };
 		C5EAEF991DE6C55800324B60 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EAEF951DE6C55800324B60 /* Wallet.storyboard */; };
 		C5EAEF9A1DE6C55800324B60 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EAEF971DE6C55800324B60 /* Welcome.storyboard */; };
@@ -179,7 +184,8 @@
 		41948111B0FF5B5DA3FA755D /* Pods-chance_btc_wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.release.xcconfig"; sourceTree = "<group>"; };
 		C508D8851DE938AE00107EDA /* CHTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHTextView.swift; sourceTree = "<group>"; };
-		C54D1ACA1DEDB119008913CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/account.storyboard; sourceTree = "<group>"; };
+		C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		C54D1ACA1DEDB119008913CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Account.storyboard; sourceTree = "<group>"; };
 		C588700F1DE3F37500C45B43 /* chance_btc_wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chance_btc_wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58870121DE3F37500C45B43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C58870171DE3F37500C45B43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -445,8 +451,8 @@
 		C58871921DE4138000C45B43 /* BlockchainRemoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockchainRemoteService.swift; sourceTree = "<group>"; };
 		C58871931DE4138000C45B43 /* InsightRemoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightRemoteService.swift; sourceTree = "<group>"; };
 		C58871941DE4138000C45B43 /* RemoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteService.swift; sourceTree = "<group>"; };
-		C58871961DE4138000C45B43 /* CHBTCAcounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBTCAcounts.swift; sourceTree = "<group>"; };
-		C58871971DE4138000C45B43 /* CHBTCWallets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBTCWallets.swift; sourceTree = "<group>"; };
+		C58871961DE4138000C45B43 /* CHBTCAcount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBTCAcount.swift; sourceTree = "<group>"; };
+		C58871971DE4138000C45B43 /* CHBTCWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBTCWallet.swift; sourceTree = "<group>"; };
 		C58871981DE4138000C45B43 /* MessageModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModule.swift; sourceTree = "<group>"; };
 		C58871991DE4138000C45B43 /* PageModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageModule.swift; sourceTree = "<group>"; };
 		C588719A1DE4138000C45B43 /* TransactionUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionUnit.swift; sourceTree = "<group>"; };
@@ -479,6 +485,10 @@
 		C59CD05E1DE59D7B00A23CE2 /* BTCReceiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCReceiveViewController.swift; sourceTree = "<group>"; };
 		C59CD05F1DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCSendMultiSigViewController.swift; sourceTree = "<group>"; };
 		C59CD0601DE59D7B00A23CE2 /* BTCSendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCSendViewController.swift; sourceTree = "<group>"; };
+		C5B0B9EB1DF10B8700F7F80A /* CreateHDMAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateHDMAccountViewController.swift; path = viewcontrollers/account/CreateHDMAccountViewController.swift; sourceTree = "<group>"; };
+		C5B0B9EE1DF1157A00F7F80A /* CHPublicKeyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CHPublicKeyCell.swift; path = viewcontrollers/account/CHPublicKeyCell.swift; sourceTree = "<group>"; };
+		C5B0B9F01DF1158400F7F80A /* MultiSigAccountCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiSigAccountCreateViewController.swift; path = viewcontrollers/account/MultiSigAccountCreateViewController.swift; sourceTree = "<group>"; };
+		C5B0B9F11DF1158400F7F80A /* MultiSigInputKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiSigInputKeyViewController.swift; path = viewcontrollers/account/MultiSigInputKeyViewController.swift; sourceTree = "<group>"; };
 		C5EAEF931DE6C52400324B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
 		C5EAEF961DE6C55800324B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Wallet.storyboard; sourceTree = "<group>"; };
 		C5EAEF981DE6C55800324B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
@@ -496,6 +506,7 @@
 				C59CD03B1DE5476100A23CE2 /* Realm.framework in Frameworks */,
 				C59CD03D1DE5476100A23CE2 /* RealmSwift.framework in Frameworks */,
 				C58871881DE3F3E600C45B43 /* libssl-ios.a in Frameworks */,
+				C52ACB8E1DEECF2B00E79C5C /* CloudKit.framework in Frameworks */,
 				C58871871DE3F3E600C45B43 /* libcrypto-ios.a in Frameworks */,
 				D7370CD84FEEB4F4E4522FC6 /* Pods_chance_btc_wallet.framework in Frameworks */,
 			);
@@ -507,6 +518,7 @@
 		307361EA0898258898B2B7B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */,
 				C59CD0391DE5476100A23CE2 /* Realm.framework */,
 				C59CD03A1DE5476100A23CE2 /* RealmSwift.framework */,
 				3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */,
@@ -528,6 +540,17 @@
 			children = (
 			);
 			name = component;
+			sourceTree = "<group>";
+		};
+		C52ACB8C1DEE5C7500E79C5C /* account */ = {
+			isa = PBXGroup;
+			children = (
+				C5B0B9ED1DF114C700F7F80A /* component */,
+				C5B0B9EB1DF10B8700F7F80A /* CreateHDMAccountViewController.swift */,
+				C5B0B9F01DF1158400F7F80A /* MultiSigAccountCreateViewController.swift */,
+				C5B0B9F11DF1158400F7F80A /* MultiSigInputKeyViewController.swift */,
+			);
+			name = account;
 			sourceTree = "<group>";
 		};
 		C58870061DE3F37500C45B43 = {
@@ -923,8 +946,8 @@
 		C58871951DE4138000C45B43 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				C58871961DE4138000C45B43 /* CHBTCAcounts.swift */,
-				C58871971DE4138000C45B43 /* CHBTCWallets.swift */,
+				C58871961DE4138000C45B43 /* CHBTCAcount.swift */,
+				C58871971DE4138000C45B43 /* CHBTCWallet.swift */,
 				C58871981DE4138000C45B43 /* MessageModule.swift */,
 				C58871991DE4138000C45B43 /* PageModule.swift */,
 				C588719A1DE4138000C45B43 /* TransactionUnit.swift */,
@@ -952,6 +975,7 @@
 		C59CD02E1DE52C5900A23CE2 /* viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
+				C52ACB8C1DEE5C7500E79C5C /* account */,
 				C5EAEF9B1DE6C92300324B60 /* setting */,
 				C59CD0491DE5621100A23CE2 /* wallet */,
 				C59CD04A1DE5621100A23CE2 /* welcome */,
@@ -968,7 +992,7 @@
 				C588701B1DE3F37500C45B43 /* LaunchScreen.storyboard */,
 				C58870161DE3F37500C45B43 /* Main.storyboard */,
 				C5EAEF921DE6C52400324B60 /* Setting.storyboard */,
-				C54D1AC91DEDB119008913CC /* account.storyboard */,
+				C54D1AC91DEDB119008913CC /* Account.storyboard */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -1015,6 +1039,14 @@
 			children = (
 				C59CD0581DE578BA00A23CE2 /* MenuItemCell.swift */,
 				C59CD0591DE578BA00A23CE2 /* UserTransactionCell.swift */,
+			);
+			name = component;
+			sourceTree = "<group>";
+		};
+		C5B0B9ED1DF114C700F7F80A /* component */ = {
+			isa = PBXGroup;
+			children = (
+				C5B0B9EE1DF1157A00F7F80A /* CHPublicKeyCell.swift */,
 			);
 			name = component;
 			sourceTree = "<group>";
@@ -1074,6 +1106,12 @@
 							com.apple.Keychain = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -1105,7 +1143,7 @@
 				C5EAEF991DE6C55800324B60 /* Wallet.storyboard in Resources */,
 				C588718E1DE3F3E600C45B43 /* ZYQAssetPicker.Bundle in Resources */,
 				C588701A1DE3F37500C45B43 /* Assets.xcassets in Resources */,
-				C54D1ACB1DEDB119008913CC /* account.storyboard in Resources */,
+				C54D1ACB1DEDB119008913CC /* Account.storyboard in Resources */,
 				C58870181DE3F37500C45B43 /* Main.storyboard in Resources */,
 				C5EAEF9A1DE6C55800324B60 /* Welcome.storyboard in Resources */,
 				C588718B1DE3F3E600C45B43 /* SVProgressHUD.bundle in Resources */,
@@ -1171,10 +1209,11 @@
 				C58871A51DE4138000C45B43 /* InsightRemoteService.swift in Sources */,
 				C58871561DE3F3E600C45B43 /* BTCCurrencyConverter+Tests.m in Sources */,
 				C58871311DE3F3E600C45B43 /* Double+extension.swift in Sources */,
-				C58871A81DE4138000C45B43 /* CHBTCWallets.swift in Sources */,
+				C58871A81DE4138000C45B43 /* CHBTCWallet.swift in Sources */,
 				C59CD0561DE5723A00A23CE2 /* WalletViewController.swift in Sources */,
 				C58871721DE3F3E600C45B43 /* BTCPaymentMethodRequest.m in Sources */,
 				C59CD0541DE5621100A23CE2 /* WelcomePhraseViewController.swift in Sources */,
+				C5B0B9F21DF1158400F7F80A /* MultiSigAccountCreateViewController.swift in Sources */,
 				C5EAEFA31DE6C97B00324B60 /* PasswordModifyViewController.swift in Sources */,
 				C588718C1DE3F3E600C45B43 /* SVProgressHUD.m in Sources */,
 				C58871531DE3F3E600C45B43 /* BTCBlockchainInfo.m in Sources */,
@@ -1188,7 +1227,7 @@
 				C58871B61DE4197700C45B43 /* LogUtils.swift in Sources */,
 				C58871581DE3F3E600C45B43 /* BTCCurvePoint+Tests.m in Sources */,
 				C59CD0611DE59D7B00A23CE2 /* BTCMultiSigTransactionViewController.swift in Sources */,
-				C58871A71DE4138000C45B43 /* CHBTCAcounts.swift in Sources */,
+				C58871A71DE4138000C45B43 /* CHBTCAcount.swift in Sources */,
 				C58871681DE3F3E600C45B43 /* BTCMerkleTree+Tests.m in Sources */,
 				C58871AD1DE4138000C45B43 /* UserBalance.swift in Sources */,
 				C588716D1DE3F3E600C45B43 /* BTCNumberFormatter.m in Sources */,
@@ -1230,6 +1269,7 @@
 				C58871521DE3F3E600C45B43 /* BTCBlockchainInfo+Tests.m in Sources */,
 				C58871AC1DE4138000C45B43 /* UnspentTransaction.swift in Sources */,
 				C58871AF1DE4138000C45B43 /* UserTransaction.swift in Sources */,
+				C5B0B9EF1DF1157A00F7F80A /* CHPublicKeyCell.swift in Sources */,
 				C58871601DE3F3E600C45B43 /* BTCErrors.m in Sources */,
 				C588714C1DE3F3E600C45B43 /* BTCBigNumber.m in Sources */,
 				C58871381DE3F3E600C45B43 /* UIColor+extension.swift in Sources */,
@@ -1277,6 +1317,7 @@
 				C58871501DE3F3E600C45B43 /* BTCBlindSignature.m in Sources */,
 				C58871801DE3F3E600C45B43 /* BTCTransaction+Tests.m in Sources */,
 				C588716C1DE3F3E600C45B43 /* BTCNetwork.m in Sources */,
+				C5B0B9F31DF1158400F7F80A /* MultiSigInputKeyViewController.swift in Sources */,
 				C588717F1DE3F3E600C45B43 /* BTCSecretSharing.m in Sources */,
 				C588714D1DE3F3E600C45B43 /* BTCBitcoinURL+Tests.m in Sources */,
 				C588716E1DE3F3E600C45B43 /* BTCOpcode.m in Sources */,
@@ -1301,6 +1342,7 @@
 				C588713D1DE3F3E600C45B43 /* UITextView+extension.swift in Sources */,
 				C58871771DE3F3E600C45B43 /* BTCProcessor.m in Sources */,
 				C58871551DE3F3E600C45B43 /* BTCChainCom.m in Sources */,
+				C5B0B9EC1DF10B8700F7F80A /* CreateHDMAccountViewController.swift in Sources */,
 				C588718A1DE3F3E600C45B43 /* SVProgressAnimatedView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1308,12 +1350,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C54D1AC91DEDB119008913CC /* account.storyboard */ = {
+		C54D1AC91DEDB119008913CC /* Account.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C54D1ACA1DEDB119008913CC /* Base */,
 			);
-			name = account.storyboard;
+			name = Account.storyboard;
 			sourceTree = "<group>";
 		};
 		C58870161DE3F37500C45B43 /* Main.storyboard */ = {

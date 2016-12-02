@@ -8,6 +8,7 @@
 
 import UIKit
 import KeychainSwift
+import CloudKit
 
 class CHWalletWrapper: NSObject {
     
@@ -26,19 +27,6 @@ class CHWalletWrapper: NSObject {
         
         set {
             UserDefaults.standard.set(newValue, forKey: CHWalletsKeys.EnableTouchID);
-            UserDefaults.standard.synchronize();
-        }
-    }
-    
-    /// 获取默认选的账户
-    class var selectedAccountIndex: Int {
-        get {
-            let value = UserDefaults.standard.value(forKey: CHWalletsKeys.SelectedAccount) as? Int
-            return value ?? -1
-        }
-        
-        set {
-            UserDefaults.standard.set(newValue, forKey: CHWalletsKeys.SelectedAccount)
             UserDefaults.standard.synchronize();
         }
     }
@@ -107,12 +95,19 @@ class CHWalletWrapper: NSObject {
      - returns:
      */
     class func checkBTCWalletExist() -> Bool {
-        let seed = CHBTCWallets.sharedInstance.seed
-        if seed == nil {
+        
+        //1.检查钱包种子在不在
+        guard let seed = CHBTCWallet.sharedInstance.seed else {
             return false
-        } else {
-            return true
         }
+        
+        //2.检查账户体系数据库文件在不在
+        let seedHash = seed.md5().toHexString()
+        guard RealmDBHelper.checkRealmForWalletExist(seedHash: seedHash) else {
+            return false
+        }
+        
+        return true
     }
     
     /**
@@ -128,7 +123,7 @@ class CHWalletWrapper: NSObject {
         let passwordVerify = {
             () -> Void in
             //选择输入密码
-            if CHBTCWallets.sharedInstance.password != "" {
+            if CHBTCWallet.sharedInstance.password != "" {
                 //如果用户设置了密码，弹出密码输入框
                 let alertController = UIAlertController(title: "Password validation".localized(),
                                                         message: "",
@@ -144,10 +139,10 @@ class CHWalletWrapper: NSObject {
                     let password = alertController.textFields![0]
                     //password.text = "123456"    //debug
                     if password.text!.length > 0 {
-                        if password.text! == CHBTCWallets.sharedInstance.password {
+                        if password.text! == CHBTCWallet.sharedInstance.password {
                             complete?(true, "")
                         } else {
-                            Log.debug("correct is: \(CHBTCWallets.sharedInstance.password)")
+                            Log.debug("correct is: \(CHBTCWallet.sharedInstance.password)")
                             complete?(false, "Password wrong".localized())
                         }
                     } else {

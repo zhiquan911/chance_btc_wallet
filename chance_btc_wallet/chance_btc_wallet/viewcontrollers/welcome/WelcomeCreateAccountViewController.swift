@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class WelcomeCreateAccountViewController: UIViewController {
     
@@ -73,22 +74,21 @@ extension WelcomeCreateAccountViewController {
         if self.checkValue() {
             let password = self.textFieldPassword.text!.trim()
             //创建钱包
-            guard let wallet = CHBTCWallets.createWallet(self.phrase, password: password) else {
+            guard let wallet = CHBTCWallet.sharedInstance.createWallet(self.phrase, password: password) else {
                 SVProgressHUD.showError(withStatus: "Create wallet failed".localized())
                 return
             }
-            
+
             //创建默认HD账户
             let nickName = self.textFieldUserName.text!
-            guard let account = wallet.createHDAccount(nickName) else {
+            guard let account = wallet.createHDAccount(by: nickName) else {
                 SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
                 return
             }
-            CHBTCWallets.sharedInstance.password = password
-            CHWalletWrapper.selectedAccountIndex = account.index
             
-            //配置默认账户数据库
-            //_ = RealmDBHelper.setDefaultAccountDB(address: CHWalletWrapper.selectedAccount!)
+            CHBTCWallet.sharedInstance.password = password
+            CHBTCWallet.sharedInstance.selectedAccountIndex = account.index
+            
             self.dismiss(animated: true, completion: nil)
             
             

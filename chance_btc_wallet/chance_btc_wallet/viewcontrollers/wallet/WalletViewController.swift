@@ -29,7 +29,7 @@ class WalletViewController: BaseViewController {
     var refreshTimer: Timer?              //刷新数据定时器
     var transactions = [UserTransaction]()
     var logining = false
-    var currentAccount: CHBTCAcounts?           //当前账户
+    var currentAccount: CHBTCAcount?           //当前账户
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +53,10 @@ class WalletViewController: BaseViewController {
         if self.refreshTimer == nil {
             self.refreshTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateUserWallet), userInfo: nil, repeats: true)
         }
+        
+        //刷新用户列表
+        self.updateUserMenuSize()
+        self.tableViewUserMenu.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -81,14 +85,21 @@ extension WalletViewController {
      配置UI
      */
     func setupUI() {
-        let count = CHBTCWallets.sharedInstance.getAccounts().count
-        //导航栏弹出下拉菜单的尺寸适应当前view的宽度
-        self.tableViewUserMenu.frame = CGRect(x: 0, y: 0,
-            width: self.view.bounds.width,
-            height: min(self.view.bounds.height/2, CGFloat(count + 1) * self.kHeightOfUserMenuCell))
-        
+
+        //self.updateUserMenuSize()
     }
     
+    
+    /// 更新用户列表菜单的高度
+    func updateUserMenuSize() {
+        
+        let count = CHBTCWallet.sharedInstance.getAccounts().count
+        //导航栏弹出下拉菜单的尺寸适应当前view的宽度
+        self.tableViewUserMenu.frame = CGRect(x: 0, y: 0,
+                                              width: self.view.bounds.width,
+                                              height: min(self.view.bounds.height/2, CGFloat(count + 1) * self.kHeightOfUserMenuCell))
+        
+    }
     
     /**
      点击导航栏上标题按钮
@@ -123,9 +134,9 @@ extension WalletViewController {
      - parameter obj:
      */
     func updateUserWallet() {
-        let accounts = CHBTCWallets.sharedInstance.getAccounts()
+        let accounts = CHBTCWallet.sharedInstance.getAccounts()
         for account in accounts {
-            if account.index == CHWalletWrapper.selectedAccountIndex {
+            if account.index == CHBTCWallet.sharedInstance.selectedAccountIndex {
                 self.currentAccount = account       //记录当前账户对象
                 self.userName = account.userNickname
                 self.address = account.address.string
@@ -202,7 +213,7 @@ extension WalletViewController {
      - parameter sender:
      */
     @IBAction func handleSendPress(_ sender: AnyObject?) {
-        if let type = self.currentAccount?.accountType, type == .Normal {
+        if let type = self.currentAccount?.accountType, type == .normal {
             self.gotoBTCSendView()
         } else {
             self.showMultiSigTransactionMenu()
@@ -272,6 +283,75 @@ extension WalletViewController {
         vc.availableTotal = self.balance
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    
+    /**
+     选择何种账户类型创建
+     Normal Account：普通的HDM单签账户，由其私钥完全控制。
+     Multi-Sig Account：多重签名合约账户，由联合的公钥组成的一个赎回脚本导出的地址。
+     */
+    func showCreateAccountTypeMenu() {
+        let actionSheet = UIAlertController(title: "Create new account".localized(), message: "Which account type you need".localized(), preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        /// 进入HDM账户创建界面
+        actionSheet.addAction(UIAlertAction(title: "Normal Account".localized(), style: UIAlertActionStyle.default, handler: {
+            (action) -> Void in
+            self.gotoCreateHDMAccount()
+        }))
+        
+        //进入创建多签账户界面
+        actionSheet.addAction(UIAlertAction(title: "Multi-Sig Account".localized(), style: UIAlertActionStyle.default, handler: {
+            (action) -> Void in
+            self.gotoCreateMultiSigView()
+        }))
+        
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel".localized(), style: UIAlertActionStyle.cancel, handler: {
+            (action) -> Void in
+            
+        }))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    
+    /// 进入HDM账户创建界面
+    func gotoCreateHDMAccount() {
+        guard let vc = StoryBoard.account.initView(type: CreateHDMAccountViewController.self) else {
+            return
+        }
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    /// 进入创建多签账户界面
+    func gotoCreateMultiSigView() {
+        guard let vc = StoryBoard.account.initView(type: MultiSigAccountCreateViewController.self) else {
+            return
+        }
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - 实现导航栏弹出下拉菜单功能
+extension WalletViewController: LMDropdownViewDelegate {
+    
+    func dropdownViewWillShow(_ dropdownView: LMDropdownView!) {
+        self.tabBarController?.tabBar.isUserInteractionEnabled = false;
+    }
+    
+    func dropdownViewDidHide(_ dropdownView: LMDropdownView!) {
+        self.tabBarController?.tabBar.isUserInteractionEnabled = true;
+        
+    }
+}
+
+// MARK: - 表格代理方法
+extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
+    
     
     /**
      是否自己与自己交易
@@ -407,32 +487,7 @@ extension WalletViewController {
         
         return valueForWallet
     }
-    
-    /**
-     进入创建多签账户界面
-     */
-    func gotoCreateMultiSigView() {
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MultiSigAccountCreateViewController") as! MultiSigAccountCreateViewController
-//        vc.hidesBottomBarWhenPushed = true
-//        self.navigationController?.pushViewController(vc, animated: true)
-    }
-}
 
-// MARK: - 实现导航栏弹出下拉菜单功能
-extension WalletViewController: LMDropdownViewDelegate {
-    
-    func dropdownViewWillShow(_ dropdownView: LMDropdownView!) {
-        self.tabBarController?.tabBar.isUserInteractionEnabled = false;
-    }
-    
-    func dropdownViewDidHide(_ dropdownView: LMDropdownView!) {
-        self.tabBarController?.tabBar.isUserInteractionEnabled = true;
-        
-    }
-}
-
-// MARK: - 表格代理方法
-extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView === self.tableViewUserMenu {
@@ -445,7 +500,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView === self.tableViewUserMenu {
-            let accounts = CHBTCWallets.sharedInstance.getAccounts()
+            let accounts = CHBTCWallet.sharedInstance.getAccounts()
             return accounts.count + 1
         } else {
             return self.transactions.count
@@ -461,20 +516,20 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.imageViewSelected.isHidden = true
             
-            let accounts = CHBTCWallets.sharedInstance.getAccounts()
+            let accounts = CHBTCWallet.sharedInstance.getAccounts()
             if indexPath.row == accounts.count { //最后一行显示添加账户
                 cell.labelMenuTitle.text = "Create new account".localized() //创建新账户
                 cell.labelAddress.text = ""
             } else {
                 
-                let btcAccount = CHBTCWallets.sharedInstance.getAccount(indexPath.row)!
-                if self.userName == btcAccount.userNickname {
+                let btcAccount = CHBTCWallet.sharedInstance.getAccount(by: indexPath.row)!
+                if self.address == btcAccount.accountId {
                     cell.imageViewSelected.isHidden = false
                 } else {
                     cell.imageViewSelected.isHidden = true
                 }
                 
-                cell.labelMenuTitle.text = btcAccount.userNickname
+                cell.labelMenuTitle.text = btcAccount.userNickname + "[\(btcAccount.accountType.typeName)]"
                 cell.labelAddress.text = btcAccount.address.string
             }
 
@@ -533,14 +588,14 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         if tableView === self.tableViewUserMenu {
             
-            let accounts = CHBTCWallets.sharedInstance.getAccounts()
+            let accounts = CHBTCWallet.sharedInstance.getAccounts()
             if indexPath.row == accounts.count { //最后一行显示添加账户
-                self.gotoCreateMultiSigView() //创建新账户
+                self.showCreateAccountTypeMenu() //选择创建账户
             } else {
                 
-                let btcAccount = CHBTCWallets.sharedInstance.getAccount(indexPath.row)!
+                let btcAccount = CHBTCWallet.sharedInstance.getAccount(by: indexPath.row)!
                 self.currentAccount = btcAccount       //记录当前账户对象
-                CHWalletWrapper.selectedAccountIndex = btcAccount.index //记录系统保存的选中用户
+                CHBTCWallet.sharedInstance.selectedAccountIndex = btcAccount.index //记录系统保存的选中用户
                 self.userName = btcAccount.userNickname
                 self.address = btcAccount.address.string
                 

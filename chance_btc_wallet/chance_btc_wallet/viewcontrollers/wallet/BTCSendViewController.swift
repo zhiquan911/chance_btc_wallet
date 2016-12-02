@@ -25,7 +25,7 @@ class BTCSendViewController: UITableViewController {
     var address = ""
     var actualTotal: BTCAmount!
     var availableTotal: BTCAmount!
-    var btcAccount: CHBTCAcounts!
+    var btcAccount: CHBTCAcount!
     var changeAddress: BTCAddress {
         return self.btcAccount.address
     }
@@ -317,7 +317,7 @@ extension BTCSendViewController {
                             let hash: Data?
                             
                             let hashScript: BTCScript
-                            if self.btcAccount.accountType == .Normal {
+                            if self.btcAccount.accountType == .normal {
                                 hashScript = txout.script
                             } else {
                                 //多重签名的地址要用赎回脚本
@@ -335,7 +335,7 @@ extension BTCSendViewController {
                                 singnatureHex = (signature as NSData).hex()
                                 
                                 let redeemScriptData: Data
-                                if self.btcAccount.accountType == .Normal {
+                                if self.btcAccount.accountType == .normal {
                                     _ = sigScript.appendData(signature)
                                     redeemScriptData = key.publicKey as Data
                                 } else {
@@ -350,7 +350,7 @@ extension BTCSendViewController {
                                 //验证交易是否签名完成
                                 do {
                                     let sm: BTCScriptMachine
-                                    if self.btcAccount.accountType == .Normal {
+                                    if self.btcAccount.accountType == .normal {
                                         txin.signatureScript.appendData(redeemScriptData)
                                         sm = BTCScriptMachine(transaction: tx, inputIndex: UInt32(i))
                                         try sm.verify(withOutputScript: hashScript)

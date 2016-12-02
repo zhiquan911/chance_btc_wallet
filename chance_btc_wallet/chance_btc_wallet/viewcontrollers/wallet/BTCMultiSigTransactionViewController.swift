@@ -17,7 +17,7 @@ class BTCMultiSigTransactionViewController: UIViewController {
     var multiSigHexs: String!
     var redeemScriptHex: String!
     var messageHex: String!
-    var currentAccount: CHBTCAcounts!
+    var currentAccount: CHBTCAcount!
     var signatureDic = [Int: Data]()
     
     override func viewDidLoad() {

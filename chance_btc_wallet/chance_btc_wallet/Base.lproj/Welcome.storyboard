@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-3465" y="-1693"/>
         </scene>
-        <!--创建或恢复HD钱包-->
+        <!--WelcomeHD View Controller-->
         <scene sceneID="mnb-CK-MPA">
             <objects>
-                <viewController storyboardIdentifier="WelcomeHDViewController" id="Evn-8M-rXl" userLabel="创建或恢复HD钱包" customClass="WelcomeHDViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeHDViewController" id="Evn-8M-rXl" customClass="WelcomeHDViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pIZ-Pc-QGt"/>
                         <viewControllerLayoutGuide type="bottom" id="Ay4-Az-um2"/>
@@ -46,22 +46,50 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="341-wm-bAF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="341-wm-bAF" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
                                 <rect key="frame" x="40" y="210" width="295" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Bbl-qs-bRI"/>
                                 </constraints>
-                                <state key="normal" title="密语恢复钱包"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Restore wallet by passphrase">
+                                    <color key="titleColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="handlRecoveryPress:" destination="Evn-8M-rXl" eventType="touchUpInside" id="XDy-Tl-uCV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSb-dh-X73">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSb-dh-X73" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
                                 <rect key="frame" x="40" y="300" width="295" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="N5G-Xr-FaU"/>
                                 </constraints>
-                                <state key="normal" title="创建新钱包"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Create new wallet">
+                                    <color key="titleColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="handleCreateNewWalletPress:" destination="Evn-8M-rXl" eventType="touchUpInside" id="r77-NT-YQu"/>
                                 </connections>
@@ -92,10 +120,10 @@
             </objects>
             <point key="canvasLocation" x="-2634" y="-1693"/>
         </scene>
-        <!--生成HD钱包密语-->
+        <!--Welcome Phrase View Controller-->
         <scene sceneID="qUj-vF-p3w">
             <objects>
-                <viewController storyboardIdentifier="WelcomePhraseViewController" id="y7o-DL-NQp" userLabel="生成HD钱包密语" customClass="WelcomePhraseViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomePhraseViewController" id="y7o-DL-NQp" customClass="WelcomePhraseViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3yw-hk-1g9"/>
                         <viewControllerLayoutGuide type="bottom" id="ENd-fH-mBa"/>
@@ -104,31 +132,60 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请写下密语，并安全保管好，不要随便给别人，以后钱包程序丢失，可通过密语恢复" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADv-oN-2Uf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADv-oN-2Uf">
                                 <rect key="frame" x="20" y="20" width="335" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="aCj-pT-cNm"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <string key="text">Please mark down this passphrase and safe keeping. Don't give them to anybody. You can restore wallet by this passphrase when you lose you wallet.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrN-IF-DKO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrN-IF-DKO" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
                                 <rect key="frame" x="40" y="290" width="295" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="vNH-I3-J14"/>
                                 </constraints>
-                                <state key="normal" title="下一步"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="handleNextPress:" destination="y7o-DL-NQp" eventType="touchUpInside" id="dGD-NF-Efz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymd-ZW-kh3">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymd-ZW-kh3" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
                                 <rect key="frame" x="40" y="220" width="295" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dND-kP-xk0"/>
                                 </constraints>
-                                <state key="normal" title="重新生成"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Change another one">
+                                    <color key="titleColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="handleCreatePhrasePress:" destination="y7o-DL-NQp" eventType="touchUpInside" id="k6R-k4-8qU"/>
                                 </connections>
@@ -178,10 +235,10 @@
             </objects>
             <point key="canvasLocation" x="-1865" y="-1693"/>
         </scene>
-        <!--完成最后HD账户创建-->
+        <!--Welcome Create Account View Controller-->
         <scene sceneID="Ztt-jz-Lhx">
             <objects>
-                <viewController storyboardIdentifier="WelcomeCreateAccountViewController" id="XIZ-1o-enh" userLabel="完成最后HD账户创建" customClass="WelcomeCreateAccountViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeCreateAccountViewController" id="XIZ-1o-enh" customClass="WelcomeCreateAccountViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0BO-lE-9pK"/>
                         <viewControllerLayoutGuide type="bottom" id="10n-4A-jfS"/>
@@ -190,7 +247,7 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="创建账户" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-a1-82U">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-a1-82U">
                                 <rect key="frame" x="20" y="20" width="335" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="GAt-Bo-GPD"/>
@@ -199,7 +256,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="您的账户昵称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NtK-wx-fcZ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Account's nickname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NtK-wx-fcZ">
                                 <rect key="frame" x="40" y="140" width="295" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="lbT-TK-6FT"/>
@@ -210,7 +267,7 @@
                                     <outlet property="delegate" destination="XIZ-1o-enh" id="kAz-qV-pnw"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="您的账户密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R4y-La-gC4">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set wallet's password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R4y-La-gC4">
                                 <rect key="frame" x="40" y="190" width="295" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fyU-cM-Ezi"/>
@@ -221,17 +278,31 @@
                                     <outlet property="delegate" destination="XIZ-1o-enh" id="NPj-r8-L4b"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mde-e5-LqM">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mde-e5-LqM" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
                                 <rect key="frame" x="40" y="300" width="295" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="AWt-8h-cPI"/>
                                 </constraints>
-                                <state key="normal" title="确认创建"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Create">
+                                    <color key="titleColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="handleConfirmPress:" destination="XIZ-1o-enh" eventType="touchUpInside" id="wcK-tg-BOa"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="再次输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UER-cL-6xB">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Input wallet's password again" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UER-cL-6xB">
                                 <rect key="frame" x="40" y="240" width="295" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Dc5-j3-7rA"/>

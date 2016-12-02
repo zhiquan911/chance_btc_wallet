@@ -18,7 +18,7 @@ class BTCSendMultiSigViewController: UIViewController {
     var multiSigHexs: String = ""
     var mySignatureHex: String = ""
     var sendText = ""
-    var currentAccount: CHBTCAcounts!
+    var currentAccount: CHBTCAcount!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -32,7 +32,7 @@ class ExportKeyViewController: BaseViewController {
     
     var keyType = ExportKeyType.PrivateKey
     
-    var currentAccount: CHBTCAcounts!
+    var currentAccount: CHBTCAcount!
     
     override func viewDidLoad() {
         super.viewDidLoad()

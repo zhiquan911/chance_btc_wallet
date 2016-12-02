@@ -39,11 +39,7 @@ extension PasswordModifyViewController {
     func setupUI() {
         
         self.navigationItem.title = "Reset password".localized()
-        
-        //按钮样式
-        self.buttonSave.layer.cornerRadius = 4
-        self.buttonSave.layer.masksToBounds = true
-        self.buttonSave.setBackgroundImage(UIColor.imageWithColor(UIColor(hex: 0xDB2427)), for: UIControlState())
+
     }
     
     //检测输入值是否合法
@@ -69,7 +65,7 @@ extension PasswordModifyViewController {
     @IBAction func handleSavePress(_ sender: AnyObject?) {
         if self.checkValue() {
             let password = self.textFieldNewPassword.text!.trim()
-            CHBTCWallets.sharedInstance.password = password
+            CHBTCWallet.sharedInstance.password = password
             SVProgressHUD.showSuccess(withStatus: "Password reset successed".localized())
             _ = self.navigationController?.popToRootViewController(animated: true)
         }

@@ -54,11 +54,11 @@ extension RestoreWalletViewController {
         } else {
             self.buttonConfirm.isHidden = true
             //请写下密语，并安全保管好，不要随便给别人，以后钱包程序丢失，可通过密语恢复
-            self.labelTips.text = "Please mark down this phrase and safe keeping. Don't give them to anybody. You can restore wallet by this phrase when you lose you wallet".localized()
+            self.labelTips.text = "Please mark down this passphrase and safe keeping. Don't give them to anybody. You can restore wallet by this passphrase when you lose you wallet.".localized()
             
             self.textViewRestore.isEditable = false
             //显示恢复密语
-            self.textViewRestore.text = CHBTCWallets.sharedInstance.passphrase
+            self.textViewRestore.text = CHBTCWallet.sharedInstance.passphrase
             Log.debug("passphrase = \(self.textViewRestore.text!)")
         }
     }
@@ -71,27 +71,47 @@ extension RestoreWalletViewController {
             //2.根据导入的密语获取HD钱包
             
             let phrase = self.textViewRestore.text!.trim()
-            //创建钱包
-            guard let wallet = CHBTCWallets.createWallet(phrase, password: password) else {
+            //创建钱包但不重建表
+            guard let wallet = CHBTCWallet.sharedInstance.createWallet(phrase,
+                                                        password: password,
+                                                        isDropTable: false) else {
                 SVProgressHUD.showError(withStatus: "Create wallet failed".localized())
                 return
             }
-                        
-            //3.HDM钱包的账户体系是一个内置的系统，账户信息没法复原，只能初始第一个账户
-            guard let account = wallet.createHDAccount("Account 1") else {
-                SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
-                return
-            }
-            CHBTCWallets.sharedInstance.password = password
-            CHWalletWrapper.selectedAccountIndex = account.index
             
-            //让用户重置昵称
-            self.showNicknameTextAlert(complete: { (nickname) in
-                account.userNickname = nickname
-                SVProgressHUD.showSuccess(withStatus: "The wallet have been restore successfully")
+            var account = wallet.getAccount()
+            
+            if account == nil {
+                
+                //3.HDM钱包的账户体系是一个内置的系统，账户信息没法复原，只能初始第一个账户
+                account = wallet.createHDAccount(by: "Account 1")
+                
+                if account == nil {
+                    SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
+                    return
+                }
+                
+                CHBTCWallet.sharedInstance.selectedAccountIndex = account!.index
+                CHBTCWallet.sharedInstance.password = password
+                
+                //让用户重置昵称
+                self.showNicknameTextAlert(complete: { (nickname) in
+                    let realm = RealmDBHelper.acountDB
+                    try! realm.write {
+                        account!.userNickname = nickname
+                    }
+                    SVProgressHUD.showSuccess(withStatus: "The wallet have been restore successfully".localized())
+                    _ = self.navigationController?.popViewController(animated: true)
+                })
+            } else {
+                
+                //设置密码和当前的首个用户
+                CHBTCWallet.sharedInstance.selectedAccountIndex = account!.index
+                CHBTCWallet.sharedInstance.password = password
+                
+                SVProgressHUD.showSuccess(withStatus: "The wallet have been restore successfully".localized())
                 _ = self.navigationController?.popViewController(animated: true)
-            })
-            
+            }
         }
 
     }
@@ -102,13 +122,13 @@ extension RestoreWalletViewController {
     /// - Parameter complete: 回调
     func showPasswordTextAlert(complete: @escaping (_ password: String) -> Void) {
         //弹出密码输入框
-        let alertController = UIAlertController(title: "The Phrase's password".localized(),
-                                                message: "Input the password if the phrase has",
+        let alertController = UIAlertController(title: "The passphrase's password".localized(),
+                                                message: "Input the password if the passphrase has",
                                                 preferredStyle: .alert)
         
         alertController.addTextField {
             (textField: UITextField!) -> Void in
-            textField.placeholder = "Input phrase's password".localized()
+            textField.placeholder = "Input passphrase's password".localized()
             textField.isSecureTextEntry = true
         }
         

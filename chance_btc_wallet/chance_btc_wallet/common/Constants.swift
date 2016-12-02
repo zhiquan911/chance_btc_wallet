@@ -13,7 +13,7 @@ import UIKit
 
 struct CHWalletsKeys {
     
-    static let prefix = "bitbank_"  //前续头
+    static let prefix = ""  //前续头
     
     /** 钱包设置类 **/
     static let UserNickname = prefix + "btc_user_nickname"              //用户昵称
@@ -172,8 +172,19 @@ public enum ExportKeyType: String {
  - MultiSig: 多签账户
  */
 public enum CHAccountType: String {
-    case Normal = "1"
-    case MultiSig = "2"
+    case normal = "1"
+    case multiSig = "2"
+    
+    
+    /// 账户类型名
+    var typeName: String {
+        switch self {
+        case .normal:
+            return "Normal".localized()
+        case .multiSig:
+            return "Multi-Sig".localized()
+        }
+    }
 }
 
 
@@ -233,6 +244,7 @@ enum StoryBoard {
     case welcome
     case wallet
     case setting
+    case account
     
     /// board实体
     var board: UIStoryboard {
@@ -245,6 +257,8 @@ enum StoryBoard {
             return UIStoryboard.init(name: "Wallet", bundle: nil)
         case .setting:
             return UIStoryboard.init(name: "Setting", bundle: nil)
+        case .account:
+            return UIStoryboard.init(name: "Account", bundle: nil)
         }
         
     }

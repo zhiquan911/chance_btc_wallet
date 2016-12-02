@@ -64,6 +64,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonClose" destination="TXF-qQ-eAW" id="UW4-Tl-7FE"/>
+                        <outlet property="labelTips" destination="NNm-DJ-wlz" id="9np-R3-UMH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yj7-uj-MeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,10 +422,10 @@
             </objects>
             <point key="canvasLocation" x="-87" y="274"/>
         </scene>
-        <!--比特币发送-->
+        <!--Send View Controller-->
         <scene sceneID="jtL-Ir-6KV">
             <objects>
-                <tableViewController storyboardIdentifier="BTCSendViewController" hidesBottomBarWhenPushed="YES" id="8XK-yh-RZ5" userLabel="比特币发送" customClass="BTCSendViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="BTCSendViewController" hidesBottomBarWhenPushed="YES" id="8XK-yh-RZ5" customClass="BTCSendViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" id="tKl-tm-xEk">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -716,10 +717,10 @@
             </objects>
             <point key="canvasLocation" x="-87" y="-493"/>
         </scene>
-        <!--多重签名未完成-->
+        <!--Send Multi Sig View Controller-->
         <scene sceneID="xrK-L9-Rft">
             <objects>
-                <viewController storyboardIdentifier="BTCSendMultiSigViewController" id="qp6-Q3-02e" userLabel="多重签名未完成" customClass="BTCSendMultiSigViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BTCSendMultiSigViewController" id="qp6-Q3-02e" customClass="BTCSendMultiSigViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A9r-Wa-XIF"/>
                         <viewControllerLayoutGuide type="bottom" id="3dS-1k-yaY"/>
@@ -795,10 +796,10 @@
             </objects>
             <point key="canvasLocation" x="753" y="-493"/>
         </scene>
-        <!--多重签名再签名-->
+        <!--Multi Sig Transaction View Controller-->
         <scene sceneID="l2q-bu-YBr">
             <objects>
-                <viewController storyboardIdentifier="BTCMultiSigTransactionViewController" hidesBottomBarWhenPushed="YES" id="XMF-hZ-LMU" userLabel="多重签名再签名" customClass="BTCMultiSigTransactionViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BTCMultiSigTransactionViewController" hidesBottomBarWhenPushed="YES" id="XMF-hZ-LMU" customClass="BTCMultiSigTransactionViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kyz-mM-ZAM"/>
                         <viewControllerLayoutGuide type="bottom" id="DiP-Rl-Fge"/>

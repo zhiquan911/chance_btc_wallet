@@ -23,20 +23,16 @@ class TabBarViewController: UITabBarController {
             let vc = StoryBoard.welcome.initView(name: "WelcomeNavController") as! UINavigationController
             self.present(vc, animated: true, completion: nil)
         } else {
-            if CHWalletWrapper.selectedAccountIndex == -1 {
-                let account = CHBTCWallets.sharedInstance.getAccount()
-                CHWalletWrapper.selectedAccountIndex = account!.index
+            //切换钱包的数据库
+            let seedHash = CHBTCWallet.sharedInstance.seed!.md5().toHexString()
+            RealmDBHelper.setDefaultRealmForWallet(seedHash: seedHash)
+            let index = CHBTCWallet.sharedInstance.selectedAccountIndex
+            if index == -1 {
+                let account = CHBTCWallet.sharedInstance.getAccount()
+                CHBTCWallet.sharedInstance.selectedAccountIndex = account!.index
             }
             
         }
-        
-        //导入keychain中保存的地址账户数据到本地数据库
-        
-        //如果没有私钥，进入欢迎界面
-//        if BBKeyStore.sharedInstance.key == nil {
-//            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("WelcomeNavController") as! UINavigationController
-//            self.presentViewController(vc, animated: true, completion: nil)
-//        }
     }
 
     

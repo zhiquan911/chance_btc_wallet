@@ -493,11 +493,89 @@ SWIFT_CLASS_NAMED("ObjectUtil")
 @end
 
 
-@interface RLMSyncCredential (SWIFT_EXTENSION(RealmSwift))
+@interface RLMSyncCredentials (SWIFT_EXTENSION(RealmSwift))
+@end
+
+
+@interface RLMSyncManager (SWIFT_EXTENSION(RealmSwift))
+/**
+  The sole instance of the singleton.
+*/
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RLMSyncManager * _Nonnull shared;)
++ (RLMSyncManager * _Nonnull)shared;
 @end
 
 
 @interface RLMSyncUser (SWIFT_EXTENSION(RealmSwift))
+/**
+  A dictionary of all valid, logged-in user identities corresponding to their \code
+  SyncUser
+  \endcode objects.
+*/
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSDictionary<NSString *, RLMSyncUser *> * _Nonnull all;)
++ (NSDictionary<NSString *, RLMSyncUser *> * _Nonnull)all;
+/**
+  The logged-in user. \code
+  nil
+  \endcode if none exists.
+  warning:
+  Throws an Objective-C exception if more than one logged-in user exists.
+*/
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RLMSyncUser * _Nullable current;)
++ (RLMSyncUser * _Nullable)current;
+@end
+
+
+/**
+  This model is used for requesting changes to a Realm’s permissions.
+  It should be used in conjunction with an \code
+  SyncUser
+  \endcode’s management Realm.
+  See https://realm.io/docs/realm-object-server/#permissions for general
+  documentation.
+*/
+SWIFT_CLASS("_TtC10RealmSwift20SyncPermissionChange")
+@interface SyncPermissionChange : RealmSwiftObject
+/**
+  The globally unique ID string of this permission change object.
+*/
+@property (nonatomic, copy) NSString * _Nonnull id;
+/**
+  The date this object was initially created.
+*/
+@property (nonatomic, copy) NSDate * _Nonnull createdAt;
+/**
+  The date this object was last modified.
+*/
+@property (nonatomic, copy) NSDate * _Nonnull updatedAt;
+/**
+  An error or informational message, typically written to by the Realm Object Server.
+*/
+@property (nonatomic, copy) NSString * _Nullable statusMessage;
+/**
+  Sync management object status.
+*/
+@property (nonatomic, readonly) RLMSyncManagementObjectStatus status;
+/**
+  The remote URL to the realm.
+*/
+@property (nonatomic, copy) NSString * _Nonnull realmUrl;
+/**
+  The identity of a user affected by this permission change.
+*/
+@property (nonatomic, copy) NSString * _Nonnull userId;
+/**
+  :nodoc:
+*/
++ (BOOL)shouldIncludeInDefaultSchema;
+/**
+  :nodoc:
+*/
++ (NSString * _Nullable)_realmObjectName;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithValue:(id _Nonnull)value OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithValue:(id _Nonnull)value schema:(RLMSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
 @end
 
 #pragma clang diagnostic pop

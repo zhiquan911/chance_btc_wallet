@@ -10,10 +10,10 @@ import UIKit
 
 class SettingViewController: BaseTableViewController {
     
-    var currentAccount: CHBTCAcounts? {
-        let i = CHWalletWrapper.selectedAccountIndex
+    var currentAccount: CHBTCAcount? {
+        let i = CHBTCWallet.sharedInstance.selectedAccountIndex
         if i != -1 {
-            return CHBTCWallets.sharedInstance.getAccount(i)
+            return CHBTCWallet.sharedInstance.getAccount(by: i)
         } else {
             return nil
         }
@@ -33,7 +33,7 @@ class SettingViewController: BaseTableViewController {
         if section == 0 {
             
             if let account = self.currentAccount {
-                if account.accountType == .MultiSig {
+                if account.accountType == .multiSig {
                     return 3
                 } else {
                     return 2
@@ -90,10 +90,10 @@ class SettingViewController: BaseTableViewController {
                 var title = ""
                 if indexPath.row == 0 {
                     isRestore = false
-                    title = "Export wallet's Mnemonic phases".localized()
+                    title = "Export wallet's passphrase".localized()
                 } else {
                     isRestore = true
-                    title = "Restore wallet by Mnemonic phases".localized()
+                    title = "Restore wallet by passphrase".localized()
                 }
                 
                 guard let vc = StoryBoard.setting.initView(type: RestoreWalletViewController.self) else {
