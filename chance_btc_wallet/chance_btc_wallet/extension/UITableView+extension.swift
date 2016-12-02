@@ -1,9 +1,9 @@
 //
 //  UITableView+extension.swift
-//  chbtc
+//  Chance_wallet
 //
-//  Created by 麦志泉 on 15/12/10.
-//  Copyright © 2015年 bitbank. All rights reserved.
+//  Created by Chance on 15/12/10.
+//  Copyright © 2015年 Chance. All rights reserved.
 //
 
 import Foundation

@@ -1,9 +1,9 @@
 //
 //  UserTransaction.swift
-//  bitbank_wallet
+//  Chance_wallet
 //
-//  Created by 麦志泉 on 16/1/20.
-//  Copyright © 2016年 bitbank. All rights reserved.
+//  Created by Chance on 16/1/20.
+//  Copyright © 2016年 Chance. All rights reserved.
 //
 
 import UIKit

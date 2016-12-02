@@ -2,7 +2,7 @@
 //  Array+extension.swift
 //  light_guide
 //
-//  Created by 麦志泉 on 15/10/8.
+//  Created by Chance on 15/10/8.
 //  Copyright © 2015年 wetasty. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  UIColor+extension.swift
 //  light_guide
 //
-//  Created by 麦志泉 on 15/10/19.
+//  Created by Chance on 15/10/19.
 //  Copyright © 2015年 wetasty. All rights reserved.
 //
 

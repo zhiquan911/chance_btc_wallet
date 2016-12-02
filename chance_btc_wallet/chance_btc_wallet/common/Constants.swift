@@ -2,7 +2,7 @@
 //  Constants.swift
 //  light_guide
 //  全局常数类
-//  Created by 麦志泉 on 15/8/29.
+//  Created by Chance on 15/8/29.
 //  Copyright (c) 2015年 wetasty. All rights reserved.
 //
 

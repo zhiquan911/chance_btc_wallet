@@ -1,9 +1,9 @@
 //
 //  BaseViewController.swift
-//  chbtc
+//  Chance_wallet
 //
-//  Created by 麦志泉 on 15/11/21.
-//  Copyright © 2015年 bitbank. All rights reserved.
+//  Created by Chance on 15/11/21.
+//  Copyright © 2015年 Chance. All rights reserved.
 //
 
 import UIKit
