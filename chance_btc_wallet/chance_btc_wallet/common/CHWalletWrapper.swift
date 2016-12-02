@@ -97,12 +97,11 @@ class CHWalletWrapper: NSObject {
     class func checkBTCWalletExist() -> Bool {
         
         //1.检查钱包种子在不在
-        guard let seed = CHBTCWallet.sharedInstance.seed else {
+        guard let seedHash = CHBTCWallet.sharedInstance.seedHash else {
             return false
         }
         
         //2.检查账户体系数据库文件在不在
-        let seedHash = seed.md5().toHexString()
         guard RealmDBHelper.checkRealmForWalletExist(seedHash: seedHash) else {
             return false
         }

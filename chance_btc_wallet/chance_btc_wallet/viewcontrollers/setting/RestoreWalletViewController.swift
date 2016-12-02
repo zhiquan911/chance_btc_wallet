@@ -64,7 +64,7 @@ extension RestoreWalletViewController {
     }
     
     @IBAction func handleRestorePress(_ sender: CHButton) {
-        
+        sender.isEnabled = false
         //1.输入恢复密码，可为空
         self.showPasswordTextAlert { (password) in
             
@@ -76,6 +76,7 @@ extension RestoreWalletViewController {
                                                         password: password,
                                                         isDropTable: false) else {
                 SVProgressHUD.showError(withStatus: "Create wallet failed".localized())
+                sender.isEnabled = true
                 return
             }
             
@@ -88,6 +89,7 @@ extension RestoreWalletViewController {
                 
                 if account == nil {
                     SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
+                    sender.isEnabled = true
                     return
                 }
                 

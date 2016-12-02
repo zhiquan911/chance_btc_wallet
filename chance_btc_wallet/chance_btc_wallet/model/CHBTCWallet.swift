@@ -66,6 +66,14 @@ class CHBTCWallet: NSObject {
         return mnemonic.seed
     }
     
+    //种子hash
+    var seedHash: String? {
+        guard let seed = self.seed else {
+            return nil
+        }
+        return seed.sha256().toHexString()
+    }
+    
     //钱包的根钥匙串，不是整个模型的根
     var rootKeys: BTCKeychain {
         return self.getBIP44KeyChain()
@@ -76,6 +84,12 @@ class CHBTCWallet: NSObject {
     //全局唯一实例
     static var sharedInstance: CHBTCWallet = {
         let instance = CHBTCWallet()
+        
+        //钱包种子hash存在设置默认数据库
+        if let hash = instance.seedHash {
+            RealmDBHelper.setDefaultRealmForWallet(seedHash: hash)
+        }
+        
         return instance
     }()
     
@@ -117,7 +131,7 @@ class CHBTCWallet: NSObject {
                 wallet.passphrase = CHWalletWrapper.getPassphraseByMnemonic(mnemonic!)
                 
                 //切换钱包的数据库
-                let seedHash = wallet.seed!.md5().toHexString()
+                let seedHash = wallet.seedHash!
                 RealmDBHelper.setDefaultRealmForWallet(seedHash: seedHash)
                 
                 if isDropTable {

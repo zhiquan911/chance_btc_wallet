@@ -23,9 +23,7 @@ class TabBarViewController: UITabBarController {
             let vc = StoryBoard.welcome.initView(name: "WelcomeNavController") as! UINavigationController
             self.present(vc, animated: true, completion: nil)
         } else {
-            //切换钱包的数据库
-            let seedHash = CHBTCWallet.sharedInstance.seed!.md5().toHexString()
-            RealmDBHelper.setDefaultRealmForWallet(seedHash: seedHash)
+            
             let index = CHBTCWallet.sharedInstance.selectedAccountIndex
             if index == -1 {
                 let account = CHBTCWallet.sharedInstance.getAccount()
