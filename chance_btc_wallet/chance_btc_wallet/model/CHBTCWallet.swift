@@ -27,7 +27,8 @@ class CHBTCWallet: NSObject {
         }
         
         set {
-            self.keychain.set(newValue, forKey: CHWalletsKeys.BTCWalletPassword)
+            self.keychain.set(newValue, forKey: CHWalletsKeys.BTCWalletPassword,
+                              withAccess: .accessibleWhenUnlockedThisDeviceOnly)
         }
     }
     
@@ -39,7 +40,8 @@ class CHBTCWallet: NSObject {
         }
         
         set {
-            self.keychain.set(newValue, forKey: CHWalletsKeys.BTCSecretPhrase)
+            self.keychain.set(newValue, forKey: CHWalletsKeys.BTCSecretPhrase,
+                              withAccess: .accessibleWhenUnlockedThisDeviceOnly)
         }
     }
     
