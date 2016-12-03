@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C508D8861DE938AE00107EDA /* CHTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508D8851DE938AE00107EDA /* CHTextView.swift */; };
+		C50F70A71DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50F70A61DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift */; };
 		C52ACB8E1DEECF2B00E79C5C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */; };
 		C54D1ACB1DEDB119008913CC /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C54D1AC91DEDB119008913CC /* Account.storyboard */; };
 		C58870131DE3F37500C45B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58870121DE3F37500C45B43 /* AppDelegate.swift */; };
@@ -184,6 +185,7 @@
 		41948111B0FF5B5DA3FA755D /* Pods-chance_btc_wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.release.xcconfig"; sourceTree = "<group>"; };
 		C508D8851DE938AE00107EDA /* CHTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHTextView.swift; sourceTree = "<group>"; };
+		C50F70A61DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockchainNodeSettingViewController.swift; path = viewcontrollers/setting/BlockchainNodeSettingViewController.swift; sourceTree = "<group>"; };
 		C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C54D1ACA1DEDB119008913CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Account.storyboard; sourceTree = "<group>"; };
 		C588700F1DE3F37500C45B43 /* chance_btc_wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chance_btc_wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1060,6 +1062,7 @@
 				C5EAEF9F1DE6C97B00324B60 /* PasswordSettingViewController.swift */,
 				C5EAEFA01DE6C97B00324B60 /* SettingViewController.swift */,
 				C594CFAD1DED47FD008BBD6A /* RestoreWalletViewController.swift */,
+				C50F70A61DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift */,
 			);
 			name = setting;
 			sourceTree = "<group>";
@@ -1245,6 +1248,7 @@
 				C588717C1DE3F3E600C45B43 /* BTCScript+Tests.m in Sources */,
 				C58871431DE3F3E600C45B43 /* BTC256.m in Sources */,
 				C588715D1DE3F3E600C45B43 /* BTCEncryptedBackup.m in Sources */,
+				C50F70A71DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift in Sources */,
 				C58871731DE3F3E600C45B43 /* BTCPaymentProtocol.m in Sources */,
 				C588714A1DE3F3E600C45B43 /* BTCBase58.m in Sources */,
 				C58871AA1DE4138000C45B43 /* PageModule.swift in Sources */,
