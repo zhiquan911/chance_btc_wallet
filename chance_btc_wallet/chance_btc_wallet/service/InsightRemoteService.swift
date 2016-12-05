@@ -15,8 +15,8 @@ class InsightRemoteService: RemoteService {
     var apiUrl = "https://insight.bitpay.com/api/"
     
     /// 全局唯一实例
-    static let sharedInstance: BlockchainRemoteService = {
-        let instance = BlockchainRemoteService()
+    static let sharedInstance: InsightRemoteService = {
+        let instance = InsightRemoteService()
         return instance
     }()
 

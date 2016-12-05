@@ -8,12 +8,16 @@
 
 import UIKit
 
-class BlockchainNodeSettingViewController: UIViewController {
+class BlockchainNodeSettingViewController: BaseViewController {
+    
+    @IBOutlet var tableViewNodes: UITableView!
+    
+    var nodes: [BlockchainNode] = BlockchainNode.allNodes    //全部节点列表
+    var selectedNode = CHWalletWrapper.selectedBlockchainNode
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.navigationItem.title = "Blockchain Node".localized()
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,14 +26,44 @@ class BlockchainNodeSettingViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+// MARK: - 实现表格委托方法
+extension BlockchainNodeSettingViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.nodes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let nodeCell = "nodeCell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: nodeCell)
+        if cell == nil {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: nodeCell)
+        }
+        let node = self.nodes[indexPath.row]
+        cell?.textLabel?.text = node.name
+        cell?.detailTextLabel?.text = node.url
+        //显示已选
+        if node == self.selectedNode {
+            cell?.accessoryType = .checkmark
+        } else {
+            cell?.accessoryType = .none
+        }
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let node = self.nodes[indexPath.row]
+        CHWalletWrapper.selectedBlockchainNode = node
+        self.selectedNode = node
+        //let cell = tableView.cellForRow(at: indexPath)
+        tableView.reloadData()
+    }
 }

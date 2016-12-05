@@ -18,6 +18,7 @@ class CHBTCAcount: Object {
     dynamic var redeemScriptHex: String = ""        //账户的赎回脚本
     dynamic var userNickname: String = ""                   //昵称
     dynamic var isEnable: Bool = true                   //是否可用
+    dynamic var keyPath: String = ""                //HDM私钥路径，如："m/44'/0'/2'" (BIP44 bitcoin account #2)
     
     /// 获取可扩展的私钥
     var btcKeychain: BTCKeychain?

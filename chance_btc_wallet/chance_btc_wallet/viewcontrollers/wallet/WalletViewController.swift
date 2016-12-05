@@ -157,7 +157,8 @@ extension WalletViewController {
      调用获取账户接口
      */
     func getUserAccountByWebservice() {
-        BlockchainRemoteService.sharedInstance.userBalance(address: self.address) {
+        let nodeServer = CHWalletWrapper.selectedBlockchainNode.service
+        nodeServer.userBalance(address: self.address) {
             (message, userBalance) -> Void in
             if message.code == ApiResultCode.Success.rawValue {
                 self.balance = Int64(userBalance.balanceSat) + Int64(userBalance.unconfirmedBalanceSat)
@@ -171,8 +172,8 @@ extension WalletViewController {
      获取交易记录
      */
     func getUserTransactionsByWebservice() {
-        
-        BlockchainRemoteService.sharedInstance.userTransactions(
+        let nodeServer = CHWalletWrapper.selectedBlockchainNode.service
+        nodeServer.userTransactions(
             address: self.address, from: "0", to: "", limit: "20") {
                 (message, userTransactions, page) -> Void in
                 if message.code == ApiResultCode.Success.rawValue {
@@ -280,6 +281,7 @@ extension WalletViewController {
         guard let vc = StoryBoard.wallet.initView(type: BTCSendViewController.self) else {
             return
         }
+        vc.btcAccount = self.currentAccount!
         vc.availableTotal = self.balance
         self.navigationController?.pushViewController(vc, animated: true)
     }

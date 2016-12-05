@@ -21,7 +21,7 @@ class BTCSendViewController: UITableViewController {
     
     var currencyType = CurrencyType.BTC
     var addressNote = ""
-    var fee: BTCAmount = 10000
+    var fee: BTCAmount = 30000
     var address = ""
     var actualTotal: BTCAmount!
     var availableTotal: BTCAmount!
@@ -88,18 +88,18 @@ extension BTCSendViewController {
         let number = self.textFieldNumber.text == "" ? "0" : self.textFieldNumber.text!
         self.actualTotal = BTCAmount.satoshiWithStringInBTCFormat(number)
         
-        if self.actualTotal > self.availableTotal {
+        if self.actualTotal >= self.availableTotal {
             self.actualTotal = self.availableTotal  - self.fee
             self.textFieldNumber.text = BTCAmount.stringWithSatoshiInBTCFormat(self.availableTotal)
         } else {
-            self.actualTotal = self.actualTotal  - self.fee
+            self.actualTotal = self.actualTotal  + self.fee
         }
         
         self.actualTotal = self.actualTotal > 0 ? self.actualTotal : 0
         
         
         
-        self.labelInfo.text = "Actual：".localized() + "\(BTCAmount.stringWithSatoshiInBTCFormat(self.actualTotal))\(self.currencyType.rawValue)，Fees：\(BTCAmount.stringWithSatoshiInBTCFormat(self.fee))\(self.currencyType.rawValue)"
+        self.labelInfo.text = "Fees".localized() + "：\(BTCAmount.stringWithSatoshiInBTCFormat(self.fee))\(self.currencyType.rawValue)，" + "Actual".localized() + "：\(BTCAmount.stringWithSatoshiInBTCFormat(self.actualTotal))\(self.currencyType.rawValue)"
     }
     
     /**
@@ -176,10 +176,11 @@ extension BTCSendViewController {
     @IBAction func handleConfirmPress(_ sender: AnyObject?) {
         AppDelegate.sharedInstance().closeKeyBoard()
         if self.checkValue() {
-            SVProgressHUD.show(with: SVProgressHUDMaskType.black)
+            
             
             let doBlock = {
                 () -> Void in
+                SVProgressHUD.show()
                 self.getUnspentTransactionByWebservice {
                     (tx, unsignTxHex, singnatureHex, message) -> Void in
                     if message.code == ApiResultCode.Success.rawValue {
@@ -234,14 +235,15 @@ extension BTCSendViewController {
      */
     func getUnspentTransactionByWebservice(
         _ completionHandler: @escaping (BTCTransaction?, String? , String?, MessageModule) -> Void) {
-            BlockchainRemoteService.sharedInstance.userUnspentTransactions(address: self.changeAddress.string) {
+        let nodeServer = CHWalletWrapper.selectedBlockchainNode.service
+        nodeServer.userUnspentTransactions(address: self.changeAddress.string) {
                 (message, unspentTxs) -> Void in
                 if unspentTxs.count > 0 {
                     
                     var isComplete = true
                     
                     //付币总数
-                    let totalAmount = self.actualTotal + self.fee
+                    let totalAmount = self.actualTotal!
                     
                     var utxos = [BTCTransactionOutput]()
                     
@@ -293,7 +295,7 @@ extension BTCSendViewController {
                         
                         //添加交易输出的地址及找零地址
                         let destinationAddress = BTCAddress(string: self.address)
-                        let paymentOutput = BTCTransactionOutput(value: self.actualTotal, address: destinationAddress)
+                        let paymentOutput = BTCTransactionOutput(value: totalAmount - self.fee, address: destinationAddress)
                         
                         tx.addOutput(paymentOutput)
                         
@@ -370,7 +372,7 @@ extension BTCSendViewController {
                         
                         if isComplete {
                             //如果是单签，直接可以签名发送
-                            completionHandler(tx, nil, nil, MessageModule(code: "0", message: "Success".localized()));
+                            completionHandler(tx, nil, nil, MessageModule(code: ApiResultCode.Success.rawValue, message: "Success".localized()));
                         } else {
                             //如果是多签，需要发送交易单给地址生产的公钥持有者进行私钥签名
                             completionHandler(tx, txHex, singnatureHex, MessageModule(code: "1101", message: "need other signatures".localized()));
@@ -390,7 +392,8 @@ extension BTCSendViewController {
      - parameter tx:
      */
     func sendTransactionByWebservice(_ tx: BTCTransaction) {
-        BlockchainRemoteService.sharedInstance.sendTransaction(transactionHexString: tx.hex) {
+        let nodeServer = CHWalletWrapper.selectedBlockchainNode.service
+        nodeServer.sendTransaction(transactionHexString: tx.hex) {
             (message, txid) -> Void in
             if message.code == ApiResultCode.Success.rawValue {
                 SVProgressHUD.showSuccess(withStatus: "Transaction successed，waiting confirm".localized())

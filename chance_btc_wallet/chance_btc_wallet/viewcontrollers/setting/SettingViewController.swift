@@ -114,7 +114,14 @@ class SettingViewController: BaseTableViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             } else if indexPath.section == 3 {
-                SVProgressHUD.showInfo(withStatus: "Coming soon".localized())
+                //进入设置云节点
+                if indexPath.row == 0 {
+                    guard let vc = StoryBoard.setting.initView(type: BlockchainNodeSettingViewController.self) else {
+                        return
+                    }
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             } else if indexPath.section == 4 {
                 SVProgressHUD.showInfo(withStatus: "Coming soon".localized())
             }

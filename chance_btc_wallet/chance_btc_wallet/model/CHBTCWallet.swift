@@ -98,7 +98,7 @@ class CHBTCWallet: NSObject {
     
     /**
      采用BIP44的HD模型标准获取钱包账户
-     
+     账户的路径在：m/44'/0'/{account}'/
      - returns:
      */
     func getBIP44KeyChain() -> BTCKeychain{
@@ -198,6 +198,7 @@ class CHBTCWallet: NSObject {
             account.index = seqNextValue
             account.userNickname = name
             account.accountId = account.address.string
+            account.keyPath = "m/44'/0'/\(account.index)'"
             
             //保存新账户到数据库
             let realm = RealmDBHelper.acountDB
@@ -282,6 +283,7 @@ class CHBTCWallet: NSObject {
         account.userNickname = name
         account.redeemScriptHex = script.hex
         account.accountId = account.address.string
+        account.keyPath = "m/44'/0'/\(account.index)'"
         
         //5.保存新账户到数据库
         let realm = RealmDBHelper.acountDB

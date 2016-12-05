@@ -11,7 +11,7 @@ import RealmSwift
 
 class RealmDBHelper {
     
-    static let kRealmDBVersion: UInt64 = 0
+    static let kRealmDBVersion: UInt64 = 2
     
     //数据库路径
     static var databaseFilePath: URL {
@@ -42,7 +42,7 @@ class RealmDBHelper {
                                          schemaVersion: RealmDBHelper.kRealmDBVersion,
                                          migrationBlock: { (migration, oldSchemaVersion) in
                                             if (oldSchemaVersion < RealmDBHelper.kRealmDBVersion) {
-                                                
+
                                             }
         })
         let realm = try! Realm(configuration: config)
@@ -92,7 +92,7 @@ class RealmDBHelper {
                                                 
                                             }
         })
-        Log.debug("db path = \(path.absoluteString)")
+        //Log.debug("db path = \(path.absoluteString)")
         Realm.Configuration.defaultConfiguration = config
     }
 

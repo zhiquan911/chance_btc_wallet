@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      设置SVProgressHUD的样式
      */
     func setupSVProgressHUDStyle() {
-        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.light)
         SVProgressHUD.setMinimumDismissTimeInterval(1)
     }
 

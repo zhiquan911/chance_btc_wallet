@@ -31,6 +31,20 @@ class CHWalletWrapper: NSObject {
         }
     }
     
+    /// 获取默认选择区块链云节点
+    class var selectedBlockchainNode: BlockchainNode {
+        get {
+            let value = UserDefaults.standard.value(forKey: CHWalletsKeys.SelectedBlockchainNode) as? String
+            let node = value ?? BlockchainNode.insight_bitpay.rawValue
+            return BlockchainNode(rawValue: node)!
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: CHWalletsKeys.SelectedBlockchainNode)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     /**
      获取苹果keychain工具实例
      */

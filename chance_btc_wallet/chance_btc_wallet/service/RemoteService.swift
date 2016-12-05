@@ -10,6 +10,54 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
+/// 远端节点枚举
+enum BlockchainNode: String {
+    
+    //https://blockchain.info/
+    case blockchain_info = "blockchain.info"
+    
+    //https://insight.bitpay.com
+    case insight_bitpay = "insight.bitpay.com"
+    
+    //服务实例
+    var service: RemoteService {
+        switch self {
+        case .blockchain_info:
+            return BlockchainRemoteService.sharedInstance
+        case .insight_bitpay:
+            return InsightRemoteService.sharedInstance
+        }
+    }
+    
+    //节点名字
+    var name: String {
+        switch self {
+        case .blockchain_info:
+            return "blockchain.info"
+        case .insight_bitpay:
+            return "insight.bitpay"
+        }
+    }
+    
+    //节点域名
+    var url: String {
+        switch self {
+        case .blockchain_info:
+            return "https://blockchain.info/"
+        case .insight_bitpay:
+            return "https://insight.bitpay.com/"
+        }
+    }
+    
+    //所有节点数组
+    static var allNodes: [BlockchainNode] {
+        return [
+            BlockchainNode.blockchain_info,
+            BlockchainNode.insight_bitpay
+        ]
+    }
+    
+}
 
 /// 远端节点协议
 protocol RemoteService {
