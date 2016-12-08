@@ -6,6 +6,7 @@
 //  Copyright © 2016年 Chance. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import SwiftyJSON
 import Alamofire
@@ -59,6 +60,19 @@ enum BlockchainNode: String {
     
 }
 
+///
+/// 接口返回数据类型
+///
+/// - string: 字符串
+/// - json: json
+/// - bytes: 字节流
+enum ResponseDataType {
+    
+    case string
+    case json
+    case bytes
+}
+
 /// 远端节点协议
 protocol RemoteService {
     
@@ -105,30 +119,59 @@ extension RemoteService {
      - parameter response:   回调处理
      */
     func sendJsonRequest(_ url: String,method: Alamofire.HTTPMethod = .post,
-                         parameters: [String: Any], useCache: Bool = false,
+                         parameters: [String: Any],
+                         useCache: Bool = false,
+                         encoding: ParameterEncoding = URLEncoding.default,
+                         responseDataType: ResponseDataType = .json,
                          response: @escaping (_ json: JSON, _ isCache: Bool) -> Void) {
         
         Log.debug("接口地址: \(url)")
         Log.debug("传入参数: \(parameters)")
         
-        Alamofire.request(url, method: method, parameters: parameters)
-            .responseJSON {
-                resp in
-                let result = resp.result
-                if result.isSuccess {
-                    var json: JSON = ["resMsg": ["message": "success", "code": "\(ApiResultCode.Success.rawValue)"]]
-                    json["datas"] = JSON(result.value!)
-                    Log.debug("接口返回: \(json)")
-                    //返回json对象
-                    response(json, false)
-
-                } else {
-                    Log.debug("接口返回: \(result.error)")
-                    let json: JSON =  ["resMsg": ["message": "server request error", "code": "90000"]]
-                    //返回json对象
-                    response(json, false)
-                }
+        //返回数据类型
+        switch responseDataType {
+        case .string:
+            Alamofire.request(url, method: method, parameters: parameters, encoding: encoding)
+                .responseString {
+                    resp in
+                    let result = resp.result
+                    if result.isSuccess {
+                        var json: JSON = ["resMsg": ["message": "success", "code": "\(ApiResultCode.Success.rawValue)"]]
+                        json["datas"] = JSON(result.value!)
+                        Log.debug("接口返回: \(json)")
+                        //返回json对象
+                        response(json, false)
+                        
+                    } else {
+                        Log.debug("接口返回: \(result.error)")
+                        let json: JSON =  ["resMsg": ["message": "server request error", "code": "90000"]]
+                        //返回json对象
+                        response(json, false)
+                    }
+            }
+        case .json:
+            Alamofire.request(url, method: method, parameters: parameters, encoding: encoding)
+                .responseJSON {
+                    resp in
+                    let result = resp.result
+                    if result.isSuccess {
+                        var json: JSON = ["resMsg": ["message": "success", "code": "\(ApiResultCode.Success.rawValue)"]]
+                        json["datas"] = JSON(result.value!)
+                        Log.debug("接口返回: \(json)")
+                        //返回json对象
+                        response(json, false)
+                        
+                    } else {
+                        Log.debug("接口返回: \(result.error)")
+                        let json: JSON =  ["resMsg": ["message": "server request error", "code": "90000"]]
+                        //返回json对象
+                        response(json, false)
+                    }
+            }
+        default:break
+            
         }
+        
     }
     
 }

@@ -26,8 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      设置SVProgressHUD的样式
      */
     func setupSVProgressHUDStyle() {
-        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.light)
-        SVProgressHUD.setMinimumDismissTimeInterval(1)
+        SVProgressHUD.setBackgroundColor(UIColor(white: 0, alpha: 0.8))
+        SVProgressHUD.setForegroundColor(UIColor.white)
+        SVProgressHUD.setAnimatedViewColor(UIColor.white)
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.custom)
+        SVProgressHUD.setMinimumDismissTimeInterval(5)
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

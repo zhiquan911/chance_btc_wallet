@@ -237,7 +237,7 @@ class BlockchainRemoteService: RemoteService {
         
         let url = apiUrl + "pushtx"
         
-        self.sendJsonRequest(url, parameters: params) {
+        self.sendJsonRequest(url, parameters: params, responseDataType: .string) {
             (json, isCache) -> Void in
             let message: MessageModule
             let data = json["datas"]

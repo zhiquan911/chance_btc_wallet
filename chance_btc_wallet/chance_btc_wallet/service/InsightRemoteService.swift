@@ -195,7 +195,7 @@ class InsightRemoteService: RemoteService {
         
         let url = apiUrl + "tx/send"
         
-        self.sendJsonRequest(url, parameters: params) {
+        self.sendJsonRequest(url, parameters: params, encoding: JSONEncoding.default) {
             (json, isCache) -> Void in
             let message = MessageModule(json: json["resMsg"])
             let data = json["datas"]

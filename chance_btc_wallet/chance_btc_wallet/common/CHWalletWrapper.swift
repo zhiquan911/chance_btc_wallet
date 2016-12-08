@@ -35,7 +35,7 @@ class CHWalletWrapper: NSObject {
     class var selectedBlockchainNode: BlockchainNode {
         get {
             let value = UserDefaults.standard.value(forKey: CHWalletsKeys.SelectedBlockchainNode) as? String
-            let node = value ?? BlockchainNode.insight_bitpay.rawValue
+            let node = value ?? BlockchainNode.blockchain_info.rawValue
             return BlockchainNode(rawValue: node)!
         }
         
