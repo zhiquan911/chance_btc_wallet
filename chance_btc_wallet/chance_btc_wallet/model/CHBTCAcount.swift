@@ -125,6 +125,21 @@ extension CHBTCAcount {
         
     }
     
+    
+    ///
+    /// 获取账户公钥在多重签名赎回脚本中的位置
+    ///
+    /// - Parameter redeemScript: 赎回脚本
+    /// - Returns: 所在钥匙串的位置，<0代表找不到
+    func index(of redeemScript: BTCScript) -> Int {
+        //获取赎回脚本公钥的顺序列表
+        let pubkeys = redeemScript.getMultisigPublicKeys()
+        
+        let index = pubkeys!.1.index(of: self.accountId)
+        
+        return index ?? -1
+    }
+    
 
     /// 初始化
 //    convenience init(index: Int, exprvKey: BTCKeychain) {

@@ -13,18 +13,13 @@ class BTCMultiSigTransactionViewController: UIViewController {
     @IBOutlet var labelTransactionHex: UILabel!
     @IBOutlet var buttonSign: UIButton!
     
-    var transactionHex: String!
-    var multiSigHexs: String!
-    var redeemScriptHex: String!
-    var messageHex: String!
     var currentAccount: CHBTCAcount!
-    var signatureDic = [Int: Data]()
+    var multiSigTx: MultiSigTransaction!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        self.labelTransactionHex.text = self.transactionHex
-        self.signatureDic = self.getSignArray(multiSigHexs)
+        self.labelTransactionHex.text = self.multiSigTx.rawTx
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,30 +72,34 @@ extension BTCMultiSigTransactionViewController {
         return dic
     }
     
-    /**
-     按赎回脚本添加签名
-     
-     - parameter data:
-     
-     - returns:
-     */
-    func addSignatureByRedeemOrder(_ data: Data) -> BTCScript {
+    
+    /// 把对交易表单输入为i的签名添加有序的多重签名
+    ///
+    /// - Parameters:
+    ///   - hex: 签名hex
+    ///   - inputIndex: 交易输入位
+    /// - Returns: 签名后的脚本
+    func addSignatureByRedeemOrder(hex: String, inputIndex: Int) -> BTCScript {
         let allSignData: BTCScript = BTCScript()
+        
+        //添加脚本第一个命令
         _ = allSignData.append(BTCOpcode.OP_0)
-        //获取赎回脚本公钥的顺序列表
-        let redeemScript = BTCScript(hex: redeemScriptHex)
-        let pubkeys = redeemScript?.getMultisigPublicKeys()
         
-        //把自己的签名加入到签名数组中
+        //查找自己账户公钥地址在赎回脚本中的位置
+        let myIndex = self.currentAccount.index(of: BTCScript(hex: self.multiSigTx.redeemScriptHex)!).toString()
         
-        let myIndex = pubkeys!.1.index(of: self.currentAccount.extendedPublicKey)!
-        self.signatureDic[myIndex] = data
+        //添加签名到自己的位置
+        var mySignatures = self.multiSigTx.keySignatures![myIndex] ?? [String]()
+        mySignatures.append(hex)
+        
+        //同时改变原来的表单结构体内的签名部分，添加当前账户的签名数据和位置
+        self.multiSigTx.keySignatures![myIndex] = mySignatures
         
         //按顺序合并签名数据
-        let number = self.signatureDic.keys.sorted(by: <)
+        let number = self.multiSigTx.keySignatures!.keys.sorted(by: <)
         for n in number {
-            let sigdata = self.signatureDic[n]
-            _ = allSignData.appendData(sigdata!)
+            let sigHex = self.multiSigTx.keySignatures![n]![inputIndex]
+            _ = allSignData.appendData(BTCDataFromHex(sigHex))
         }
         return allSignData
     }
@@ -115,12 +114,12 @@ extension BTCMultiSigTransactionViewController {
         let doBlock = {
             () -> Void in
             //签名HEX
-            var signatureHex = ""
+            var signatureHexs = [String]()
             
-            let tx = BTCTransaction(hex: self.transactionHex)
-            let redeemScript = BTCScript(hex: self.redeemScriptHex)
+            let tx = BTCTransaction(hex: self.multiSigTx.rawTx)
+            let redeemScript = BTCScript(hex: self.multiSigTx.redeemScriptHex)
             var isComplete = true
-            for i in 0 ..< (tx?.inputs.count)! {
+            for i in 0 ..< tx!.inputs.count {
                 let txin = tx?.inputs[i] as! BTCTransactionInput
                 let hashtype = BTCSignatureHashType.BTCSignatureHashTypeAll
                 //多重签名的地址要用赎回脚本
@@ -135,11 +134,11 @@ extension BTCMultiSigTransactionViewController {
                     
                     let key = self.currentAccount.privateKey
                     let signature = key?.signature(forHash: hash!, hashType: hashtype)
-                    signatureHex = (signature! as NSData).hex()
-                    //                    sigScript.appendData(signature)
+                    let tmpSinsignatureHex = (signature! as NSData).hex()
+                    signatureHexs.append(tmpSinsignatureHex!)   //添加签名到数组
                     
                     //按赎回脚本的生成顺序一次添加签名
-                    let sigScript = self.addSignatureByRedeemOrder(signature!)
+                    let sigScript = self.addSignatureByRedeemOrder(hex: tmpSinsignatureHex!, inputIndex: i)
                     
                     txin.signatureScript = sigScript
                     Log.debug("signatureScript = \(txin.signatureScript)")
@@ -161,7 +160,7 @@ extension BTCMultiSigTransactionViewController {
             if isComplete {
                 self.sendTransactionByWebservice(tx!)
             } else {
-                self.gotoSendTransactionHexView(signatureHex)
+                self.gotoSendTransactionHexView(signatureHexs)
             }
         }
         
@@ -187,14 +186,13 @@ extension BTCMultiSigTransactionViewController {
      
      - parameter tx:
      */
-    func gotoSendTransactionHexView(_ signatureHex: String) {
+    func gotoSendTransactionHexView(_ signatureHex: [String]) {
         guard let vc = StoryBoard.wallet.initView(type: BTCSendMultiSigViewController.self) else {
             return
         }
-        vc.transactionHex = self.transactionHex
-        vc.mySignatureHex = signatureHex
-        vc.multiSigHexs = multiSigHexs
-        vc.redeemScriptHex = self.redeemScriptHex
+        
+        vc.currentAccount = self.currentAccount
+        vc.multiSigTx = self.multiSigTx
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -204,7 +202,8 @@ extension BTCMultiSigTransactionViewController {
      - parameter tx:
      */
     func sendTransactionByWebservice(_ tx: BTCTransaction) {
-        BlockchainRemoteService.sharedInstance.sendTransaction(transactionHexString: tx.hex) {
+        let nodeServer = CHWalletWrapper.selectedBlockchainNode.service
+        nodeServer.sendTransaction(transactionHexString: tx.hex) {
             (message, txid) -> Void in
             if message.code == ApiResultCode.Success.rawValue {
                 SVProgressHUD.showSuccess(withStatus: "Transaction successed，waiting confirm".localized())

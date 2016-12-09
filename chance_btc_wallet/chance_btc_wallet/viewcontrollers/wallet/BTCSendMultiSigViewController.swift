@@ -13,12 +13,8 @@ class BTCSendMultiSigViewController: UIViewController {
     @IBOutlet var labelTransactionHex: UILabel!
     @IBOutlet var buttonCopy: UIButton!
     
-    var transactionHex: String!
-    var redeemScriptHex: String!
-    var multiSigHexs: String = ""
-    var mySignatureHex: String = ""
-    var sendText = ""
     var currentAccount: CHBTCAcount!
+    var multiSigTx: MultiSigTransaction!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,22 +51,10 @@ extension BTCSendMultiSigViewController {
             for: UIControlState())
     }
     
+
     func initSendText() {
-        //获取赎回脚本公钥的顺序列表
-        let redeemScript = BTCScript(hex: redeemScriptHex)
-        let pubkeys = redeemScript?.getMultisigPublicKeys()
-        
-        let index = pubkeys!.1.index(of: self.currentAccount.extendedPublicKey)
-        let number = String(format:"%02x", index!)
-        
-        if multiSigHexs.isEmpty {
-            multiSigHexs = "\(number)\(mySignatureHex)"
-        } else {
-            multiSigHexs = "\(multiSigHexs)|\(number)\(mySignatureHex)"
-        }
-        sendText = "\(transactionHex)&\(multiSigHexs)&\(redeemScriptHex)"
-        
-        self.labelTransactionHex.text = sendText
+    
+        self.labelTransactionHex.text = self.multiSigTx.json
     }
     
     /**
@@ -80,7 +64,7 @@ extension BTCSendMultiSigViewController {
      */
     @IBAction func handleCopyPress(_ sender: AnyObject?) {
         let pasteboard = UIPasteboard.general
-        pasteboard.string = sendText
+        pasteboard.string = self.multiSigTx.json
         SVProgressHUD.showSuccess(withStatus: "Text copied".localized())
     }
 }

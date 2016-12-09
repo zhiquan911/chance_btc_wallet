@@ -282,7 +282,7 @@ class CHBTCWallet: NSObject {
         //4.记录数据库字段
         account.userNickname = name
         account.redeemScriptHex = script.hex
-        account.accountId = account.address.string
+        account.accountId = account.publicKey.address.string
         account.keyPath = "m/44'/0'/\(account.index)'"
         
         //5.保存新账户到数据库

@@ -11,7 +11,7 @@ import RealmSwift
 
 class RealmDBHelper {
     
-    static let kRealmDBVersion: UInt64 = 2
+    static let kRealmDBVersion: UInt64 = 3
     
     //数据库路径
     static var databaseFilePath: URL {

@@ -214,11 +214,7 @@ extension WalletViewController {
      - parameter sender:
      */
     @IBAction func handleSendPress(_ sender: AnyObject?) {
-        if let type = self.currentAccount?.accountType, type == .normal {
-            self.gotoBTCSendView()
-        } else {
-            self.showMultiSigTransactionMenu()
-        }
+        self.showMultiSigTransactionMenu()
     }
     
     /**
@@ -253,24 +249,25 @@ extension WalletViewController {
     }
     
     /**
-     进入交易信息再签名界面
+     进入多重签名交易表单界面，进行签名
      */
     func gotoMultiSigTransactionView(_ message: String) {
         
-        let msgs = message.components(separatedBy: "&")
-        if msgs.count == 3 {
+        //初始表单
+        do {
+            let mtx = try MultiSigTransaction(json: message)
+            
             guard let vc = StoryBoard.wallet.initView(type: BTCMultiSigTransactionViewController.self) else {
                 return
             }
             vc.currentAccount = self.currentAccount!
-            vc.transactionHex = msgs[0]
-            vc.multiSigHexs = msgs[1]
-            vc.redeemScriptHex = msgs[2]
+            vc.multiSigTx = mtx
             self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            SVProgressHUD.showError(withStatus: "Transaction parsing error".localized())
+            
+        } catch {
+            SVProgressHUD.showError(withStatus: "Transaction decode error".localized())
         }
-
+        
     }
     
     
@@ -482,7 +479,8 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             valueForWallet = amountReceived - amountSent;
             // If it is sent, do not include fee.
             if (valueForWallet < 0) {
-                let fee = BTCAmount(tx.fees * Double(BTCCoin))
+                let decimalFee = tx.fees * NSDecimalNumber(value: BTCCoin)
+                let fee = BTCAmount(decimalFee.int64Value)
                 valueForWallet = valueForWallet + fee
             }
         }

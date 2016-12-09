@@ -21,7 +21,7 @@ class BTCSendViewController: UITableViewController {
     
     var currencyType = CurrencyType.BTC
     var addressNote = ""
-    var fee: BTCAmount = 30000
+    var fee: BTCAmount = 10000
     var address = ""
     var actualTotal: BTCAmount!
     var availableTotal: BTCAmount!
@@ -33,6 +33,7 @@ class BTCSendViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -147,12 +148,28 @@ extension BTCSendViewController {
      
      - parameter tx:
      */
-    func gotoSendTransactionHexView(_ tx: BTCTransaction, unsignTxHex: String, singnatureHex: String) {
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "BTCSendMultiSigViewController") as! BTCSendMultiSigViewController
-//        vc.transactionHex = unsignTxHex
-//        vc.mySignatureHex = singnatureHex
-//        vc.redeemScriptHex = BBKeyStore.sharedInstance.redeemScript!.hex
-//        self.navigationController?.pushViewController(vc, animated: true)
+    func gotoSendTransactionHexView(_ tx: BTCTransaction, unsignTxHex: String, singnatureHex: [String]) {
+        guard let vc = StoryBoard.wallet.initView(type: BTCSendMultiSigViewController.self) else {
+            SVProgressHUD.showError(withStatus: "Unknown error".localized())
+            return
+        }
+        
+        let index = self.btcAccount.index(of: self.btcAccount.redeemScript!)
+        if index < 0 {
+            SVProgressHUD.showError(withStatus: "Unknown error".localized())
+            return
+        }
+        
+        //封装一个多重签名交易表单
+        let mtx = MultiSigTransaction(
+            rawTx: unsignTxHex,
+            keySignatures: [String(index) : singnatureHex],
+            redeemScriptHex: self.btcAccount.redeemScript!.hex
+        )
+        
+        vc.currentAccount = self.btcAccount
+        vc.multiSigTx = mtx
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -234,7 +251,7 @@ extension BTCSendViewController {
      获取未花的记录
      */
     func getUnspentTransactionByWebservice(
-        _ completionHandler: @escaping (BTCTransaction?, String? , String?, MessageModule) -> Void) {
+        _ completionHandler: @escaping (BTCTransaction?, String? , [String]?, MessageModule) -> Void) {
         let nodeServer = CHWalletWrapper.selectedBlockchainNode.service
         nodeServer.userUnspentTransactions(address: self.changeAddress.string) {
                 (message, unspentTxs) -> Void in
@@ -306,8 +323,8 @@ extension BTCSendViewController {
                         
                         //先导出未签名的交易hex，多签时要隔离验证
                         let txHex = tx.hex
-                        //签名HEX
-                        var singnatureHex = ""
+                        //签名HEX多个Input
+                        var singnatureHex = [String]()
                         
                         //签名所有未花的输入交易脚本
                         for (i, _) in txouts.enumerated() {
@@ -334,8 +351,8 @@ extension BTCSendViewController {
                             } else {
                                 let key = self.btcAccount.privateKey!
                                 let signature = key.signature(forHash: hash, hashType: hashtype)!
-                                singnatureHex = (signature as NSData).hex()
-                                
+                                let inputSingnatureHex = (signature as NSData).hex()
+                                singnatureHex.append(inputSingnatureHex!)
                                 let redeemScriptData: Data
                                 if self.btcAccount.accountType == .normal {
                                     _ = sigScript.appendData(signature)
@@ -380,7 +397,7 @@ extension BTCSendViewController {
                         
                     }
                 } else {
-                    completionHandler(nil, nil, nil, MessageModule(code: "1001", message: "Balance not enough".localized()))
+                    completionHandler(nil, nil, nil, MessageModule(code: ApiResultCode.NeedOtherSignature.rawValue, message: "Balance not enough".localized()))
                 }
             }
             

@@ -49,7 +49,10 @@ extension MultiSigInputKeyViewController {
      - returns:
      */
     func initEmptyData() {
-        self.publicKeys.append("")
+        for _ in 0..<(self.keyCount - 1) {
+            self.publicKeys.append("")
+        }
+        
     }
     
     /**

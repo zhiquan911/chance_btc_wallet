@@ -105,17 +105,17 @@ class InsightRemoteService: RemoteService {
                     tx.confirmations = dic["confirmations"].intValue
                     tx.timestamp = dic["time"].intValue
                     tx.blocktime = dic["blocktime"].intValue
-                    tx.valueOut = dic["valueOut"].doubleValue
+                    tx.valueOut = dic["valueOut"].numberValue.toDecimalNumber()
                     tx.size = dic["size"].intValue
-                    tx.valueIn = dic["valueIn"].doubleValue
-                    tx.fees = dic["fees"].doubleValue
+                    tx.valueIn = dic["valueIn"].numberValue.toDecimalNumber()
+                    tx.fees = dic["fees"].numberValue.toDecimalNumber()
                     
                     //封装交易输入输出的单元
                     let vins = dic["vin"].arrayValue
                     for vin in vins {
                         let txin = TransactionUnit()
                         txin.address = vin["addr"].stringValue
-                        txin.value = BTCAmount.satoshiWithStringInBTCFormat(vin["value"].stringValue)
+                        txin.value = BTCAmount(vin["valueSat"].int64Value)
                         tx.vinTxs.append(txin)
                     }
                     

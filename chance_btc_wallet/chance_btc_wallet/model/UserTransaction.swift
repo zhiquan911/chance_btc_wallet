@@ -67,10 +67,10 @@ class UserTransaction: NSObject {
     var blockHeight: Int = 0
     var timestamp: Int = 0
     var blocktime: Int = 0
-    var valueOut: Double = 0
+    var valueOut: NSDecimalNumber = 0
     var size: Int = 0
-    var valueIn: Double = 0
-    var fees: Double = 0
+    var valueIn: NSDecimalNumber = 0
+    var fees: NSDecimalNumber = 0
     var vinTxs = [TransactionUnit]()
     var voutTxs = [TransactionUnit]()
 }
