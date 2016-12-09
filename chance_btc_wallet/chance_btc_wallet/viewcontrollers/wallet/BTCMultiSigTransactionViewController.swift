@@ -90,7 +90,10 @@ extension BTCMultiSigTransactionViewController {
         
         //添加签名到自己的位置
         var mySignatures = self.multiSigTx.keySignatures![myIndex] ?? [String]()
-        mySignatures.append(hex)
+        if !mySignatures.contains(hex) {
+            mySignatures.append(hex)    //除掉重复
+        }
+        
         
         //同时改变原来的表单结构体内的签名部分，添加当前账户的签名数据和位置
         self.multiSigTx.keySignatures![myIndex] = mySignatures
