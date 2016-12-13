@@ -16,7 +16,7 @@ class RestoreWalletViewController: BaseTableViewController {
     @IBOutlet var labelTips: UILabel!
     
     var isRestore = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
@@ -27,12 +27,12 @@ class RestoreWalletViewController: BaseTableViewController {
         //首先验证警告一下用户这是一个非常危险的操作，会完全破坏整个HDM钱包的用户信息。
         //TODO:
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 
 
@@ -50,7 +50,7 @@ extension RestoreWalletViewController {
             self.buttonConfirm.isHidden = false
             self.labelTips.text = "Warning：Your current wallet will be removed if your confirm to restore that you inputed".localized()
             self.textViewRestore.isEditable = true
-    
+            
         } else {
             self.buttonConfirm.isHidden = true
             //请写下密语，并安全保管好，不要随便给别人，以后钱包程序丢失，可通过密语恢复
@@ -63,6 +63,10 @@ extension RestoreWalletViewController {
         }
     }
     
+    
+    /// 点击恢复钱包
+    ///
+    /// - Parameter sender:
     @IBAction func handleRestorePress(_ sender: CHButton) {
         sender.isEnabled = false
         //1.输入恢复密码，可为空
@@ -71,51 +75,64 @@ extension RestoreWalletViewController {
             //2.根据导入的密语获取HD钱包
             
             let phrase = self.textViewRestore.text!.trim()
-            //创建钱包但不重建表
-            guard let wallet = CHBTCWallet.sharedInstance.createWallet(phrase,
-                                                        password: password,
-                                                        isDropTable: false) else {
-                SVProgressHUD.showError(withStatus: "Create wallet failed".localized())
-                sender.isEnabled = true
-                return
-            }
             
-            var account = wallet.getAccount()
-            
-            if account == nil {
-                
-                //3.HDM钱包的账户体系是一个内置的系统，账户信息没法复原，只能初始第一个账户
-                account = wallet.createHDAccount(by: "Account 1")
-                
-                if account == nil {
-                    SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
-                    sender.isEnabled = true
-                    return
-                }
-                
-                CHBTCWallet.sharedInstance.selectedAccountIndex = account!.index
-                CHBTCWallet.sharedInstance.password = password
-                
-                //让用户重置昵称
-                self.showNicknameTextAlert(complete: { (nickname) in
-                    let realm = RealmDBHelper.acountDB
-                    try! realm.write {
-                        account!.userNickname = nickname
+            //3.恢复钱包
+            SVProgressHUD.show(with: SVProgressHUDMaskType.black)
+            CHBTCWallet.restoreWallet(
+                phrase: phrase,
+                password: password,
+                completeHandler: { (wallet, accountsRestore) in
+                    if wallet == nil {
+                        //恢复失败
+                        SVProgressHUD.showError(withStatus: "Create wallet failed".localized())
+                        sender.isEnabled = true
+                        return
+                    } else {
+                        
+                        //设置密码和当前的首个用户
+                        CHBTCWallet.sharedInstance.selectedAccountIndex = 0
+                        CHBTCWallet.sharedInstance.password = password
+                        
+                        if accountsRestore {    //恢复账户成功
+   
+                            //马上进行同步iCloud
+                            let db = RealmDBHelper.shared.acountDB
+                            RealmDBHelper.shared.iCloudSynchronize(db: db)
+                            
+                            SVProgressHUD.showSuccess(withStatus: "The wallet & accounts have been restore successfully".localized())
+                            _ = self.navigationController?.popViewController(animated: true)
+                            return
+                        } else {    //恢复账户失败
+                            //4.默认新建一个HDM普通账户
+                            let account = wallet!.createHDAccount(by: "Account 1")
+                            
+                            if account == nil {
+                                CHBTCWallet.sharedInstance.selectedAccountIndex = -1
+                                SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
+                                sender.isEnabled = true
+                                return
+                            }
+                            
+                            
+                            SVProgressHUD.dismiss()
+                            //5.让用户重置昵称
+                            self.showNicknameTextAlert(complete: { (nickname) in
+                                
+                                if !nickname.isEmpty {
+                                    let realm = RealmDBHelper.shared.acountDB
+                                    try! realm.write {
+                                        account!.userNickname = nickname
+                                    }
+                                }
+                                
+                                SVProgressHUD.showSuccess(withStatus: "The wallet have been restore successfully".localized())
+                                _ = self.navigationController?.popViewController(animated: true)
+                            })
+                        }
                     }
-                    SVProgressHUD.showSuccess(withStatus: "The wallet have been restore successfully".localized())
-                    _ = self.navigationController?.popViewController(animated: true)
-                })
-            } else {
-                
-                //设置密码和当前的首个用户
-                CHBTCWallet.sharedInstance.selectedAccountIndex = account!.index
-                CHBTCWallet.sharedInstance.password = password
-                
-                SVProgressHUD.showSuccess(withStatus: "The wallet have been restore successfully".localized())
-                _ = self.navigationController?.popViewController(animated: true)
-            }
+            })
         }
-
+        
     }
     
     
@@ -170,8 +187,8 @@ extension RestoreWalletViewController {
         }
         alertController.addAction(settingsAction)
         
-//        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil)
-//        alertController.addAction(cancelAction)
+        //        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil)
+        //        alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
     }

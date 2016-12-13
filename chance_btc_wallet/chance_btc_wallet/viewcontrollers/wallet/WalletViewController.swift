@@ -97,7 +97,7 @@ extension WalletViewController {
         //导航栏弹出下拉菜单的尺寸适应当前view的宽度
         self.tableViewUserMenu.frame = CGRect(x: 0, y: 0,
                                               width: self.view.bounds.width,
-                                              height: min(self.view.bounds.height/2, CGFloat(count + 1) * self.kHeightOfUserMenuCell))
+                                              height: min(self.view.bounds.height * 2/3, CGFloat(count + 1) * self.kHeightOfUserMenuCell))
         
     }
     

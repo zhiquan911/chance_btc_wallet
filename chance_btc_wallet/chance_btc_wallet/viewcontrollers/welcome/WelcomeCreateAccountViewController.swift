@@ -74,7 +74,7 @@ extension WelcomeCreateAccountViewController {
         if self.checkValue() {
             let password = self.textFieldPassword.text!.trim()
             //创建钱包
-            guard let wallet = CHBTCWallet.sharedInstance.createWallet(self.phrase, password: password) else {
+            guard let wallet = CHBTCWallet.createWallet(self.phrase, password: password) else {
                 SVProgressHUD.showError(withStatus: "Create wallet failed".localized())
                 return
             }

@@ -10,6 +10,8 @@ import UIKit
 
 class SettingViewController: BaseTableViewController {
     
+    @IBOutlet var switchICouldBackup: UISwitch!
+    
     var currentAccount: CHBTCAcount? {
         let i = CHBTCWallet.sharedInstance.selectedAccountIndex
         if i != -1 {
@@ -22,6 +24,11 @@ class SettingViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //CloudUtils.shared.query()
     }
     
     override func didReceiveMemoryWarning() {
@@ -163,6 +170,28 @@ extension SettingViewController {
         
         self.navigationItem.title = "Setting".localized()
         
+        self.switchICouldBackup.isOn = CHWalletWrapper.enableICloud
+        
+        //设置是否登录icloud账号
+        if CloudUtils.shared.iCloud {
+            self.switchICouldBackup.isEnabled = true
+        } else {
+            self.switchICouldBackup.isEnabled = false
+        }
+    }
+    
+    
+    /// 切换是否使用icloud备份
+    ///
+    /// - Parameter sender:
+    @IBAction func handleICloudBackupChange(sender: UISwitch) {
+        
+        CHWalletWrapper.enableICloud = sender.isOn
+        if sender.isOn {
+            //开启后，马上进行同步
+            let db = RealmDBHelper.shared.acountDB
+            RealmDBHelper.shared.iCloudSynchronize(db: db)
+        }
     }
     
 }

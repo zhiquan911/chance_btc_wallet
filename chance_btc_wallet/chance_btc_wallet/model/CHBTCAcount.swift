@@ -40,7 +40,7 @@ class CHBTCAcount: Object {
     /// - Parameter index: 索引位
     /// - Returns: 
     class func getBTCAccount(by index: Int) -> CHBTCAcount? {
-        let realm = RealmDBHelper.acountDB  //Realm数据库
+        let realm = RealmDBHelper.shared.acountDB  //Realm数据库
         let datas: Results<CHBTCAcount> = realm.objects(CHBTCAcount.self).filter(" index = \(index)").sorted(byProperty: "index", ascending: true)
         return datas.first
     }
@@ -49,7 +49,7 @@ class CHBTCAcount: Object {
     ///
     /// - Returns:
     class func getBTCAccounts() -> [CHBTCAcount] {
-        let realm = RealmDBHelper.acountDB  //Realm数据库
+        let realm = RealmDBHelper.shared.acountDB  //Realm数据库
         let datas: Results<CHBTCAcount> = realm.objects(CHBTCAcount.self).sorted(byProperty: "index", ascending: true)
         return datas.toArray()
     }
@@ -59,7 +59,7 @@ class CHBTCAcount: Object {
     ///
     /// - Returns:
     class func getSeqNextValue() -> Int {
-        let realm = RealmDBHelper.acountDB  //Realm数据库
+        let realm = RealmDBHelper.shared.acountDB  //Realm数据库
         let datas: Results<CHBTCAcount> = realm.objects(CHBTCAcount.self)
         if let seq: Int = datas.max(ofProperty: "index") {
             return seq + 1

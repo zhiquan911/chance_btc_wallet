@@ -40,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.setupSVProgressHUDStyle()
         
+        //开启icloud同步
+        //RealmDBHelper.shared.iCloudEnable = true
+        
         return true
     }
 

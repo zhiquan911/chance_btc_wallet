@@ -34,7 +34,6 @@ class BTCReceiveViewController: BaseViewController {
 // MARK: - 控制器方法
 extension BTCReceiveViewController {
  
-    
     @IBAction func handleAddressPress(_ sender: AnyObject?) {
         let actionSheet = UIAlertController(title: "Share".localized(), message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Copy".localized(), style: UIAlertActionStyle.default, handler: {

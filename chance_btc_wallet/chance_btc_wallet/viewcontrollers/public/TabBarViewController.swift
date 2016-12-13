@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TabBarViewController: UITabBarController {
+    
+    var myMetadataQuery: NSMetadataQuery = NSMetadataQuery()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -29,10 +31,8 @@ class TabBarViewController: UITabBarController {
                 let account = CHBTCWallet.sharedInstance.getAccount()
                 CHBTCWallet.sharedInstance.selectedAccountIndex = account!.index
             }
-            
         }
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

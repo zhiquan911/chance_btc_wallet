@@ -15,6 +15,7 @@
 		C521E1021DFA7BB8002652D2 /* MultiSigTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C521E1011DFA7BB8002652D2 /* MultiSigTransaction.swift */; };
 		C521E1031DFA7BC0002652D2 /* MultiSigTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C521E1011DFA7BB8002652D2 /* MultiSigTransaction.swift */; };
 		C52ACB8E1DEECF2B00E79C5C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */; };
+		C54724D01DFFE6A9003DE322 /* CloudUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54724CF1DFFE6A9003DE322 /* CloudUtils.swift */; };
 		C54D1ACB1DEDB119008913CC /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C54D1AC91DEDB119008913CC /* Account.storyboard */; };
 		C58870131DE3F37500C45B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58870121DE3F37500C45B43 /* AppDelegate.swift */; };
 		C58870181DE3F37500C45B43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C58870161DE3F37500C45B43 /* Main.storyboard */; };
@@ -169,6 +170,7 @@
 		C5EAEFA31DE6C97B00324B60 /* PasswordModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF9E1DE6C97B00324B60 /* PasswordModifyViewController.swift */; };
 		C5EAEFA41DE6C97B00324B60 /* PasswordSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF9F1DE6C97B00324B60 /* PasswordSettingViewController.swift */; };
 		C5EAEFA51DE6C97B00324B60 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEFA01DE6C97B00324B60 /* SettingViewController.swift */; };
+		C5F822E01DFBF28600701132 /* CHDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F822DF1DFBF28600701132 /* CHDocument.swift */; };
 		D7370CD84FEEB4F4E4522FC6 /* Pods_chance_btc_wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */; };
 /* End PBXBuildFile section */
 
@@ -208,6 +210,7 @@
 		C521E0FB1DFA4E36002652D2 /* MultiSigTransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSigTransactionTests.swift; sourceTree = "<group>"; };
 		C521E1011DFA7BB8002652D2 /* MultiSigTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSigTransaction.swift; sourceTree = "<group>"; };
 		C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		C54724CF1DFFE6A9003DE322 /* CloudUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudUtils.swift; sourceTree = "<group>"; };
 		C54D1ACA1DEDB119008913CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Account.storyboard; sourceTree = "<group>"; };
 		C588700F1DE3F37500C45B43 /* chance_btc_wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chance_btc_wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58870121DE3F37500C45B43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -521,6 +524,7 @@
 		C5EAEF9E1DE6C97B00324B60 /* PasswordModifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = PasswordModifyViewController.swift; path = viewcontrollers/setting/PasswordModifyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C5EAEF9F1DE6C97B00324B60 /* PasswordSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = PasswordSettingViewController.swift; path = viewcontrollers/setting/PasswordSettingViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C5EAEFA01DE6C97B00324B60 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SettingViewController.swift; path = viewcontrollers/setting/SettingViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C5F822DF1DFBF28600701132 /* CHDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHDocument.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -577,8 +581,8 @@
 		C521E0F11DFA4B0F002652D2 /* chance_btc_walletTests */ = {
 			isa = PBXGroup;
 			children = (
-				C521E0FB1DFA4E36002652D2 /* MultiSigTransactionTests.swift */,
 				C521E0F41DFA4B0F002652D2 /* Info.plist */,
+				C521E0FB1DFA4E36002652D2 /* MultiSigTransactionTests.swift */,
 			);
 			path = chance_btc_walletTests;
 			sourceTree = "<group>";
@@ -1014,6 +1018,8 @@
 				C58871A21DE4138000C45B43 /* Constants.swift */,
 				C58871A31DE4138000C45B43 /* TouchIDUtils.swift */,
 				C59CD0401DE5478B00A23CE2 /* RealmDBHelper.swift */,
+				C5F822DF1DFBF28600701132 /* CHDocument.swift */,
+				C54724CF1DFFE6A9003DE322 /* CloudUtils.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -1309,6 +1315,7 @@
 				C58871531DE3F3E600C45B43 /* BTCBlockchainInfo.m in Sources */,
 				C588714B1DE3F3E600C45B43 /* BTCBigNumber+Tests.m in Sources */,
 				C59CD04E1DE5621100A23CE2 /* AddressScanViewController.swift in Sources */,
+				C54724D01DFFE6A9003DE322 /* CloudUtils.swift in Sources */,
 				C588714F1DE3F3E600C45B43 /* BTCBlindSignature+Tests.m in Sources */,
 				C58871691DE3F3E600C45B43 /* BTCMerkleTree.m in Sources */,
 				C588717E1DE3F3E600C45B43 /* BTCScriptMachine.m in Sources */,
@@ -1414,6 +1421,7 @@
 				C5B0B9F31DF1158400F7F80A /* MultiSigInputKeyViewController.swift in Sources */,
 				C588717F1DE3F3E600C45B43 /* BTCSecretSharing.m in Sources */,
 				C588714D1DE3F3E600C45B43 /* BTCBitcoinURL+Tests.m in Sources */,
+				C5F822E01DFBF28600701132 /* CHDocument.swift in Sources */,
 				C588716E1DE3F3E600C45B43 /* BTCOpcode.m in Sources */,
 				C59CD05A1DE578BA00A23CE2 /* MenuItemCell.swift in Sources */,
 				C58871B31DE4138000C45B43 /* TouchIDUtils.swift in Sources */,
@@ -1509,6 +1517,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 768U2S2GPR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/framework",
+				);
 				INFOPLIST_FILE = chance_btc_walletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1525,6 +1537,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 768U2S2GPR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/framework",
+				);
 				INFOPLIST_FILE = chance_btc_walletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1698,6 +1714,7 @@
 				C521E0F81DFA4B0F002652D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C588700A1DE3F37500C45B43 /* Build configuration list for PBXProject "chance_btc_wallet" */ = {
 			isa = XCConfigurationList;

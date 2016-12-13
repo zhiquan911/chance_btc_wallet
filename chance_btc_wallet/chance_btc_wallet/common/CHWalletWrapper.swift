@@ -45,6 +45,19 @@ class CHWalletWrapper: NSObject {
         }
     }
     
+    /// 是否开启icloud自动同步
+    class var enableICloud: Bool {
+        get {
+            let value = UserDefaults.standard.bool(forKey: CHWalletsKeys.EnableICloud)
+            return value
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: CHWalletsKeys.EnableICloud)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     /**
      获取苹果keychain工具实例
      */
@@ -116,7 +129,7 @@ class CHWalletWrapper: NSObject {
         }
         
         //2.检查账户体系数据库文件在不在
-        guard RealmDBHelper.checkRealmForWalletExist(seedHash: seedHash) else {
+        guard RealmDBHelper.shared.checkRealmForWalletExist(seedHash: seedHash) else {
             return false
         }
         

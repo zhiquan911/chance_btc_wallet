@@ -33,6 +33,7 @@ struct CHWalletsKeys {
     static let EnableTouchID = prefix + "enable_touchid"           //是否开启指纹验证
     static let SelectedAccount = prefix + "selected_account"           //选择的账户地址
     static let SelectedBlockchainNode = prefix + "selected_blockchain_node"           //选择的云节点
+    static let EnableICloud = prefix + "enable_icloud"         //是否开启icloud自动同步
 }
 
 /// 系统版本号
