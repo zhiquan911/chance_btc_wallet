@@ -90,7 +90,7 @@ extension BTCSendViewController {
         self.actualTotal = BTCAmount.satoshiWithStringInBTCFormat(number)
         
         if self.actualTotal >= self.availableTotal {
-            self.actualTotal = self.availableTotal  - self.fee
+            self.actualTotal = self.availableTotal
             self.textFieldNumber.text = BTCAmount.stringWithSatoshiInBTCFormat(self.availableTotal)
         } else {
             self.actualTotal = self.actualTotal  + self.fee

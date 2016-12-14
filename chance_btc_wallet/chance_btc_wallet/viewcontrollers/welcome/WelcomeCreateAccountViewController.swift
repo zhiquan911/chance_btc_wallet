@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class WelcomeCreateAccountViewController: UIViewController {
+class WelcomeCreateAccountViewController: BaseViewController {
     
     /// MARK: - 成员变量
     @IBOutlet var buttonConfirm: UIButton!

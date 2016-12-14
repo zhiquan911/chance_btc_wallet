@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WelcomePhraseViewController: UIViewController {
+class WelcomePhraseViewController: BaseViewController {
 
     /// MARK: - 成员变量
     @IBOutlet var buttonRebuild: UIButton!

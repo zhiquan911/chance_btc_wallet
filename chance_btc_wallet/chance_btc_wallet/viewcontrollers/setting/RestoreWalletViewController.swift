@@ -100,7 +100,7 @@ extension RestoreWalletViewController {
                             RealmDBHelper.shared.iCloudSynchronize(db: db)
                             
                             SVProgressHUD.showSuccess(withStatus: "The wallet & accounts have been restore successfully".localized())
-                            _ = self.navigationController?.popViewController(animated: true)
+                            self.leave()
                             return
                         } else {    //恢复账户失败
                             //4.默认新建一个HDM普通账户
@@ -126,7 +126,7 @@ extension RestoreWalletViewController {
                                 }
                                 
                                 SVProgressHUD.showSuccess(withStatus: "The wallet have been restore successfully".localized())
-                                _ = self.navigationController?.popViewController(animated: true)
+                                self.leave()
                             })
                         }
                     }
@@ -191,6 +191,17 @@ extension RestoreWalletViewController {
         //        alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    /// 离开当前界面
+    func leave() {
+        if self.presentingViewController != nil {   //如果当前是一个present出来的view就dismiss
+            self.dismiss(animated: true, completion: nil)
+        } else {    //如果当前是一个导航控制堆栈里的，就pop
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+        
     }
     
 }

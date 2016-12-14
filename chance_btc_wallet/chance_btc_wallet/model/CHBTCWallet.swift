@@ -300,6 +300,8 @@ class CHBTCWallet: NSObject {
                 if iCloudLastModifyDate.timeIntervalSinceReferenceDate >= localLastModifyTimeInterval {
 
                     /***** 2.iCloud的备份文件最新，使用其恢复 *****/
+                    
+                    //bug:UIDocument在打开过程中保存新数据到其它目录，会导致原来的icloud路径的文件丢失，我暂未找到解决方法，目前临时解决是，恢复完成文件后，再上传一次到icloud上。如果上传失败，下次就无法再使用icloud备份恢复了，因为icloud的文件已经丢失了。
                     doc.save(to: des, for: UIDocumentSaveOperation.forOverwriting, completionHandler: { (saveSuccess) in
                         //覆盖文件成功
                         if saveSuccess {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WelcomeHDViewController: UIViewController {
+class WelcomeHDViewController: BaseViewController {
 
     /// MARK: - 成员变量
     @IBOutlet var buttonRecovery: UIButton!
@@ -37,7 +37,13 @@ extension WelcomeHDViewController {
      - parameter sender:
      */
     @IBAction func handlRecoveryPress(_ sender: AnyObject?) {
-        
+        guard let vc = StoryBoard.setting.initView(type: RestoreWalletViewController.self) else {
+            return
+        }
+        vc.isRestore = true
+        vc.navigationItem.title = "Restore wallet by passphrase".localized()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     /**

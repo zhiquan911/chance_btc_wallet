@@ -1166,7 +1166,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = chance;
 				TargetAttributes = {
 					C521E0EF1DFA4B0F002652D2 = {
@@ -1515,6 +1515,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41948111B0FF5B5DA3FA755D /* Pods-chance_btc_wallet.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 768U2S2GPR;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1535,6 +1536,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 768U2S2GPR;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1598,6 +1600,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1641,6 +1644,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1670,7 +1674,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.chance.app.chance-btc-wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "chance_btc_wallet/chance-btc-wallet-Bridging-Header.h";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
 			};
 			name = Debug;
@@ -1699,7 +1703,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.chance.app.chance-btc-wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "chance_btc_wallet/chance-btc-wallet-Bridging-Header.h";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
 			};
 			name = Release;
