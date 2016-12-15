@@ -78,60 +78,73 @@ extension RestoreWalletViewController {
             
             //3.恢复钱包
             SVProgressHUD.show(with: SVProgressHUDMaskType.black)
-            CHBTCWallet.restoreWallet(
-                phrase: phrase,
-                password: password,
-                completeHandler: { (wallet, accountsRestore) in
-                    if wallet == nil {
-                        //恢复失败
-                        SVProgressHUD.showError(withStatus: "Create wallet failed".localized())
-                        sender.isEnabled = true
-                        return
-                    } else {
-                        
-                        //设置密码和当前的首个用户
-                        CHBTCWallet.sharedInstance.selectedAccountIndex = 0
-                        CHBTCWallet.sharedInstance.password = password
-                        
-                        if accountsRestore {    //恢复账户成功
-   
-                            //马上进行同步iCloud
-                            let db = RealmDBHelper.shared.acountDB
-                            RealmDBHelper.shared.iCloudSynchronize(db: db)
-                            
-                            SVProgressHUD.showSuccess(withStatus: "The wallet & accounts have been restore successfully".localized())
-                            self.leave()
-                            return
-                        } else {    //恢复账户失败
-                            //4.默认新建一个HDM普通账户
-                            let account = wallet!.createHDAccount(by: "Account 1")
-                            
-                            if account == nil {
-                                CHBTCWallet.sharedInstance.selectedAccountIndex = -1
-                                SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
-                                sender.isEnabled = true
-                                return
-                            }
-                            
-                            
-                            SVProgressHUD.dismiss()
-                            //5.让用户重置昵称
-                            self.showNicknameTextAlert(complete: { (nickname) in
-                                
-                                if !nickname.isEmpty {
-                                    let realm = RealmDBHelper.shared.acountDB
-                                    try! realm.write {
-                                        account!.userNickname = nickname
-                                    }
-                                }
-                                
-                                SVProgressHUD.showSuccess(withStatus: "The wallet have been restore successfully".localized())
-                                self.leave()
-                            })
-                        }
-                    }
+            CHWalletWrapper.create(phrase: phrase, password: password, complete: {
+                (success, mnemonic) in
+                if !success {   //创建失败
+                    SVProgressHUD.showError(withStatus: "Restore wallet failed".localized())
+                    sender.isEnabled = true
+                    return
+                }
+                
+                //目前只有比特币钱包，恢复一个默认的比特币钱包
+                self.restoreBTCWallet(mnemonic: mnemonic!)
             })
+            
         }
+        
+    }
+    
+    
+    /// 恢复比特币钱包
+    ///
+    /// - Parameter mnemonic: 钱包体系记忆体
+    func restoreBTCWallet(mnemonic: BTCMnemonic) {
+        
+        CHBTCWallet.restoreWallet(
+            mnemonic: mnemonic,
+            completeHandler: { (wallet, accountsRestore) in
+                
+                //设置当前的首个用户
+                CHBTCWallet.sharedInstance.selectedAccountIndex = 0
+                
+                if accountsRestore {    //恢复账户成功
+                    
+                    //马上进行同步iCloud
+                    let db = RealmDBHelper.shared.acountDB
+                    RealmDBHelper.shared.iCloudSynchronize(db: db)
+                    
+                    SVProgressHUD.showSuccess(withStatus: "The wallet & accounts have been restore successfully".localized())
+                    self.leave()
+                    return
+                } else {    //恢复账户失败
+                    //4.默认新建一个HDM普通账户
+                    let account = wallet.createHDAccount(by: "Account 1")
+                    
+                    if account == nil {
+                        CHBTCWallet.sharedInstance.selectedAccountIndex = -1
+                        SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
+                        self.buttonConfirm.isEnabled = true
+                        return
+                    }
+                    
+                    
+                    SVProgressHUD.dismiss()
+                    //5.让用户重置昵称
+                    self.showNicknameTextAlert(complete: { (nickname) in
+                        
+                        if !nickname.isEmpty {
+                            let realm = RealmDBHelper.shared.acountDB
+                            try! realm.write {
+                                account!.userNickname = nickname
+                            }
+                        }
+                        
+                        SVProgressHUD.showSuccess(withStatus: "The wallet have been restore successfully".localized())
+                        self.leave()
+                    })
+                }
+                
+        })
         
     }
     

@@ -73,24 +73,29 @@ extension WelcomeCreateAccountViewController {
     @IBAction func handleConfirmPress(_ sender: AnyObject?) {
         if self.checkValue() {
             let password = self.textFieldPassword.text!.trim()
-            //创建钱包
-            guard let wallet = CHBTCWallet.createWallet(self.phrase, password: password) else {
-                SVProgressHUD.showError(withStatus: "Create wallet failed".localized())
-                return
-            }
-
-            //创建默认HD账户
-            let nickName = self.textFieldUserName.text!
-            guard let account = wallet.createHDAccount(by: nickName) else {
-                SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
-                return
-            }
-            
-            CHBTCWallet.sharedInstance.password = password
-            CHBTCWallet.sharedInstance.selectedAccountIndex = account.index
-            
-            self.dismiss(animated: true, completion: nil)
-            
+            //创建钱包系统
+            CHWalletWrapper.create(phrase: self.phrase, password: password, complete: {
+                (success, mnemonic) in
+                if !success {   //创建失败
+                    SVProgressHUD.showError(withStatus: "Create wallet failed".localized())
+                    return
+                }
+                
+                //目前只有比特币钱包，创建默认的比特币钱包
+                let wallet = CHBTCWallet.createWallet(mnemonic: mnemonic!)
+                
+                //创建默认HD账户
+                let nickName = self.textFieldUserName.text!
+                guard let account = wallet.createHDAccount(by: nickName) else {
+                    SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
+                    return
+                }
+                
+                //记录当前使用的比特币账户
+                CHBTCWallet.sharedInstance.selectedAccountIndex = account.index
+                
+                self.dismiss(animated: true, completion: nil)
+            })
             
         }
     }

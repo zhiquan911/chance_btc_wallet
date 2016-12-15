@@ -25,18 +25,6 @@ class RealmDBHelper {
         return directoryURL
     }
     
-    //账户数据库路径
-    static var accountDBFilePath: URL {
-        let fileManager = FileManager.default
-        let directoryURL = RealmDBHelper.databaseFilePath
-            .appendingPathComponent("accounts")
-        
-        if !fileManager.fileExists(atPath: directoryURL.path) {
-            try! fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
-        }
-        return directoryURL
-    }
-    
     //全局唯一实例
     static var shared: RealmDBHelper = {
         let instance = RealmDBHelper()
@@ -58,7 +46,7 @@ class RealmDBHelper {
         }
         
         //设置是否登录icloud账号
-        if FileManager().ubiquityIdentityToken == nil {
+        if !CloudUtils.shared.iCloud {
             return
         }
         
@@ -81,25 +69,19 @@ class RealmDBHelper {
             Log.debug("save icloud success = \(success)")
             if !success {
                 //同步失败
-                SVProgressHUD.showError(withStatus: "account synchronize to icloud failed")
+                SVProgressHUD.showError(withStatus: "account synchronize to icloud failed".localized())
             }
         }
         
     }
     
-    /// 全局唯一实例, 获取钱包数据库
-    var txDB: Realm = {
+    /// 全局唯一实例, 获取数字货币的交易记录数据库
+    func getTransactionDB(wallet: CHBTCWallet) -> Realm {
         // 通过配置打开 Realm 数据库
-        var path = RealmDBHelper.databaseFilePath.appendingPathComponent("tx")
+        var path = wallet.transactionDBFilePath
         
-        //创建子目录
-        let fileManager = FileManager.default
-        if !fileManager.fileExists(atPath: path.path) {
-            try! fileManager.createDirectory(atPath: path.path, withIntermediateDirectories: true, attributes: nil)
-        }
+        path.appendPathComponent(wallet.transactionFileName)
         
-        path.appendPathComponent("wallet_tx")
-        path.appendPathExtension("realm")
         let config = Realm.Configuration(fileURL: path,
                                          schemaVersion: RealmDBHelper.kRealmDBVersion,
                                          migrationBlock: { (migration, oldSchemaVersion) in
@@ -109,7 +91,7 @@ class RealmDBHelper {
         })
         let realm = try! Realm(configuration: config)
         return realm
-    }()
+    }
     
 
     /// 账户体系数据库
@@ -122,11 +104,11 @@ class RealmDBHelper {
     ///
     /// - Parameter seedHash:
     /// - Returns: 
-    func checkRealmForWalletExist(seedHash: String) -> Bool {
-        var path = RealmDBHelper.databaseFilePath.appendingPathComponent("accounts")
+    func checkRealmForWalletExist(wallet: CHBTCWallet) -> Bool {
+        //数据库路径
+        var path = wallet.accountDBFilePath
         
-        path.appendPathComponent("wallet_\(seedHash)")
-        path.appendPathExtension("realm")
+        path.appendPathComponent(wallet.accountsFileName)
         
         let fileManager = FileManager.default
         return fileManager.fileExists(atPath: path.path)
@@ -137,7 +119,7 @@ class RealmDBHelper {
     /// - Parameter seedHash: 种子哈希
     func setDefaultRealmForWallet(wallet: CHBTCWallet) {
         // 通过配置打开 Realm 数据库
-        var path = RealmDBHelper.accountDBFilePath
+        var path = wallet.accountDBFilePath
         
         path.appendPathComponent(wallet.accountsFileName)
         let config = Realm.Configuration(fileURL: path,

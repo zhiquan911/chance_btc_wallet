@@ -64,10 +64,10 @@ extension PasswordModifyViewController {
      */
     @IBAction func handleSavePress(_ sender: AnyObject?) {
         if self.checkValue() {
-            let password = self.textFieldNewPassword.text!.trim()
-            CHBTCWallet.sharedInstance.password = password
-            SVProgressHUD.showSuccess(withStatus: "Password reset successed".localized())
-            _ = self.navigationController?.popToRootViewController(animated: true)
+//            let password = self.textFieldNewPassword.text!.trim()
+//            CHWalletWrapper.password = password
+//            SVProgressHUD.showSuccess(withStatus: "Password reset successed".localized())
+//            _ = self.navigationController?.popToRootViewController(animated: true)
         }
     }
     

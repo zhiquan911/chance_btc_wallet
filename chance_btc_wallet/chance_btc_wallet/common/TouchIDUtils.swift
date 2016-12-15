@@ -27,7 +27,7 @@ class TouchIDUtils: NSObject {
         
         //错误对象
         var error: NSError?
-        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthentication, error: &error) {
+        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             return (true, "")
         } else {
             //不支持指纹识别，LOG出错误详情
@@ -64,8 +64,8 @@ class TouchIDUtils: NSObject {
         var error: NSError?
         
         //首先使用canEvaluatePolicy 判断设备支持状态
-        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthentication, error: &error) {
-            context.evaluatePolicy(LAPolicy.deviceOwnerAuthentication, localizedReason: reason, reply: {
+        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: {
                 (success, error) -> Void in
                 if (success) {
                     //验证成功，主线程处理UI

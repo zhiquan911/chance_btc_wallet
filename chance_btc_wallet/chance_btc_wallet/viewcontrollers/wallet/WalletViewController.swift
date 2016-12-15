@@ -92,6 +92,10 @@ extension WalletViewController {
     
     /// 更新用户列表菜单的高度
     func updateUserMenuSize() {
+        //保证钱包是存在
+        guard CHBTCWallet.checkBTCWalletExist() else {
+                return
+        }
         
         let count = CHBTCWallet.sharedInstance.getAccounts().count
         //导航栏弹出下拉菜单的尺寸适应当前view的宽度
@@ -134,6 +138,11 @@ extension WalletViewController {
      - parameter obj:
      */
     func updateUserWallet() {
+        //保证钱包是存在
+        guard CHBTCWallet.checkBTCWalletExist() else {
+            return
+        }
+        
         let accounts = CHBTCWallet.sharedInstance.getAccounts()
         for account in accounts {
             if account.index == CHBTCWallet.sharedInstance.selectedAccountIndex {
@@ -145,12 +154,10 @@ extension WalletViewController {
                 //获取账户余额
                 self.getUserAccountByWebservice()
                 self.getUserTransactionsByWebservice()
-
+                
                 
             }
         }
-
-        
     }
     
     /**

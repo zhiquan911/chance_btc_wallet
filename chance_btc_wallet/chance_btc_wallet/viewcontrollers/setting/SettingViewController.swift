@@ -130,7 +130,9 @@ class SettingViewController: BaseTableViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             } else if indexPath.section == 4 {
-                SVProgressHUD.showInfo(withStatus: "Coming soon".localized())
+                
+            } else if indexPath.section == 5 {
+                self.showResetWalletAlert()
             }
             
         }
@@ -192,6 +194,32 @@ extension SettingViewController {
             let db = RealmDBHelper.shared.acountDB
             RealmDBHelper.shared.iCloudSynchronize(db: db)
         }
+    }
+    
+    
+    /// 弹出重置钱包的警告
+    func showResetWalletAlert() {
+        
+        let actionSheet = UIAlertController(title: "Warning".localized(), message: "Please backup your passphrase before you do that.It's dangerous.", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Reset".localized(), style: UIAlertActionStyle.default, handler: {
+            (action) -> Void in
+            
+            //删除钱包所有资料
+            CHWalletWrapper.deleteAllWallets()
+            
+            //弹出欢迎界面，创新创建钱包
+            let vc = StoryBoard.welcome.initView(name: "WelcomeNavController") as! UINavigationController
+            self.present(vc, animated: true, completion: nil)
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel".localized(), style: UIAlertActionStyle.cancel, handler: {
+            (action) -> Void in
+            
+        }))
+        
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
 }

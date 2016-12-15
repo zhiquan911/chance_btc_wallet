@@ -13,36 +13,50 @@ import CryptoSwift
 import CloudKit
 import RealmSwift
 
+/*
+ 比特币钱包核心模型，整个应用只提供一个全局单例的比特币钱包，而一个比特币钱包提供多个账户来管理资金
+ 提供以下功能：
+ 1.提供创建一个默认使用的比特币钱包单例
+ 2.提供使用统一的恢复方式，恢复一个比特币钱包功能
+ 3.提供创建HDM账户和Multi-Sig账户功能
+ 4.提供备份账户体系功能
+ 5.提供重置为空钱包功能
+ */
 class CHBTCWallet: NSObject {
-    
-    // MARK: - keychain保存的重要数据：种子+密码
-    
-    fileprivate var keychain: KeychainSwift = CHWalletWrapper.keychain       //keychain工具
     
     //密码
     var password: String {
-        get {
-            let value = self.keychain.get(CHWalletsKeys.BTCWalletPassword)
-            return value ?? "";
-        }
-        
-        set {
-            self.keychain.set(newValue, forKey: CHWalletsKeys.BTCWalletPassword,
-                              withAccess: .accessibleWhenUnlockedThisDeviceOnly)
-        }
+        return CHWalletWrapper.password
     }
     
     //恢复密语
     var passphrase: String {
-        get {
-            let value = self.keychain.get(CHWalletsKeys.BTCSecretPhrase)
-            return value ?? ""
-        }
+        return CHWalletWrapper.passphrase
+    }
+    
+    
+    //btc账户数据库路径
+    var accountDBFilePath: URL {
+        let fileManager = FileManager.default
+        let directoryURL = RealmDBHelper.databaseFilePath
+            .appendingPathComponent("btc_accounts")
         
-        set {
-            self.keychain.set(newValue, forKey: CHWalletsKeys.BTCSecretPhrase,
-                              withAccess: .accessibleWhenUnlockedThisDeviceOnly)
+        if !fileManager.fileExists(atPath: directoryURL.path) {
+            try! fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
         }
+        return directoryURL
+    }
+    
+    //btc交易记录数据库路径
+    var transactionDBFilePath: URL {
+        let fileManager = FileManager.default
+        let directoryURL = RealmDBHelper.databaseFilePath
+            .appendingPathComponent("btc_tx")
+        
+        if !fileManager.fileExists(atPath: directoryURL.path) {
+            try! fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
+        }
+        return directoryURL
     }
     
     // MARK: - 成员变量
@@ -81,8 +95,26 @@ class CHBTCWallet: NSObject {
         return self.getBIP44KeyChain()
     }
     
+    
+    /// 获取账户数据库文件名
+    ///
+    /// - Returns: 文件名
+    var accountsFileName: String {
+        let seedHash = self.seedHash!
+        let fileName = "btc_wallet_\(seedHash).realm"
+        return fileName
+    }
+    
+    /// 获取比特币交易数据库文件名
+    ///
+    /// - Returns: 文件名
+    var transactionFileName: String {
+        let fileName = "btc_wallet_tx"
+        return fileName
+    }
+    
     // MARK: - 类方法
-
+    
     //全局唯一实例
     static var sharedInstance: CHBTCWallet = {
         let instance = CHBTCWallet()
@@ -99,39 +131,24 @@ class CHBTCWallet: NSObject {
     /// 创建钱包账户
     ///
     /// - Parameters:
-    ///   - phrase: 恢复密语
-    ///   - password: 恢复密码
+    ///   - mnemonic: 钱包系统记忆体
     ///   - isDropTable: 是否删除所有表，默认是
     /// - Returns:
-    class func createWallet(_ phrase: String? = nil,
-                            password: String,
-                            isDropTable: Bool = true)
-        -> CHBTCWallet? {
-            let mnemonic = CHWalletWrapper.generateMnemonicPassphrase(phrase, password: password)
-            let wallet: CHBTCWallet
-            if mnemonic != nil {
-                //3.清空用户的keychain数据
-                CHWalletWrapper.deleteAllWallets()
-                
-                wallet = CHBTCWallet()
-                wallet.password = password
-                wallet.passphrase = CHWalletWrapper.getPassphraseByMnemonic(mnemonic!)
-                
-                //切换钱包的数据库
-                RealmDBHelper.shared.setDefaultRealmForWallet(wallet: wallet)
-                
-                if isDropTable {
-                    //清空数据，重建用户体系
-                    let realm = RealmDBHelper.shared.acountDB
-                    try! realm.write {
-                        realm.deleteAll()
-                    }
-                }
-            } else {
-                return nil
-            }
-            
-            return wallet
+    class func createWallet(mnemonic: BTCMnemonic) -> CHBTCWallet {
+        
+        //新建比特币钱包
+        let wallet = CHBTCWallet()
+        
+        //建立钱包的数据库
+        RealmDBHelper.shared.setDefaultRealmForWallet(wallet: wallet)
+        
+        //清空数据，重建用户体系
+        let realm = RealmDBHelper.shared.acountDB
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
+        return wallet
     }
     
     
@@ -140,59 +157,69 @@ class CHBTCWallet: NSObject {
     /// icloud恢复失败，就尝试使用本地进行恢复，如果都失败，新的钱包账户数据库是一个空账户数据，
     /// 调用者可以根据accountRestored判断是否账户恢复成功，不成功需要自己建立一条新账户
     /// - Parameters:
-    ///   - phrase: 密语
+    ///   - mnemonic: 钱包系统记忆体
     ///   - password: 密码
     ///   - completeHandler: 执行结果回调
-    class func restoreWallet(phrase: String,
-                             password: String,
-                             completeHandler: @escaping (_ wallet: CHBTCWallet?, _ accountRestored: Bool) -> Void) {
-        let mnemonic = CHWalletWrapper.generateMnemonicPassphrase(phrase, password: password)
-        let wallet: CHBTCWallet
+    class func restoreWallet(mnemonic: BTCMnemonic,
+                             completeHandler: @escaping (_ wallet: CHBTCWallet, _ accountRestored: Bool) -> Void) {
+        
         var accountRestored = false //账户体系是否恢复成功
-        if mnemonic != nil {
-            
-            /***** 1.清空用户的keychain数据 *****/
-            CHWalletWrapper.deleteAllWallets()
-            
-            /***** 2.密语和密码恢复钱包 *****/
-            wallet = CHBTCWallet()
-            wallet.password = password
-            wallet.passphrase = CHWalletWrapper.getPassphraseByMnemonic(mnemonic!)
-            
-            /***** 3.检查可支持的恢复方式 *****/
-            let backupStatus = wallet.checkAccountsBackupStatus()
-            
-            /***** 4.如果icloud支持，优先使用icloud恢复 *****/
-            if backupStatus.icloudBackup {
-                //支持icloud恢复，执行icloud恢复
-                wallet.restoreAccountsByICloud(completeHandler: { (restoreSuccess) in
-                    
-                    /***** 5.如果icloud恢复数据库到本地，就可以设置本地的数据库为默认数据库 *****/
-                    accountRestored = wallet.restoreAccountsByLocal()
-                    
-                    //回调上层过程
-                    completeHandler(wallet, accountRestored)
-                    return //保证执行完
-                })
-            } else {
+        
+        /***** 2.密语和密码创建钱包 *****/
+        let wallet = CHBTCWallet()
+        
+        /***** 3.检查可支持的恢复方式 *****/
+        let backupStatus = wallet.checkAccountsBackupStatus()
+        
+        /***** 4.如果icloud支持，优先使用icloud恢复 *****/
+        if backupStatus.icloudBackup {
+            //支持icloud恢复，执行icloud恢复
+            wallet.restoreAccountsByICloud(completeHandler: { (restoreSuccess) in
                 
-                Log.debug("数据库【\(wallet.accountsFileName)】尝试使用本地备份")
-                
-                /***** 5.使用本地的恢复 *****/
+                /***** 5.如果icloud恢复数据库到本地，就可以设置本地的数据库为默认数据库 *****/
                 accountRestored = wallet.restoreAccountsByLocal()
                 
                 //回调上层过程
                 completeHandler(wallet, accountRestored)
                 return //保证执行完
-            }
-            
-            
+            })
         } else {
-            //连创建钱包都失败
+            
+            Log.debug("数据库【\(wallet.accountsFileName)】尝试使用本地备份")
+            
+            /***** 5.使用本地的恢复 *****/
+            accountRestored = wallet.restoreAccountsByLocal()
+            
             //回调上层过程
-            completeHandler(nil, accountRestored)
+            completeHandler(wallet, accountRestored)
             return //保证执行完
         }
+    }
+    
+    
+    /**
+     检查比特币钱包是否存在
+     
+     - returns:
+     */
+    class func checkBTCWalletExist() -> Bool {
+        let wallet = CHBTCWallet.sharedInstance
+        //1.检查钱包种子在不在
+        guard wallet.seedHash != nil else {
+            return false
+        }
+        
+        //2.检查账户体系数据库文件在不在
+        guard RealmDBHelper.shared.checkRealmForWalletExist(wallet: wallet) else {
+            return false
+        }
+        
+        //3.检查账户是否存在
+        guard wallet.getAccounts().count > 0 else {
+            return false
+        }
+        
+        return true
     }
     
     // MARK: - 内部方法
@@ -210,16 +237,7 @@ class CHBTCWallet: NSObject {
         let coinTypeKeychain = purposeKeychain?.derivedKeychain(at: 0, hardened:true)
         return coinTypeKeychain!
     }
-    
-    
-    /// 获取账户数据库文件名
-    ///
-    /// - Returns: 文件名
-    var accountsFileName: String {
-        let seedHash = self.seedHash!
-        let fileName = "wallet_\(seedHash).realm"
-        return fileName
-    }
+
     
     /// 检查钱包的账户数据备份状态
     ///
@@ -240,14 +258,14 @@ class CHBTCWallet: NSObject {
         
         //检查本地恢复文件是否存在
         let fileManager = FileManager.default
-        var des = RealmDBHelper.accountDBFilePath
+        var des = self.accountDBFilePath
         des.appendPathComponent(fileName)
         Log.debug("des = \(des)")
         
         if fileManager.fileExists(atPath: des.path) {
             localBackup = true
         }
-
+        
         return (localBackup, icloudBackup)
     }
     
@@ -269,7 +287,7 @@ class CHBTCWallet: NSObject {
         
         //恢复的目标路径
         let fileManager = FileManager.default
-        var des = RealmDBHelper.accountDBFilePath
+        var des = self.accountDBFilePath
         des.appendPathComponent(fileName)
         
         //检查本地是否有备份文件，记录文件最后修改时间
@@ -297,9 +315,8 @@ class CHBTCWallet: NSObject {
                 //如果iCloud的文件较前就使用iCloud的数据恢复
                 Log.debug("iCloudLastModifyDate = \(iCloudLastModifyDate.timeIntervalSinceReferenceDate)")
                 Log.debug("localLastModifyTimeInterval = \(localLastModifyTimeInterval)")
-                if iCloudLastModifyDate.timeIntervalSinceReferenceDate >= localLastModifyTimeInterval {
-
-                    /***** 2.iCloud的备份文件最新，使用其恢复 *****/
+//                if iCloudLastModifyDate.timeIntervalSinceReferenceDate >= localLastModifyTimeInterval {
+                    /***** 2.优先采用iCloud的备份，使用其恢复 *****/
                     
                     //bug:UIDocument在打开过程中保存新数据到其它目录，会导致原来的icloud路径的文件丢失，我暂未找到解决方法，目前临时解决是，恢复完成文件后，再上传一次到icloud上。如果上传失败，下次就无法再使用icloud备份恢复了，因为icloud的文件已经丢失了。
                     doc.save(to: des, for: UIDocumentSaveOperation.forOverwriting, completionHandler: { (saveSuccess) in
@@ -316,11 +333,11 @@ class CHBTCWallet: NSObject {
                         //回调上层过程
                         completeHandler(accountRestored)
                     })
-                } else {
-                    accountRestored = false
-                    //回调上层过程
-                    completeHandler(accountRestored)
-                }
+//                } else {
+//                    accountRestored = false
+//                    //回调上层过程
+//                    completeHandler(accountRestored)
+//                }
                 
                 
             } else {
@@ -343,13 +360,13 @@ class CHBTCWallet: NSObject {
     func restoreAccountsByLocal() -> Bool {
         
         var accountRestored = false         //使用本地恢复成功？
-        
+    
         //账户数据库文件名
         let fileName = self.accountsFileName
-
+        
         //恢复的目标路径
         let fileManager = FileManager.default
-        var des = RealmDBHelper.accountDBFilePath
+        var des = self.accountDBFilePath
         des.appendPathComponent(fileName)
         
         if fileManager.fileExists(atPath: des.path) {
@@ -360,18 +377,24 @@ class CHBTCWallet: NSObject {
         //直接把默认数据设置钱包的就可以恢复
         RealmDBHelper.shared.setDefaultRealmForWallet(wallet: self)
         
+        //检查用户数据是否存在至少1条
+        if self.getAccounts().count > 0 {
+            accountRestored = true
+        } else {
+            accountRestored = false
+        }
+        
         return accountRestored
     }
-
+    
     
     /**
      删除钱包账户
-     
-     - parameter passphrase:
-     - parameter password:
      */
-    func cleanWallet(_ passphrase: String, password: String? = nil) -> Bool {
-        return false
+    func cleanWallet() -> Bool {
+        let flag = false
+        
+        return flag
     }
     
     
@@ -402,7 +425,7 @@ class CHBTCWallet: NSObject {
             try! realm.write {
                 realm.add(account, update: true)
             }
-
+            
             return  account
         } else {
             return nil
@@ -434,7 +457,7 @@ class CHBTCWallet: NSObject {
     func getAccount(by index: Int = 0) -> CHBTCAcount? {
         let account = CHBTCAcount.getBTCAccount(by: index)
         let childKeys = self.rootKeys.derivedKeychain(at: UInt32(index),
-                                                             hardened: true)
+                                                      hardened: true)
         account?.btcKeychain = childKeys
         return account
     }
@@ -459,7 +482,7 @@ class CHBTCWallet: NSObject {
         let account = CHBTCAcount()
         account.index = seqNextValue
         account.btcKeychain = childKeys      //私钥
-    
+        
         //2.把所有扩展公钥转为data
         var pubKeysData = [Data]()
         pubKeysData.append(account.privateKey!.compressedPublicKey as Data)
