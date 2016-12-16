@@ -85,6 +85,10 @@
 
 最后，解析协议和封装协议的工作由我的钱包程序处理，在MultiSigTransaction类中实现。注意，这个协议并非比特币促进协议（BIP）里头的，仅仅适合这个钱包应用。
 
+## 📦产品功能
+
+![产品功能](https://github.com/zhiquan911/chance_btc_wallet/blob/master/Chance%20Wallet.png?raw=true)
+
 ## 🚀发展计划
 
 - 开发CoreBitcoin for swift（独立的一个项目），上面已经提到现在使用的一个objective-c版的，因为作者还没有计划编写swift版的，为了未来对钱包的更好支持，我会编写一个swift语言版的bitcoin核心库。这样做有很多好处：
@@ -94,8 +98,6 @@
 
 - 开发支持比特币全球行情
 - 开发以钱包账户为基础的IM系统，用于应用内收发信息，收发比特币，多重签名账户创建，多重签名交易
-- 开发支持iMessage发送比特币，及签名交易
-
 
 ## 👾风险提醒
 
