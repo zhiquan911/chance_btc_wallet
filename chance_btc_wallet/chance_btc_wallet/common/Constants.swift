@@ -151,6 +151,21 @@ public enum CurrencyType: String {
             return NSLocalizedString("USD", comment: "美元")
         }
     }
+    
+    
+    /// 地址前缀
+    var addressPrefix: String {
+        switch self {
+        case .BTC:
+            return "bitcoin:"
+        case .LTC:
+            return "litecoin:"
+        case .CNY:
+            return ""
+        case .USD:
+            return ""
+        }
+    }
 }
 
 /**

@@ -60,10 +60,24 @@ extension ExportKeyViewController {
             pasteboard.string = self.address
         }))
         
+        actionSheet.addAction(UIAlertAction(title: "Share".localized(), style: UIAlertActionStyle.default, handler: {
+            (action) -> Void in
+            self.showShareMenuView(nil)
+        }))
+        
         actionSheet.addAction(UIAlertAction(title: "Cancel".localized(), style: UIAlertActionStyle.cancel, handler: {
             (action) -> Void in
         }))
         
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    
+    /// 弹出分享选择菜单
+    @IBAction func showShareMenuView(_ sender: AnyObject?) {
+        let recevicedAddress = self.address
+        let activityViewController = UIActivityViewController(activityItems: [recevicedAddress], applicationActivities: nil)
+        
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }

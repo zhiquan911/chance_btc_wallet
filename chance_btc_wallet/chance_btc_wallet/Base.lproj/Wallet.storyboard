@@ -147,7 +147,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e0P-pz-OuJ" id="cBO-Vl-Jgn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To: 123456789qwertyuiopasdfghjkl" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGH-JO-Fx2">
@@ -409,8 +409,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Um2-3l-N7j">
-                        <barButtonItem key="rightBarButtonItem" title="分享" id="lOt-kE-CYm">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="lOt-kE-CYm">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="showShareMenuView:" destination="FIT-Xp-7de" id="rtR-RF-H3F"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

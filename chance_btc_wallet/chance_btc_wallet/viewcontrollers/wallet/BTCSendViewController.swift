@@ -125,9 +125,15 @@ extension BTCSendViewController {
             (action) -> Void in
             let pasteboard = UIPasteboard.general
             if pasteboard.string?.length ?? 0 > 0 {
+                var pasteAddress = pasteboard.string!
+                //如果地址带bitcoin:头就把它替换为""
+                if pasteAddress.hasPrefix(self.currencyType.addressPrefix) {
+                    pasteAddress = pasteAddress.replacingOccurrences(of: self.currencyType.addressPrefix, with: "")
+                }
+                
                 self.labelAddress.textColor = UIColor.darkGray
-                self.labelAddress.text = pasteboard.string
-                self.address = pasteboard.string!
+                self.labelAddress.text = pasteAddress
+                self.address = pasteAddress
             } else {
                 SVProgressHUD.showInfo(withStatus: "Clipboard is empty".localized())
             }
@@ -197,7 +203,7 @@ extension BTCSendViewController {
             
             let doBlock = {
                 () -> Void in
-                SVProgressHUD.show()
+                SVProgressHUD.show(with: SVProgressHUDMaskType.black)
                 self.getUnspentTransactionByWebservice {
                     (tx, unsignTxHex, singnatureHex, message) -> Void in
                     if message.code == ApiResultCode.Success.rawValue {
@@ -442,8 +448,14 @@ extension BTCSendViewController: UITextFieldDelegate {
 extension BTCSendViewController: AddressScanViewDelegate {
     
     func didScanQRCodeSuccess(vc: AddressScanViewController, result: String) {
+        var pasteAddress = result
+        //如果地址带bitcoin:头就把它替换为""
+        if pasteAddress.hasPrefix(self.currencyType.addressPrefix) {
+            pasteAddress = pasteAddress.replacingOccurrences(of: self.currencyType.addressPrefix, with: "")
+        }
+        
         self.labelAddress.textColor = UIColor.darkGray
-        self.labelAddress.text = result
-        self.address = result
+        self.labelAddress.text = pasteAddress
+        self.address = pasteAddress
     }
 }

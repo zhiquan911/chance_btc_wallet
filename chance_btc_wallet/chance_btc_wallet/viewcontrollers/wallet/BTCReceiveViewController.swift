@@ -16,12 +16,13 @@ class BTCReceiveViewController: BaseViewController {
     @IBOutlet var buttonAddress: UIButton!
     
     var address: String!
+    var currencyType: CurrencyType = .BTC
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "BTC Address".localized()
         self.buttonAddress.setTitle(self.address, for: UIControlState())
-        self.imageViewQRCode.image = QRCode.generateImage(self.address, avatarImage: nil)
+        self.imageViewQRCode.image = QRCode.generateImage(self.currencyType.addressPrefix + self.address, avatarImage: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,7 +40,12 @@ extension BTCReceiveViewController {
         actionSheet.addAction(UIAlertAction(title: "Copy".localized(), style: UIAlertActionStyle.default, handler: {
             (action) -> Void in
             let pasteboard = UIPasteboard.general
-            pasteboard.string = self.address
+            pasteboard.string = self.currencyType.addressPrefix + self.address
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Share".localized(), style: UIAlertActionStyle.default, handler: {
+            (action) -> Void in
+            self.showShareMenuView(nil)
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel".localized(), style: UIAlertActionStyle.cancel, handler: {
@@ -47,5 +53,14 @@ extension BTCReceiveViewController {
         }))
         
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    
+    /// 弹出分享选择菜单
+    @IBAction func showShareMenuView(_ sender: AnyObject?) {
+        let recevicedAddress = self.currencyType.addressPrefix + self.address
+        let activityViewController = UIActivityViewController(activityItems: [recevicedAddress], applicationActivities: nil)
+        
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }

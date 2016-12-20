@@ -24,14 +24,14 @@ enum MultiSigError: Error {
  协议格式：
  ################
  
- multisig://{"rawTx":"01000000021138...","redeemScriptHex":"532103324c4"...,"keySignatures":{"0":["3045022100...","304402..."],"2":["30450221...","3044022059bd..."]}}
+ multisig:{"rawTx":"01000000021138...","redeemScriptHex":"532103324c4"...,"keySignatures":{"0":["3045022100...","304402..."],"2":["30450221...","3044022059bd..."]}}
  
  ################
  */
 struct MultiSigTransaction {
     
     //多重签名专用标识头
-    static let kPrefix = "multisig://"
+    static let kPrefix = "multisig:"
 
     ///   - rawTx: 空白交易单（不包含签名数据）
     ///   - signatures: 签名数组，key的序号：输入单签名hex
