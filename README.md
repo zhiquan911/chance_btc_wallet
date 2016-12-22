@@ -108,4 +108,4 @@
 
 ## 🤖公开版本
 
-###[iOS 0.6.0](https://www.pgyer.com/C4qt)
+###[iOS 0.6.0](https://beta.bugly.qq.com/cqze)
