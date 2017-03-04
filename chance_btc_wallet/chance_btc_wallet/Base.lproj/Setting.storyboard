@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Sll-MP-CC1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Sll-MP-CC1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,9 +11,9 @@
         <!--Setting-->
         <scene sceneID="0Tr-eQ-JXR">
             <objects>
-                <navigationController id="Sll-MP-CC1" customClass="RootNavigationController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SettingRootViewController" id="Sll-MP-CC1" customClass="RootNavigationController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Setting" id="4LV-eN-WQo"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eYh-7P-n6C">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eYh-7P-n6C">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

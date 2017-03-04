@@ -49,6 +49,7 @@ class BlockchainRemoteService: RemoteService {
                 //                "unconfirmedBalanceSat": 0,
                 //                "unconfirmedTxApperances": 0,
                 //                "txApperances": 9,
+                userBalance.currencyType = .BTC
                 userBalance.address = data["address"].stringValue
                 userBalance.balanceSat = data["final_balance"].intValue
                 userBalance.totalReceivedSat = data["total_received"].intValue
@@ -59,7 +60,7 @@ class BlockchainRemoteService: RemoteService {
         }
     }
     
-    func userTransactions(address: String, from: String, to: String, limit: String, callback: @escaping (MessageModule, [UserTransaction], PageModule?) -> Void) {
+    func userTransactions(address: String, from: String, to: String, limit: String, callback: @escaping (MessageModule, UserBalance?, [UserTransaction], PageModule?) -> Void) {
         let params = [
             "address": address
         ]
@@ -72,6 +73,8 @@ class BlockchainRemoteService: RemoteService {
             let message = MessageModule(json: json["resMsg"])
             let data = json["datas"]
             var userTransactions = [UserTransaction]()
+            //用户余额
+            let userBalance = UserBalance()
             if data.exists() {
                 let items = data["txs"].arrayValue
                 for dic in items {
@@ -172,8 +175,16 @@ class BlockchainRemoteService: RemoteService {
                     
                     userTransactions.append(tx)
                 }
+                
+                //更新余额字段到实例中
+                userBalance.currencyType = .BTC
+                userBalance.address = data["address"].stringValue
+                userBalance.balanceSat = data["final_balance"].intValue
+                userBalance.totalReceivedSat = data["total_received"].intValue
+                userBalance.totalSentSat = data["total_sent"].intValue
+                userBalance.txApperances = data["n_tx"].intValue
             }
-            callback(message, userTransactions, nil)
+            callback(message, userBalance, userTransactions, nil)
         }
     }
     

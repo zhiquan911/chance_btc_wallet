@@ -12,7 +12,7 @@ import Foundation
  *  页数结构体
  */
 struct PageModule {
-    var offset: Int =  20         //当前索引
-    var pageSize: Int = 20        //分页大小
+    var pageIndex: Int =  0         //当前索引
+    var pageSize: Int = 10        //分页大小
     var totalSize: Int = 0
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C508D8861DE938AE00107EDA /* CHTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508D8851DE938AE00107EDA /* CHTextView.swift */; };
+		C509AADD1E6A87DE00390DE4 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C509AADC1E6A87DE00390DE4 /* QRCode.swift */; };
 		C50F70A71DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50F70A61DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift */; };
 		C521E0FC1DFA4E36002652D2 /* MultiSigTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C521E0FB1DFA4E36002652D2 /* MultiSigTransactionTests.swift */; };
 		C521E0FF1DFA535F002652D2 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58871B41DE4197700C45B43 /* LogUtils.swift */; };
@@ -17,6 +18,9 @@
 		C52ACB8E1DEECF2B00E79C5C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */; };
 		C54724D01DFFE6A9003DE322 /* CloudUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54724CF1DFFE6A9003DE322 /* CloudUtils.swift */; };
 		C54D1ACB1DEDB119008913CC /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C54D1AC91DEDB119008913CC /* Account.storyboard */; };
+		C54F0F4E1E67F27F00347D7E /* AccountCreateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54F0F4C1E67F27F00347D7E /* AccountCreateCell.swift */; };
+		C54F0F4F1E67F27F00347D7E /* AccountCreateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54F0F4D1E67F27F00347D7E /* AccountCreateCell.xib */; };
+		C57C452E1E69609C000FAEAF /* WalletRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57C452D1E69609C000FAEAF /* WalletRefreshHeaderAnimator.swift */; };
 		C58870131DE3F37500C45B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58870121DE3F37500C45B43 /* AppDelegate.swift */; };
 		C58870181DE3F37500C45B43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C58870161DE3F37500C45B43 /* Main.storyboard */; };
 		C588701A1DE3F37500C45B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58870191DE3F37500C45B43 /* Assets.xcassets */; };
@@ -163,6 +167,9 @@
 		C5B0B9F31DF1158400F7F80A /* MultiSigInputKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9F11DF1158400F7F80A /* MultiSigInputKeyViewController.swift */; };
 		C5C9E49D1DF910BA0025046C /* NSDecimalNumber+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C9E49C1DF910BA0025046C /* NSDecimalNumber+extension.swift */; };
 		C5C9E49F1DF916410025046C /* NSNumber+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C9E49E1DF916410025046C /* NSNumber+extension.swift */; };
+		C5E3F1881E61294400E10593 /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3F1871E61294400E10593 /* FontsExtension.swift */; };
+		C5E3F18C1E6132E300E10593 /* TsukushiAMaruGothic.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C5E3F18A1E6132E300E10593 /* TsukushiAMaruGothic.ttc */; };
+		C5E3F18D1E6132E300E10593 /* TsukushiBMaruGothic.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C5E3F18B1E6132E300E10593 /* TsukushiBMaruGothic.ttc */; };
 		C5EAEF941DE6C52400324B60 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EAEF921DE6C52400324B60 /* Setting.storyboard */; };
 		C5EAEF991DE6C55800324B60 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EAEF951DE6C55800324B60 /* Wallet.storyboard */; };
 		C5EAEF9A1DE6C55800324B60 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EAEF971DE6C55800324B60 /* Welcome.storyboard */; };
@@ -170,6 +177,9 @@
 		C5EAEFA31DE6C97B00324B60 /* PasswordModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF9E1DE6C97B00324B60 /* PasswordModifyViewController.swift */; };
 		C5EAEFA41DE6C97B00324B60 /* PasswordSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF9F1DE6C97B00324B60 /* PasswordSettingViewController.swift */; };
 		C5EAEFA51DE6C97B00324B60 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEFA01DE6C97B00324B60 /* SettingViewController.swift */; };
+		C5F4CBEE1E67AD5B00821600 /* TBBaseContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4CBED1E67AD5B00821600 /* TBBaseContentView.swift */; };
+		C5F4CBF11E67C87500821600 /* AccountCardPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4CBEF1E67C87500821600 /* AccountCardPageCell.swift */; };
+		C5F4CBF21E67C87500821600 /* AccountCardPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F4CBF01E67C87500821600 /* AccountCardPageCell.xib */; };
 		C5F822E01DFBF28600701132 /* CHDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F822DF1DFBF28600701132 /* CHDocument.swift */; };
 		D7370CD84FEEB4F4E4522FC6 /* Pods_chance_btc_wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */; };
 /* End PBXBuildFile section */
@@ -200,10 +210,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		17C420A92FF35064B8AA449D /* Pods-chance_btc_wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.release.xcconfig"; sourceTree = "<group>"; };
 		3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chance_btc_wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		41948111B0FF5B5DA3FA755D /* Pods-chance_btc_wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.debug.xcconfig"; sourceTree = "<group>"; };
-		AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.release.xcconfig"; sourceTree = "<group>"; };
+		B3A7CBBE2F1346BFB465697E /* Pods-chance_btc_wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		C508D8851DE938AE00107EDA /* CHTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHTextView.swift; sourceTree = "<group>"; };
+		C509AADC1E6A87DE00390DE4 /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRCode.swift; path = SwiftQRCode/QRCode.swift; sourceTree = "<group>"; };
 		C50F70A61DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockchainNodeSettingViewController.swift; path = viewcontrollers/setting/BlockchainNodeSettingViewController.swift; sourceTree = "<group>"; };
 		C521E0F01DFA4B0F002652D2 /* chance_btc_walletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = chance_btc_walletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C521E0F41DFA4B0F002652D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -212,6 +223,9 @@
 		C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C54724CF1DFFE6A9003DE322 /* CloudUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudUtils.swift; sourceTree = "<group>"; };
 		C54D1ACA1DEDB119008913CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Account.storyboard; sourceTree = "<group>"; };
+		C54F0F4C1E67F27F00347D7E /* AccountCreateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCreateCell.swift; sourceTree = "<group>"; };
+		C54F0F4D1E67F27F00347D7E /* AccountCreateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountCreateCell.xib; sourceTree = "<group>"; };
+		C57C452D1E69609C000FAEAF /* WalletRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		C588700F1DE3F37500C45B43 /* chance_btc_wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chance_btc_wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58870121DE3F37500C45B43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C58870171DE3F37500C45B43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -517,6 +531,9 @@
 		C5B0B9F11DF1158400F7F80A /* MultiSigInputKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = MultiSigInputKeyViewController.swift; path = viewcontrollers/account/MultiSigInputKeyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C5C9E49C1DF910BA0025046C /* NSDecimalNumber+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDecimalNumber+extension.swift"; sourceTree = "<group>"; };
 		C5C9E49E1DF916410025046C /* NSNumber+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumber+extension.swift"; sourceTree = "<group>"; };
+		C5E3F1871E61294400E10593 /* FontsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
+		C5E3F18A1E6132E300E10593 /* TsukushiAMaruGothic.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = TsukushiAMaruGothic.ttc; sourceTree = "<group>"; };
+		C5E3F18B1E6132E300E10593 /* TsukushiBMaruGothic.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = TsukushiBMaruGothic.ttc; sourceTree = "<group>"; };
 		C5EAEF931DE6C52400324B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
 		C5EAEF961DE6C55800324B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Wallet.storyboard; sourceTree = "<group>"; };
 		C5EAEF981DE6C55800324B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
@@ -524,6 +541,9 @@
 		C5EAEF9E1DE6C97B00324B60 /* PasswordModifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = PasswordModifyViewController.swift; path = viewcontrollers/setting/PasswordModifyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C5EAEF9F1DE6C97B00324B60 /* PasswordSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = PasswordSettingViewController.swift; path = viewcontrollers/setting/PasswordSettingViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C5EAEFA01DE6C97B00324B60 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SettingViewController.swift; path = viewcontrollers/setting/SettingViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C5F4CBED1E67AD5B00821600 /* TBBaseContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBBaseContentView.swift; sourceTree = "<group>"; };
+		C5F4CBEF1E67C87500821600 /* AccountCardPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCardPageCell.swift; sourceTree = "<group>"; };
+		C5F4CBF01E67C87500821600 /* AccountCardPageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountCardPageCell.xib; sourceTree = "<group>"; };
 		C5F822DF1DFBF28600701132 /* CHDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHDocument.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -565,8 +585,8 @@
 		B2CA622EBD5CDBF3D553F541 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				41948111B0FF5B5DA3FA755D /* Pods-chance_btc_wallet.debug.xcconfig */,
-				AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */,
+				B3A7CBBE2F1346BFB465697E /* Pods-chance_btc_wallet.debug.xcconfig */,
+				17C420A92FF35064B8AA449D /* Pods-chance_btc_wallet.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -576,6 +596,14 @@
 			children = (
 			);
 			name = component;
+			sourceTree = "<group>";
+		};
+		C509AADB1E6A877900390DE4 /* SwiftQRCode */ = {
+			isa = PBXGroup;
+			children = (
+				C509AADC1E6A87DE00390DE4 /* QRCode.swift */,
+			);
+			name = SwiftQRCode;
 			sourceTree = "<group>";
 		};
 		C521E0F11DFA4B0F002652D2 /* chance_btc_walletTests */ = {
@@ -678,6 +706,7 @@
 		C588703A1DE3F3E600C45B43 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				C509AADB1E6A877900390DE4 /* SwiftQRCode */,
 				C588703B1DE3F3E600C45B43 /* CoreBitcoin */,
 				C58870CD1DE3F3E600C45B43 /* openssl */,
 				C588711E1DE3F3E600C45B43 /* SVProgressHUD */,
@@ -1039,6 +1068,7 @@
 		C59CD02F1DE52C6400A23CE2 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				C5E3F1891E6132E300E10593 /* font */,
 				C5EAEF951DE6C55800324B60 /* Wallet.storyboard */,
 				C5EAEF971DE6C55800324B60 /* Welcome.storyboard */,
 				C588701B1DE3F37500C45B43 /* LaunchScreen.storyboard */,
@@ -1052,6 +1082,8 @@
 		C59CD0441DE5621100A23CE2 /* public */ = {
 			isa = PBXGroup;
 			children = (
+				C5F4CBEC1E67AD0D00821600 /* component */,
+				C5E3F1861E61291A00E10593 /* extension */,
 				C59CD0451DE5621100A23CE2 /* AddressScanViewController.swift */,
 				C59CD0461DE5621100A23CE2 /* BaseViewController.swift */,
 				C59CD0471DE5621100A23CE2 /* RootNavigationController.swift */,
@@ -1091,6 +1123,11 @@
 			children = (
 				C59CD0581DE578BA00A23CE2 /* MenuItemCell.swift */,
 				C59CD0591DE578BA00A23CE2 /* UserTransactionCell.swift */,
+				C5F4CBEF1E67C87500821600 /* AccountCardPageCell.swift */,
+				C5F4CBF01E67C87500821600 /* AccountCardPageCell.xib */,
+				C54F0F4C1E67F27F00347D7E /* AccountCreateCell.swift */,
+				C54F0F4D1E67F27F00347D7E /* AccountCreateCell.xib */,
+				C57C452D1E69609C000FAEAF /* WalletRefreshHeaderAnimator.swift */,
 			);
 			name = component;
 			sourceTree = "<group>";
@@ -1102,6 +1139,24 @@
 			);
 			name = component;
 			sourceTree = "<group>";
+		};
+		C5E3F1861E61291A00E10593 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				C5E3F1871E61294400E10593 /* FontsExtension.swift */,
+			);
+			name = extension;
+			sourceTree = "<group>";
+		};
+		C5E3F1891E6132E300E10593 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				C5E3F18A1E6132E300E10593 /* TsukushiAMaruGothic.ttc */,
+				C5E3F18B1E6132E300E10593 /* TsukushiBMaruGothic.ttc */,
+			);
+			name = font;
+			path = resources/font;
+			sourceTree = SOURCE_ROOT;
 		};
 		C5EAEF9B1DE6C92300324B60 /* setting */ = {
 			isa = PBXGroup;
@@ -1115,6 +1170,14 @@
 				C50F70A61DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift */,
 			);
 			name = setting;
+			sourceTree = "<group>";
+		};
+		C5F4CBEC1E67AD0D00821600 /* component */ = {
+			isa = PBXGroup;
+			children = (
+				C5F4CBED1E67AD5B00821600 /* TBBaseContentView.swift */,
+			);
+			name = component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1225,11 +1288,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C588701D1DE3F37500C45B43 /* LaunchScreen.storyboard in Resources */,
+				C54F0F4F1E67F27F00347D7E /* AccountCreateCell.xib in Resources */,
 				C5EAEF991DE6C55800324B60 /* Wallet.storyboard in Resources */,
 				C588718E1DE3F3E600C45B43 /* ZYQAssetPicker.Bundle in Resources */,
 				C588701A1DE3F37500C45B43 /* Assets.xcassets in Resources */,
 				C54D1ACB1DEDB119008913CC /* Account.storyboard in Resources */,
 				C58870181DE3F37500C45B43 /* Main.storyboard in Resources */,
+				C5E3F18D1E6132E300E10593 /* TsukushiBMaruGothic.ttc in Resources */,
+				C5E3F18C1E6132E300E10593 /* TsukushiAMaruGothic.ttc in Resources */,
+				C5F4CBF21E67C87500821600 /* AccountCardPageCell.xib in Resources */,
 				C5EAEF9A1DE6C55800324B60 /* Welcome.storyboard in Resources */,
 				C588718B1DE3F3E600C45B43 /* SVProgressHUD.bundle in Resources */,
 				C5EAEF941DE6C52400324B60 /* Setting.storyboard in Resources */,
@@ -1308,6 +1375,7 @@
 				C58871A81DE4138000C45B43 /* CHBTCWallet.swift in Sources */,
 				C59CD0561DE5723A00A23CE2 /* WalletViewController.swift in Sources */,
 				C58871721DE3F3E600C45B43 /* BTCPaymentMethodRequest.m in Sources */,
+				C57C452E1E69609C000FAEAF /* WalletRefreshHeaderAnimator.swift in Sources */,
 				C59CD0541DE5621100A23CE2 /* WelcomePhraseViewController.swift in Sources */,
 				C5B0B9F21DF1158400F7F80A /* MultiSigAccountCreateViewController.swift in Sources */,
 				C5EAEFA31DE6C97B00324B60 /* PasswordModifyViewController.swift in Sources */,
@@ -1374,6 +1442,7 @@
 				C521E1021DFA7BB8002652D2 /* MultiSigTransaction.swift in Sources */,
 				C58871381DE3F3E600C45B43 /* UIColor+extension.swift in Sources */,
 				C58871451DE3F3E600C45B43 /* BTCAddress.m in Sources */,
+				C5F4CBF11E67C87500821600 /* AccountCardPageCell.swift in Sources */,
 				C59CD04F1DE5621100A23CE2 /* BaseViewController.swift in Sources */,
 				C58871741DE3F3E600C45B43 /* BTCPaymentRequest.m in Sources */,
 				C508D8861DE938AE00107EDA /* CHTextView.swift in Sources */,
@@ -1403,6 +1472,7 @@
 				C59CD0641DE59D7B00A23CE2 /* BTCSendViewController.swift in Sources */,
 				C59CD0631DE59D7B00A23CE2 /* BTCSendMultiSigViewController.swift in Sources */,
 				C58871301DE3F3E600C45B43 /* BTCScript+extension.swift in Sources */,
+				C5F4CBEE1E67AD5B00821600 /* TBBaseContentView.swift in Sources */,
 				C588715F1DE3F3E600C45B43 /* BTCEncryptedMessage.m in Sources */,
 				C58871361DE3F3E600C45B43 /* String+extension.swift in Sources */,
 				C594CFAE1DED47FD008BBD6A /* RestoreWalletViewController.swift in Sources */,
@@ -1418,6 +1488,7 @@
 				C58871501DE3F3E600C45B43 /* BTCBlindSignature.m in Sources */,
 				C58871801DE3F3E600C45B43 /* BTCTransaction+Tests.m in Sources */,
 				C588716C1DE3F3E600C45B43 /* BTCNetwork.m in Sources */,
+				C509AADD1E6A87DE00390DE4 /* QRCode.swift in Sources */,
 				C5B0B9F31DF1158400F7F80A /* MultiSigInputKeyViewController.swift in Sources */,
 				C588717F1DE3F3E600C45B43 /* BTCSecretSharing.m in Sources */,
 				C588714D1DE3F3E600C45B43 /* BTCBitcoinURL+Tests.m in Sources */,
@@ -1445,7 +1516,9 @@
 				C58871771DE3F3E600C45B43 /* BTCProcessor.m in Sources */,
 				C58871551DE3F3E600C45B43 /* BTCChainCom.m in Sources */,
 				C5B0B9EC1DF10B8700F7F80A /* CreateHDMAccountViewController.swift in Sources */,
+				C5E3F1881E61294400E10593 /* FontsExtension.swift in Sources */,
 				C588718A1DE3F3E600C45B43 /* SVProgressAnimatedView.m in Sources */,
+				C54F0F4E1E67F27F00347D7E /* AccountCreateCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1513,7 +1586,6 @@
 /* Begin XCBuildConfiguration section */
 		C521E0F71DFA4B0F002652D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41948111B0FF5B5DA3FA755D /* Pods-chance_btc_wallet.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1534,7 +1606,6 @@
 		};
 		C521E0F81DFA4B0F002652D2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1652,7 +1723,7 @@
 		};
 		C58870221DE3F37500C45B43 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41948111B0FF5B5DA3FA755D /* Pods-chance_btc_wallet.debug.xcconfig */;
+			baseConfigurationReference = B3A7CBBE2F1346BFB465697E /* Pods-chance_btc_wallet.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1681,7 +1752,7 @@
 		};
 		C58870231DE3F37500C45B43 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE9AC078E2A685E62A2AFDA0 /* Pods-chance_btc_wallet.release.xcconfig */;
+			baseConfigurationReference = 17C420A92FF35064B8AA449D /* Pods-chance_btc_wallet.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

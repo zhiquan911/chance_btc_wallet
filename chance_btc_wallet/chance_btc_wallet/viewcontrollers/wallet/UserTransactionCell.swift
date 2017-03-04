@@ -13,6 +13,7 @@ class UserTransactionCell: UITableViewCell {
     @IBOutlet var labelChange: UILabel!
     @IBOutlet var labelAddress: UILabel!
     @IBOutlet var labelTime: UILabel!
+    @IBOutlet var imageViewIcon: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,4 +26,20 @@ class UserTransactionCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+class UserTransactionSectionHeader: UITableViewCell {
+    
+    @IBOutlet var labelTxNum: UILabel!
+    @IBOutlet var labelTxNumTitle: UILabel!
+    
+    @IBOutlet var labelTotalReceived: UILabel!
+    @IBOutlet var labelTotalReceivedTitle: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.labelTxNumTitle.text = "Transactions：".localized()
+        self.labelTotalReceivedTitle.text = "Total Received：".localized()
+    }
+    
 }

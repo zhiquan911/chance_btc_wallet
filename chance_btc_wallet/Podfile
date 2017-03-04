@@ -1,7 +1,7 @@
 platform :ios, ‘9.0’
 use_frameworks!
 
-target ‘chance_btc_wallet' do
+target 'chance_btc_wallet' do
  
     # 导航栏弹出下拉选择菜单
     pod 'LMDropdownView'
@@ -14,14 +14,20 @@ target ‘chance_btc_wallet' do
     # swift解析json库
     pod 'SwiftyJSON'
     # 二维码扫描解码及生成二维码
-    pod 'SwiftQRCode'
+    #pod 'SwiftQRCode'
     # 苹果底层保存密码keychain工具，https://github.com/marketplacer/keychain-swift
     pod 'KeychainSwift', '~> 7.0'
     # 日志输出管理
     pod 'Log', '~> 1.0'
     # Swfit项目语言本地化支持框架： https://github.com/marmelroy/Localize-Swift
     pod 'Localize-Swift', '~> 1.5'
-
+    # TabbarController组件：https://github.com/eggswift/ESTabBarController
+    pod 'ESTabBarController-swift'
+    # 分页滑动卡片组件：https://github.com/zhiquan911/CHPageCardView
+    pod 'CHPageCardView', :git => 'https://github.com/zhiquan911/CHPageCardView.git', :branch => 'master'
+    # 刷新数据组件：https://github.com/eggswift/pull-to-refresh
+    pod 'ESPullToRefresh'
+    
 end
 
 

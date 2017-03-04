@@ -49,6 +49,7 @@ class InsightRemoteService: RemoteService {
                 //                "unconfirmedBalanceSat": 0,
                 //                "unconfirmedTxApperances": 0,
                 //                "txApperances": 9,
+                userBalance.currencyType = .BTC
                 userBalance.address = data["addrStr"].stringValue
                 userBalance.balance = data["balance"].doubleValue
                 userBalance.balanceSat = data["balanceSat"].intValue
@@ -65,7 +66,7 @@ class InsightRemoteService: RemoteService {
         }
     }
     
-    func userTransactions(address: String, from: String, to: String, limit: String, callback: @escaping (MessageModule, [UserTransaction], PageModule?) -> Void) {
+    func userTransactions(address: String, from: String, to: String, limit: String, callback: @escaping (MessageModule, UserBalance?, [UserTransaction], PageModule?) -> Void) {
         let params = [
             "addrs": address,
             "from": from,
@@ -130,7 +131,7 @@ class InsightRemoteService: RemoteService {
                     userTransactions.append(tx)
                 }
             }
-            callback(message, userTransactions, nil)
+            callback(message, nil, userTransactions, nil)
         }
     }
     

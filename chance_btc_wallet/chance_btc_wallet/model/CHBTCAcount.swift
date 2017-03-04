@@ -33,6 +33,9 @@ class CHBTCAcount: Object {
     /// 获取可扩展的私钥
     var btcKeychain: BTCKeychain?
     
+    var qrCode: UIImage?                    //二维码缓存图
+    var userBalance: UserBalance?           //余额缓存
+    
     override static func primaryKey() -> String? {
         return "accountId"
     }
@@ -42,7 +45,11 @@ class CHBTCAcount: Object {
     ///
     /// - Returns:
     override static func ignoredProperties() -> [String] {
-        return ["btcKeychain"]
+        return [
+            "btcKeychain",
+            "qrCode",
+            "userBalance"
+        ]
     }
     
     /// 根据HDM钱包索引获取用户

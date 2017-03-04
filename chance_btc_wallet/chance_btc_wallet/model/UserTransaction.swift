@@ -8,6 +8,60 @@
 
 import UIKit
 
+
+/// 交易类型
+///
+/// - send: 发送
+/// - receive:  接收
+enum TransactionInOut {
+    case send
+    case receive
+    
+    
+    /// 图片标识
+    var image: UIImage {
+        switch self {
+        case .send:
+            return UIImage(named: "icon_tx_cell_send")!
+        case .receive:
+            return UIImage(named: "icon_tx_cell_received")!
+        }
+    }
+    
+    
+    /// 符号表示
+    var symbol: String {
+        switch self {
+        case .send:
+            return "-"
+        case .receive:
+            return "+"
+        }
+    }
+    
+    
+    /// 来自或发去
+    var fromOrTo: String {
+        switch self {
+        case .send:
+            return "to：".localized()
+        case .receive:
+            return "from：".localized()
+        }
+    }
+    
+    
+    /// 颜色标识
+    var color: UIColor {
+        switch self {
+        case .send:
+            return UIColor(hex: 0xFA291B)
+        case .receive:
+            return UIColor(hex: 0x23BE72)
+        }
+    }
+}
+
 class UserTransaction: NSObject {
 
     /*

@@ -8,14 +8,15 @@
 
 import UIKit
 import RealmSwift
+import ESTabBarController_swift
 
-class TabBarViewController: UITabBarController {
+class TabBarViewController: ESTabBarController {
     
     var myMetadataQuery: NSMetadataQuery = NSMetadataQuery()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
+        //        self.setupUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,7 +29,7 @@ class TabBarViewController: UITabBarController {
             
             if !CHBTCWallet.checkBTCWalletExist() {
                 //钱包不存在，需要恢复账户体系
-            
+                
                 let phrase = CHWalletWrapper.passphrase
                 let password = CHWalletWrapper.password
                 //恢复钱包
@@ -44,11 +45,27 @@ class TabBarViewController: UITabBarController {
                     
                     SVProgressHUD.showError(withStatus: "Restore Bitcoin wallet failed".localized())
                 }
-
+                
                 
             }
         }
     }
+    
+    
+    //MARK: ios7状态栏修改
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
+    
+    override var prefersStatusBarHidden : Bool {
+        return false
+    }
+}
+
+
+// MARK: - 控制器方法
+extension TabBarViewController {
     
     /**
      配置UI
@@ -163,7 +180,137 @@ class TabBarViewController: UITabBarController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    /**
+     弹出TabBar中间钱包多功能按钮
+     */
+    func showMultiFunctionMenu() {
+        let actionSheet = UIAlertController(title: "You can".localized(), message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Send Bitcoin".localized(), style: UIAlertActionStyle.default, handler: {
+            (action) -> Void in
+            self.gotoBTCSendView()
+        }))
+        
+        //多重签名账户可以粘贴别人的签名交易
+        actionSheet.addAction(UIAlertAction(title: "Sign Contract".localized(), style: UIAlertActionStyle.default, handler: {
+            (action) -> Void in
+            let pasteboard = UIPasteboard.general
+            if pasteboard.string?.length ?? 0 > 0 {
+                self.gotoMultiSigTransactionView(pasteboard.string!)
+            } else {
+                SVProgressHUD.showInfo(withStatus: "Clipboard is empty".localized())
+            }
+        }))
+        
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel".localized(), style: UIAlertActionStyle.cancel, handler: {
+            (action) -> Void in
+            
+        }))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
+    }
+    
+    /**
+     进入多重签名交易表单界面，进行签名
+     */
+    func gotoMultiSigTransactionView(_ message: String) {
+        
+        //初始表单
+        do {
+            let mtx = try MultiSigTransaction(json: message)
+            
+            guard let vc = StoryBoard.wallet.initView(type: BTCMultiSigTransactionViewController.self) else {
+                return
+            }
+            
+            guard let currentAccount = CHBTCWallet.sharedInstance.getSelectedAccount() else {
+                return
+            }
+            
+            vc.currentAccount = currentAccount
+            vc.multiSigTx = mtx
+            
+            let navc = self.selectedViewController as? UINavigationController
+            navc?.pushViewController(vc, animated: true)
+            
+        } catch {
+            SVProgressHUD.showError(withStatus: "Transaction decode error".localized())
+        }
+        
+    }
     
     
+    /**
+     进入发送比特币界面
+     */
+    func gotoBTCSendView() {
+        guard let vc = StoryBoard.wallet.initView(type: BTCSendViewController.self) else {
+            return
+        }
+        
+        guard let currentAccount = CHBTCWallet.sharedInstance.getSelectedAccount() else {
+            return
+        }
+        
+        vc.btcAccount = currentAccount
+        let navc = self.selectedViewController as? UINavigationController
+        navc?.pushViewController(vc, animated: true)
+    }
+}
+
+
+// MARK: - 工厂方法
+extension TabBarViewController {
     
+    
+    /// 默认的钱包Tabbar控制器
+    static let walletTab: TabBarViewController = {
+        let tabBarController = TabBarViewController()
+        tabBarController.tabBar.shadowImage = UIImage(named: "transparent")
+        tabBarController.tabBar.backgroundImage = UIImage(named: "background")
+        
+        tabBarController.shouldHijackHandler = {
+            tabbarController, viewController, index in
+            if index == 1 {
+                return true
+            }
+            return false
+        }
+        
+        tabBarController.didHijackHandler = {
+            [weak tabBarController] tabbarController, viewController, index in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                tabBarController?.showMultiFunctionMenu()
+            }
+        }
+        
+        let wallet = StoryBoard.wallet.initView(name: "WalletRootViewController")!
+        let setting = StoryBoard.setting.initView(name: "SettingRootViewController")!
+        let center = UIViewController()
+        
+        wallet.tabBarItem = ESTabBarItem(
+            TBBouncesContentView(),
+            title: "Wallet",
+            image: UIImage(named: "tab_wallet_normal"),
+            selectedImage: UIImage(named: "tab_wallet_selected"))
+        
+        center.tabBarItem = ESTabBarItem(
+            TBIrregularityContentView(),
+            title: nil,
+            image: UIImage(named: "tab_btc_big"),
+            selectedImage: UIImage(named: "tab_btc_big"))
+        
+        setting.tabBarItem = ESTabBarItem(
+            TBBouncesContentView(),
+            title: "Setting",
+            image: UIImage(named: "tab_setting_normal"),
+            selectedImage: UIImage(named: "tab_setting_normal"))
+        
+        tabBarController.viewControllers = [wallet, center, setting]
+        
+        return tabBarController
+    }()
 }

@@ -30,13 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setForegroundColor(UIColor.white)
         SVProgressHUD.setAnimatedViewColor(UIColor.white)
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.custom)
-        SVProgressHUD.setMinimumDismissTimeInterval(5)
+        SVProgressHUD.setMinimumDismissTimeInterval(1)
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         self.setupSVProgressHUDStyle()
         
+        self.window!.rootViewController = TabBarViewController.walletTab
         //开启icloud同步
         //RealmDBHelper.shared.iCloudEnable = true
         

@@ -10,6 +10,15 @@ import Foundation
 
 extension UITableView {
     
+    
+    /// 隐藏多余的空白行
+    func extraCellLineHidden() {
+        
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        self.tableFooterView = view
+    }
+    
     /**
      没有数据时显示提示
     */

@@ -15,15 +15,22 @@ class RootNavigationController: UINavigationController {
         self.setupNavigationBar()
     }
     
+    /// 配置导航栏背景
     func setupNavigationBar() {
-        self.navigationBar.setBackgroundImage(UIColor.imageWithColor(UIColor(hex: 0x2E3F53)), for: UIBarMetrics.default)
+        
+        let bgImg = UIImage(named: "navbar_bg")?.resizableImage(
+            withCapInsets: UIEdgeInsets.zero,
+            resizingMode: UIImageResizingMode.stretch)
+        
+        self.navigationBar.setBackgroundImage(bgImg,
+                                              for: UIBarMetrics.default)
         self.navigationBar.isTranslucent = false
         
         //文字颜色
         self.navigationBar.tintColor = UIColor.white
         self.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17)
+            NSFontAttributeName: UIFont(name: "Menlo-Bold", size: 17)!
         ]
         UINavigationBar.appearance().tintColor = UIColor.white
         self.navigationBar.shadowImage = UIImage()

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftQRCode
 
 class ExportKeyViewController: BaseViewController {
 

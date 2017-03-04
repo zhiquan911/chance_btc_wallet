@@ -24,7 +24,13 @@ class BTCSendViewController: UITableViewController {
     var fee: BTCAmount = 10000
     var address = ""
     var actualTotal: BTCAmount!
-    var availableTotal: BTCAmount!
+    var availableTotal: BTCAmount {
+        guard let ub = self.btcAccount.userBalance else {
+            return 0
+        }
+        let balance = BTCAmount(ub.balanceSat + ub.unconfirmedBalanceSat)
+        return balance
+    }
     var btcAccount: CHBTCAcount!
     var changeAddress: BTCAddress {
         return self.btcAccount.address

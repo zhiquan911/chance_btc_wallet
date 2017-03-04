@@ -15,7 +15,7 @@ extension UIViewController {
      */
     func ch_setupNavigationBar() {
         //配置返回按钮文字
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back".localized(), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
     }
 }

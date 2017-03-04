@@ -87,7 +87,7 @@ protocol RemoteService {
      获取账户交易数据列表接口
      */
     func userTransactions(address: String, from: String, to: String, limit: String,
-        callback: @escaping (MessageModule, [UserTransaction], PageModule?) -> Void)
+        callback: @escaping (MessageModule, UserBalance?, [UserTransaction], PageModule?) -> Void)
     
     /**
      获取用户未花交易记录

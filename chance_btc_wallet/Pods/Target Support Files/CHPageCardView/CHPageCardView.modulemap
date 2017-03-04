@@ -1,0 +1,6 @@
+framework module CHPageCardView {
+  umbrella header "CHPageCardView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -113,6 +113,10 @@ class CHBTCWallet: NSObject {
         return fileName
     }
     
+    
+    /// 用于记录钱包是否存在数据，第一次执行checkBTCWalletExist后如果存在就赋值true。
+    var isBTCWalletExist = false
+    
     // MARK: - 类方法
     
     //全局唯一实例
@@ -204,22 +208,31 @@ class CHBTCWallet: NSObject {
      */
     class func checkBTCWalletExist() -> Bool {
         let wallet = CHBTCWallet.sharedInstance
+        
+        //如果缓存值为false才检查数据库文件
+        guard wallet.isBTCWalletExist == false else {
+            return wallet.isBTCWalletExist
+        }
+        
         //1.检查钱包种子在不在
         guard wallet.seedHash != nil else {
-            return false
+            wallet.isBTCWalletExist = false
+            return wallet.isBTCWalletExist
         }
         
         //2.检查账户体系数据库文件在不在
         guard RealmDBHelper.shared.checkRealmForWalletExist(wallet: wallet) else {
-            return false
+            wallet.isBTCWalletExist = false
+            return wallet.isBTCWalletExist
         }
         
         //3.检查账户是否存在
         guard wallet.getAccounts().count > 0 else {
-            return false
+            wallet.isBTCWalletExist = false
+            return wallet.isBTCWalletExist
         }
-        
-        return true
+        wallet.isBTCWalletExist = true
+        return wallet.isBTCWalletExist
     }
     
     // MARK: - 内部方法
@@ -457,6 +470,25 @@ class CHBTCWallet: NSObject {
     func getAccount(by index: Int = 0) -> CHBTCAcount? {
         let account = CHBTCAcount.getBTCAccount(by: index)
         let childKeys = self.rootKeys.derivedKeychain(at: UInt32(index),
+                                                      hardened: true)
+        account?.btcKeychain = childKeys
+        return account
+    }
+    
+    /**
+     获取HD账户，目前钱包默认一个
+     
+     - parameter index: 家族中第几个
+     
+     - returns:
+     */
+    func getSelectedAccount() -> CHBTCAcount? {
+        guard self.selectedAccountIndex >= 0 else {
+            return nil
+        }
+        
+        let account = CHBTCAcount.getBTCAccount(by: self.selectedAccountIndex)
+        let childKeys = self.rootKeys.derivedKeychain(at: UInt32(self.selectedAccountIndex),
                                                       hardened: true)
         account?.btcKeychain = childKeys
         return account

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6Zf-pD-0m7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6Zf-pD-0m7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,44 +19,19 @@
                     </tabBar>
                     <connections>
                         <segue destination="MGm-Nx-nex" kind="presentation" id="WeV-jt-PeT"/>
-                        <segue destination="T7Z-iL-J6c" kind="relationship" relationship="viewControllers" id="vwd-lp-hAL"/>
-                        <segue destination="NMG-5r-nRC" kind="relationship" relationship="viewControllers" id="SvQ-mL-ZeV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8F6-ao-P6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2391" y="-146"/>
         </scene>
-        <!--Wallet-->
-        <scene sceneID="Oyt-iF-Wyq">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Wallet" id="T7Z-iL-J6c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Wallet" image="menu_ico_asset" id="Jxd-T2-a83"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iS1-F6-Ytv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1798" y="-299"/>
-        </scene>
-        <!--Setting-->
-        <scene sceneID="rhF-9l-XwY">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Setting" id="NMG-5r-nRC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="eJn-Du-LjV"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="m9V-OE-rii" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1790" y="-147"/>
-        </scene>
         <!--Welcome-->
         <scene sceneID="MlX-6Q-Per">
             <objects>
-                <viewControllerPlaceholder storyboardName="Welcome" id="MGm-Nx-nex" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LOm-PS-PQM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Welcome" id="MGm-Nx-nex" sceneMemberID="viewController"/>
             </objects>
             <point key="canvasLocation" x="-1798" y="-526"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="menu_ico_asset" width="25" height="25"/>
-    </resources>
 </document>
