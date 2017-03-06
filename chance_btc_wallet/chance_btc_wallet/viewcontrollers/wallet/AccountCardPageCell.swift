@@ -82,7 +82,6 @@ extension AccountCardPageCell {
     ///   - currencyType: 余额的货币种类
     ///   - exCurrencyType: 换算的法币种类
     func configAccountCell(account: CHBTCAcount,
-                           userBalance: UserBalance?,
                            currencyType: CurrencyType,
                            exCurrencyType: CurrencyType) {
   
@@ -105,10 +104,10 @@ extension AccountCardPageCell {
         }
         
         //余额数据和账户地址相匹配才更新
-        if let ub = userBalance, ub.address == account.address.string {
+        if let ub = account.userBalance, ub.address == account.address.string {
             
-            self.labelBalanceValue.text = (userBalance!.balanceSat + userBalance!.unconfirmedBalanceSat).toString()
-            self.labelMoneyValue.text = userBalance?.getLegalMoney(price: 9000).toString(maxF: 2)
+            self.labelBalanceValue.text = BTCAmount.stringWithSatoshiInBTCFormat(Int64(ub.balanceSat + ub.unconfirmedBalanceSat))
+            self.labelMoneyValue.text = ub.getLegalMoney(price: 9000).toString(maxF: 2)
             
             self.labelBalanceValue.textColor = UIColor.white
             self.labelMoneyValue.textColor = UIColor.white

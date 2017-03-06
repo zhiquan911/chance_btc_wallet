@@ -23,7 +23,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="4GW-z0-cv2">
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="170"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDM-rB-5Bo">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDM-rB-5Bo" customClass="UIControl">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="170"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_single" translatesAutoresizingMaskIntoConstraints="NO" id="LjF-EV-OzO">
@@ -61,8 +61,11 @@
                                             <constraint firstItem="LjF-EV-OzO" firstAttribute="leading" secondItem="NDM-rB-5Bo" secondAttribute="leading" constant="-6" id="VR4-vD-mqU"/>
                                             <constraint firstItem="5IR-tw-ztK" firstAttribute="top" secondItem="Zns-6t-CJR" secondAttribute="bottom" constant="6" id="b8u-EU-lFn"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="handleNormalAccountPressWithSender:" destination="1Pf-r4-jm9" eventType="touchUpInside" id="4Kv-Rs-lmb"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLg-ua-Qbc">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLg-ua-Qbc" customClass="UIControl">
                                         <rect key="frame" x="140" y="0.0" width="140" height="170"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_multi" translatesAutoresizingMaskIntoConstraints="NO" id="XHO-Jo-06e">
@@ -100,6 +103,9 @@
                                             <constraint firstItem="lXv-GL-wkZ" firstAttribute="centerX" secondItem="kLg-ua-Qbc" secondAttribute="centerX" id="WVz-1s-K44"/>
                                             <constraint firstItem="lXv-GL-wkZ" firstAttribute="top" secondItem="JHl-yM-P1j" secondAttribute="bottom" constant="4" id="n1o-aA-azx"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="handleMultisIGAccountPressWithSender:" destination="1Pf-r4-jm9" eventType="touchUpInside" id="yN3-qA-afV"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                             </stackView>

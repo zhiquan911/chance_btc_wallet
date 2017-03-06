@@ -18,6 +18,7 @@
 		C52ACB8E1DEECF2B00E79C5C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */; };
 		C54724D01DFFE6A9003DE322 /* CloudUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54724CF1DFFE6A9003DE322 /* CloudUtils.swift */; };
 		C54D1ACB1DEDB119008913CC /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C54D1AC91DEDB119008913CC /* Account.storyboard */; };
+		C54E0F951E6D3287006BECA9 /* UserTransactionSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54E0F941E6D3287006BECA9 /* UserTransactionSectionHeader.xib */; };
 		C54F0F4E1E67F27F00347D7E /* AccountCreateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54F0F4C1E67F27F00347D7E /* AccountCreateCell.swift */; };
 		C54F0F4F1E67F27F00347D7E /* AccountCreateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54F0F4D1E67F27F00347D7E /* AccountCreateCell.xib */; };
 		C57C452E1E69609C000FAEAF /* WalletRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57C452D1E69609C000FAEAF /* WalletRefreshHeaderAnimator.swift */; };
@@ -223,6 +224,7 @@
 		C52ACB8D1DEECF2B00E79C5C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C54724CF1DFFE6A9003DE322 /* CloudUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudUtils.swift; sourceTree = "<group>"; };
 		C54D1ACA1DEDB119008913CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Account.storyboard; sourceTree = "<group>"; };
+		C54E0F941E6D3287006BECA9 /* UserTransactionSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTransactionSectionHeader.xib; sourceTree = "<group>"; };
 		C54F0F4C1E67F27F00347D7E /* AccountCreateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCreateCell.swift; sourceTree = "<group>"; };
 		C54F0F4D1E67F27F00347D7E /* AccountCreateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountCreateCell.xib; sourceTree = "<group>"; };
 		C57C452D1E69609C000FAEAF /* WalletRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
@@ -1128,6 +1130,7 @@
 				C54F0F4C1E67F27F00347D7E /* AccountCreateCell.swift */,
 				C54F0F4D1E67F27F00347D7E /* AccountCreateCell.xib */,
 				C57C452D1E69609C000FAEAF /* WalletRefreshHeaderAnimator.swift */,
+				C54E0F941E6D3287006BECA9 /* UserTransactionSectionHeader.xib */,
 			);
 			name = component;
 			sourceTree = "<group>";
@@ -1298,6 +1301,7 @@
 				C5E3F18C1E6132E300E10593 /* TsukushiAMaruGothic.ttc in Resources */,
 				C5F4CBF21E67C87500821600 /* AccountCardPageCell.xib in Resources */,
 				C5EAEF9A1DE6C55800324B60 /* Welcome.storyboard in Resources */,
+				C54E0F951E6D3287006BECA9 /* UserTransactionSectionHeader.xib in Resources */,
 				C588718B1DE3F3E600C45B43 /* SVProgressHUD.bundle in Resources */,
 				C5EAEF941DE6C52400324B60 /* Setting.storyboard in Resources */,
 			);

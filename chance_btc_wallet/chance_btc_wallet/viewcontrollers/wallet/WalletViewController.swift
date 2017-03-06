@@ -24,6 +24,7 @@ class WalletViewController: BaseViewController {
     @IBOutlet var pageCardView: CHPageCardView!
     
     let kHeightOfUserMenuCell: CGFloat = 50       //选择账户的高度
+    let kAutoRefreshTime: TimeInterval = 60.0
     
 //    var dropdownView: LMDropdownView!
     var userName = ""
@@ -55,6 +56,9 @@ class WalletViewController: BaseViewController {
             selector: #selector(self.reloadAllWalletAcount),
             name: NSNotification.Name(rawValue: "reloadAllWalletAcount"),
             object: nil)
+        
+        //初始化完成后把刷新过期重置为过期，让列表自动刷新
+        self.tableViewTransactions.expriedTimeInterval = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,21 +67,28 @@ class WalletViewController: BaseViewController {
         //隐藏系统导航栏
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
+        //【1】刷新钱包用户列表，可能有新增修改
+        self.reloadAllWalletAcount()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         
         //创建刷新定时器，获取最新的交易记录
 //        if self.refreshTimer == nil {
 //            self.refreshTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.updateUserWallet), userInfo: nil, repeats: true)
 //        }
         
-        //【1】刷新钱包用户列表，可能有新增修改
-        self.reloadAllWalletAcount()
+        //在全部视图完成显示后，可以手动执行切换
+        let selectedIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
+        if selectedIndex >= 0 {
+            self.pageCardView.scroll(toIndex: selectedIndex, animated: false)
+        }
         
         //【2】下拉刷新，获取最新的余额和交易记录
         self.tableViewTransactions.es_autoPullToRefresh()
+        
+        //【3】刷新设置定时X秒过期才执行
+        self.tableViewTransactions.expriedTimeInterval = kAutoRefreshTime
         
     }
     
@@ -130,6 +141,10 @@ extension WalletViewController {
             UINib(nibName: AccountCreateCell.cellIdentifier, bundle: nil),
                                    forCellWithReuseIdentifier: AccountCreateCell.cellIdentifier)
         
+        //列表分区头
+        self.tableViewTransactions.register(
+            UINib(nibName: UserTransactionSectionHeader.cellIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: UserTransactionSectionHeader.cellIdentifier)
+        
         //默认取xib组件上设置的值，但也可以使用代码设置每个单元格的尺寸
         //self.pageCardView.fixCellSize = CGSize(width: 260, height: 170)
         
@@ -147,7 +162,8 @@ extension WalletViewController {
     /// 添加下拉刷新组件
     func addPullRefreshComponent() {
         
-        self.tableViewTransactions.es_addPullToRefresh {
+        let header = WalletRefreshHeaderAnimator(frame: CGRect.zero)
+        self.tableViewTransactions.es_addPullToRefresh(animator: header) {
             [weak self] in
             self?.refresh()
         }
@@ -157,7 +173,6 @@ extension WalletViewController {
         }
         
         self.tableViewTransactions.refreshIdentifier = "Wallet"
-        self.tableViewTransactions.expriedTimeInterval = 60.0
         
     }
     
@@ -204,9 +219,6 @@ extension WalletViewController {
         
         //在全部视图完成显示后，可以手动执行切换
         let selectedIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
-        if selectedIndex >= 0 {
-            self.pageCardView.scroll(toIndex: selectedIndex, animated: false)
-        }
         
         //更新当前选中用户的信息
         self.updateUserWallet(account: self.walletAccounts[selectedIndex])
@@ -240,8 +252,23 @@ extension WalletViewController {
         nodeServer.userBalance(address: self.address) {
             (message, userBalance) -> Void in
             if message.code == ApiResultCode.Success.rawValue {
-//                self.balance = Int64(userBalance.balanceSat) + Int64(userBalance.unconfirmedBalanceSat)
                 self.userBalance = userBalance
+                self.currentAccount?.userBalance = userBalance
+                
+                //更新卡片余额
+                let selectedIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
+                self.pageCardView.reloadItems(at: selectedIndex, animated: false)
+                
+                //更新section的header信息，如果当前列表没有刷新，因为列表刷新就会把header刷新
+                /*
+                if let isRefreshing = self.tableViewTransactions.es_header?.isRefreshing, !isRefreshing {
+                    let view = self.tableViewTransactions.headerView(forSection: 0) as? UserTransactionSectionHeader
+                    view?.configSectionHeader(account: self.currentAccount,
+                                              currencyType: self.currencyType,
+                                              exCurrencyType: self.exCurrencyType)
+                }
+                */
+                
             }
             
         }
@@ -258,18 +285,22 @@ extension WalletViewController {
         let nodeServer = CHWalletWrapper.selectedBlockchainNode.service
         nodeServer.userTransactions(
         address: self.address, from: from.toString(), to: to.toString(), limit: limit.toString()) {
-            (message, userBalance, userTransactions, page) -> Void in
+            (message, searchAddress, userBalance, userTransactions, page) -> Void in
             if message.code == ApiResultCode.Success.rawValue {
                 
                 //因为异步加载，可能会出现如果最后返回的账户不是本地选中的，就不更新数据
                 
-                //更新余额
-                if userBalance != nil && userBalance!.address == self.address {
-                    self.userBalance = userBalance
-                    self.currentAccount?.userBalance = userBalance
-                    //更新卡片余额
-                    let selectedIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
-                    self.pageCardView.reloadItems(at: selectedIndex, animated: false)
+                if searchAddress == self.address {
+                    
+                    //更新余额
+                    if userBalance != nil {
+                        self.userBalance = userBalance
+                        self.currentAccount?.userBalance = userBalance
+                        
+                        //更新卡片余额
+                        let selectedIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
+                        self.pageCardView.reloadItems(at: selectedIndex, animated: false)
+                    }
                     
                     if (isRefresh) {
                         //清空数组
@@ -278,6 +309,7 @@ extension WalletViewController {
                     }
                     self.transactions.append(contentsOf: userTransactions)
                     self.tableViewTransactions.reloadData()
+                    
                 }
                 
                 
@@ -389,7 +421,7 @@ extension WalletViewController {
      选择何种账户类型创建
      Normal Account：普通的HDM单签账户，由其私钥完全控制。
      Multi-Sig Account：多重签名合约账户，由联合的公钥组成的一个赎回脚本导出的地址。
-     */
+ 
     func showCreateAccountTypeMenu() {
         let actionSheet = UIAlertController(title: "Create new account".localized(), message: "Which account type you need".localized(), preferredStyle: UIAlertControllerStyle.actionSheet)
         
@@ -413,7 +445,7 @@ extension WalletViewController {
         
         self.present(actionSheet, animated: true, completion: nil)
     }
-    
+    */
     
     /// 进入HDM账户创建界面
     func gotoCreateHDMAccount() {
@@ -440,6 +472,11 @@ extension WalletViewController {
 extension WalletViewController {
     
     func refresh() {
+        
+        let nodeServer = CHWalletWrapper.selectedBlockchainNode
+        if !nodeServer.isBalanceInTransactions {
+            self.getUserAccountByWebservice()
+        }
         
         self.page.pageIndex = 0
         self.page.pageSize = 10
@@ -493,6 +530,17 @@ extension WalletViewController: CHPageCardViewDelegate {
                 for: index
                 ) as! AccountCreateCell
             
+            //配置控制器两个方法
+            cell.normalAccountPress = {
+                (pressCell) -> Void in
+                self.gotoCreateHDMAccount()
+            }
+            
+            cell.multiSigAccountPress = {
+                (pressCell) -> Void in
+                self.gotoCreateMultiSigView()
+            }
+            
             return cell
             
         } else {
@@ -503,9 +551,8 @@ extension WalletViewController: CHPageCardViewDelegate {
                 ) as! AccountCardPageCell
             
             let btcAccount = self.walletAccounts[index]
-            
+            btcAccount.userBalance = self.userBalance
             cell.configAccountCell(account: btcAccount,
-                                   userBalance: self.userBalance,
                                    currencyType: self.currencyType,
                                    exCurrencyType: self.exCurrencyType)
             
@@ -741,11 +788,11 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header: UserTransactionSectionHeader
-        header = tableView.dequeueReusableCell(withIdentifier: "UserTransactionSectionHeader") as! UserTransactionSectionHeader
-        if let ub = self.userBalance {
-            header.labelTotalReceived.text = "\(BTCAmount.stringWithSatoshiInBTCFormat(BTCAmount(ub.totalReceivedSat))) \(self.currencyType.rawValue)"
-            header.labelTxNum.text = "\(ub.txApperances)"
-        }
+        
+        header = tableView.dequeueReusableHeaderFooterView(withIdentifier: UserTransactionSectionHeader.cellIdentifier) as! UserTransactionSectionHeader
+        header.configSectionHeader(account: self.currentAccount,
+                                   currencyType: self.currencyType,
+                                   exCurrencyType: self.exCurrencyType)
         return header
     }
     

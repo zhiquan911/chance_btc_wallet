@@ -25,7 +25,7 @@ class BlockchainRemoteService: RemoteService {
     
     func userBalance(address: String, callback: @escaping (MessageModule, UserBalance) -> Void) {
         
-        let params = [
+        let params: [String: Any] = [
             "address": address
         ]
         
@@ -60,8 +60,8 @@ class BlockchainRemoteService: RemoteService {
         }
     }
     
-    func userTransactions(address: String, from: String, to: String, limit: String, callback: @escaping (MessageModule, UserBalance?, [UserTransaction], PageModule?) -> Void) {
-        let params = [
+    func userTransactions(address: String, from: String, to: String, limit: String, callback: @escaping (MessageModule, String, UserBalance?, [UserTransaction], PageModule?) -> Void) {
+        let params: [String: Any] = [
             "address": address
         ]
         
@@ -184,7 +184,7 @@ class BlockchainRemoteService: RemoteService {
                 userBalance.totalSentSat = data["total_sent"].intValue
                 userBalance.txApperances = data["n_tx"].intValue
             }
-            callback(message, userBalance, userTransactions, nil)
+            callback(message, address, userBalance, userTransactions, nil)
         }
     }
     
@@ -196,7 +196,7 @@ class BlockchainRemoteService: RemoteService {
      */
     func userUnspentTransactions(address: String,
         callback: @escaping (MessageModule, [UnspentTransaction]) -> Void) {
-            let params = [
+            let params: [String: Any] = [
                 "active": address
             ]
             
@@ -242,7 +242,7 @@ class BlockchainRemoteService: RemoteService {
      - parameter callback: 返回交易id
      */
     func sendTransaction(transactionHexString: String, callback: @escaping (MessageModule, String) -> Void) {
-        let params = [
+        let params: [String: Any] = [
             "tx": transactionHexString
         ]
         

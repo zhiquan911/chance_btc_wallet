@@ -25,12 +25,12 @@ class InsightRemoteService: RemoteService {
     
     func userBalance(address: String, callback: @escaping (MessageModule, UserBalance) -> Void) {
         
-        let params = [
+        let params: [String: Any] = [
             "address": address
         ]
         
         var url = apiUrl + "addr"
-        url.append("/\(address)")
+        url.append("/\(address)?noTxList=1")
         
         self.sendJsonRequest(url, method: .get, parameters: params) {
             (json, isCache) -> Void in
@@ -66,11 +66,14 @@ class InsightRemoteService: RemoteService {
         }
     }
     
-    func userTransactions(address: String, from: String, to: String, limit: String, callback: @escaping (MessageModule, UserBalance?, [UserTransaction], PageModule?) -> Void) {
-        let params = [
+    func userTransactions(address: String, from: String, to: String, limit: String, callback: @escaping (MessageModule, String, UserBalance?, [UserTransaction], PageModule?) -> Void) {
+        let params: [String: Any] = [
             "addrs": address,
             "from": from,
-            "to": to
+            "to": to,
+            "noAsm": 1,
+            "noScriptSig": 1,
+            "noSpent": 1,
         ]
         
         let url = apiUrl + "addrs/txs"
@@ -130,8 +133,9 @@ class InsightRemoteService: RemoteService {
                     
                     userTransactions.append(tx)
                 }
+                
             }
-            callback(message, nil, userTransactions, nil)
+            callback(message, address, nil, userTransactions, nil)
         }
     }
     
@@ -143,7 +147,7 @@ class InsightRemoteService: RemoteService {
      */
     func userUnspentTransactions(address: String,
         callback: @escaping (MessageModule, [UnspentTransaction]) -> Void) {
-            let params = [
+            let params: [String: Any] = [
                 "addrs": address
             ]
             
@@ -171,8 +175,9 @@ class InsightRemoteService: RemoteService {
                     tx.timestamp = dic["ts"].intValue
                     tx.confirmations = dic["confirmations"].intValue
                     tx.scriptPubKey = dic["scriptPubKey"].stringValue
-                    tx.amount = BTCAmount.satoshiWithStringInBTCFormat(
-                        String(format: "%.9f", dic["amount"].doubleValue))
+//                    tx.amount = BTCAmount.satoshiWithStringInBTCFormat(
+//                        String(format: "%.9f", dic["amount"].doubleValue))
+                    tx.amount = dic["satoshis"].int64
                     tx.confirmationsFromCache = dic["confirmationsFromCache"].boolValue
                     
                     unspentUserTransactions.append(tx)
@@ -190,7 +195,7 @@ class InsightRemoteService: RemoteService {
      - parameter callback: 返回交易id
      */
     func sendTransaction(transactionHexString: String, callback: @escaping (MessageModule, String) -> Void) {
-        let params = [
+        let params: [String: Any] = [
             "rawtx": transactionHexString
         ]
         

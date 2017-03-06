@@ -28,7 +28,7 @@ class UserTransactionCell: UITableViewCell {
 
 }
 
-class UserTransactionSectionHeader: UITableViewCell {
+class UserTransactionSectionHeader: UITableViewHeaderFooterView {
     
     @IBOutlet var labelTxNum: UILabel!
     @IBOutlet var labelTxNumTitle: UILabel!
@@ -36,10 +36,33 @@ class UserTransactionSectionHeader: UITableViewCell {
     @IBOutlet var labelTotalReceived: UILabel!
     @IBOutlet var labelTotalReceivedTitle: UILabel!
     
+    
+    class var cellIdentifier: String{
+        
+        return "UserTransactionSectionHeader"
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.backgroundView = UIView(frame: self.bounds)
+        self.backgroundView?.backgroundColor = UIColor(hex: 0xF1F2F7)
+        
         self.labelTxNumTitle.text = "Transactions：".localized()
         self.labelTotalReceivedTitle.text = "Total Received：".localized()
     }
     
+
+    
+    
+    func configSectionHeader(account: CHBTCAcount?,
+                             currencyType: CurrencyType,
+                             exCurrencyType: CurrencyType) {
+        
+        if let ub = account?.userBalance {
+            self.labelTotalReceived.text = "\(BTCAmount.stringWithSatoshiInBTCFormat(BTCAmount(ub.totalReceivedSat))) \(currencyType.rawValue)"
+            self.labelTxNum.text = "\(ub.txApperances)"
+        }
+    }
 }

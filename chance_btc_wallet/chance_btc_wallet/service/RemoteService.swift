@@ -50,6 +50,18 @@ enum BlockchainNode: String {
         }
     }
     
+    
+    /// 余额是否包含在交易中
+    var isBalanceInTransactions: Bool {
+        switch self {
+        case .blockchain_info:
+            return true
+        default:
+            return false
+        }
+
+    }
+    
     //所有节点数组
     static var allNodes: [BlockchainNode] {
         return [
@@ -85,9 +97,10 @@ protocol RemoteService {
     
     /**
      获取账户交易数据列表接口
+     UserBalance,blockchain.info的接口可以返回用户余额。
      */
     func userTransactions(address: String, from: String, to: String, limit: String,
-        callback: @escaping (MessageModule, UserBalance?, [UserTransaction], PageModule?) -> Void)
+        callback: @escaping (MessageModule, String, UserBalance?, [UserTransaction], PageModule?) -> Void)
     
     /**
      获取用户未花交易记录

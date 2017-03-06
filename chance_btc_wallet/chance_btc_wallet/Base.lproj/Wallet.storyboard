@@ -77,7 +77,7 @@
             <objects>
                 <navigationController storyboardIdentifier="WalletRootViewController" id="Rzx-vF-sta" customClass="RootNavigationController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Wallet" image="menu_ico_asset" id="zh2-FL-I9i"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="u7M-O0-Kva">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="u7M-O0-Kva">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -138,65 +138,8 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTransactionSectionHeader" rowHeight="30" id="bfH-M5-ZIx" customClass="UserTransactionSectionHeader" customModule="chance_btc_wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bfH-M5-ZIx" id="U6A-nQ-dA9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transactions：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jni-8H-ymk">
-                                                    <rect key="frame" x="15" y="0.0" width="85" height="29"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfB-xI-kse">
-                                                    <rect key="frame" x="100" y="0.0" width="15" height="29"/>
-                                                    <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="12"/>
-                                                    <color key="textColor" red="0.25882352939999997" green="0.64705882349999999" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Received：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wd-kx-zmI">
-                                                    <rect key="frame" x="130" y="0.0" width="95" height="29"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="-- BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdD-C0-ILu">
-                                                    <rect key="frame" x="225" y="0.0" width="142" height="29"/>
-                                                    <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="12"/>
-                                                    <color key="textColor" red="0.25882352939999997" green="0.64705882349999999" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Jni-8H-ymk" firstAttribute="leading" secondItem="U6A-nQ-dA9" secondAttribute="leading" constant="15" id="5GB-WC-G5u"/>
-                                                <constraint firstItem="7Wd-kx-zmI" firstAttribute="leading" secondItem="zfB-xI-kse" secondAttribute="trailing" constant="15" id="8hV-4V-GFc"/>
-                                                <constraint firstItem="zfB-xI-kse" firstAttribute="leading" secondItem="Jni-8H-ymk" secondAttribute="trailing" id="Gal-Tj-Yty"/>
-                                                <constraint firstAttribute="trailing" secondItem="TdD-C0-ILu" secondAttribute="trailing" constant="8" id="J4k-Lj-v5U"/>
-                                                <constraint firstItem="TdD-C0-ILu" firstAttribute="leading" secondItem="7Wd-kx-zmI" secondAttribute="trailing" id="LUR-Fa-qim"/>
-                                                <constraint firstAttribute="bottom" secondItem="7Wd-kx-zmI" secondAttribute="bottom" id="PH3-Bq-ifG"/>
-                                                <constraint firstItem="TdD-C0-ILu" firstAttribute="leading" secondItem="7Wd-kx-zmI" secondAttribute="trailing" id="VJ6-0H-a7D"/>
-                                                <constraint firstItem="7Wd-kx-zmI" firstAttribute="top" secondItem="U6A-nQ-dA9" secondAttribute="top" id="ZRK-Yq-uzA"/>
-                                                <constraint firstItem="TdD-C0-ILu" firstAttribute="top" secondItem="U6A-nQ-dA9" secondAttribute="top" id="Zcw-Bn-RfD"/>
-                                                <constraint firstAttribute="bottom" secondItem="Jni-8H-ymk" secondAttribute="bottom" id="Zlh-Xb-aJa"/>
-                                                <constraint firstAttribute="bottom" secondItem="zfB-xI-kse" secondAttribute="bottom" id="n0d-Xb-DrQ"/>
-                                                <constraint firstItem="zfB-xI-kse" firstAttribute="top" secondItem="U6A-nQ-dA9" secondAttribute="top" id="nfE-u3-3Kr"/>
-                                                <constraint firstAttribute="bottom" secondItem="TdD-C0-ILu" secondAttribute="bottom" id="qWh-f4-e4K"/>
-                                                <constraint firstItem="Jni-8H-ymk" firstAttribute="top" secondItem="U6A-nQ-dA9" secondAttribute="top" id="sx1-zj-aHs"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.94509803921568625" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <outlet property="labelTotalReceived" destination="TdD-C0-ILu" id="1GO-Zf-Lb0"/>
-                                            <outlet property="labelTotalReceivedTitle" destination="7Wd-kx-zmI" id="fFN-5M-CXh"/>
-                                            <outlet property="labelTxNum" destination="zfB-xI-kse" id="0hx-6j-Qfc"/>
-                                            <outlet property="labelTxNumTitle" destination="Jni-8H-ymk" id="1q8-3j-TPi"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTransactionCell" rowHeight="80" id="e0P-pz-OuJ" customClass="UserTransactionCell" customModule="chance_btc_wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="58" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e0P-pz-OuJ" id="cBO-Vl-Jgn">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>

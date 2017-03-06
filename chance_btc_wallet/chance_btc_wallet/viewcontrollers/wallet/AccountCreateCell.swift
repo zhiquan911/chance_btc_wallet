@@ -15,6 +15,14 @@ class AccountCreateCell: UICollectionViewCell {
     @IBOutlet var bgView: UIView!
     @IBOutlet var viewCenterLine: UIView!
     
+    typealias NormalAccountPress =
+        (_ cell: AccountCreateCell) -> Void
+    var normalAccountPress: NormalAccountPress?
+    
+    typealias MultiSigAccountPress =
+        (_ cell: AccountCreateCell) -> Void
+    var multiSigAccountPress: MultiSigAccountPress?
+    
     class var cellIdentifier: String{
         
         return "AccountCreateCell"
@@ -50,6 +58,14 @@ class AccountCreateCell: UICollectionViewCell {
         //在执行layoutSubviews才渲染阴影路径，因为layoutSubviews里才能获取self.bounds的正确值
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 5).cgPath
         
+    }
+    
+    @IBAction func handleNormalAccountPress(sender: AnyObject?) {
+        self.normalAccountPress?(self)
+    }
+    
+    @IBAction func handleMultisIGAccountPress(sender: AnyObject?) {
+        self.multiSigAccountPress?(self)
     }
 
 }
