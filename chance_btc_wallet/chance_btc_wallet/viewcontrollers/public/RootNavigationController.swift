@@ -26,6 +26,7 @@ class RootNavigationController: UINavigationController {
                                               for: UIBarMetrics.default)
         self.navigationBar.isTranslucent = false
         
+        
         //文字颜色
         self.navigationBar.tintColor = UIColor.white
         self.navigationBar.titleTextAttributes = [

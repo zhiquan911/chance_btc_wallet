@@ -29,6 +29,13 @@ extension Int {
             self.init(0)
         }
     }
+    
+    /// 转为浮点型
+    ///
+    /// - Returns:
+    func toFloat() -> Float {
+        return Float(self)
+    }
 }
 
 
@@ -40,6 +47,14 @@ extension Int64 {
      */
     func toString() -> String {
         return String(self)
+    }
+    
+    
+    /// 转为浮点型
+    ///
+    /// - Returns: 
+    func toFloat() -> Float {
+        return Float(self)
     }
     
     /**

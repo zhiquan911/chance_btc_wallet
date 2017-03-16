@@ -8,14 +8,31 @@
 
 import UIKit
 
-class RestoreWalletViewController: BaseTableViewController {
+
+/// 恢复钱包操作
+///
+/// - initiativeRestore: 主动恢复（用户主动做恢复）
+/// - passiveRestore: 被动恢复（钱包首次启动，可以被动恢复）
+/// - lookupPassphrase: 查看秘密短语
+enum RestoreOperateType {
+    case initiativeRestore
+    case passiveRestore
+    case lookupPassphrase
+}
+
+class RestoreWalletViewController: BaseViewController {
     
     @IBOutlet var textViewRestore: CHTextView!
     
     @IBOutlet var buttonConfirm: CHButton!
     @IBOutlet var labelTips: UILabel!
+    @IBOutlet var viewStep: UIView!
+    @IBOutlet var labelPassphrases: UILabel!
     
-    var isRestore = false
+    @IBOutlet var viewStepHeightConstraint: NSLayoutConstraint!
+    
+    //var isRestore = false
+    var restoreOperateType: RestoreOperateType = .initiativeRestore
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,22 +61,32 @@ extension RestoreWalletViewController {
     func setupUI() {
         //默认不可用
         self.buttonConfirm.isEnabled = false
+        self.labelTips.text = "Passphases：".localized()
         
         //是否操作恢复钱包
-        if isRestore {
+        switch self.restoreOperateType {
+        case .initiativeRestore:
             self.buttonConfirm.isHidden = false
             self.labelTips.text = "Warning：Your current wallet will be removed if your confirm to restore that you inputed".localized()
             self.textViewRestore.isEditable = true
-            
-        } else {
+            self.viewStep.isHidden = true
+            self.viewStepHeightConstraint.constant = 20
+        case .passiveRestore:
+            self.buttonConfirm.isHidden = false
+            self.labelTips.text = "Only the correct passphrase and password can restore your expected wallet.Even if one character is different, it will be different wallet.(Note: Spaces between words)".localized()
+            self.textViewRestore.isEditable = true
+            self.viewStep.isHidden = false
+            self.viewStepHeightConstraint.constant = 80
+        default:
             self.buttonConfirm.isHidden = true
             //请写下密语，并安全保管好，不要随便给别人，以后钱包程序丢失，可通过密语恢复
             self.labelTips.text = "Please mark down this passphrase and safe keeping. Don't give them to anybody. You can restore wallet by this passphrase when you lose you wallet.".localized()
             
             self.textViewRestore.isEditable = false
+            self.viewStep.isHidden = true
+            self.viewStepHeightConstraint.constant = 20
             //显示恢复密语
             self.textViewRestore.text = CHBTCWallet.sharedInstance.passphrase
-            Log.debug("passphrase = \(self.textViewRestore.text!)")
         }
     }
     
@@ -209,11 +236,20 @@ extension RestoreWalletViewController {
     
     /// 离开当前界面
     func leave() {
-        if self.presentingViewController != nil {   //如果当前是一个present出来的view就dismiss
-            self.dismiss(animated: true, completion: nil)
-        } else {    //如果当前是一个导航控制堆栈里的，就pop
+        switch self.restoreOperateType {
+        case .passiveRestore:
+            
+            //进入成功界面
+            guard let vc = StoryBoard.welcome.initView(type: WelcomeSuccessViewController.self) else {
+                return
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        default:
             _ = self.navigationController?.popViewController(animated: true)
         }
+
         
     }
     

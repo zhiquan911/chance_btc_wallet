@@ -67,7 +67,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export account's private key " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sl-Uj-OcY">
-                                                    <rect key="frame" x="15" y="11" width="198.5" height="21"/>
+                                                    <rect key="frame" x="15" y="11" width="199" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="8vb-Lx-f4C"/>
                                                     </constraints>
@@ -90,7 +90,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export account's redeemScript" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPZ-hy-Odl">
-                                                    <rect key="frame" x="15" y="12" width="212.5" height="21"/>
+                                                    <rect key="frame" x="15" y="11" width="213" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="QRQ-dD-IDE"/>
                                                     </constraints>
@@ -117,7 +117,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export wallet's passphases" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6a-46-XpI">
-                                                    <rect key="frame" x="15" y="12" width="185.5" height="21"/>
+                                                    <rect key="frame" x="15" y="11" width="186" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="MgG-Cf-OFj"/>
                                                     </constraints>
@@ -140,7 +140,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restore wallet by passphases" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8a-QW-ZuB">
-                                                    <rect key="frame" x="15" y="11" width="202.5" height="21"/>
+                                                    <rect key="frame" x="15" y="11" width="203" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="HHx-dP-C6T"/>
                                                     </constraints>
@@ -194,7 +194,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blockchain Node" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pV-th-AGp">
-                                                    <rect key="frame" x="15" y="11" width="115.5" height="21"/>
+                                                    <rect key="frame" x="15" y="11" width="116" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="8RE-Kw-0tN"/>
                                                     </constraints>
@@ -292,151 +292,13 @@
                         <segue destination="qR9-G9-txp" kind="show" id="qAT-bb-cWn">
                             <nil key="action"/>
                         </segue>
-                        <segue destination="RRh-7j-Nnd" kind="show" id="cab-Qe-jqZ"/>
                         <segue destination="CmH-Am-cLS" kind="show" id="AhI-v5-S7a"/>
+                        <segue destination="FB3-dq-PjY" kind="show" id="X7E-8G-jri"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSk-KE-Qh4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-538" y="670"/>
-        </scene>
-        <!--Restore Wallet View Controller-->
-        <scene sceneID="bVl-s5-Kup">
-            <objects>
-                <tableViewController storyboardIdentifier="RestoreWalletViewController" id="RRh-7j-Nnd" customClass="RestoreWalletViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="215" sectionHeaderHeight="28" sectionFooterHeight="28" id="kaJ-1b-yvU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="8KG-9L-HdB">
-                            <rect key="frame" x="0.0" y="245" width="375" height="67"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ke7-uF-WZv" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
-                                    <rect key="frame" x="16" y="15" width="343" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="0zK-DY-PUM"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="9AE-5F-29b"/>
-                                        <constraint firstAttribute="height" constant="40" id="N0Y-c6-Uq4"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <state key="normal" title="Restore"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="5"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                            <real key="value" value="0.0"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="bgColorNormal">
-                                            <color key="value" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="bgColorDisabled">
-                                            <color key="value" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="0zK-DY-PUM"/>
-                                            <exclude reference="9AE-5F-29b"/>
-                                        </mask>
-                                    </variation>
-                                    <connections>
-                                        <action selector="handleRestorePress:" destination="RRh-7j-Nnd" eventType="touchUpInside" id="aAL-S0-7Se"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="Ke7-uF-WZv" firstAttribute="top" secondItem="8KG-9L-HdB" secondAttribute="top" constant="15" id="RFA-as-wE7"/>
-                                <constraint firstAttribute="trailing" secondItem="Ke7-uF-WZv" secondAttribute="trailing" constant="16" id="oOl-MM-hbp"/>
-                                <constraint firstItem="Ke7-uF-WZv" firstAttribute="leading" secondItem="8KG-9L-HdB" secondAttribute="leading" constant="16" id="xIQ-pH-rTc"/>
-                            </constraints>
-                        </view>
-                        <sections>
-                            <tableViewSection id="GO0-Bm-uy1">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="245" id="uE0-cv-bHG">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="245"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uE0-cv-bHG" id="PC8-P1-vZN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning：Your current wallet will be removed if your confirm to restore that you inputed" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZW-mp-yre">
-                                                    <rect key="frame" x="16" y="15" width="343" height="80"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="Uw1-Gr-bvd"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zAE-gP-czA" customClass="CHTextView" customModule="chance_btc_wallet" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="131" width="343" height="100"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="0to-z6-dL3"/>
-                                                    </constraints>
-                                                    <color key="textColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Input passphases to restore wallet"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="RRh-7j-Nnd" id="zpZ-qc-EDU"/>
-                                                    </connections>
-                                                </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passphases:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOc-Na-spk">
-                                                    <rect key="frame" x="16" y="105" width="81" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="ke5-dB-31S"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="fZW-mp-yre" secondAttribute="trailing" constant="16" id="3Hu-56-dVt"/>
-                                                <constraint firstItem="nOc-Na-spk" firstAttribute="top" secondItem="fZW-mp-yre" secondAttribute="bottom" constant="10" id="CwQ-It-bOz"/>
-                                                <constraint firstItem="zAE-gP-czA" firstAttribute="top" secondItem="nOc-Na-spk" secondAttribute="bottom" constant="5" id="Ime-L0-x19"/>
-                                                <constraint firstItem="fZW-mp-yre" firstAttribute="top" secondItem="PC8-P1-vZN" secondAttribute="top" constant="15" id="Jcc-IK-Q0y"/>
-                                                <constraint firstItem="nOc-Na-spk" firstAttribute="leading" secondItem="PC8-P1-vZN" secondAttribute="leading" constant="16" id="bY7-Vi-yaN"/>
-                                                <constraint firstItem="fZW-mp-yre" firstAttribute="leading" secondItem="PC8-P1-vZN" secondAttribute="leading" constant="16" id="fTl-Rd-qPO"/>
-                                                <constraint firstItem="zAE-gP-czA" firstAttribute="leading" secondItem="PC8-P1-vZN" secondAttribute="leading" constant="16" id="qj1-4o-Kyz"/>
-                                                <constraint firstAttribute="trailing" secondItem="zAE-gP-czA" secondAttribute="trailing" constant="16" id="tqJ-6g-iJf"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="RRh-7j-Nnd" id="7ye-bo-vBG"/>
-                            <outlet property="delegate" destination="RRh-7j-Nnd" id="siN-8J-5Ji"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="buttonConfirm" destination="Ke7-uF-WZv" id="qBq-hV-MRn"/>
-                        <outlet property="labelTips" destination="fZW-mp-yre" id="F76-TO-63F"/>
-                        <outlet property="textViewRestore" destination="zAE-gP-czA" id="umH-1Q-7tx"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2cb-XV-nUg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="342" y="670"/>
         </scene>
         <!--Export Key View Controller-->
         <scene sceneID="MFc-4y-gkQ">
@@ -451,21 +313,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ExD-Ri-bTS">
-                                <rect key="frame" x="87.5" y="94" width="200" height="200"/>
+                                <rect key="frame" x="88" y="94" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="3fz-KC-Y9l"/>
                                     <constraint firstAttribute="width" constant="200" id="4N3-qW-aA0"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="dGb-Le-nu8">
-                                <rect key="frame" x="42.5" y="344" width="290" height="120"/>
+                                <rect key="frame" x="43" y="344" width="290" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="VgR-dq-hUR"/>
                                     <constraint firstAttribute="width" constant="290" id="kkS-Se-nzO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="MyAddressMyAddress MyAddressMyAddress">
-                                    <color key="titleColor" red="1" green="0.34228771450000001" blue="0.08037103022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.1333333333" green="0.7725490196" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="handleAddressPress:" destination="682-x7-P55" eventType="touchUpInside" id="HjB-zu-JOH"/>
@@ -501,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VBC-Ao-uvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="342" y="-4"/>
+            <point key="canvasLocation" x="342" y="-93"/>
         </scene>
         <!--Password Setting View Controller-->
         <scene sceneID="2VO-Vc-0u6">
@@ -755,5 +617,216 @@
             </objects>
             <point key="canvasLocation" x="1230" y="1441"/>
         </scene>
+        <!--Restore Wallet View Controller-->
+        <scene sceneID="Hpa-vs-Btu">
+            <objects>
+                <viewController storyboardIdentifier="RestoreWalletViewController" id="FB3-dq-PjY" customClass="RestoreWalletViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rzT-fq-8vr"/>
+                        <viewControllerLayoutGuide type="bottom" id="OdN-r4-HVP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L0Q-8C-GNu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="KpI-uG-Cg2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQ4-TG-c8b">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_step_2_selected" translatesAutoresizingMaskIntoConstraints="NO" id="1NM-XT-wlZ">
+                                                <rect key="frame" x="177" y="30" width="21" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="21" id="CVh-fl-A00"/>
+                                                    <constraint firstAttribute="height" constant="21" id="I05-kU-LRp"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pZ8-wC-AxL">
+                                                <rect key="frame" x="198" y="40" width="60" height="1"/>
+                                                <color key="backgroundColor" red="0.75294117650000003" green="0.75294117650000003" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="5DJ-yy-ZWa"/>
+                                                    <constraint firstAttribute="height" constant="1" id="phi-Kc-zrl"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hnd-8V-YPu">
+                                                <rect key="frame" x="117" y="40" width="60" height="1"/>
+                                                <color key="backgroundColor" red="0.1333333333" green="0.7725490196" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="IEV-4s-U0h"/>
+                                                    <constraint firstAttribute="width" constant="60" id="ky2-Ib-2R3"/>
+                                                </constraints>
+                                            </view>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_step_3_normal" translatesAutoresizingMaskIntoConstraints="NO" id="b3M-SC-tqm">
+                                                <rect key="frame" x="258" y="30" width="21" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="HJ7-F1-DtY"/>
+                                                    <constraint firstAttribute="width" constant="21" id="LgP-97-FBf"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_step_1_selected" translatesAutoresizingMaskIntoConstraints="NO" id="BVa-Wc-4Cd">
+                                                <rect key="frame" x="96" y="30" width="21" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="YYu-cj-lm9"/>
+                                                    <constraint firstAttribute="width" constant="21" id="dXJ-ea-RGU"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="1NM-XT-wlZ" firstAttribute="leading" secondItem="BVa-Wc-4Cd" secondAttribute="trailing" constant="60" id="7ax-Uw-TNu"/>
+                                            <constraint firstItem="Hnd-8V-YPu" firstAttribute="centerY" secondItem="zQ4-TG-c8b" secondAttribute="centerY" id="82D-Ya-dLZ"/>
+                                            <constraint firstItem="1NM-XT-wlZ" firstAttribute="centerX" secondItem="zQ4-TG-c8b" secondAttribute="centerX" id="8dD-QM-dA4"/>
+                                            <constraint firstItem="BVa-Wc-4Cd" firstAttribute="centerY" secondItem="zQ4-TG-c8b" secondAttribute="centerY" id="9z2-LB-NgI"/>
+                                            <constraint firstItem="1NM-XT-wlZ" firstAttribute="leading" secondItem="Hnd-8V-YPu" secondAttribute="trailing" id="CWb-Uy-ZxH"/>
+                                            <constraint firstItem="b3M-SC-tqm" firstAttribute="leading" secondItem="1NM-XT-wlZ" secondAttribute="trailing" constant="60" id="FLK-iY-N87"/>
+                                            <constraint firstAttribute="height" constant="80" id="I87-C6-5ke"/>
+                                            <constraint firstItem="pZ8-wC-AxL" firstAttribute="centerY" secondItem="zQ4-TG-c8b" secondAttribute="centerY" id="J92-Qy-E1d"/>
+                                            <constraint firstItem="b3M-SC-tqm" firstAttribute="centerY" secondItem="zQ4-TG-c8b" secondAttribute="centerY" id="PJR-ln-eCw"/>
+                                            <constraint firstItem="pZ8-wC-AxL" firstAttribute="leading" secondItem="1NM-XT-wlZ" secondAttribute="trailing" id="SuQ-sJ-txe"/>
+                                            <constraint firstItem="1NM-XT-wlZ" firstAttribute="centerY" secondItem="zQ4-TG-c8b" secondAttribute="centerY" id="kyO-j4-yux"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1MK-M4-38g" customClass="CHView" customModule="chance_btc_wallet" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="80" width="359" height="305"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxK-1n-hk4">
+                                                <rect key="frame" x="20" y="15" width="319" height="67"/>
+                                                <string key="text">Please mark down this passphrase and safe keeping. Don’t give them to anybody. You can restore wallet by this passphrase when you lose you wallet.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.28627450980000002" green="0.74901960779999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4vb-ru-iJ5">
+                                                <rect key="frame" x="15" y="94" width="329" height="1"/>
+                                                <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="BpH-Ce-W4T"/>
+                                                </constraints>
+                                            </view>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="od7-jM-D3Z" customClass="CHTextView" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="140" width="319" height="80"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="yca-AW-GZg"/>
+                                                </constraints>
+                                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Input passphases to restore wallet"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="FB3-dq-PjY" id="Fnh-hh-8v5"/>
+                                                </connections>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ms-V9-SDQ" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="240" width="319" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="peq-Wn-NFT"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="Restore"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColorNormal">
+                                                        <color key="value" red="0.1333333333" green="0.81176470590000005" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColorDisabled">
+                                                        <color key="value" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="handleRestorePress:" destination="FB3-dq-PjY" eventType="touchUpInside" id="oKw-uA-ay4"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passphases：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFI-Dn-MyS">
+                                                <rect key="frame" x="20" y="107" width="319" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="l5C-XS-Uws"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="2Ms-V9-SDQ" firstAttribute="top" secondItem="od7-jM-D3Z" secondAttribute="bottom" constant="20" id="8QJ-h4-OQx"/>
+                                            <constraint firstAttribute="trailing" secondItem="od7-jM-D3Z" secondAttribute="trailing" constant="20" id="GZx-rm-tc7"/>
+                                            <constraint firstItem="od7-jM-D3Z" firstAttribute="leading" secondItem="1MK-M4-38g" secondAttribute="leading" constant="20" id="Lki-Kb-mGt"/>
+                                            <constraint firstAttribute="trailing" secondItem="jxK-1n-hk4" secondAttribute="trailing" constant="20" id="Nht-SI-T9Q"/>
+                                            <constraint firstItem="4vb-ru-iJ5" firstAttribute="leading" secondItem="1MK-M4-38g" secondAttribute="leading" constant="15" id="QCB-IQ-1Da"/>
+                                            <constraint firstItem="2Ms-V9-SDQ" firstAttribute="leading" secondItem="1MK-M4-38g" secondAttribute="leading" constant="20" id="Ru4-wy-0P2"/>
+                                            <constraint firstAttribute="trailing" secondItem="iFI-Dn-MyS" secondAttribute="trailing" constant="20" id="VPz-96-VbY"/>
+                                            <constraint firstItem="iFI-Dn-MyS" firstAttribute="top" secondItem="4vb-ru-iJ5" secondAttribute="bottom" constant="12" id="b2B-BV-xqt"/>
+                                            <constraint firstAttribute="bottom" secondItem="2Ms-V9-SDQ" secondAttribute="bottom" constant="25" id="fDz-VG-Eju"/>
+                                            <constraint firstItem="4vb-ru-iJ5" firstAttribute="top" secondItem="jxK-1n-hk4" secondAttribute="bottom" constant="12" id="h9m-6N-I8W"/>
+                                            <constraint firstAttribute="trailing" secondItem="4vb-ru-iJ5" secondAttribute="trailing" constant="15" id="hWB-i6-6KA"/>
+                                            <constraint firstItem="od7-jM-D3Z" firstAttribute="top" secondItem="iFI-Dn-MyS" secondAttribute="bottom" constant="12" id="hxa-gy-Xi4"/>
+                                            <constraint firstAttribute="trailing" secondItem="2Ms-V9-SDQ" secondAttribute="trailing" constant="20" id="meH-U9-aOs"/>
+                                            <constraint firstItem="iFI-Dn-MyS" firstAttribute="leading" secondItem="1MK-M4-38g" secondAttribute="leading" constant="20" id="to5-x1-rDu"/>
+                                            <constraint firstItem="jxK-1n-hk4" firstAttribute="leading" secondItem="1MK-M4-38g" secondAttribute="leading" constant="20" id="wzH-TU-Z3d"/>
+                                            <constraint firstItem="jxK-1n-hk4" firstAttribute="top" secondItem="1MK-M4-38g" secondAttribute="top" constant="15" id="xWy-cS-UxZ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="backgroudImage" value="bg_round_cell"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="zQ4-TG-c8b" secondAttribute="trailing" id="6oJ-VJ-en6"/>
+                                    <constraint firstItem="1MK-M4-38g" firstAttribute="width" secondItem="zQ4-TG-c8b" secondAttribute="width" constant="-16" id="BF8-fw-itR"/>
+                                    <constraint firstItem="1MK-M4-38g" firstAttribute="centerX" secondItem="KpI-uG-Cg2" secondAttribute="centerX" id="Omp-LT-BEy"/>
+                                    <constraint firstItem="zQ4-TG-c8b" firstAttribute="top" secondItem="KpI-uG-Cg2" secondAttribute="top" id="PKp-du-kgp"/>
+                                    <constraint firstAttribute="bottom" secondItem="1MK-M4-38g" secondAttribute="bottom" constant="30" id="W54-Y9-E4Q"/>
+                                    <constraint firstItem="1MK-M4-38g" firstAttribute="top" secondItem="zQ4-TG-c8b" secondAttribute="bottom" id="XZR-bK-Vsl"/>
+                                    <constraint firstItem="zQ4-TG-c8b" firstAttribute="leading" secondItem="KpI-uG-Cg2" secondAttribute="leading" id="p0x-16-ttP"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="OdN-r4-HVP" firstAttribute="top" secondItem="KpI-uG-Cg2" secondAttribute="bottom" id="40H-g8-XlK"/>
+                            <constraint firstAttribute="trailing" secondItem="KpI-uG-Cg2" secondAttribute="trailing" id="AO6-ub-HjP"/>
+                            <constraint firstItem="zQ4-TG-c8b" firstAttribute="width" secondItem="L0Q-8C-GNu" secondAttribute="width" id="Pga-Ge-Z6n"/>
+                            <constraint firstItem="KpI-uG-Cg2" firstAttribute="leading" secondItem="L0Q-8C-GNu" secondAttribute="leading" id="fdp-vz-W1O"/>
+                            <constraint firstItem="KpI-uG-Cg2" firstAttribute="top" secondItem="rzT-fq-8vr" secondAttribute="bottom" id="fhP-cJ-VoO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonConfirm" destination="2Ms-V9-SDQ" id="Lht-Kf-7Go"/>
+                        <outlet property="labelPassphrases" destination="iFI-Dn-MyS" id="zon-ZA-n4J"/>
+                        <outlet property="labelTips" destination="jxK-1n-hk4" id="Yn7-Hr-WgD"/>
+                        <outlet property="textViewRestore" destination="od7-jM-D3Z" id="YMr-24-4bN"/>
+                        <outlet property="viewStep" destination="zQ4-TG-c8b" id="7iG-Xw-t2p"/>
+                        <outlet property="viewStepHeightConstraint" destination="I87-C6-5ke" id="Nfu-fa-QeY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZFX-vM-DpT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="341.60000000000002" y="669.71514242878561"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="bg_round_cell" width="18" height="18"/>
+        <image name="icon_step_1_selected" width="21" height="21"/>
+        <image name="icon_step_2_selected" width="21" height="21"/>
+        <image name="icon_step_3_normal" width="20" height="20"/>
+    </resources>
 </document>

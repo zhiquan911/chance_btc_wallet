@@ -13,7 +13,11 @@ import ESPullToRefresh
 
 class WalletViewController: BaseViewController {
     
-    /// MARK: - 成员变量
+    // MARK: - 全局变量
+    static var selectedCardIndex = 0
+    static var scrollCardAnimated = false
+    
+    // MARK: - 成员变量
     @IBOutlet var labelUserName: UILabel!
     @IBOutlet var labelUserAccount: UILabel!
     @IBOutlet var viewUser: UIView!
@@ -59,6 +63,10 @@ class WalletViewController: BaseViewController {
         
         //初始化完成后把刷新过期重置为过期，让列表自动刷新
         self.tableViewTransactions.expriedTimeInterval = 0
+        
+        //初始View默认为系统记录的账户卡片
+        WalletViewController.selectedCardIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
+        WalletViewController.scrollCardAnimated = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,9 +87,10 @@ class WalletViewController: BaseViewController {
 //        }
         
         //在全部视图完成显示后，可以手动执行切换
-        let selectedIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
+        let selectedIndex = WalletViewController.selectedCardIndex
+        let scrollAnimated = WalletViewController.scrollCardAnimated
         if selectedIndex >= 0 {
-            self.pageCardView.scroll(toIndex: selectedIndex, animated: false)
+            self.pageCardView.scroll(toIndex: selectedIndex, animated: scrollAnimated)
         }
         
         //【2】下拉刷新，获取最新的余额和交易记录
@@ -101,8 +110,8 @@ class WalletViewController: BaseViewController {
         
         
         //停止定时器
-        self.refreshTimer?.invalidate()
-        self.refreshTimer = nil
+//        self.refreshTimer?.invalidate()
+//        self.refreshTimer = nil
     }
     
     deinit {
@@ -575,11 +584,17 @@ extension WalletViewController: CHPageCardViewDelegate {
     
     func pageCardView(_ pageCardView: CHPageCardView, didSelectIndexAt index: Int) {
         
+        //记录当前选中的card
+        WalletViewController.selectedCardIndex = index
+        
         if index == self.numberOfCards(in: pageCardView) - 1 {
             return
         }
+        
         let btcAccount = self.walletAccounts[index]
         self.updateUserWallet(account: btcAccount)
+        
+        
         
         //切换后更新选中账户的余额和交易记录，先停了旧的任务
         self.cancel(self.updateWalletTask)

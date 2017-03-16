@@ -16,20 +16,23 @@ class MultiSigInputKeyViewController: BaseViewController {
     var keyCount: Int = 0
     var requiredCount: Int = 0
     var publicKeys = [String]()
-    var selectedIndexPath: IndexPath?
+    var selectedIndexPath: IndexPath?   //用于记录点击了那行的按钮
     var userName: String!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
         self.initEmptyData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
 }
 
 // MARK: - 控制器方法
@@ -40,7 +43,7 @@ extension MultiSigInputKeyViewController {
      */
     func setupUI() {
         self.navigationItem.title = "Get PublicKeys".localized()
-    
+        
     }
     
     /**
@@ -62,6 +65,7 @@ extension MultiSigInputKeyViewController {
      - parameter sender:
      */
     @IBAction func handleConfirmPress(_ sender: AnyObject?) {
+        AppDelegate.sharedInstance().closeKeyBoard()
         if self.checkValue() {
             
             //创建多重签名账户
@@ -110,11 +114,9 @@ extension MultiSigInputKeyViewController {
     
     /**
      扫描二维码
-     
-     - parameter indexPath:
      */
-    func scanQRCode(_ indexPath: IndexPath) {
-        self.selectedIndexPath = indexPath
+    func scanQRCode() {
+        //self.selectedIndexPath = indexPath
         guard let vc = StoryBoard.wallet.initView(type: AddressScanViewController.self) else {
             return
         }
@@ -126,7 +128,7 @@ extension MultiSigInputKeyViewController {
      点击公钥文本
      
      - parameter indexPath:
-     */
+ 
     func cellTextPress(_ indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
         let actionSheet = UIAlertController(title: "Input publickey".localized(), message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -155,6 +157,28 @@ extension MultiSigInputKeyViewController {
         self.present(actionSheet, animated: true, completion: nil)
         
     }
+    */
+    
+    /// 处理粘贴公钥
+    ///
+    /// - Parameter sender:
+    func handlePaste() {
+        let pasteboard = UIPasteboard.general
+        if (pasteboard.string?.length ?? 0) > 0 {
+            
+            guard let indexPath = self.selectedIndexPath else {
+                return
+            }
+            
+            let row = indexPath.row - 1
+            self.publicKeys[row] = pasteboard.string!
+            
+            self.tableViewKeys.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+            
+        } else {
+            SVProgressHUD.showInfo(withStatus: "Clipboard is empty".localized())
+        }
+    }
 }
 
 
@@ -162,42 +186,96 @@ extension MultiSigInputKeyViewController {
 extension MultiSigInputKeyViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.keyCount - 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.keyCount + 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PublicKeyCell") as! CHPublicKeyCell
-        let publickey = self.publicKeys[indexPath.section]
-        if publickey != "" {
-            cell.labelPublickey.text = publickey
-            cell.labelPublickey.textColor = UIColor.black
+        let numOfRowsInSection = self.tableView(tableView, numberOfRowsInSection: indexPath.section)
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PublicKeyHeaderCell") as! CHPublicKeyHeaderCell
+            cell.labelTips.text = "The Multi-Sig account that you are creating now has include you key. You just need to input  other external keys that you required.".localized()
+            return cell
+        } else if indexPath.row == numOfRowsInSection - 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PublicKeyFooterCell") as! CHPublicKeyFooterCell
+            cell.buttonConfirm.setTitle("Create".localized(), for: .normal)
+            
+            cell.confirmPress = {
+                (pressCell) -> Void in
+                self.handleConfirmPress(nil)
+            }
+            
+            return cell
+            
         } else {
-            cell.labelPublickey.text = "Paste or scan other publickeys".localized()
-            cell.labelPublickey.textColor = UIColor.lightGray
+            let row = indexPath.row - 1
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PublicKeyCell") as! CHPublicKeyCell
+            
+            cell.labelTextPublickey.title = "Paste or scan other publickeys".localized()
+            cell.labelTextPublickey.placeholder = "e.g: xpub6CGxnmthv...8m3JWTJ".localized()
+            cell.labelTextPublickey.isEditable = false
+//            cell.labelTextPublickey.delegate = self
+            
+            let publickey = self.publicKeys[row]
+            if publickey != "" {
+                cell.labelTextPublickey.text = publickey
+            } else {
+                cell.labelTextPublickey.text = ""
+            }
+            
+            
+            cell.labelTextPublickey.accessoryPress = {
+                (lt) -> Void in
+                self.selectedIndexPath = tableView.indexPath(for: cell)
+                self.scanQRCode()
+            }
+            
+            cell.labelTextPublickey.textPress = {
+                (lt) -> Void in
+                self.selectedIndexPath = tableView.indexPath(for: cell)
+                let pasteItem = UIMenuItem(title: "Paste".localized(), action: #selector(self.handlePaste))
+                lt.buttonForText?.showUIMenu(items: [pasteItem], containerView: self.view)
+            }
+            
+            
+            return cell
         }
         
-        cell.scanBlock = {
-            (selectCell) -> Void in
-            let selectedIndexPath = tableView.indexPath(for: cell)
-            self.scanQRCode(selectedIndexPath!)
-        }
-        
-        cell.textPressBlock = {
-            (selectCell) -> Void in
-            let selectedIndexPath = tableView.indexPath(for: cell)
-            self.cellTextPress(selectedIndexPath!)
-        }
-
-        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.cellAddRoundStyle(tableView: tableView,
+                               indexPath: indexPath,
+                               bgImages: [
+                                UIImage(named:"bg_round_cell")!,
+                                UIImage(named:"bg_round_cell_up")!,
+                                UIImage(named:"bg_round_cell_down")!,
+                                UIImage(named:"bg_round_cell_mid")!,
+                                ],
+                               sidePadding: 8.0)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        let numOfRowsInSection = self.tableView(tableView, numberOfRowsInSection: indexPath.section)
+        if indexPath.row == 0 {
+            return 90
+        } else if indexPath.row == numOfRowsInSection - 1 {
+            return 85
+        } else {
+            return 68
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
     }
     
 }
@@ -207,9 +285,10 @@ extension MultiSigInputKeyViewController: UITableViewDelegate, UITableViewDataSo
 extension MultiSigInputKeyViewController: AddressScanViewDelegate {
     
     func didScanQRCodeSuccess(vc: AddressScanViewController, result: String) {
-        if selectedIndexPath != nil {
-            self.publicKeys[selectedIndexPath!.section] = result
-            self.tableViewKeys.reloadRows(at: [selectedIndexPath!], with: UITableViewRowAnimation.none)
+        if self.selectedIndexPath != nil {
+            self.publicKeys[self.selectedIndexPath!.section] = result
+            self.tableViewKeys.reloadRows(at: [self.selectedIndexPath!], with: UITableViewRowAnimation.none)
         }
     }
 }
+

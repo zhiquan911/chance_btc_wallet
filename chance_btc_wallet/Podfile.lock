@@ -1,9 +1,10 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.0.5)
   - Alamofire (4.4.0)
   - CHPageCardView (0.1.0)
   - CryptoSwift (0.6.7)
   - ESPullToRefresh (2.6)
-  - ESTabBarController-swift (2.2)
+  - ESTabBarController-swift (2.3)
   - IQKeyboardManagerSwift (4.0.6)
   - KeychainSwift (7.0.0)
   - LMDropdownView (1.0.3)
@@ -12,6 +13,7 @@ PODS:
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 2.0.5)
   - Alamofire (~> 4.0)
   - CHPageCardView (from `https://github.com/zhiquan911/CHPageCardView.git`, branch `master`)
   - CryptoSwift
@@ -35,11 +37,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/zhiquan911/CHPageCardView.git
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   CHPageCardView: 744d04a9a86cc2e732900291195b0037214d8db9
   CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
   ESPullToRefresh: 85f4990acf87f78c6a1466bbbee7a75d7de24db9
-  ESTabBarController-swift: c9abf50cbde98ad10732867ec9fbb5169661d844
+  ESTabBarController-swift: 23011ffbee6cd66a37309f00c7c21c9dd63c17de
   IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
   KeychainSwift: b6947435dd78cc442c64a84ae648dd0e871cf448
   LMDropdownView: f03fadfe65908c735580f63d04c47e6d7c5325f3
@@ -47,6 +50,6 @@ SPEC CHECKSUMS:
   Log: 5e368c9528db07517d18d2d04ff5fe2b6f5a1e21
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 25010f771236fc6b028e613e029841a87b654dda
+PODFILE CHECKSUM: f571c24758b4097feea5d806f03c78be853a64dc
 
 COCOAPODS: 1.2.0.beta.3

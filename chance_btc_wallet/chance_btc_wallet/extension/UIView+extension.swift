@@ -210,8 +210,37 @@ extension UIView {
             }
         }
     }
-
-    
-    
 }
+
+
+// MARK: - 使用原生的UIMenu式弹出自定义菜单栏
+extension UIView {
+    
+    
+    /// 弹出UIMenu式菜单
+    ///
+    /// - Parameters:
+    ///   - items: 菜单项
+    ///   - containerView: 弹出显示菜单时所在范围的容器（View）
+    func showUIMenu(items: [UIMenuItem], containerView: UIView) {
+        
+        //已经是第一响应就消除
+        if containerView.isFirstResponder {
+            containerView.resignFirstResponder()
+        }
+        
+        //把自己设置为第一响应才能弹出菜单
+        containerView.becomeFirstResponder()
+        
+        let menuController = UIMenuController.shared
+        menuController.menuItems = items
+        //设置 menu 的 frame和父 view
+        guard let newFrame = self.superview?.convert(self.frame, to: containerView) else {
+            return
+        }
+        menuController.setTargetRect(newFrame, in: containerView)
+        menuController.setMenuVisible(true, animated: true)
+    }
+}
+
 

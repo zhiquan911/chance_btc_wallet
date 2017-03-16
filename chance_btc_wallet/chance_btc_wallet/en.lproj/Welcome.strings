@@ -1,0 +1,39 @@
+
+/* Class = "UIButton"; normalTitle = "Change"; ObjectID = "4X3-ee-4Mo"; */
+"4X3-ee-4Mo.normalTitle" = "Change";
+
+/* Class = "UIButton"; normalTitle = "Use Bitcoin To Change World"; ObjectID = "Bgh-GK-bOo"; */
+"Bgh-GK-bOo.normalTitle" = "Use Bitcoin To Change World";
+
+/* Class = "UILabel"; text = "Restore wallet by passphrase"; ObjectID = "D3D-zc-Z0S"; */
+"D3D-zc-Z0S.text" = "Restore wallet by passphrase";
+
+/* Class = "UILabel"; text = "Create Account"; ObjectID = "EeP-Aj-vvg"; */
+"EeP-Aj-vvg.text" = "Create Account";
+
+/* Class = "UIButton"; normalTitle = "Create"; ObjectID = "Mde-e5-LqM"; */
+"Mde-e5-LqM.normalTitle" = "Create";
+
+/* Class = "UITextField"; placeholder = "Account's nickname"; ObjectID = "NtK-wx-fcZ"; */
+"NtK-wx-fcZ.placeholder" = "Account's nickname";
+
+/* Class = "UITextField"; placeholder = "Set wallet's password"; ObjectID = "R4y-La-gC4"; */
+"R4y-La-gC4.placeholder" = "Set wallet's password";
+
+/* Class = "UITextField"; placeholder = "Input wallet's password again"; ObjectID = "UER-cL-6xB"; */
+"UER-cL-6xB.placeholder" = "Input wallet's password again";
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "YxI-2v-zCD"; */
+"YxI-2v-zCD.normalTitle" = "Next";
+
+/* Class = "UILabel"; text = "Create Account"; ObjectID = "fEU-a1-82U"; */
+"fEU-a1-82U.text" = "Create Account";
+
+/* Class = "UIButton"; normalTitle = "Create"; ObjectID = "jgD-xP-Cd6"; */
+"jgD-xP-Cd6.normalTitle" = "Create";
+
+/* Class = "UILabel"; text = "Please mark down this passphrase and safe keeping. Don’t give them to anybody. You can restore wallet by this passphrase when you lose you wallet."; ObjectID = "sTC-Z6-6Ub"; */
+"sTC-Z6-6Ub.text" = "Please mark down this passphrase and safe keeping. Don’t give them to anybody. You can restore wallet by this passphrase when you lose you wallet.";
+
+/* Class = "UILabel"; text = "Your bitcoin wallet is created successful! "; ObjectID = "vCq-X0-tr4"; */
+"vCq-X0-tr4.text" = "Your bitcoin wallet is created successful! ";

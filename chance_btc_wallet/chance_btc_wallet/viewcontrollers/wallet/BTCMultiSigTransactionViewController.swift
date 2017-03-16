@@ -8,18 +8,30 @@
 
 import UIKit
 
+
+/*
+ 因为本钱包都是P2P的转账交易。
+ 所以待签名的交易单都是只有1个发送方和1个接收方。
+ 以后如果开发批量发送的交易单，将会以另一种界面形式呈现
+ */
 class BTCMultiSigTransactionViewController: UIViewController {
     
-    @IBOutlet var labelTransactionHex: UILabel!
+//    @IBOutlet var labelTransactionHex: UILabel!
     @IBOutlet var buttonSign: UIButton!
+    @IBOutlet var labelTextSender: CHLabelTextField!
+    @IBOutlet var labelTextReceiver: CHLabelTextField!
+    @IBOutlet var labelTextSignature: CHLabelTextField!
+    @IBOutlet var labelTextAmount: CHLabelTextField!
+//    @IBOutlet var labelTextFees: CHLabelTextField!
     
     var currentAccount: CHBTCAcount!
     var multiSigTx: MultiSigTransaction!
+    var currencyType: CurrencyType = .BTC
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        self.labelTransactionHex.text = self.multiSigTx.rawTx
+        self.showMutilSigTxToForm()
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,17 +50,54 @@ extension BTCMultiSigTransactionViewController {
      */
     func setupUI() {
         
-        self.navigationItem.title = "Complete signature".localized()
-        //配置返回按钮文字
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back".localized(), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.title = "Contract".localized()
+        
+        self.labelTextSender.title = "The Sender".localized()
+        self.labelTextReceiver.title = "The Receiver".localized()
+        self.labelTextAmount.title = "Transfer Amount".localized() + "(\(self.currencyType.rawValue))"
+//        self.labelTextFees.title = "Fees".localized() + "(\(self.currencyType.rawValue))"
+        self.labelTextSignature.title = "Signatures / Required Keys".localized()
+        
+        self.buttonSign.setTitle("Agree To Sign".localized(), for: .normal)
         
         
-        //按钮圆角
-        self.buttonSign.layer.cornerRadius = 3
-        self.buttonSign.layer.masksToBounds = true
-        self.buttonSign.setBackgroundImage(
-            UIColor.imageWithColor(UIColor(hex: 0xE10B17)),
-            for: UIControlState())
+    }
+    
+    
+    /// 解析多重签名交易协议成显示的表单内容
+    func showMutilSigTxToForm() {
+        guard let tx = BTCTransaction(hex: self.multiSigTx.rawTx) else {
+            //错误提示
+            return
+        }
+        
+        guard let rs = self.multiSigTx.redeemScriptHex.toBTCScript() else {
+            return
+        }
+        
+        
+        self.labelTextSender.text = rs.scriptHashAddress.string
+        
+        //转账数量 = 输出方的数量
+        if tx.outputs.count > 0 {
+            let output = tx.outputs[0] as! BTCTransactionOutput
+            self.labelTextReceiver.text = output.script.standardAddress.string
+            self.labelTextAmount.text = output.value.toBTC()
+        }
+        
+        
+        //签名进度
+        let signed = self.multiSigTx.keySignatures?.count ?? 0
+        let required = rs.requiredSignatures
+        let text = "\(signed) / \(required)"
+        self.labelTextSignature.text = text
+        
+        //已签的改为另一个颜色
+        let attributedStr = NSMutableAttributedString(string: text)
+        let newRange = NSMakeRange(0, signed.toString().length)
+        let colorDict: [String: AnyObject] = [NSForegroundColorAttributeName: UIColor(hex: 0xFF230D)]
+        attributedStr.addAttributes(colorDict, range: newRange)
+        self.labelTextSignature.textField?.attributedText = attributedStr
     }
     
     /**
@@ -105,6 +154,15 @@ extension BTCMultiSigTransactionViewController {
             _ = allSignData.appendData(BTCDataFromHex(sigHex))
         }
         return allSignData
+    }
+    
+    
+    /// 查找钱包中可以签名的账户
+    ///
+    /// - Returns: 返回是否找到账户?
+    func searchAccountToSign() ->  CHBTCAcount? {
+        
+        return nil
     }
     
     /**

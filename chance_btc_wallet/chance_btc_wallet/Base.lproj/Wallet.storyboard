@@ -77,7 +77,7 @@
             <objects>
                 <navigationController storyboardIdentifier="WalletRootViewController" id="Rzx-vF-sta" customClass="RootNavigationController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Wallet" image="menu_ico_asset" id="zh2-FL-I9i"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="u7M-O0-Kva">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="u7M-O0-Kva">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -282,8 +282,9 @@
                         <outlet property="tableViewTransactions" destination="jZz-Pa-lwT" id="l9l-bC-KEE"/>
                         <outlet property="viewUser" destination="T5j-8L-T54" id="0vG-Zb-V0g"/>
                         <segue destination="dln-zi-GfL" kind="presentation" id="cNk-zZ-rGV"/>
-                        <segue destination="8XK-yh-RZ5" kind="show" id="5fj-K5-z73"/>
                         <segue destination="FIT-Xp-7de" kind="show" id="FHG-0R-kKa"/>
+                        <segue destination="LYC-sx-CyX" kind="show" id="Xi8-oA-A2J"/>
+                        <segue destination="wkV-kr-bFR" kind="show" id="niF-Y9-Dk8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gvO-Lm-L6T" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -303,21 +304,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ycL-Qd-RjT">
-                                <rect key="frame" x="88" y="50" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="50" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="AFj-2v-45g"/>
                                     <constraint firstAttribute="height" constant="200" id="QQX-LH-G2J"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1vY-gX-R16">
-                                <rect key="frame" x="43" y="300" width="290" height="60"/>
+                                <rect key="frame" x="42.5" y="300" width="290" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="290" id="fpX-zP-TmF"/>
                                     <constraint firstAttribute="height" constant="60" id="tBe-PB-mlZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="MyAddressMyAddress MyAddressMyAddress">
-                                    <color key="titleColor" red="1" green="0.34228771450000001" blue="0.08037103022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.1333333333" green="0.7725490196" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="handleAddressPress:" destination="FIT-Xp-7de" eventType="touchUpInside" id="ALH-Fs-wNv"/>
@@ -356,481 +357,634 @@
             <point key="canvasLocation" x="-87" y="274"/>
         </scene>
         <!--Send View Controller-->
-        <scene sceneID="jtL-Ir-6KV">
+        <scene sceneID="Uhv-3M-znK">
             <objects>
-                <tableViewController storyboardIdentifier="BTCSendViewController" hidesBottomBarWhenPushed="YES" id="8XK-yh-RZ5" customClass="BTCSendViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" id="tKl-tm-xEk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableViewController storyboardIdentifier="BTCSendViewController" hidesBottomBarWhenPushed="YES" id="LYC-sx-CyX" customClass="BTCSendViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" id="bOG-Q8-VTL">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.94999998809999997" green="0.94999998809999997" blue="0.94999998809999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="47u-Jb-a23">
-                            <rect key="frame" x="0.0" y="220" width="375" height="70"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sd-Ew-Gu1" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="20" width="335" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="cmQ-bb-zzq"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <state key="normal" title="Send"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="5"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="bgColorNormal">
-                                            <color key="value" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="handleConfirmPress:" destination="8XK-yh-RZ5" eventType="touchUpInside" id="SOn-2l-a2H"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstItem="0Sd-Ew-Gu1" firstAttribute="top" secondItem="47u-Jb-a23" secondAttribute="top" constant="20" id="BZC-gD-Veg"/>
-                                <constraint firstItem="0Sd-Ew-Gu1" firstAttribute="leading" secondItem="47u-Jb-a23" secondAttribute="leading" constant="20" id="MuY-sx-gjs"/>
-                                <constraint firstAttribute="trailing" secondItem="0Sd-Ew-Gu1" secondAttribute="trailing" constant="20" id="eG1-QM-tMn"/>
-                            </constraints>
-                        </view>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
-                            <tableViewSection id="aF9-MX-G8O">
+                            <tableViewSection id="PCq-mw-iQo">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fGm-Zo-bwU">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="Obg-Le-N5i">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fGm-Zo-bwU" id="mdw-bX-zga">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Obg-Le-N5i" id="wbw-ae-pTR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_asset" translatesAutoresizingMaskIntoConstraints="NO" id="aHw-bB-7Gy">
-                                                    <rect key="frame" x="8" y="11" width="21" height="21"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2Y-nH-1r7" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                    <rect key="frame" x="23" y="12" width="329" height="68"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="17O-oh-VNK"/>
-                                                        <constraint firstAttribute="width" constant="21" id="Zdh-Xl-aMg"/>
+                                                        <constraint firstAttribute="height" constant="68" id="LaT-9w-jPK"/>
                                                     </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="414-jY-BMf">
-                                                    <rect key="frame" x="153" y="11" width="26" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="JWz-wQ-tTI"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="KHT-qd-VvK"/>
-                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="21" id="vOe-eb-WtB"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="KHT-qd-VvK"/>
-                                                            <exclude reference="vOe-eb-WtB"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avalible：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cew-8J-09J">
-                                                    <rect key="frame" x="37" y="11" width="60" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Sx5-zV-xvY"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="bNJ-iP-Au5"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="bNJ-iP-Au5"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2999.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3f-n5-U8P">
-                                                    <rect key="frame" x="97" y="11" width="52" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Anq-YF-vA0"/>
-                                                        <constraint firstAttribute="height" constant="21" id="yJl-pa-ZoW"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="Anq-YF-vA0"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Available(BTC)"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Total Avaliable Balance"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="accessoryImage" value="icon_bitcoin_gray"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="NO"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Cew-8J-09J" firstAttribute="centerY" secondItem="aHw-bB-7Gy" secondAttribute="centerY" id="3mX-fy-g0e"/>
-                                                <constraint firstItem="414-jY-BMf" firstAttribute="leading" secondItem="L3f-n5-U8P" secondAttribute="trailing" constant="4" id="3pY-go-qZK"/>
-                                                <constraint firstItem="Cew-8J-09J" firstAttribute="leading" secondItem="aHw-bB-7Gy" secondAttribute="trailing" constant="8" id="41G-Ch-lNO"/>
-                                                <constraint firstItem="L3f-n5-U8P" firstAttribute="centerY" secondItem="aHw-bB-7Gy" secondAttribute="centerY" id="I8S-sv-ftM"/>
-                                                <constraint firstItem="414-jY-BMf" firstAttribute="centerY" secondItem="aHw-bB-7Gy" secondAttribute="centerY" id="R8J-nN-I12"/>
-                                                <constraint firstItem="aHw-bB-7Gy" firstAttribute="leading" secondItem="mdw-bX-zga" secondAttribute="leading" constant="8" id="Yag-93-SxJ"/>
-                                                <constraint firstItem="L3f-n5-U8P" firstAttribute="centerY" secondItem="Cew-8J-09J" secondAttribute="centerY" id="cSt-BU-9bF"/>
-                                                <constraint firstItem="414-jY-BMf" firstAttribute="centerY" secondItem="Cew-8J-09J" secondAttribute="centerY" id="jjK-vg-I4q"/>
-                                                <constraint firstItem="L3f-n5-U8P" firstAttribute="leading" secondItem="Cew-8J-09J" secondAttribute="trailing" id="lXl-o2-kjk"/>
-                                                <constraint firstItem="aHw-bB-7Gy" firstAttribute="centerY" secondItem="mdw-bX-zga" secondAttribute="centerY" id="vXT-59-AZ8"/>
+                                                <constraint firstAttribute="bottom" secondItem="y2Y-nH-1r7" secondAttribute="bottom" id="87w-kN-Xed"/>
+                                                <constraint firstItem="y2Y-nH-1r7" firstAttribute="leading" secondItem="wbw-ae-pTR" secondAttribute="leading" constant="23" id="Oa3-SM-WsJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="y2Y-nH-1r7" secondAttribute="trailing" constant="23" id="fxn-sB-SNb"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="me5-jt-Zpy">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Sjs-A8-Loy">
-                                        <rect key="frame" x="0.0" y="90" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="yHb-8h-Wfb">
+                                        <rect key="frame" x="0.0" y="115" width="375" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sjs-A8-Loy" id="PzF-mX-GvV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yHb-8h-Wfb" id="9x7-Uo-nch">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_address_form" translatesAutoresizingMaskIntoConstraints="NO" id="175-rz-ecF">
-                                                    <rect key="frame" x="8" y="11" width="21" height="21"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdO-Fj-2YT" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                    <rect key="frame" x="23" y="0.0" width="329" height="68"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Bitcoin Address"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g: bitcoin:1abcd.. or 1abcd..."/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="accessoryImage" value="icon_scan_gray"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="NO"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mdO-Fj-2YT" firstAttribute="top" secondItem="9x7-Uo-nch" secondAttribute="top" id="61g-nF-MBv"/>
+                                                <constraint firstAttribute="bottom" secondItem="mdO-Fj-2YT" secondAttribute="bottom" id="BdC-cF-SFx"/>
+                                                <constraint firstAttribute="trailing" secondItem="mdO-Fj-2YT" secondAttribute="trailing" constant="23" id="cqx-kk-Q9u"/>
+                                                <constraint firstItem="mdO-Fj-2YT" firstAttribute="leading" secondItem="9x7-Uo-nch" secondAttribute="leading" constant="23" id="lCu-Rf-ebz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="ypU-mL-8wU">
+                                        <rect key="frame" x="0.0" y="183" width="375" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ypU-mL-8wU" id="Kvs-dX-6q0">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqZ-GN-Pwo" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                    <rect key="frame" x="23" y="0.0" width="329" height="68"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Transfer Amount(BTC)"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="0.0000"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gqZ-GN-Pwo" firstAttribute="leading" secondItem="Kvs-dX-6q0" secondAttribute="leading" constant="23" id="0F6-9Y-uym"/>
+                                                <constraint firstAttribute="trailing" secondItem="gqZ-GN-Pwo" secondAttribute="trailing" constant="23" id="CD2-Nk-2gg"/>
+                                                <constraint firstAttribute="bottom" secondItem="gqZ-GN-Pwo" secondAttribute="bottom" id="LDS-0u-NXc"/>
+                                                <constraint firstItem="gqZ-GN-Pwo" firstAttribute="top" secondItem="Kvs-dX-6q0" secondAttribute="top" id="Xm1-Z0-Z6f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="GU4-Tr-Fyl">
+                                        <rect key="frame" x="0.0" y="251" width="375" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GU4-Tr-Fyl" id="fjT-3d-KM2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gee-WU-eir" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                    <rect key="frame" x="23" y="0.0" width="329" height="68"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Fees(BTC)"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="0.0000"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="accessoryImage" value="icon_arrow_little"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Gee-WU-eir" secondAttribute="trailing" constant="23" id="LfZ-fC-owU"/>
+                                                <constraint firstItem="Gee-WU-eir" firstAttribute="top" secondItem="fjT-3d-KM2" secondAttribute="top" id="Xfx-Bb-s5V"/>
+                                                <constraint firstItem="Gee-WU-eir" firstAttribute="leading" secondItem="fjT-3d-KM2" secondAttribute="leading" constant="23" id="o2R-Vh-f72"/>
+                                                <constraint firstAttribute="bottom" secondItem="Gee-WU-eir" secondAttribute="bottom" id="rz4-DI-g4r"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="Ibz-Ju-VNJ">
+                                        <rect key="frame" x="0.0" y="319" width="375" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ibz-Ju-VNJ" id="KdQ-3w-xmi">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPj-9r-GAY" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                    <rect key="frame" x="23" y="0.0" width="329" height="68"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Actual Total(BTC)"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="0.0000"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="SPj-9r-GAY" secondAttribute="trailing" constant="23" id="GQS-32-ef0"/>
+                                                <constraint firstItem="SPj-9r-GAY" firstAttribute="top" secondItem="KdQ-3w-xmi" secondAttribute="top" id="OxP-Ca-aNH"/>
+                                                <constraint firstAttribute="bottom" secondItem="SPj-9r-GAY" secondAttribute="bottom" id="caY-lV-mca"/>
+                                                <constraint firstItem="SPj-9r-GAY" firstAttribute="leading" secondItem="KdQ-3w-xmi" secondAttribute="leading" constant="23" id="l4T-q9-Cld"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="IeU-zO-ntL">
+                                        <rect key="frame" x="0.0" y="387" width="375" height="85"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IeU-zO-ntL" id="Atw-px-9U9">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CO-3D-fi9" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                    <rect key="frame" x="28" y="20" width="319" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="fcr-0g-aU4"/>
-                                                        <constraint firstAttribute="width" constant="21" id="iMB-MI-x4r"/>
+                                                        <constraint firstAttribute="height" constant="40" id="PEC-ei-34o"/>
                                                     </constraints>
-                                                </imageView>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input btc address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="fcC-tQ-tbc">
-                                                    <rect key="frame" x="33" y="0.0" width="299" height="44"/>
-                                                    <gestureRecognizers/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" title="Send"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="bgColorNormal">
+                                                            <color key="value" red="0.1333333333" green="0.81176470590000005" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="ddH-Az-GkS" appends="YES" id="cZR-zy-ecT"/>
-                                                    </connections>
-                                                </label>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgD-oU-hOa">
-                                                    <rect key="frame" x="340" y="0.0" width="35" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="WLB-gS-yKf"/>
-                                                        <constraint firstAttribute="width" constant="35" id="xLy-RU-qRN"/>
-                                                    </constraints>
-                                                    <state key="normal" image="ico_more_address"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="WLB-gS-yKf"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <connections>
-                                                        <action selector="handleAddressMorePress:" destination="8XK-yh-RZ5" eventType="touchUpInside" id="UfV-Rz-Ana"/>
+                                                        <action selector="handleConfirmPress:" destination="LYC-sx-CyX" eventType="touchUpInside" id="v5t-Qq-abF"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="XgD-oU-hOa" firstAttribute="top" secondItem="PzF-mX-GvV" secondAttribute="top" id="2Ht-Qs-xXi"/>
-                                                <constraint firstItem="175-rz-ecF" firstAttribute="centerY" secondItem="PzF-mX-GvV" secondAttribute="centerY" id="2Rq-Wl-3Ra"/>
-                                                <constraint firstItem="175-rz-ecF" firstAttribute="leading" secondItem="PzF-mX-GvV" secondAttribute="leading" constant="8" id="MNp-pL-SSb"/>
-                                                <constraint firstItem="XgD-oU-hOa" firstAttribute="leading" secondItem="fcC-tQ-tbc" secondAttribute="trailing" constant="8" id="TmV-Ay-gys"/>
-                                                <constraint firstAttribute="bottom" secondItem="fcC-tQ-tbc" secondAttribute="bottom" id="eX1-Rc-j72"/>
-                                                <constraint firstAttribute="trailing" secondItem="fcC-tQ-tbc" secondAttribute="trailing" id="f7w-rY-rmU"/>
-                                                <constraint firstAttribute="trailing" secondItem="XgD-oU-hOa" secondAttribute="trailing" id="hat-ST-cA8"/>
-                                                <constraint firstItem="XgD-oU-hOa" firstAttribute="centerY" secondItem="175-rz-ecF" secondAttribute="centerY" id="n0M-oE-8w1"/>
-                                                <constraint firstItem="fcC-tQ-tbc" firstAttribute="top" secondItem="PzF-mX-GvV" secondAttribute="top" id="q6M-2h-9qh"/>
-                                                <constraint firstItem="fcC-tQ-tbc" firstAttribute="leading" secondItem="175-rz-ecF" secondAttribute="trailing" constant="4" id="qtu-pR-QIg"/>
-                                                <constraint firstAttribute="bottom" secondItem="XgD-oU-hOa" secondAttribute="bottom" id="rOP-PN-5iO"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="f7w-rY-rmU"/>
-                                                    <exclude reference="n0M-oE-8w1"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="hb0-Fy-yZU">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="HLk-CJ-rRv">
-                                        <rect key="frame" x="0.0" y="145" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HLk-CJ-rRv" id="0t5-UE-WRs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_payout_form" translatesAutoresizingMaskIntoConstraints="NO" id="1Ry-T1-hoA">
-                                                    <rect key="frame" x="8" y="12" width="21" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="21" id="N8H-UL-0NU"/>
-                                                        <constraint firstAttribute="height" constant="21" id="VNF-uH-JeL"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Input btc amount" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Q1I-E5-70U">
-                                                    <rect key="frame" x="37" y="7" width="330" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="7Ax-3f-Cnr"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="next"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="8XK-yh-RZ5" id="eja-52-VI6"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="1Ry-T1-hoA" firstAttribute="centerY" secondItem="0t5-UE-WRs" secondAttribute="centerY" id="5gU-Yh-ET2"/>
-                                                <constraint firstItem="1Ry-T1-hoA" firstAttribute="leading" secondItem="0t5-UE-WRs" secondAttribute="leading" constant="8" id="DPn-GO-4cp"/>
-                                                <constraint firstItem="1Ry-T1-hoA" firstAttribute="centerY" secondItem="0t5-UE-WRs" secondAttribute="centerY" id="QZ1-81-qNT"/>
-                                                <constraint firstItem="Q1I-E5-70U" firstAttribute="leading" secondItem="1Ry-T1-hoA" secondAttribute="trailing" constant="8" id="eFG-jI-O0L"/>
-                                                <constraint firstItem="Q1I-E5-70U" firstAttribute="centerY" secondItem="0t5-UE-WRs" secondAttribute="centerY" id="txr-TL-N8t"/>
-                                                <constraint firstAttribute="trailing" secondItem="Q1I-E5-70U" secondAttribute="trailing" constant="8" id="zOR-eW-YgO"/>
+                                                <constraint firstAttribute="trailing" secondItem="4CO-3D-fi9" secondAttribute="trailing" constant="28" id="ZdM-iy-iYt"/>
+                                                <constraint firstItem="4CO-3D-fi9" firstAttribute="leading" secondItem="Atw-px-9U9" secondAttribute="leading" constant="28" id="arD-fN-Wka"/>
+                                                <constraint firstItem="4CO-3D-fi9" firstAttribute="top" secondItem="Atw-px-9U9" secondAttribute="top" constant="20" id="cSa-F9-62j"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="30" id="Ew8-QR-xkc">
-                                        <rect key="frame" x="0.0" y="189" width="375" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ew8-QR-xkc" id="TX3-Yo-f6K">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_about_glay" translatesAutoresizingMaskIntoConstraints="NO" id="HHL-ci-Pbk">
-                                                    <rect key="frame" x="10" y="6" width="18" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="18" id="5J3-1a-P0o"/>
-                                                        <constraint firstAttribute="height" constant="18" id="nPZ-PM-q2a"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actual：--BTC，Fees：0.0001BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHz-xY-fMH">
-                                                    <rect key="frame" x="30" y="4" width="197" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="zhI-gX-LeT"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.39808627959999998" green="0.39808627959999998" blue="0.39808627959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nog-0q-vlb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
-                                                    <color key="backgroundColor" red="0.94117647059999998" green="0.94509803920000002" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="IxS-rl-QaJ"/>
-                                                        <constraint firstAttribute="height" constant="1" id="dTQ-Cn-8B7"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="IxS-rl-QaJ"/>
-                                                        </mask>
-                                                    </variation>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="HHL-ci-Pbk" firstAttribute="centerY" secondItem="TX3-Yo-f6K" secondAttribute="centerY" id="2fh-Kk-CtY"/>
-                                                <constraint firstItem="mHz-xY-fMH" firstAttribute="centerY" secondItem="TX3-Yo-f6K" secondAttribute="centerY" id="3Wi-OW-IlJ"/>
-                                                <constraint firstItem="Nog-0q-vlb" firstAttribute="top" secondItem="TX3-Yo-f6K" secondAttribute="top" id="MfX-QK-z2u"/>
-                                                <constraint firstItem="HHL-ci-Pbk" firstAttribute="leading" secondItem="TX3-Yo-f6K" secondAttribute="leading" constant="10" id="P1q-e9-dHS"/>
-                                                <constraint firstItem="Nog-0q-vlb" firstAttribute="leading" secondItem="TX3-Yo-f6K" secondAttribute="leading" id="TTR-ha-8Ef"/>
-                                                <constraint firstAttribute="trailing" secondItem="Nog-0q-vlb" secondAttribute="trailing" id="eek-zk-hXm"/>
-                                                <constraint firstItem="mHz-xY-fMH" firstAttribute="leading" secondItem="HHL-ci-Pbk" secondAttribute="trailing" constant="2" id="w6v-r6-e5o"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.98431372549999996" green="0.98823529409999999" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
                         <connections>
-                            <outlet property="dataSource" destination="8XK-yh-RZ5" id="lLd-QW-6Ao"/>
-                            <outlet property="delegate" destination="8XK-yh-RZ5" id="r63-DM-Gkf"/>
+                            <outlet property="dataSource" destination="LYC-sx-CyX" id="2Q2-rJ-4bM"/>
+                            <outlet property="delegate" destination="LYC-sx-CyX" id="M9Q-rp-sH3"/>
                         </connections>
                     </tableView>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="buttonConfirm" destination="0Sd-Ew-Gu1" id="dkd-9h-LY7"/>
-                        <outlet property="labelAddress" destination="fcC-tQ-tbc" id="jAm-kP-8qb"/>
-                        <outlet property="labelAvailableTotal" destination="L3f-n5-U8P" id="oGu-UA-SYT"/>
-                        <outlet property="labelCurrency" destination="414-jY-BMf" id="rhu-i9-4QS"/>
-                        <outlet property="labelInfo" destination="mHz-xY-fMH" id="njc-R6-i5N"/>
-                        <outlet property="textFieldNumber" destination="Q1I-E5-70U" id="HYX-95-JbA"/>
-                        <segue destination="qp6-Q3-02e" kind="show" id="KIX-q7-ViU">
-                            <nil key="action"/>
-                        </segue>
+                        <outlet property="buttonConfirm" destination="4CO-3D-fi9" id="9dV-cr-gNb"/>
+                        <outlet property="labelTextActualTotal" destination="SPj-9r-GAY" id="GtX-0A-l8y"/>
+                        <outlet property="labelTextAddress" destination="mdO-Fj-2YT" id="s97-ZS-tpJ"/>
+                        <outlet property="labelTextAmount" destination="gqZ-GN-Pwo" id="6M0-E7-qcf"/>
+                        <outlet property="labelTextAvailable" destination="y2Y-nH-1r7" id="tff-hb-xdZ"/>
+                        <outlet property="labelTextFees" destination="Gee-WU-eir" id="Uam-AU-rKa"/>
+                        <segue destination="Tx4-qj-zhO" kind="show" id="Iee-qv-e72"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="94u-QV-jSv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="ddH-Az-GkS">
-                    <connections>
-                        <action selector="handleAddressPress:" destination="8XK-yh-RZ5" id="bcd-hK-nsS"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ODK-Jw-zxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-87" y="-493"/>
         </scene>
-        <!--Send Multi Sig View Controller-->
-        <scene sceneID="xrK-L9-Rft">
+        <!--BTCSendMultiSigViewController-->
+        <scene sceneID="npv-h0-I52">
             <objects>
-                <viewController storyboardIdentifier="BTCSendMultiSigViewController" id="qp6-Q3-02e" customClass="BTCSendMultiSigViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BTCSendMultiSigViewController" id="Tx4-qj-zhO" userLabel="BTCSendMultiSigViewController" customClass="BTCSendMultiSigViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="A9r-Wa-XIF"/>
-                        <viewControllerLayoutGuide type="bottom" id="3dS-1k-yaY"/>
+                        <viewControllerLayoutGuide type="top" id="7HQ-BL-SYO"/>
+                        <viewControllerLayoutGuide type="bottom" id="9EU-of-rXK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="r4O-gH-Smf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" contentMode="scaleToFill" id="jL9-vd-M0b">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transaction's signature is not completed, please send to other key's owners to continue to sign" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnw-pg-7K8">
-                                <rect key="frame" x="8" y="28" width="359" height="40"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="wBY-DJ-Z4N">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIe-Rs-HTY" customClass="CHView" customModule="chance_btc_wallet" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="20" width="359" height="231"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UxQ-HD-ZSd">
+                                                <rect key="frame" x="15" y="73.5" width="329" height="1"/>
+                                                <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="HYU-mt-k04"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transaction has been created. Require the following address's private key signature:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPd-kX-dG4">
+                                                <rect key="frame" x="20" y="20" width="319" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.28627450980392155" green="0.74901960784313726" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ELm-YZ-TW7">
+                                                <rect key="frame" x="20" y="75" width="319" height="1"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rrH-GL-7OM" userLabel="placehoder">
+                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="1"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="qd6-n0-Nrp"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3U-8f-lab" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="106" width="319" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="CJ3-44-BPh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="Request Signature"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColorNormal">
+                                                        <color key="value" red="0.1333333333" green="0.81176470590000005" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="handleRequestPress:" destination="Tx4-qj-zhO" eventType="touchUpInside" id="1A4-OY-OFv"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3T-Yc-lgb" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="166" width="319" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="A6f-dV-JbN"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="Finish"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColorNormal">
+                                                        <color key="value" red="0.72156862745098038" green="0.9137254901960784" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="handleFinishPress:" destination="Tx4-qj-zhO" eventType="touchUpInside" id="Vti-ZR-bmK"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="UxQ-HD-ZSd" firstAttribute="top" secondItem="QPd-kX-dG4" secondAttribute="bottom" constant="20" id="2g2-PW-WRb"/>
+                                            <constraint firstItem="ELm-YZ-TW7" firstAttribute="leading" secondItem="LIe-Rs-HTY" secondAttribute="leading" constant="20" id="2sd-4K-NCK"/>
+                                            <constraint firstItem="ELm-YZ-TW7" firstAttribute="top" secondItem="UxQ-HD-ZSd" secondAttribute="bottom" id="73K-bg-Oe2"/>
+                                            <constraint firstAttribute="trailing" secondItem="ELm-YZ-TW7" secondAttribute="trailing" constant="20" id="9Tz-Sy-8Bb"/>
+                                            <constraint firstAttribute="trailing" secondItem="QPd-kX-dG4" secondAttribute="trailing" constant="20" id="9r2-GD-qGJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="V3T-Yc-lgb" secondAttribute="bottom" constant="25" id="Cbk-j3-Prr"/>
+                                            <constraint firstItem="QPd-kX-dG4" firstAttribute="leading" secondItem="LIe-Rs-HTY" secondAttribute="leading" constant="20" id="Cu0-HR-qeu"/>
+                                            <constraint firstItem="V3T-Yc-lgb" firstAttribute="leading" secondItem="LIe-Rs-HTY" secondAttribute="leading" constant="20" id="J12-wW-u3s"/>
+                                            <constraint firstItem="M3U-8f-lab" firstAttribute="top" secondItem="ELm-YZ-TW7" secondAttribute="bottom" constant="30" id="OHa-es-hht"/>
+                                            <constraint firstItem="UxQ-HD-ZSd" firstAttribute="leading" secondItem="LIe-Rs-HTY" secondAttribute="leading" constant="15" id="QB9-Eg-9XD"/>
+                                            <constraint firstAttribute="trailing" secondItem="UxQ-HD-ZSd" secondAttribute="trailing" constant="15" id="VIJ-6d-ZYq"/>
+                                            <constraint firstItem="M3U-8f-lab" firstAttribute="leading" secondItem="LIe-Rs-HTY" secondAttribute="leading" constant="20" id="gTB-eg-kz6"/>
+                                            <constraint firstItem="V3T-Yc-lgb" firstAttribute="top" secondItem="M3U-8f-lab" secondAttribute="bottom" constant="20" id="hf2-x2-Lp4"/>
+                                            <constraint firstAttribute="trailing" secondItem="V3T-Yc-lgb" secondAttribute="trailing" constant="20" id="hgw-5Y-x1h"/>
+                                            <constraint firstItem="QPd-kX-dG4" firstAttribute="top" secondItem="LIe-Rs-HTY" secondAttribute="top" constant="20" id="mFo-Wc-mQp"/>
+                                            <constraint firstAttribute="trailing" secondItem="M3U-8f-lab" secondAttribute="trailing" constant="20" id="oRQ-XG-OhG"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="backgroudImage" value="bg_round_cell"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Ll8-oU-6Ov"/>
+                                    <constraint firstItem="LIe-Rs-HTY" firstAttribute="leading" secondItem="wBY-DJ-Z4N" secondAttribute="leading" constant="8" id="5a3-xB-Dn5"/>
+                                    <constraint firstAttribute="trailing" secondItem="LIe-Rs-HTY" secondAttribute="trailing" constant="8" id="MtJ-M4-Ai7"/>
+                                    <constraint firstItem="LIe-Rs-HTY" firstAttribute="top" secondItem="wBY-DJ-Z4N" secondAttribute="top" constant="20" id="QLD-Ya-PQL"/>
+                                    <constraint firstAttribute="bottom" secondItem="LIe-Rs-HTY" secondAttribute="bottom" constant="30" id="fNE-Pp-S4r"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="transaction hex" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aD-sH-gjf">
-                                <rect key="frame" x="8" y="83" width="359" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="u7g-fU-94X"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="1" green="0.34228771450000001" blue="0.08037103022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="u7g-fU-94X"/>
-                                    </mask>
-                                </variation>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2es-Z5-g2u" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
-                                <rect key="frame" x="20" y="120" width="335" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="FcG-hL-bgt"/>
-                                    <constraint firstAttribute="height" constant="40" id="nqb-2q-muA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Copy Transaction Text"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColorNormal">
-                                        <color key="value" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="FcG-hL-bgt"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="handleCopyPress:" destination="qp6-Q3-02e" eventType="touchUpInside" id="D2r-pf-Nl2"/>
-                                </connections>
-                            </button>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5aD-sH-gjf" secondAttribute="trailing" constant="8" id="QLD-VK-mmr"/>
-                            <constraint firstItem="cnw-pg-7K8" firstAttribute="leading" secondItem="r4O-gH-Smf" secondAttribute="leading" constant="8" id="S8N-1v-aC6"/>
-                            <constraint firstAttribute="trailing" secondItem="2es-Z5-g2u" secondAttribute="trailing" constant="20" id="UAM-nb-MxJ"/>
-                            <constraint firstItem="5aD-sH-gjf" firstAttribute="top" secondItem="cnw-pg-7K8" secondAttribute="bottom" constant="15" id="Xl2-Vx-qPS"/>
-                            <constraint firstItem="3dS-1k-yaY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2es-Z5-g2u" secondAttribute="bottom" constant="10" id="akT-QP-OSo"/>
-                            <constraint firstItem="cnw-pg-7K8" firstAttribute="top" secondItem="A9r-Wa-XIF" secondAttribute="bottom" constant="8" id="fiH-Mq-lf0"/>
-                            <constraint firstItem="2es-Z5-g2u" firstAttribute="leading" secondItem="r4O-gH-Smf" secondAttribute="leading" constant="20" id="gH8-XM-Fow"/>
-                            <constraint firstItem="2es-Z5-g2u" firstAttribute="top" secondItem="5aD-sH-gjf" secondAttribute="bottom" constant="20" id="m0V-c6-NOR"/>
-                            <constraint firstItem="5aD-sH-gjf" firstAttribute="leading" secondItem="r4O-gH-Smf" secondAttribute="leading" constant="8" id="odY-j0-HwY"/>
-                            <constraint firstAttribute="trailing" secondItem="cnw-pg-7K8" secondAttribute="trailing" constant="8" id="okd-CT-lPq"/>
+                            <constraint firstAttribute="trailing" secondItem="wBY-DJ-Z4N" secondAttribute="trailing" id="2YX-uR-KJT"/>
+                            <constraint firstItem="LIe-Rs-HTY" firstAttribute="width" secondItem="jL9-vd-M0b" secondAttribute="width" constant="-16" id="cBe-Bw-71e"/>
+                            <constraint firstItem="9EU-of-rXK" firstAttribute="top" secondItem="wBY-DJ-Z4N" secondAttribute="bottom" id="epI-cI-KZQ"/>
+                            <constraint firstItem="wBY-DJ-Z4N" firstAttribute="top" secondItem="7HQ-BL-SYO" secondAttribute="bottom" id="nAR-0x-PJb"/>
+                            <constraint firstItem="wBY-DJ-Z4N" firstAttribute="leading" secondItem="jL9-vd-M0b" secondAttribute="leading" id="xYE-ah-RqV"/>
                         </constraints>
                     </view>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="buttonCopy" destination="2es-Z5-g2u" id="IOm-ga-jhv"/>
-                        <outlet property="labelTransactionHex" destination="5aD-sH-gjf" id="bmw-mR-xNg"/>
-                        <segue destination="XMF-hZ-LMU" kind="show" id="XwS-AH-8z8"/>
+                        <outlet property="buttonFinish" destination="V3T-Yc-lgb" id="P0g-f6-Xt3"/>
+                        <outlet property="buttonRequest" destination="M3U-8f-lab" id="apH-hy-Osp"/>
+                        <outlet property="labelTips" destination="QPd-kX-dG4" id="E6k-Gj-C6Z"/>
+                        <outlet property="stackViewPedding" destination="ELm-YZ-TW7" id="t2Q-SG-iVb"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Pa-Wn-FCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ohg-AB-xIL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="753" y="-493"/>
+            <point key="canvasLocation" x="725.60000000000002" y="-493.40329835082463"/>
         </scene>
-        <!--Multi Sig Transaction View Controller-->
-        <scene sceneID="l2q-bu-YBr">
+        <!--Multi Sig Tx Form View Controller-->
+        <scene sceneID="fzr-tm-dhq">
             <objects>
-                <viewController storyboardIdentifier="BTCMultiSigTransactionViewController" hidesBottomBarWhenPushed="YES" id="XMF-hZ-LMU" customClass="BTCMultiSigTransactionViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BTCMultiSigTxFormViewController" id="wkV-kr-bFR" customClass="BTCMultiSigTxFormViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Kyz-mM-ZAM"/>
-                        <viewControllerLayoutGuide type="bottom" id="DiP-Rl-Fge"/>
+                        <viewControllerLayoutGuide type="top" id="8MZ-yH-mkZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="0BP-Wd-d0e"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1EJ-Ob-5yx">
+                    <view key="view" contentMode="scaleToFill" id="Ldf-qO-b9f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign this transaction" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-29-3lX">
-                                <rect key="frame" x="8" y="28" width="359" height="21"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="XoN-dW-H7i">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G43-Re-19P" customClass="CHView" customModule="chance_btc_wallet" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="20" width="359" height="337.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sZH-M7-Ksi">
+                                                <rect key="frame" x="15" y="73.5" width="329" height="1"/>
+                                                <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="Cob-9C-xQL"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paste the wallet Multi-Sig transaction protocol text.The prefix is &quot;multisig:&quot;." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhC-yT-45e">
+                                                <rect key="frame" x="20" y="20" width="319" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.28627450980000002" green="0.74901960779999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zet-Fj-QvG" customClass="CHTextView" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="90.5" width="319" height="162"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="162" id="fNV-Ws-7Hh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="e.g: multisig:{&quot;rawTx&quot;:&quot;2423400000…&quot;,&quot;redeemScriptHex&quot;:&quot;522102e7fdca57c00…e&quot;,&quot;keySignatures&quot;:{…}}"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0I-gI-oGc" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="272.5" width="319" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="bjE-GW-D2f"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="Transalte"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColorNormal">
+                                                        <color key="value" red="0.1333333333" green="0.81176470590000005" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="handleNextPressWithSender:" destination="wkV-kr-bFR" eventType="touchUpInside" id="wFO-OD-CtB"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Zet-Fj-QvG" firstAttribute="top" secondItem="sZH-M7-Ksi" secondAttribute="bottom" constant="16" id="1fl-Y0-cRm"/>
+                                            <constraint firstAttribute="bottom" secondItem="W0I-gI-oGc" secondAttribute="bottom" constant="25" id="Eb7-co-WAj"/>
+                                            <constraint firstItem="W0I-gI-oGc" firstAttribute="leading" secondItem="G43-Re-19P" secondAttribute="leading" constant="20" id="MIk-Mi-LPv"/>
+                                            <constraint firstItem="bhC-yT-45e" firstAttribute="top" secondItem="G43-Re-19P" secondAttribute="top" constant="20" id="OsN-Uj-ITQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="W0I-gI-oGc" secondAttribute="trailing" constant="20" id="Q6Y-1H-T0j"/>
+                                            <constraint firstItem="bhC-yT-45e" firstAttribute="leading" secondItem="G43-Re-19P" secondAttribute="leading" constant="20" id="QeD-N0-nOy"/>
+                                            <constraint firstAttribute="trailing" secondItem="sZH-M7-Ksi" secondAttribute="trailing" constant="15" id="V1V-Gh-Vvg"/>
+                                            <constraint firstItem="W0I-gI-oGc" firstAttribute="top" secondItem="Zet-Fj-QvG" secondAttribute="bottom" constant="20" id="WrJ-D2-tKY"/>
+                                            <constraint firstItem="Zet-Fj-QvG" firstAttribute="leading" secondItem="G43-Re-19P" secondAttribute="leading" constant="20" id="gsF-mh-ya0"/>
+                                            <constraint firstAttribute="trailing" secondItem="bhC-yT-45e" secondAttribute="trailing" constant="20" id="jfe-md-VN5"/>
+                                            <constraint firstAttribute="trailing" secondItem="Zet-Fj-QvG" secondAttribute="trailing" constant="20" id="nm3-l2-TvU"/>
+                                            <constraint firstItem="sZH-M7-Ksi" firstAttribute="leading" secondItem="G43-Re-19P" secondAttribute="leading" constant="15" id="ox2-WV-neG"/>
+                                            <constraint firstItem="sZH-M7-Ksi" firstAttribute="top" secondItem="bhC-yT-45e" secondAttribute="bottom" constant="20" id="sqD-Zh-zyL"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="backgroudImage" value="bg_round_cell"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="NQp-mG-JDn"/>
+                                    <constraint firstAttribute="bottom" secondItem="G43-Re-19P" secondAttribute="bottom" constant="30" id="5ao-Jr-4zp"/>
+                                    <constraint firstItem="G43-Re-19P" firstAttribute="top" secondItem="XoN-dW-H7i" secondAttribute="top" constant="20" id="XDI-c5-xcn"/>
+                                    <constraint firstAttribute="trailing" secondItem="G43-Re-19P" secondAttribute="trailing" constant="8" id="hvK-qI-R3T"/>
+                                    <constraint firstItem="G43-Re-19P" firstAttribute="leading" secondItem="XoN-dW-H7i" secondAttribute="leading" constant="8" id="pfi-3X-ueY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transaction text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQT-a9-vvQ">
-                                <rect key="frame" x="8" y="64" width="359" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="iaR-qc-EhT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="1" green="0.34228771450000001" blue="0.08037103022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="iaR-qc-EhT"/>
-                                    </mask>
-                                </variation>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1e-xi-3eo">
-                                <rect key="frame" x="20" y="101" width="335" height="40"/>
-                                <color key="backgroundColor" red="0.88235294119999996" green="0.043137254899999998" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="gH8-NC-6SK"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="xH1-7L-Haa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Sign the transaction to complete"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="xH1-7L-Haa"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="handleSignPress:" destination="XMF-hZ-LMU" eventType="touchUpInside" id="Qg1-hU-08V"/>
-                                </connections>
-                            </button>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="d1e-xi-3eo" secondAttribute="trailing" constant="20" id="0xU-nv-bjf"/>
-                            <constraint firstItem="uIA-29-3lX" firstAttribute="leading" secondItem="1EJ-Ob-5yx" secondAttribute="leading" constant="8" id="4bY-gT-vTs"/>
-                            <constraint firstItem="uIA-29-3lX" firstAttribute="top" secondItem="Kyz-mM-ZAM" secondAttribute="bottom" constant="8" id="7R1-g5-6Dn"/>
-                            <constraint firstItem="SQT-a9-vvQ" firstAttribute="top" secondItem="uIA-29-3lX" secondAttribute="bottom" constant="15" id="8yb-cG-uQg"/>
-                            <constraint firstItem="d1e-xi-3eo" firstAttribute="leading" secondItem="1EJ-Ob-5yx" secondAttribute="leading" constant="20" id="BiA-HL-4Tg"/>
-                            <constraint firstAttribute="trailing" secondItem="SQT-a9-vvQ" secondAttribute="trailing" constant="8" id="GyH-Hr-KHb"/>
-                            <constraint firstAttribute="trailing" secondItem="uIA-29-3lX" secondAttribute="trailing" constant="8" id="HEz-5w-8vX"/>
-                            <constraint firstItem="d1e-xi-3eo" firstAttribute="top" secondItem="SQT-a9-vvQ" secondAttribute="bottom" constant="20" id="aUS-PD-rXR"/>
-                            <constraint firstItem="SQT-a9-vvQ" firstAttribute="leading" secondItem="1EJ-Ob-5yx" secondAttribute="leading" constant="8" id="kjF-BB-XTu"/>
-                            <constraint firstItem="DiP-Rl-Fge" firstAttribute="top" relation="greaterThanOrEqual" secondItem="d1e-xi-3eo" secondAttribute="bottom" constant="10" id="zCi-gn-dN1"/>
+                            <constraint firstItem="0BP-Wd-d0e" firstAttribute="top" secondItem="XoN-dW-H7i" secondAttribute="bottom" id="URe-Bq-pfo"/>
+                            <constraint firstItem="XoN-dW-H7i" firstAttribute="leading" secondItem="Ldf-qO-b9f" secondAttribute="leading" id="UV4-df-uSL"/>
+                            <constraint firstItem="G43-Re-19P" firstAttribute="width" secondItem="Ldf-qO-b9f" secondAttribute="width" constant="-16" id="Wwp-U6-JqQ"/>
+                            <constraint firstItem="XoN-dW-H7i" firstAttribute="top" secondItem="8MZ-yH-mkZ" secondAttribute="bottom" id="dkA-Kg-BbP"/>
+                            <constraint firstAttribute="trailing" secondItem="XoN-dW-H7i" secondAttribute="trailing" id="lyo-sB-BXs"/>
                         </constraints>
                     </view>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="buttonSign" destination="d1e-xi-3eo" id="Ycm-4C-hl5"/>
-                        <outlet property="labelTransactionHex" destination="SQT-a9-vvQ" id="kZi-gy-fkt"/>
+                        <outlet property="buttonNext" destination="W0I-gI-oGc" id="TFf-cO-EV9"/>
+                        <outlet property="labelTips" destination="bhC-yT-45e" id="oi5-EL-8HO"/>
+                        <outlet property="textViewContent" destination="Zet-Fj-QvG" id="Qo4-G1-sVO"/>
+                        <segue destination="1AB-Mx-VEv" kind="show" id="cuo-Qm-9pD"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8FD-0D-nCx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i95-PU-tqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1532" y="-493"/>
+            <point key="canvasLocation" x="-87" y="-1210"/>
+        </scene>
+        <!--BTCMultiSigTransactionViewController-->
+        <scene sceneID="aGF-b4-22L">
+            <objects>
+                <viewController storyboardIdentifier="BTCMultiSigTransactionViewController" id="1AB-Mx-VEv" userLabel="BTCMultiSigTransactionViewController" customClass="BTCMultiSigTransactionViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TPf-92-Oc2"/>
+                        <viewControllerLayoutGuide type="bottom" id="OJn-UI-sOy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Skr-px-Gh8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="Xlo-ZN-xSq">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MS5-XL-W4d" customClass="CHView" customModule="chance_btc_wallet" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="20" width="359" height="371"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wmA-fT-x1m">
+                                                <rect key="frame" x="20" y="20" width="319" height="326"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIF-nD-ucW" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="68"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="68" id="3xf-od-vnD"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="The Sender"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Bitcoin Address"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="NO"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="3G4NdQQyCJK1RS5URb4h5KogWEyR4Mk16A"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="accessoryShow" value="NO"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJE-Ku-cnB" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="68" width="319" height="68"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="68" id="ETk-Y4-5xj"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="The Receiver"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Bitcoin Address"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="NO"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="accessoryShow" value="NO"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8JA-2k-aOh" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="136" width="319" height="68"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="68" id="EFU-Ig-KpP"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Transfer Amount(BTC)"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Amount of BTC"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="NO"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ka-E6-HHy" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="204" width="319" height="68"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="68" id="Mvb-xY-pP2"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Signatures / Required Keys"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="n / m"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="NO"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4e-Qf-oA8" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                        <rect key="frame" x="5" y="286" width="309" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="RTh-NI-DKz"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="Agree To Sign"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColorNormal">
+                                                                <color key="value" red="0.1333333333" green="0.81176470590000005" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="handleSignPress:" destination="1AB-Mx-VEv" eventType="touchUpInside" id="8iB-8w-Qzy"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="8JA-2k-aOh" secondAttribute="trailing" id="97X-IG-J3b"/>
+                                                    <constraint firstItem="2ka-E6-HHy" firstAttribute="leading" secondItem="wmA-fT-x1m" secondAttribute="leading" id="BEz-5o-50q"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cJE-Ku-cnB" secondAttribute="trailing" id="DfH-9R-6gS"/>
+                                                    <constraint firstItem="cJE-Ku-cnB" firstAttribute="leading" secondItem="wmA-fT-x1m" secondAttribute="leading" id="MXF-rm-xlb"/>
+                                                    <constraint firstItem="f4e-Qf-oA8" firstAttribute="leading" secondItem="wmA-fT-x1m" secondAttribute="leading" constant="5" id="PAr-xH-xBf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="rIF-nD-ucW" secondAttribute="trailing" id="SV5-TP-kCT"/>
+                                                    <constraint firstItem="rIF-nD-ucW" firstAttribute="leading" secondItem="wmA-fT-x1m" secondAttribute="leading" id="iQW-4n-MeW"/>
+                                                    <constraint firstItem="8JA-2k-aOh" firstAttribute="leading" secondItem="wmA-fT-x1m" secondAttribute="leading" id="vjN-U0-wEP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2ka-E6-HHy" secondAttribute="trailing" id="ypr-Jh-R9P"/>
+                                                    <constraint firstAttribute="trailing" secondItem="f4e-Qf-oA8" secondAttribute="trailing" constant="5" id="zks-4L-KiY"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="wmA-fT-x1m" firstAttribute="leading" secondItem="MS5-XL-W4d" secondAttribute="leading" constant="20" id="Rp2-bV-3uD"/>
+                                            <constraint firstItem="wmA-fT-x1m" firstAttribute="top" secondItem="MS5-XL-W4d" secondAttribute="top" constant="20" id="hhW-nv-iUz"/>
+                                            <constraint firstAttribute="bottom" secondItem="wmA-fT-x1m" secondAttribute="bottom" constant="25" id="ld2-TT-i8m"/>
+                                            <constraint firstAttribute="trailing" secondItem="wmA-fT-x1m" secondAttribute="trailing" constant="20" id="usB-uj-lm0"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="backgroudImage" value="bg_round_cell"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="MS5-XL-W4d" secondAttribute="trailing" constant="8" id="1fB-Qq-oxy"/>
+                                    <constraint firstItem="MS5-XL-W4d" firstAttribute="leading" secondItem="Xlo-ZN-xSq" secondAttribute="leading" constant="8" id="AuB-Da-PwJ"/>
+                                    <constraint firstItem="MS5-XL-W4d" firstAttribute="top" secondItem="Xlo-ZN-xSq" secondAttribute="top" constant="20" id="arG-ML-YHY"/>
+                                    <constraint firstAttribute="bottom" secondItem="MS5-XL-W4d" secondAttribute="bottom" constant="30" id="yIJ-8w-bBE"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Xlo-ZN-xSq" firstAttribute="top" secondItem="TPf-92-Oc2" secondAttribute="bottom" id="Eym-1z-pLs"/>
+                            <constraint firstAttribute="trailing" secondItem="Xlo-ZN-xSq" secondAttribute="trailing" id="RsO-pd-8RN"/>
+                            <constraint firstItem="MS5-XL-W4d" firstAttribute="width" secondItem="Skr-px-Gh8" secondAttribute="width" constant="-16" id="ccK-Is-fOy"/>
+                            <constraint firstItem="OJn-UI-sOy" firstAttribute="top" secondItem="Xlo-ZN-xSq" secondAttribute="bottom" id="pV9-Xj-54n"/>
+                            <constraint firstItem="Xlo-ZN-xSq" firstAttribute="leading" secondItem="Skr-px-Gh8" secondAttribute="leading" id="wMR-lu-Qf1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonSign" destination="f4e-Qf-oA8" id="9WG-Ae-Lav"/>
+                        <outlet property="labelTextAmount" destination="8JA-2k-aOh" id="p4M-Y7-SCJ"/>
+                        <outlet property="labelTextReceiver" destination="cJE-Ku-cnB" id="0yW-fJ-QmG"/>
+                        <outlet property="labelTextSender" destination="rIF-nD-ucW" id="fme-Is-IWC"/>
+                        <outlet property="labelTextSignature" destination="2ka-E6-HHy" id="B0a-LC-fnj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uZU-4T-PzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="726" y="-1210"/>
         </scene>
     </scenes>
     <resources>
-        <image name="ico_address_form" width="21" height="21"/>
-        <image name="ico_asset" width="21" height="21"/>
+        <image name="bg_round_cell" width="20" height="20"/>
         <image name="ico_close_top" width="21" height="21"/>
-        <image name="ico_more_address" width="21" height="21"/>
-        <image name="ico_payout_form" width="21" height="21"/>
         <image name="ico_user" width="21" height="21"/>
+        <image name="icon_arrow_little" width="6" height="11"/>
+        <image name="icon_bitcoin_gray" width="20" height="20"/>
+        <image name="icon_scan_gray" width="15" height="15"/>
         <image name="icon_tx_cell_received" width="21" height="22"/>
-        <image name="list_about_glay" width="21" height="21"/>
         <image name="menu_ico_asset" width="25" height="25"/>
         <image name="wallet_bg" width="375" height="313"/>
     </resources>

@@ -22,10 +22,7 @@ class TabBarViewController: ESTabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !CHWalletWrapper.checkWalletRoot() {
-            let vc = StoryBoard.welcome.initView(name: "WelcomeNavController") as! UINavigationController
-            self.present(vc, animated: true, completion: nil)
-        } else {
+        if CHWalletWrapper.checkWalletRoot() {
             
             if !CHBTCWallet.checkBTCWalletExist() {
                 //钱包不存在，需要恢复账户体系
@@ -194,12 +191,17 @@ extension TabBarViewController {
         //多重签名账户可以粘贴别人的签名交易
         actionSheet.addAction(UIAlertAction(title: "Sign Contract".localized(), style: UIAlertActionStyle.default, handler: {
             (action) -> Void in
+            
+//            self.gotoMultiSigTest()
+            self.gotoMultiSigFormTest()
+            /*
             let pasteboard = UIPasteboard.general
             if pasteboard.string?.length ?? 0 > 0 {
                 self.gotoMultiSigTransactionView(pasteboard.string!)
             } else {
                 SVProgressHUD.showInfo(withStatus: "Clipboard is empty".localized())
             }
+            */
         }))
         
         
@@ -231,7 +233,7 @@ extension TabBarViewController {
             
             vc.currentAccount = currentAccount
             vc.multiSigTx = mtx
-            
+            vc.hidesBottomBarWhenPushed = true
             let navc = self.selectedViewController as? UINavigationController
             navc?.pushViewController(vc, animated: true)
             
@@ -246,6 +248,7 @@ extension TabBarViewController {
      进入发送比特币界面
      */
     func gotoBTCSendView() {
+        
         guard let vc = StoryBoard.wallet.initView(type: BTCSendViewController.self) else {
             return
         }
@@ -255,8 +258,56 @@ extension TabBarViewController {
         }
         
         vc.btcAccount = currentAccount
+        vc.hidesBottomBarWhenPushed = true
         let navc = self.selectedViewController as? UINavigationController
         navc?.pushViewController(vc, animated: true)
+
+    }
+    
+    //测试待签名列表界面
+    func gotoMultiSigTest() {
+        
+        guard let vc = StoryBoard.wallet.initView(type: BTCSendMultiSigViewController.self) else {
+            SVProgressHUD.showError(withStatus: "Unknown error".localized())
+            return
+        }
+        
+        guard let currentAccount = CHBTCWallet.sharedInstance.getSelectedAccount() else {
+            return
+        }
+        
+        //初始表单
+        do {
+            //封装一个多重签名交易表单
+            let mtx = try MultiSigTransaction(json: "multisig:{\"rawTx\":\"0100000002a2f734139f40d3e01a0259a4423931c47f84b8131f7ceab8f8f71ebe6487c0420000000000ffffffff7cfc40806d63d61714729d3d484a274a757513df3f1e47f8bac979d609e735680100000000ffffffff0200c2eb0b000000001976a914d1d63de21e37c2845b9c134edd02a74881a53d1e88acc0f18e000000000017a9149d9bc7879b31d0244c3f4f117132885d8999ec8f8700000000\",\"redeemScriptHex\":\"522102e7fdca57c00393389e91bb6cb410b4c3dc2861182ca070d6c5df7516eed653aa2103bc05d074eb611cff88ab282d619c54be5d6b9d7d491508ac4e917f82cb29b05752ae\",\"keySignatures\":{}}")
+            
+            vc.currentAccount = currentAccount
+            vc.multiSigTx = mtx
+            vc.hidesBottomBarWhenPushed = true
+            let navc = self.selectedViewController as? UINavigationController
+            navc?.pushViewController(vc, animated: true)
+        } catch {
+            SVProgressHUD.showError(withStatus: "Transaction decode error".localized())
+        }
+    }
+    
+    //测试粘贴签名
+    func gotoMultiSigFormTest() {
+        
+        guard let vc = StoryBoard.wallet.initView(type: BTCMultiSigTxFormViewController.self) else {
+            SVProgressHUD.showError(withStatus: "Unknown error".localized())
+            return
+        }
+        
+        guard let currentAccount = CHBTCWallet.sharedInstance.getSelectedAccount() else {
+            return
+        }
+        
+        vc.currentAccount = currentAccount
+        vc.hidesBottomBarWhenPushed = true
+        let navc = self.selectedViewController as? UINavigationController
+        navc?.pushViewController(vc, animated: true)
+        
     }
 }
 

@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var rootTabController: TabBarViewController?
 
     class func sharedInstance() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
@@ -20,6 +23,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //隐藏键盘
     func closeKeyBoard() {
         self.window?.endEditing(false)
+    }
+    
+    
+    /// 把主控制器切换为TabController
+    func restoreRootTabController(animated: Bool = true) {
+        //动画过渡
+        if animated {
+            
+            self.rootTabController?.modalTransitionStyle = .flipHorizontal
+            
+            let animation: () -> Void = {
+                () -> Void in
+                let oldState = UIView.areAnimationsEnabled
+                UIView.setAnimationsEnabled(false)
+                self.window?.rootViewController = self.rootTabController
+                UIView.setAnimationsEnabled(oldState)
+            }
+            
+            UIView.transition(with: self.window!, duration: 0.5, options: .transitionFlipFromLeft, animations: animation, completion: nil)
+            
+        } else {
+            self.window?.rootViewController = self.rootTabController
+        }
+        
+        
+    }
+    
+    /// 把主控制器切换为初始创建钱包，重置钱包流程
+    func restoreWelcomeController(animated: Bool = true) {
+        
+        let welcome = StoryBoard.welcome.initView(name: "WelcomeNavController") as! UINavigationController
+        
+        //动画过渡
+        if animated {
+            
+            self.rootTabController?.modalTransitionStyle = .flipHorizontal
+            
+            let animation: () -> Void = {
+                () -> Void in
+                let oldState = UIView.areAnimationsEnabled
+                UIView.setAnimationsEnabled(false)
+                self.window?.rootViewController = welcome
+                UIView.setAnimationsEnabled(oldState)
+            }
+            
+            UIView.transition(with: self.window!, duration: 0.5, options: .transitionFlipFromRight, animations: animation, completion: nil)
+            
+        } else {
+            self.window?.rootViewController = welcome
+        }
+        
+        
     }
     
     /**
@@ -33,13 +88,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setMinimumDismissTimeInterval(1)
     }
 
+    /**
+     设置键盘控制
+     */
+    fileprivate func setupKeyboardManager() {
+        //开启键盘自动适应高度
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         self.setupSVProgressHUDStyle()
         
-        self.window!.rootViewController = TabBarViewController.walletTab
-        //开启icloud同步
-        //RealmDBHelper.shared.iCloudEnable = true
+        self.setupKeyboardManager()
+        
+        //默认的最底层控制器
+        self.rootTabController = TabBarViewController.walletTab
+        
+        //如果没有钱包数据，先到欢迎界面引导创建钱包
+        if !CHWalletWrapper.checkWalletRoot() {
+            
+            let welcome = StoryBoard.welcome.initView(name: "WelcomeNavController") as! UINavigationController
+            self.window!.rootViewController = welcome
+            
+        } else {
+            //有钱包数据就直接进入首页tabbar
+            self.window!.rootViewController = self.rootTabController
+        }
         
         return true
     }

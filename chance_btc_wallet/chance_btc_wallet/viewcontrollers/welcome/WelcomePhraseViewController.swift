@@ -14,6 +14,7 @@ class WelcomePhraseViewController: BaseViewController {
     @IBOutlet var buttonRebuild: UIButton!
     @IBOutlet var buttonNext: UIButton!
     @IBOutlet var textViewPhrase: UITextView!
+    @IBOutlet var labelTips: UILabel!
     
     var phrase = ""
     
@@ -39,10 +40,11 @@ extension WelcomePhraseViewController {
     func setupUI() {
         
         self.navigationItem.title = "Recovery Phase".localized()
+
+        self.labelTips.text = "Please mark down this passphrase and safe keeping. Don’t give them to anybody. You can restore wallet by this passphrase when you lose you wallet.".localized()
+        self.buttonRebuild.setTitle("Change".localized(), for: .normal)
+        self.buttonNext.setTitle("Next".localized(), for: .normal)
         
-        self.textViewPhrase.layer.borderColor = UIColor(white: 0.8, alpha: 1.0).cgColor
-        self.textViewPhrase.layer.borderWidth = 0.65;
-        self.textViewPhrase.layer.cornerRadius = 6.0;
     }
     
     /**

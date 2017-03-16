@@ -49,7 +49,7 @@ public enum ESTabBarItemPositioning : Int {
 
 
 /// 对UITabBarDelegate进行扩展，以支持UITabBarControllerDelegate的相关方法桥接
-internal protocol ESTabBarDelegate {
+internal protocol ESTabBarDelegate: NSObjectProtocol {
 
     /// 当前item是否支持选中
     ///
@@ -80,8 +80,8 @@ internal protocol ESTabBarDelegate {
 
 /// ESTabBar是高度自定义的UITabBar子类，通过添加UIControl的方式实现自定义tabBarItem的效果。目前支持tabBar的大部分属性的设置，例如delegate,items,selectedImge,itemPositioning,itemWidth,itemSpacing等，以后会更加细致的优化tabBar原有属性的设置效果。
 open class ESTabBar: UITabBar {
-    
-    internal var customDelegate: ESTabBarDelegate?
+
+    internal weak var customDelegate: ESTabBarDelegate?
     
     /// tabBar中items布局偏移量
     public var itemEdgeInsets = UIEdgeInsets.zero
@@ -371,8 +371,16 @@ internal extension ESTabBar /* Actions */ {
             } else if self.isMoreItem(newIndex) {
                 moreContentView?.reselect(animated: animated, completion: nil)
             }
-            if let navVC = tabBarController?.selectedViewController?.navigationController {
-                navVC.popToRootViewController(animated: animated)
+            if let tabBarController = tabBarController, let navVC = tabBarController.selectedViewController?.navigationController {
+                if navVC.viewControllers.contains(tabBarController) {
+                    if navVC.viewControllers.count > 1 && navVC.viewControllers.last != tabBarController {
+                        navVC.popToViewController(tabBarController, animated: true);
+                    }
+                } else {
+                    if navVC.viewControllers.count > 1 {
+                        navVC.popToRootViewController(animated: animated)
+                    }
+                }
             }
         }
     }

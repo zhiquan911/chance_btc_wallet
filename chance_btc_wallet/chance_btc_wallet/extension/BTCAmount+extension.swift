@@ -43,4 +43,43 @@ extension BTCAmount {
         let satoshiAmountInteger = satoshiAmountDecimalNumber.int64Value
         return satoshiAmountInteger
     }
+    
+    
+    /// 把聪转为BTC单位
+    ///
+    /// - Returns: BTC单位的字符串类型
+    public func toBTC() -> String {
+        var BTCValueDecimalNumber = NSDecimalNumber(value: self as Int64)
+        BTCValueDecimalNumber = BTCValueDecimalNumber.dividing(by: NSDecimalNumber(value: BTCCoin as Int64))
+        
+        let twoDecimalPlacesFormatter = NumberFormatter()
+        twoDecimalPlacesFormatter.maximumFractionDigits = 10
+        twoDecimalPlacesFormatter.minimumFractionDigits = 2
+        twoDecimalPlacesFormatter.minimumIntegerDigits = 1
+        
+        return twoDecimalPlacesFormatter.string(from: BTCValueDecimalNumber)!
+    }
+}
+
+extension String {
+    
+    
+    /// 把BTC单位的字符串类型转为聪（Int64）
+    ///
+    /// - Returns:
+    func toBTCAmount(_ def: BTCAmount = 0) -> BTCAmount {
+        
+        if !self.isEmpty {
+            
+            let amountDecimalNumber = NSDecimalNumber(string: self)
+            let satoshiAmountDecimalNumber = amountDecimalNumber.multiplying(by: NSDecimalNumber(value: BTCCoin as Int64))
+            
+            let satoshiAmountInteger = satoshiAmountDecimalNumber.int64Value
+            return satoshiAmountInteger
+            
+        } else {
+            return def
+        }
+
+    }
 }

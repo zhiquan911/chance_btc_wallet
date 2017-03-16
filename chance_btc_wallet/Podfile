@@ -27,6 +27,8 @@ target 'chance_btc_wallet' do
     pod 'CHPageCardView', :git => 'https://github.com/zhiquan911/CHPageCardView.git', :branch => 'master'
     # 刷新数据组件：https://github.com/eggswift/pull-to-refresh
     pod 'ESPullToRefresh'
+    # ActionSheet形式的弹出选择器
+    pod 'ActionSheetPicker-3.0', '~> 2.0.5'
     
 end
 

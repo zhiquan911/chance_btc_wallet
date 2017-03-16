@@ -37,4 +37,34 @@ extension BTCScript {
             return nil
         }
     }
+    
+    
+    /// 获取必要的签名数目
+    var requiredSignatures: Int {
+        if !self.isMultisignatureScript {
+            return 0
+        }
+        
+        let chunks = self.scriptChunks as! [BTCScriptChunk]
+        //必要的签名数目
+        let chunk = chunks[self.scriptChunks.count - 2]
+        if !chunk.isOpcode {
+            return 0
+        }
+        let n = BTCSmallIntegerFromOpcode(chunk.opcode);
+        return n
+    }
+}
+
+
+extension String {
+    
+    
+    /// 字符串转化为比特币脚本
+    ///
+    /// - Returns: 
+    func toBTCScript() -> BTCScript? {
+        let script = BTCScript(hex: self)
+        return script
+    }
 }

@@ -27,5 +27,6 @@
 #import "SVProgressHUD.h"
 #import "ZYQAssetPickerController.h"
 #import "LMDropdownView.h"
+#import "ActionSheetPicker.h"
 
 #endif /* chance_btc_wallet_Bridging_Header_h */

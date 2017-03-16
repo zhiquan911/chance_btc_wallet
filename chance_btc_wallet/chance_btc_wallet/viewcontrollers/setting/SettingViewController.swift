@@ -93,20 +93,20 @@ class SettingViewController: BaseTableViewController {
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             } else if indexPath.section == 1 {
-                var isRestore = false
+                var restoreOperateType = RestoreOperateType.lookupPassphrase
                 var title = ""
                 if indexPath.row == 0 {
-                    isRestore = false
-                    title = "Export wallet's passphrase".localized()
+                    restoreOperateType = .lookupPassphrase
+                    title = "Backup Passphrase".localized()
                 } else {
-                    isRestore = true
-                    title = "Restore wallet by passphrase".localized()
+                    restoreOperateType = .initiativeRestore
+                    title = "Restore wallet".localized()
                 }
                 
                 guard let vc = StoryBoard.setting.initView(type: RestoreWalletViewController.self) else {
                     return
                 }
-                vc.isRestore = isRestore
+                vc.restoreOperateType = restoreOperateType
                 vc.navigationItem.title = title
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -209,8 +209,7 @@ extension SettingViewController {
             CHWalletWrapper.deleteAllWallets()
             
             //弹出欢迎界面，创新创建钱包
-            let vc = StoryBoard.welcome.initView(name: "WelcomeNavController") as! UINavigationController
-            self.present(vc, animated: true, completion: nil)
+            AppDelegate.sharedInstance().restoreWelcomeController()
             
         }))
         

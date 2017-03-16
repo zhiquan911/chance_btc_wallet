@@ -10,18 +10,10 @@ import UIKit
 
 class CHPublicKeyCell: UITableViewCell {
     
-    @IBOutlet var labelPublickey: UILabel!
-    @IBOutlet var buttonScan: UIButton!
-    
-    typealias ScanBlock = (CHPublicKeyCell) -> Void
-    typealias TextPressBlock = (CHPublicKeyCell) -> Void
-    var scanBlock: ScanBlock?
-    var textPressBlock: TextPressBlock?
+    @IBOutlet var labelTextPublickey: CHLabelTextField!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        let tapGes = UITapGestureRecognizer(target: self, action: #selector(CHPublicKeyCell.handleTextPress(_:)))
-        self.labelPublickey.addGestureRecognizer(tapGes)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,13 +21,27 @@ class CHPublicKeyCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    @IBAction func handleScanPress(_ sender: AnyObject?) {
-        self.scanBlock?(self)
-    }
-    
-    @IBAction func handleTextPress(_ sender: AnyObject?) {
-        self.textPressBlock?(self)
-    }
 
+}
+
+
+class CHPublicKeyHeaderCell: UITableViewCell {
+    
+    @IBOutlet var labelTips: UILabel!
+    
+}
+
+class CHPublicKeyFooterCell: UITableViewCell {
+    
+    @IBOutlet var buttonConfirm: UIButton!
+    
+    
+    /// 点击确认按钮
+    public typealias ConfirmPress = (CHPublicKeyFooterCell) -> Void
+    public var confirmPress: ConfirmPress?
+    
+    /// 点击功能力按钮
+    public func handleConfirmPress(sender: AnyObject?) {
+        self.confirmPress?(self)
+    }
 }

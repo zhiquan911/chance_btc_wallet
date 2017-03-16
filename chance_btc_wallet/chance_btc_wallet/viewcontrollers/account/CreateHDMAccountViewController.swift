@@ -12,7 +12,8 @@ class CreateHDMAccountViewController: UIViewController {
     
     /// MARK: - 成员变量
     @IBOutlet var buttonConfirm: UIButton!
-    @IBOutlet var textFieldUserName: UITextField!
+    @IBOutlet var labelTextNickname: CHLabelTextField!
+    @IBOutlet var labelTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +31,20 @@ class CreateHDMAccountViewController: UIViewController {
 extension CreateHDMAccountViewController {
     
     func setupUI() {
-        self.navigationItem.title = "Create new HDM acount".localized()
+        self.navigationItem.title = "Create Acount".localized()
+        self.labelTitle.text = "Create HDM Acount".localized()
+        
+        self.labelTextNickname.title = "Account Nickname".localized()
+        self.labelTextNickname.placeholder = "Give your account a nickname".localized()
+        self.labelTextNickname.textField?.keyboardType = .default
+        self.labelTextNickname.delegate = self
+        
+        self.buttonConfirm.setTitle("Create".localized(), for: [.normal])
     }
     
     //检测输入值是否合法
     func checkValue() -> Bool {
-        if self.textFieldUserName.text!.isEmpty {
+        if self.labelTextNickname.text.isEmpty {
             SVProgressHUD.showInfo(withStatus: "Username is empty".localized())
             
             return false
@@ -52,16 +61,21 @@ extension CreateHDMAccountViewController {
      - parameter sender:
      */
     @IBAction func handleConfirmPress(_ sender: AnyObject?) {
+        
         if self.checkValue() {
             
             //创建默认HD账户
-            let nickName = self.textFieldUserName.text!
+            let nickName = self.labelTextNickname.text
             guard let account = CHBTCWallet.sharedInstance.createHDAccount(by: nickName) else {
                 SVProgressHUD.showError(withStatus: "Create wallet account failed".localized())
                 return
             }
             
             CHBTCWallet.sharedInstance.selectedAccountIndex = account.index
+            
+            //同时记录钱包界面最新的用户索引位
+            WalletViewController.selectedCardIndex = account.index
+            WalletViewController.scrollCardAnimated = true
             
             SVProgressHUD.showSuccess(withStatus: "Create account successfully!")
             _ = self.navigationController?.popViewController(animated: true)
@@ -71,16 +85,17 @@ extension CreateHDMAccountViewController {
 }
 
 // MARK: - 实现输入框代理方法
-extension CreateHDMAccountViewController: UITextFieldDelegate {
+extension CreateHDMAccountViewController: CHLabelTextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ ltf: CHLabelTextField) -> Bool {
+        ltf.textField?.resignFirstResponder()
         return true
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ ltf: CHLabelTextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let maxCharOfName = 50
         
-        if(textField == self.textFieldUserName) {
+        if(ltf.textField === self.labelTextNickname.textField) {
             if (range.location>(maxCharOfName - 1)) {
                 return false
             }

@@ -8,18 +8,23 @@
 
 import UIKit
 
-class BTCSendMultiSigViewController: UIViewController {
+class BTCSendMultiSigViewController: BaseViewController {
     
+    @IBOutlet var labelTips: UILabel!
+    @IBOutlet var stackViewPedding: UIStackView!
     @IBOutlet var labelTransactionHex: UILabel!
-    @IBOutlet var buttonCopy: UIButton!
+    @IBOutlet var buttonRequest: UIButton!
+    @IBOutlet var buttonFinish: UIButton!
     
     var currentAccount: CHBTCAcount!
     var multiSigTx: MultiSigTransaction!
     
+    let kHeightOfItem: CGFloat = 44
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        self.initSendText()
+        self.showTransactionForm()
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,23 +43,45 @@ extension BTCSendMultiSigViewController {
      */
     func setupUI() {
         
-        self.navigationItem.title = "Sign Transaction".localized()
-        //配置返回按钮文字
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back".localized(), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.title = "Multi-Sig Request".localized()
+        self.labelTips.text = "Transaction has been created. Require the following address's private key signature:".localized()
         
-        
-        //按钮圆角
-        self.buttonCopy.layer.cornerRadius = 3
-        self.buttonCopy.layer.masksToBounds = true
-        self.buttonCopy.setBackgroundImage(
-            UIColor.imageWithColor(UIColor(hex: 0xE10B17)),
-            for: UIControlState())
+        self.buttonRequest.setTitle("Request Signature", for: .normal)
+        self.buttonFinish.setTitle("Finish", for: .normal)
     }
     
-
-    func initSendText() {
     
-        self.labelTransactionHex.text = self.multiSigTx.json
+    /// 显示交易表单需要的签名
+    func showTransactionForm() {
+        guard let script = self.multiSigTx.redeemScriptHex.toBTCScript() else {
+            return
+        }
+        
+        guard var (_, adds) = script.getMultisigPublicKeys() else {
+            return
+        }
+        
+        //已签名的地址位置
+        let hasSigned = self.multiSigTx.keySignatures!.keys
+        
+        //提出本身签名者的签名
+        adds.removeObject(self.currentAccount.accountId)
+        
+        //剔除已签名的，留下未签名的
+        for index in hasSigned {
+            adds.remove(at: index.toInt())
+        }
+        
+        //罗列未签名的地址到StackView列表
+        for address in adds {
+            let item = PeddingSignatureView()
+            item.heightAnchor.constraint(equalToConstant: kHeightOfItem).isActive = true
+            self.stackViewPedding.addArrangedSubview(item)
+            
+            item.address = address
+        }
+        
+       
     }
     
     /**
@@ -62,9 +89,14 @@ extension BTCSendMultiSigViewController {
      
      - parameter sender: 
      */
-    @IBAction func handleCopyPress(_ sender: AnyObject?) {
-        let pasteboard = UIPasteboard.general
-        pasteboard.string = self.multiSigTx.json
-        SVProgressHUD.showSuccess(withStatus: "Text copied".localized())
+    @IBAction func handleRequestPress(_ sender: AnyObject?) {
+        let text = self.multiSigTx.json
+        let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func handleFinishPress(_ sender: AnyObject?) {
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }

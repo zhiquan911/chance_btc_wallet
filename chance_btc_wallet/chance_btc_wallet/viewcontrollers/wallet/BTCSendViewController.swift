@@ -11,17 +11,33 @@ import UIKit
 class BTCSendViewController: UITableViewController {
     
     /// MARK: - 成员变量
-    @IBOutlet var labelAvailableTotal: UILabel!
-    @IBOutlet var labelCurrency: UILabel!
-    @IBOutlet var labelAddress: UILabel!
-    @IBOutlet var textFieldNumber: UITextField!
-    @IBOutlet var textFieldNote: UITextField!
-    @IBOutlet var labelInfo: UILabel!
-    @IBOutlet var buttonConfirm: UIButton!
+    @IBOutlet var buttonConfirm: CHButton!
+    @IBOutlet var labelTextAvailable: CHLabelTextField!
+    @IBOutlet var labelTextAddress: CHLabelTextField!
+    @IBOutlet var labelTextFees: CHLabelTextField!
+    @IBOutlet var labelTextActualTotal: CHLabelTextField!
+    @IBOutlet var labelTextAmount: CHLabelTextField!
     
     var currencyType = CurrencyType.BTC
     var addressNote = ""
-    var fee: BTCAmount = 10000
+    
+    //手续列表，暂时满足日常，以后将会有更高级设置
+    var feesArray: [BTCAmount] {
+        return [
+            BTCAmount(10000),
+            BTCAmount(30000),
+            BTCAmount(50000),
+            BTCAmount(70000),
+            BTCAmount(100000),
+            BTCAmount(150000),
+            BTCAmount(200000),
+            BTCAmount(300000),
+        ]
+    }
+    
+    //已选手续费
+    lazy var selectedFees: BTCAmount = self.feesArray[1]
+    
     var address = ""
     var actualTotal: BTCAmount!
     var availableTotal: BTCAmount {
@@ -31,6 +47,8 @@ class BTCSendViewController: UITableViewController {
         let balance = BTCAmount(ub.balanceSat + ub.unconfirmedBalanceSat)
         return balance
     }
+    
+    
     var btcAccount: CHBTCAcount!
     var changeAddress: BTCAddress {
         return self.btcAccount.address
@@ -44,9 +62,10 @@ class BTCSendViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.labelAvailableTotal.text = BTCAmount.stringWithSatoshiInBTCFormat(self.availableTotal)
-        self.labelCurrency.text = currencyType.rawValue
-        self.setupFee()
+        
+        self.labelTextAvailable.text = self.availableTotal.toBTC()
+
+        self.setupActualTotal()
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,17 +73,22 @@ class BTCSendViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.cellAddRoundStyle(tableView: tableView,
+                               indexPath: indexPath,
+                               bgImages: [
+                                UIImage(named:"bg_round_cell")!,
+                                UIImage(named:"bg_round_cell_up")!,
+                                UIImage(named:"bg_round_cell_down")!,
+                                UIImage(named:"bg_round_cell_mid")!,
+                                ],
+                               sidePadding: 8.0)
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 12
+        return 20
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
-    }
 }
 
 // MARK: - 控制器方法
@@ -76,47 +100,85 @@ extension BTCSendViewController {
     func setupUI() {
         
         self.navigationItem.title = "Send".localized() + currencyType.rawValue
-        //配置返回按钮文字
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back".localized(), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
+        self.labelTextAvailable.title = "Available".localized() + "(\(self.currencyType.rawValue))"
+        self.labelTextAvailable.placeholder = "Total Avaliable Balance".localized()
+        self.labelTextAvailable.delegate = self
+        self.labelTextAddress.title = "Receiver Address".localized()
+        self.labelTextAddress.placeholder = "e.g: bitcoin:1abcdefg.. or 1abcdefg...".localized()
+        self.labelTextAddress.delegate = self
+        self.labelTextAmount.title = "Transfer Amount".localized() + "(\(self.currencyType.rawValue))"
+        self.labelTextAmount.placeholder = "Amount of ".localized() + "(\(self.currencyType.rawValue))"
+        self.labelTextAmount.delegate = self
+        self.labelTextFees.title = "Fees".localized() + "\(self.currencyType.rawValue)"
+        self.labelTextFees.text = self.selectedFees.toBTC()
+        self.labelTextFees.delegate = self
+        self.labelTextActualTotal.title = "Actual Total".localized() + "(\(self.currencyType.rawValue))"
+        self.labelTextActualTotal.delegate = self
+        self.labelTextAmount.textField?.keyboardType = .decimalPad
         
-        //按钮圆角
-        self.buttonConfirm.layer.cornerRadius = 3
-        self.buttonConfirm.layer.masksToBounds = true
-        self.buttonConfirm.setBackgroundImage(
-            UIColor.imageWithColor(UIColor(hex: 0xE10B17)),
-            for: UIControlState())
+        self.buttonConfirm.setTitle("Send".localized(), for: .normal)
+        
+        self.labelTextAmount.textField?.addDoneOnKeyboardWithTarget(self, action: #selector(self.keyboardDoneAction))
+        
+        //点击地址文本复制
+        self.labelTextAddress.textPress = {
+            (lt) -> Void in
+            self.handleAddressPress(nil)
+        }
+        
+        self.labelTextAddress.accessoryPress = {
+            (lt) -> Void in
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressScanViewController") as! AddressScanViewController
+            vc.delegate = self
+            self.present(vc, animated: true, completion: nil)
+        }
+        
+        self.labelTextFees.textPress = {
+            (lt) -> Void in
+            self.handleFeesPress()
+        }
     }
     
     
-    //设置矿工费信息
-    func setupFee() {
-        //手续费设置
-        let number = self.textFieldNumber.text == "" ? "0" : self.textFieldNumber.text!
-        self.actualTotal = BTCAmount.satoshiWithStringInBTCFormat(number)
+    /// 关闭键盘
+    ///
+    /// - Parameter sender:
+    func keyboardDoneAction() {
+        AppDelegate.sharedInstance().closeKeyBoard()
+    }
+    
+    //计算实际发送数量
+    func setupActualTotal() {
+        
+        self.actualTotal = self.labelTextAmount.text.toBTCAmount()
         
         if self.actualTotal >= self.availableTotal {
             self.actualTotal = self.availableTotal
-            self.textFieldNumber.text = BTCAmount.stringWithSatoshiInBTCFormat(self.availableTotal)
+            if self.availableTotal > 0 {
+                self.labelTextAmount.text = self.availableTotal.toBTC()
+            } else {
+                self.labelTextAmount.text = ""
+            }
+            
         } else {
-            self.actualTotal = self.actualTotal  + self.fee
+            self.actualTotal = self.actualTotal  + self.selectedFees
         }
         
         self.actualTotal = self.actualTotal > 0 ? self.actualTotal : 0
         
+        self.labelTextActualTotal.text = self.actualTotal.toBTC()
         
-        
-        self.labelInfo.text = "Fees".localized() + "：\(BTCAmount.stringWithSatoshiInBTCFormat(self.fee))\(self.currencyType.rawValue)，" + "Actual".localized() + "：\(BTCAmount.stringWithSatoshiInBTCFormat(self.actualTotal))\(self.currencyType.rawValue)"
     }
     
     /**
      点击地址
      
      - parameter sender:
-     */
+    */
     @IBAction func handleAddressPress(_ sender: AnyObject?) {
         //收回键盘
-        AppDelegate.sharedInstance().closeKeyBoard()
+        self.keyboardDoneAction()
         
         let actionSheet = UIAlertController(title: "BTC Address".localized(), message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
@@ -137,8 +199,7 @@ extension BTCSendViewController {
                     pasteAddress = pasteAddress.replacingOccurrences(of: self.currencyType.addressPrefix, with: "")
                 }
                 
-                self.labelAddress.textColor = UIColor.darkGray
-                self.labelAddress.text = pasteAddress
+                self.labelTextAddress.text = pasteAddress
                 self.address = pasteAddress
             } else {
                 SVProgressHUD.showInfo(withStatus: "Clipboard is empty".localized())
@@ -154,6 +215,7 @@ extension BTCSendViewController {
         
         
     }
+ 
     
     /**
      进入复制交易文本界面
@@ -193,7 +255,7 @@ extension BTCSendViewController {
     @IBAction func handleAddressMorePress(_ sender: AnyObject?) {
         
         //收回键盘
-        AppDelegate.sharedInstance().closeKeyBoard()
+        self.keyboardDoneAction()
     }
     
     
@@ -203,7 +265,7 @@ extension BTCSendViewController {
      - parameter sender:
      */
     @IBAction func handleConfirmPress(_ sender: AnyObject?) {
-        AppDelegate.sharedInstance().closeKeyBoard()
+        self.keyboardDoneAction()
         if self.checkValue() {
             
             
@@ -251,7 +313,7 @@ extension BTCSendViewController {
             return false
         }
         
-        if self.textFieldNumber.text!.isEmpty {
+        if self.labelTextAmount.text.isEmpty {
             SVProgressHUD.showInfo(withStatus: "Amount is empty".localized())
             return false
         }
@@ -324,7 +386,7 @@ extension BTCSendViewController {
                         
                         //添加交易输出的地址及找零地址
                         let destinationAddress = BTCAddress(string: self.address)
-                        let paymentOutput = BTCTransactionOutput(value: totalAmount - self.fee, address: destinationAddress)
+                        let paymentOutput = BTCTransactionOutput(value: totalAmount - self.selectedFees, address: destinationAddress)
                         
                         tx.addOutput(paymentOutput)
                         
@@ -433,18 +495,35 @@ extension BTCSendViewController {
         }
     }
     
+    
+    /// 选择矿工费
+    func handleFeesPress() {
+        
+        //收回键盘
+        self.keyboardDoneAction()
+        
+        let selectedIndex = self.feesArray.index(of: self.selectedFees)
+        let feesSeletions = self.feesArray.map {$0.toBTC()}
+        ActionSheetStringPicker.show(withTitle: "Choose Fees".localized(), rows: feesSeletions, initialSelection: selectedIndex!, doneBlock: { (picker, index, item) in
+            self.selectedFees = self.feesArray[index]
+            self.labelTextFees.text = self.selectedFees.toBTC()
+        }, cancel: {
+            (picker) in
+            
+        }, origin: self.tableView)
+    }
 }
 
 // MARK: - 文本输入代理
-extension BTCSendViewController: UITextFieldDelegate {
+extension BTCSendViewController: CHLabelTextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+    func textFieldShouldReturn(_ ltf: CHLabelTextField) -> Bool {
+        ltf.resignFirstResponder()
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.setupFee()
+    func textFieldDidEndEditing(_ ltf: CHLabelTextField) {
+        self.setupActualTotal()
     }
     
 }
@@ -460,8 +539,7 @@ extension BTCSendViewController: AddressScanViewDelegate {
             pasteAddress = pasteAddress.replacingOccurrences(of: self.currencyType.addressPrefix, with: "")
         }
         
-        self.labelAddress.textColor = UIColor.darkGray
-        self.labelAddress.text = pasteAddress
+        self.labelTextAddress.text = pasteAddress
         self.address = pasteAddress
     }
 }

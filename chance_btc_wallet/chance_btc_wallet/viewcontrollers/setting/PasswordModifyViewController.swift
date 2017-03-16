@@ -79,9 +79,9 @@ extension PasswordModifyViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == self.textFieldNewPassword {
+        if textField === self.textFieldNewPassword {
             textFieldConfirmPassword.becomeFirstResponder()
-        } else if textField == self.textFieldConfirmPassword {
+        } else if textField === self.textFieldConfirmPassword {
             textFieldConfirmPassword.resignFirstResponder()
         }
         return true
@@ -90,8 +90,8 @@ extension PasswordModifyViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let maxCharOfPassword = 50
         
-        if(textField == self.textFieldNewPassword
-            || textField == self.textFieldConfirmPassword) {
+        if(textField === self.textFieldNewPassword
+            || textField === self.textFieldConfirmPassword) {
                 if (range.location>(maxCharOfPassword - 1)) {
                     return false
                 }

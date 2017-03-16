@@ -84,6 +84,8 @@ extension AccountCardPageCell {
     func configAccountCell(account: CHBTCAcount,
                            currencyType: CurrencyType,
                            exCurrencyType: CurrencyType) {
+        
+        //TODO:滑动时，读取字段，会造成掉帧，性能不是很好，待检查优化
   
         self.labelNickname.text = account.userNickname
         self.labelAddress.text = account.address.string
@@ -106,8 +108,8 @@ extension AccountCardPageCell {
         //余额数据和账户地址相匹配才更新
         if let ub = account.userBalance, ub.address == account.address.string {
             
-            self.labelBalanceValue.text = BTCAmount.stringWithSatoshiInBTCFormat(Int64(ub.balanceSat + ub.unconfirmedBalanceSat))
-            self.labelMoneyValue.text = ub.getLegalMoney(price: 9000).toString(maxF: 2)
+            self.labelBalanceValue.text = ub.getBTCBalance()
+            self.labelMoneyValue.text = ub.getLegalMoney(price: 1284.860).toString(maxF: 2)
             
             self.labelBalanceValue.textColor = UIColor.white
             self.labelMoneyValue.textColor = UIColor.white

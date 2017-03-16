@@ -28,6 +28,15 @@ class UserBalance: NSObject {
     ///
     /// - Parameter price: 单价
     /// - Returns: （余额 + 未确认） * 单价
+    func getBTCBalance() -> String {
+        let total = (self.balance + self.unconfirmedBalance).toString()
+        return total
+    }
+    
+    /// 计算法币的价值
+    ///
+    /// - Parameter price: 单价
+    /// - Returns: （余额 + 未确认） * 单价
     func getLegalMoney(price: Double) -> Double {
         let total = (self.balance + self.unconfirmedBalance) * price
         return total
