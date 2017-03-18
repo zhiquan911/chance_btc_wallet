@@ -8,9 +8,9 @@
 
 ## 🤖公开版本
 
-###[iOS 1.0.0.b1](https://fir.im/d93r)
+### [iOS 1.0.0.b1](https://fir.im/d93r)
 
-###[iOS 0.6.0](https://beta.bugly.qq.com/cqze)
+### [iOS 0.6.0](https://beta.bugly.qq.com/cqze)
 
 ## ✨应用特点
 
