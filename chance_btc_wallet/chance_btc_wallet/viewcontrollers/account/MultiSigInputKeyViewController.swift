@@ -126,23 +126,27 @@ extension MultiSigInputKeyViewController {
     
     /**
      点击公钥文本
-     
-     - parameter indexPath:
- 
-    func cellTextPress(_ indexPath: IndexPath) {
-        self.selectedIndexPath = indexPath
+    */
+    func cellTextPress() {
+        
+        guard let indexPath = self.selectedIndexPath else {
+            return
+        }
+        
         let actionSheet = UIAlertController(title: "Input publickey".localized(), message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Scan QRCode".localized(), style: UIAlertActionStyle.default, handler: {
             (action) -> Void in
-            self.scanQRCode(indexPath)
+            self.scanQRCode()
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Paste from Clipboard".localized(), style: UIAlertActionStyle.default, handler: {
             (action) -> Void in
             let pasteboard = UIPasteboard.general
             if (pasteboard.string?.length ?? 0) > 0 {
-                self.publicKeys[indexPath.section] = pasteboard.string!
+                let row = indexPath.row - 1
+                self.publicKeys[row] = pasteboard.string!
+                
                 self.tableViewKeys.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
             } else {
                 SVProgressHUD.showInfo(withStatus: "Clipboard is empty".localized())
@@ -157,7 +161,7 @@ extension MultiSigInputKeyViewController {
         self.present(actionSheet, animated: true, completion: nil)
         
     }
-    */
+ 
     
     /// 处理粘贴公钥
     ///
@@ -236,8 +240,9 @@ extension MultiSigInputKeyViewController: UITableViewDelegate, UITableViewDataSo
             cell.labelTextPublickey.textPress = {
                 (lt) -> Void in
                 self.selectedIndexPath = tableView.indexPath(for: cell)
-                let pasteItem = UIMenuItem(title: "Paste".localized(), action: #selector(self.handlePaste))
-                lt.buttonForText?.showUIMenu(items: [pasteItem], containerView: self.view)
+                self.cellTextPress()
+//                let pasteItem = UIMenuItem(title: "Paste".localized(), action: #selector(self.handlePaste))
+//                lt.buttonForText?.showUIMenu(items: [pasteItem], containerView: self.view)
             }
             
             
@@ -285,10 +290,14 @@ extension MultiSigInputKeyViewController: UITableViewDelegate, UITableViewDataSo
 extension MultiSigInputKeyViewController: AddressScanViewDelegate {
     
     func didScanQRCodeSuccess(vc: AddressScanViewController, result: String) {
-        if self.selectedIndexPath != nil {
-            self.publicKeys[self.selectedIndexPath!.section] = result
-            self.tableViewKeys.reloadRows(at: [self.selectedIndexPath!], with: UITableViewRowAnimation.none)
+        
+        guard let indexPath = self.selectedIndexPath else {
+            return
         }
+        
+        let row = indexPath.row - 1
+        self.publicKeys[row] = result
+        self.tableViewKeys.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
     }
 }
 

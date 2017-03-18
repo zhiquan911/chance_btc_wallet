@@ -81,18 +81,24 @@ extension BTCMultiSigTxFormViewController {
             return
         }
         
-        guard let vc = StoryBoard.wallet.initView(type: BTCMultiSigTransactionViewController.self) else {
-            SVProgressHUD.showError(withStatus: "Unknown error".localized())
-            return
-        }
-        
-        //初始表单
         do {
+            
             //封装一个多重签名交易表单
             let mtx = try MultiSigTransaction(json: self.textViewContent.text.trim())
             
+            //检查是否钱包有可签名的账户
+            guard let account = self.searchAccountToSign(mtx) else {
+                SVProgressHUD.showError(withStatus: "Can not find account to sign!".localized())
+                return
+            }
+            
+            guard let vc = StoryBoard.wallet.initView(type: BTCMultiSigTransactionViewController.self) else {
+                SVProgressHUD.showError(withStatus: "Unknown error".localized())
+                return
+            }
+         
             vc.multiSigTx = mtx
-            vc.currentAccount = self.currentAccount
+            vc.currentAccount = account
             self.navigationController?.pushViewController(vc, animated: true)
         } catch {
             SVProgressHUD.showError(withStatus: "Transaction decode error".localized())
@@ -100,5 +106,42 @@ extension BTCMultiSigTxFormViewController {
         
         
     }
+    
+    /// 查找钱包中可以签名的账户
+    ///
+    /// - Returns: 返回是否找到账户?
+    func searchAccountToSign(_ mtx: MultiSigTransaction) ->  CHBTCAcount? {
+        
+        guard let rs = mtx.redeemScriptHex.toBTCScript() else {
+            return nil
+        }
+        
+        guard let (_, addrs) = rs.getMultisigPublicKeys() else {
+            return nil
+        }
+        
+        for address in addrs {
+            guard let account = CHBTCWallet.sharedInstance.getAccount(byID: address) else {
+                continue
+            }
+            return account
+        }
+        
+        return nil
+    }
 
+}
+
+// MARK: - 实现TextView委托方法
+extension BTCMultiSigTxFormViewController: UITextViewDelegate {
+    
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
 }

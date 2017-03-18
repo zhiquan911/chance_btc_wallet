@@ -60,7 +60,7 @@ extension WelcomeCreateAccountViewController {
         self.labelTextConfirm.delegate = self
         
         self.buttonConfirm.setTitle("Create".localized(), for: [.normal])
-        
+
     }
     
     //检测输入值是否合法
@@ -96,6 +96,8 @@ extension WelcomeCreateAccountViewController {
      - parameter sender:
      */
     @IBAction func handleConfirmPress(_ sender: AnyObject?) {
+        
+        
         if self.checkValue() {
             let password = self.labelTextPassword.text.trim()
             //创建钱包系统
@@ -123,7 +125,9 @@ extension WelcomeCreateAccountViewController {
             })
             
         }
+        
     }
+    
     
     func gotoSuccessView() {
         guard let vc = StoryBoard.welcome.initView(type: WelcomeSuccessViewController.self) else {

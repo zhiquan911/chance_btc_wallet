@@ -83,7 +83,8 @@ extension AccountCardPageCell {
     ///   - exCurrencyType: 换算的法币种类
     func configAccountCell(account: CHBTCAcount,
                            currencyType: CurrencyType,
-                           exCurrencyType: CurrencyType) {
+                           exCurrencyType: CurrencyType,
+                           newPrice: Double) {
         
         //TODO:滑动时，读取字段，会造成掉帧，性能不是很好，待检查优化
   
@@ -109,7 +110,7 @@ extension AccountCardPageCell {
         if let ub = account.userBalance, ub.address == account.address.string {
             
             self.labelBalanceValue.text = ub.getBTCBalance()
-            self.labelMoneyValue.text = ub.getLegalMoney(price: 1284.860).toString(maxF: 2)
+            self.labelMoneyValue.text = ub.getLegalMoney(price: newPrice).toString(maxF: 2)
             
             self.labelBalanceValue.textColor = UIColor.white
             self.labelMoneyValue.textColor = UIColor.white
@@ -122,6 +123,8 @@ extension AccountCardPageCell {
             self.labelBalanceValue.textColor = UIColor(hex: 0x49c686)
             self.labelMoneyValue.textColor = UIColor(hex: 0x49c686)
         }
+        
+        self.bgView.backgroundColor = account.accountType.cardBGColor
     }
     
     

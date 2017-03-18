@@ -23,6 +23,7 @@ class ExportKeyViewController: BaseViewController {
             return currentAccount.extendedPublicKey
         } else if keyType == .RedeemScript {
             let redeemScript = currentAccount.redeemScript!
+            
             return redeemScript.hex
         } else {
             return ""

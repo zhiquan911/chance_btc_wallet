@@ -33,7 +33,8 @@ class WalletViewController: BaseViewController {
 //    var dropdownView: LMDropdownView!
     var userName = ""
     var address = ""
-//    var balance: BTCAmount = 0
+    var lastPrice: Double = 0
+    var legalCurrency: CurrencyType = .USD
     var userBalance: UserBalance?
     var refreshTimer: Timer?              //刷新数据定时器
     var transactions = [UserTransaction]()
@@ -46,6 +47,7 @@ class WalletViewController: BaseViewController {
     var page = PageModule()
     
     var updateWalletTask: Task? //更新的异步任务
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,14 +79,15 @@ class WalletViewController: BaseViewController {
         
         //【1】刷新钱包用户列表，可能有新增修改
         self.reloadAllWalletAcount()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
         //创建刷新定时器，获取最新的交易记录
-//        if self.refreshTimer == nil {
-//            self.refreshTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.updateUserWallet), userInfo: nil, repeats: true)
-//        }
+        if self.refreshTimer == nil {
+            self.refreshTimer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(self.getTickerByWebservice), userInfo: nil, repeats: true)
+        }
         
         //在全部视图完成显示后，可以手动执行切换
         let selectedIndex = WalletViewController.selectedCardIndex
@@ -99,6 +102,8 @@ class WalletViewController: BaseViewController {
         //【3】刷新设置定时X秒过期才执行
         self.tableViewTransactions.expriedTimeInterval = kAutoRefreshTime
         
+        //【4】获取行情最新价格
+        self.getTickerByWebservice()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,8 +115,8 @@ class WalletViewController: BaseViewController {
         
         
         //停止定时器
-//        self.refreshTimer?.invalidate()
-//        self.refreshTimer = nil
+        self.refreshTimer?.invalidate()
+        self.refreshTimer = nil
     }
     
     deinit {
@@ -245,6 +250,9 @@ extension WalletViewController {
             return
         }
         
+        //加载余额缓存
+        account.loadUserBalanceCache()
+        
         self.userName = account.userNickname
         self.address = account.address.string
         self.currentAccount = account       //记录当前账户对象
@@ -261,8 +269,13 @@ extension WalletViewController {
         nodeServer.userBalance(address: self.address) {
             (message, userBalance) -> Void in
             if message.code == ApiResultCode.Success.rawValue {
+                
+                //保存缓存
+                userBalance.save()
+                
                 self.userBalance = userBalance
-                self.currentAccount?.userBalance = userBalance
+                //加载余额缓存到账户中
+                self.currentAccount?.loadUserBalanceCache()
                 
                 //更新卡片余额
                 let selectedIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
@@ -301,10 +314,15 @@ extension WalletViewController {
                 
                 if searchAddress == self.address {
                     
+                    //保存缓存
+                    userBalance?.save()
+                    
                     //更新余额
                     if userBalance != nil {
+                        
                         self.userBalance = userBalance
-                        self.currentAccount?.userBalance = userBalance
+                        //加载余额缓存到账户中
+                        self.currentAccount?.loadUserBalanceCache()
                         
                         //更新卡片余额
                         let selectedIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
@@ -327,6 +345,17 @@ extension WalletViewController {
             completeHandler(userTransactions.count)
         }
     
+    }
+    
+    
+    /// 获取最新价格
+    func getTickerByWebservice() {
+        BlockchainRemoteService.sharedInstance.ticker {
+            (message, tickers) in
+            if message.code == ApiResultCode.Success.rawValue {
+                self.lastPrice = tickers[self.legalCurrency.rawValue]?.last ?? 0
+            }
+        }
     }
     
     /**
@@ -560,10 +589,11 @@ extension WalletViewController: CHPageCardViewDelegate {
                 ) as! AccountCardPageCell
             
             let btcAccount = self.walletAccounts[index]
-            btcAccount.userBalance = self.userBalance
+            //btcAccount.userBalance = self.userBalance
             cell.configAccountCell(account: btcAccount,
                                    currencyType: self.currencyType,
-                                   exCurrencyType: self.exCurrencyType)
+                                   exCurrencyType: self.exCurrencyType,
+                                   newPrice: self.lastPrice)
             
             //配置控制器两个方法
             cell.addressPress = {

@@ -202,6 +202,17 @@ public enum CHAccountType: String {
             return "Multi-Sig".localized()
         }
     }
+    
+    
+    /// 卡片背景色
+    var cardBGColor: UIColor {
+        switch self {
+        case .normal:
+            return UIColor(hex: 0x1E74CA)
+        case .multiSig:
+            return UIColor(hex: 0x7956B6)
+        }
+    }
 }
 
 

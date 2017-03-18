@@ -266,4 +266,30 @@ class BlockchainRemoteService: RemoteService {
         }
     }
     
+    
+    /// 价格行情
+    func ticker(callback: @escaping (MessageModule, [String: WorldTicker]) -> Void) {
+        
+        let params: [String: Any] = [String: Any]()
+        
+        let url = apiUrl + "ticker"
+        
+        self.sendJsonRequest(url, method: .get, parameters: params) {
+            (json, isCache) -> Void in
+            let message = MessageModule(json: json["resMsg"])
+            let data = json["datas"]
+            var tickers = [String: WorldTicker]()
+            if data.exists() {
+                let map = data.dictionaryValue
+                let keys = map.keys
+                for cur in keys {
+                    
+                    let obj = WorldTicker(json: map[cur]!, currency: "BTC", legalCurrency: cur)
+                    tickers[cur] = obj
+                }
+            }
+            callback(message, tickers)
+        }
+        
+    }
 }

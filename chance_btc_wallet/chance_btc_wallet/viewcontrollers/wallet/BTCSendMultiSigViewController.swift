@@ -57,23 +57,27 @@ extension BTCSendMultiSigViewController {
             return
         }
         
-        guard var (_, adds) = script.getMultisigPublicKeys() else {
+        guard let (_, adds) = script.getMultisigPublicKeys() else {
             return
         }
         
         //已签名的地址位置
         let hasSigned = self.multiSigTx.keySignatures!.keys
         
+        //未签名的地址
+        var unsignedAdds = adds
+        
         //提出本身签名者的签名
-        adds.removeObject(self.currentAccount.accountId)
+        //adds.removeObject(self.currentAccount.accountId)
         
         //剔除已签名的，留下未签名的
         for index in hasSigned {
-            adds.remove(at: index.toInt())
+            let target = adds[index.toInt()]
+            unsignedAdds.removeObject(target)
         }
         
         //罗列未签名的地址到StackView列表
-        for address in adds {
+        for address in unsignedAdds {
             let item = PeddingSignatureView()
             item.heightAnchor.constraint(equalToConstant: kHeightOfItem).isActive = true
             self.stackViewPedding.addArrangedSubview(item)

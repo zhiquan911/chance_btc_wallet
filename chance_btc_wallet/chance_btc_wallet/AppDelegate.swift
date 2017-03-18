@@ -85,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setForegroundColor(UIColor.white)
         SVProgressHUD.setAnimatedViewColor(UIColor.white)
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.custom)
+        SVProgressHUD.setDefaultMaskType(.black)
         SVProgressHUD.setMinimumDismissTimeInterval(1)
     }
 
@@ -95,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //开启键盘自动适应高度
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        IQKeyboardManager.sharedManager().disabledDistanceHandlingClasses.append(RestoreWalletViewController.self)
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

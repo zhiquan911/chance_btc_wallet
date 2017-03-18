@@ -27,7 +27,6 @@ class RestoreWalletViewController: BaseViewController {
     @IBOutlet var buttonConfirm: CHButton!
     @IBOutlet var labelTips: UILabel!
     @IBOutlet var viewStep: UIView!
-    @IBOutlet var labelPassphrases: UILabel!
     
     @IBOutlet var viewStepHeightConstraint: NSLayoutConstraint!
     
@@ -95,6 +94,13 @@ extension RestoreWalletViewController {
     ///
     /// - Parameter sender:
     @IBAction func handleRestorePress(_ sender: CHButton) {
+        
+        AppDelegate.sharedInstance().closeKeyBoard()
+        
+        if !self.checkValue() {
+            return
+        }
+        
         sender.isEnabled = false
         //1.输入恢复密码，可为空
         self.showPasswordTextAlert { (password) in
@@ -121,6 +127,18 @@ extension RestoreWalletViewController {
         
     }
     
+    /// 检查输入值是否合法
+    ///
+    /// - Returns:
+    func checkValue() -> Bool {
+        if self.textViewRestore.text.isEmpty {
+            SVProgressHUD.showInfo(withStatus: "Passphrase is empty".localized())
+            
+            return false
+        }
+        
+        return true
+    }
     
     /// 恢复比特币钱包
     ///
@@ -140,7 +158,6 @@ extension RestoreWalletViewController {
                     let db = RealmDBHelper.shared.acountDB
                     RealmDBHelper.shared.iCloudSynchronize(db: db)
                     
-                    SVProgressHUD.showSuccess(withStatus: "The wallet & accounts have been restore successfully".localized())
                     self.leave()
                     return
                 } else {    //恢复账户失败
@@ -238,7 +255,7 @@ extension RestoreWalletViewController {
     func leave() {
         switch self.restoreOperateType {
         case .passiveRestore:
-            
+            SVProgressHUD.dismiss()
             //进入成功界面
             guard let vc = StoryBoard.welcome.initView(type: WelcomeSuccessViewController.self) else {
                 return
@@ -247,6 +264,9 @@ extension RestoreWalletViewController {
             self.navigationController?.pushViewController(vc, animated: true)
             
         default:
+            
+            SVProgressHUD.showSuccess(withStatus: "The wallet & accounts have been restore successfully".localized())
+            
             _ = self.navigationController?.popViewController(animated: true)
         }
 
@@ -261,6 +281,15 @@ extension RestoreWalletViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         self.buttonConfirm.isEnabled = !textView.text.isEmpty
+    }
+
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
     
 }

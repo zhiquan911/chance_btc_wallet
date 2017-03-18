@@ -15,7 +15,7 @@ class SettingViewController: BaseTableViewController {
     var currentAccount: CHBTCAcount? {
         let i = CHBTCWallet.sharedInstance.selectedAccountIndex
         if i != -1 {
-            return CHBTCWallet.sharedInstance.getAccount(by: i)
+            return CHBTCWallet.sharedInstance.getAccount(byIndex: i)
         } else {
             return nil
         }
@@ -75,13 +75,13 @@ class SettingViewController: BaseTableViewController {
                 var keyType = ExportKeyType.PublicKey
                 if indexPath.row == 0 {
                     keyType = ExportKeyType.PublicKey
-                    title = "Export account's public key".localized()
+                    title = "Public Key".localized()
                 } else if indexPath.row == 1 {
                     keyType = ExportKeyType.PrivateKey
-                    title = "Export account's private key".localized()
+                    title = "Private Key".localized()
                 } else if indexPath.row == 2 {
                     keyType = ExportKeyType.RedeemScript
-                    title = "Export account's redeemScript".localized()
+                    title = "RedeemScript".localized()
                 }
                 
                 guard let vc = StoryBoard.setting.initView(type: ExportKeyViewController.self) else {
@@ -97,7 +97,7 @@ class SettingViewController: BaseTableViewController {
                 var title = ""
                 if indexPath.row == 0 {
                     restoreOperateType = .lookupPassphrase
-                    title = "Backup Passphrase".localized()
+                    title = "Passphrase".localized()
                 } else {
                     restoreOperateType = .initiativeRestore
                     title = "Restore wallet".localized()

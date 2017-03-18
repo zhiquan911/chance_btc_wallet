@@ -92,7 +92,7 @@ class TouchIDUtils: NSObject {
                         Log.debug("Authentication was cancelled by the user".localized());
                         //用户取消验证Touch ID
                         DispatchQueue.main.async(execute: {
-                            complete?(success, "Authentication was cancelled by the user".localized())
+                            complete?(success, "")
                         })
                         break;
                         

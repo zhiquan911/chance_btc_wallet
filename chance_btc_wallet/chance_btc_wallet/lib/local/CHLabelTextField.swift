@@ -19,8 +19,8 @@ public protocol CHLabelTextFieldDelegate: AnyObject {
 
     @objc optional func textFieldDidEndEditing(_ ltf: CHLabelTextField) // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
     
-    @available(iOS 10.0, *)
-    @objc optional func textFieldDidEndEditing(_ ltf: CHLabelTextField, reason: UITextFieldDidEndEditingReason) // if implemented, called in place of textFieldDidEndEditing:
+//    @available(iOS 10.0, *)
+//    @objc optional func textFieldDidEndEditing(_ ltf: CHLabelTextField, reason: UITextFieldDidEndEditingReason) // if implemented, called in place of textFieldDidEndEditing:
     
     @objc optional func textField(_ ltf: CHLabelTextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool // return NO to not change text
     
@@ -282,12 +282,13 @@ extension CHLabelTextField {
     
     /// 重新计算字体大小
     func resizeFont() {
-        let size = self.text.textSizeWithFont(UIFont.systemFont(ofSize: 14), constrainedToSize: CGSize(width: self.bounds.width, height: bounds.height))
-        Log.debug("\(size.width) : \(self.textField!.width)")
-        if size.width >= self.textField!.width {
-            self.textField?.font = UIFont.systemFont(ofSize: 11)
-        } else {
-            self.textField?.font = UIFont.systemFont(ofSize: 14)
+        if !self.isEditable {
+            let size = self.text.textSizeWithFont(UIFont.systemFont(ofSize: 14), constrainedToSize: CGSize(width: self.bounds.width, height: bounds.height))
+            if size.width >= self.textField!.width {
+                self.textField?.font = UIFont.systemFont(ofSize: 11)
+            } else {
+                self.textField?.font = UIFont.systemFont(ofSize: 14)
+            }
         }
     }
     
@@ -342,7 +343,7 @@ extension CHLabelTextField: UITextFieldDelegate {
     
     @available(iOS 10.0, *)
     public func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
-        self.delegate?.textFieldDidEndEditing?(self, reason: reason)
+        self.delegate?.textFieldDidEndEditing?(self)
     }
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

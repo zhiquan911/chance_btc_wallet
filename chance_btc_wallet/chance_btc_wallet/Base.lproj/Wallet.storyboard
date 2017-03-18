@@ -77,7 +77,7 @@
             <objects>
                 <navigationController storyboardIdentifier="WalletRootViewController" id="Rzx-vF-sta" customClass="RootNavigationController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Wallet" image="menu_ico_asset" id="zh2-FL-I9i"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="u7M-O0-Kva">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="u7M-O0-Kva">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -423,34 +423,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="ypU-mL-8wU">
-                                        <rect key="frame" x="0.0" y="183" width="375" height="68"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ypU-mL-8wU" id="Kvs-dX-6q0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqZ-GN-Pwo" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
-                                                    <rect key="frame" x="23" y="0.0" width="329" height="68"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Transfer Amount(BTC)"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="0.0000"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="gqZ-GN-Pwo" firstAttribute="leading" secondItem="Kvs-dX-6q0" secondAttribute="leading" constant="23" id="0F6-9Y-uym"/>
-                                                <constraint firstAttribute="trailing" secondItem="gqZ-GN-Pwo" secondAttribute="trailing" constant="23" id="CD2-Nk-2gg"/>
-                                                <constraint firstAttribute="bottom" secondItem="gqZ-GN-Pwo" secondAttribute="bottom" id="LDS-0u-NXc"/>
-                                                <constraint firstItem="gqZ-GN-Pwo" firstAttribute="top" secondItem="Kvs-dX-6q0" secondAttribute="top" id="Xm1-Z0-Z6f"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="GU4-Tr-Fyl">
-                                        <rect key="frame" x="0.0" y="251" width="375" height="68"/>
+                                        <rect key="frame" x="0.0" y="183" width="375" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GU4-Tr-Fyl" id="fjT-3d-KM2">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
@@ -472,6 +446,32 @@
                                                 <constraint firstItem="Gee-WU-eir" firstAttribute="top" secondItem="fjT-3d-KM2" secondAttribute="top" id="Xfx-Bb-s5V"/>
                                                 <constraint firstItem="Gee-WU-eir" firstAttribute="leading" secondItem="fjT-3d-KM2" secondAttribute="leading" constant="23" id="o2R-Vh-f72"/>
                                                 <constraint firstAttribute="bottom" secondItem="Gee-WU-eir" secondAttribute="bottom" id="rz4-DI-g4r"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="ypU-mL-8wU">
+                                        <rect key="frame" x="0.0" y="251" width="375" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ypU-mL-8wU" id="Kvs-dX-6q0">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqZ-GN-Pwo" customClass="CHLabelTextField" customModule="chance_btc_wallet" customModuleProvider="target">
+                                                    <rect key="frame" x="23" y="0.0" width="329" height="68"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Transfer Amount(BTC)"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="0.0000"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gqZ-GN-Pwo" firstAttribute="leading" secondItem="Kvs-dX-6q0" secondAttribute="leading" constant="23" id="0F6-9Y-uym"/>
+                                                <constraint firstAttribute="trailing" secondItem="gqZ-GN-Pwo" secondAttribute="trailing" constant="23" id="CD2-Nk-2gg"/>
+                                                <constraint firstAttribute="bottom" secondItem="gqZ-GN-Pwo" secondAttribute="bottom" id="LDS-0u-NXc"/>
+                                                <constraint firstItem="gqZ-GN-Pwo" firstAttribute="top" secondItem="Kvs-dX-6q0" secondAttribute="top" id="Xm1-Z0-Z6f"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
@@ -753,6 +753,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="e.g: multisig:{&quot;rawTx&quot;:&quot;2423400000…&quot;,&quot;redeemScriptHex&quot;:&quot;522102e7fdca57c00…e&quot;,&quot;keySignatures&quot;:{…}}"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="wkV-kr-bFR" id="9xj-Ou-l7Y"/>
+                                                </connections>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0I-gI-oGc" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="272.5" width="319" height="40"/>

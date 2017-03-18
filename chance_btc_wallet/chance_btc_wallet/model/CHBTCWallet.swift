@@ -24,6 +24,26 @@ import RealmSwift
  */
 class CHBTCWallet: NSObject {
     
+    /// 获取比特币交易数据库文件名
+    ///
+    /// - Returns: 文件名
+    static var transactionFileName: String {
+        let fileName = "btc_wallet_tx"
+        return fileName
+    }
+    
+    //btc交易记录数据库路径
+    static var transactionDBFilePath: URL {
+        let fileManager = FileManager.default
+        let directoryURL = RealmDBHelper.databaseFilePath
+            .appendingPathComponent("btc_tx")
+        
+        if !fileManager.fileExists(atPath: directoryURL.path) {
+            try! fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
+        }
+        return directoryURL
+    }
+    
     //密码
     var password: String {
         return CHWalletWrapper.password
@@ -32,6 +52,17 @@ class CHBTCWallet: NSObject {
     //恢复密语
     var passphrase: String {
         return CHWalletWrapper.passphrase
+    }
+    
+    
+    
+    /// 获取账户数据库文件名
+    ///
+    /// - Returns: 文件名
+    var accountsFileName: String {
+        let seedHash = self.seedHash!
+        let fileName = "btc_wallet_\(seedHash).realm"
+        return fileName
     }
     
     
@@ -47,17 +78,6 @@ class CHBTCWallet: NSObject {
         return directoryURL
     }
     
-    //btc交易记录数据库路径
-    var transactionDBFilePath: URL {
-        let fileManager = FileManager.default
-        let directoryURL = RealmDBHelper.databaseFilePath
-            .appendingPathComponent("btc_tx")
-        
-        if !fileManager.fileExists(atPath: directoryURL.path) {
-            try! fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
-        }
-        return directoryURL
-    }
     
     // MARK: - 成员变量
     
@@ -94,26 +114,7 @@ class CHBTCWallet: NSObject {
     var rootKeys: BTCKeychain {
         return self.getBIP44KeyChain()
     }
-    
-    
-    /// 获取账户数据库文件名
-    ///
-    /// - Returns: 文件名
-    var accountsFileName: String {
-        let seedHash = self.seedHash!
-        let fileName = "btc_wallet_\(seedHash).realm"
-        return fileName
-    }
-    
-    /// 获取比特币交易数据库文件名
-    ///
-    /// - Returns: 文件名
-    var transactionFileName: String {
-        let fileName = "btc_wallet_tx"
-        return fileName
-    }
-    
-    
+
     /// 用于记录钱包是否存在数据，第一次执行checkBTCWalletExist后如果存在就赋值true。
     var isBTCWalletExist = false
     
@@ -467,11 +468,29 @@ class CHBTCWallet: NSObject {
      
      - returns:
      */
-    func getAccount(by index: Int = 0) -> CHBTCAcount? {
-        let account = CHBTCAcount.getBTCAccount(by: index)
+    func getAccount(byIndex index: Int = 0) -> CHBTCAcount? {
+        let account = CHBTCAcount.getBTCAccount(byIndex: index)
         let childKeys = self.rootKeys.derivedKeychain(at: UInt32(index),
                                                       hardened: true)
         account?.btcKeychain = childKeys
+        return account
+    }
+    
+    /**
+     获取HD账户，目前钱包默认一个
+     
+     - parameter index: 家族中第几个
+     
+     - returns:
+     */
+    func getAccount(byID accountId: String) -> CHBTCAcount? {
+        guard let account = CHBTCAcount.getBTCAccount(byID: accountId) else {
+            return nil
+        }
+        
+        let childKeys = self.rootKeys.derivedKeychain(at: UInt32(account.index),
+                                                      hardened: true)
+        account.btcKeychain = childKeys
         return account
     }
     
@@ -487,7 +506,7 @@ class CHBTCWallet: NSObject {
             return nil
         }
         
-        let account = CHBTCAcount.getBTCAccount(by: self.selectedAccountIndex)
+        let account = CHBTCAcount.getBTCAccount(byIndex: self.selectedAccountIndex)
         let childKeys = self.rootKeys.derivedKeychain(at: UInt32(self.selectedAccountIndex),
                                                       hardened: true)
         account?.btcKeychain = childKeys

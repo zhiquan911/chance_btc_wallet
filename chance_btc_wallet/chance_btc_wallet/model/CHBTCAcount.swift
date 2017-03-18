@@ -30,9 +30,8 @@ class CHBTCAcount: Object {
     dynamic var isEnable: Bool = true                   //是否可用
     dynamic var keyPath: String = ""                //HDM私钥路径，如："m/44'/0'/2'" (BIP44 bitcoin account #2)
     
-    /// 获取可扩展的私钥
-    var btcKeychain: BTCKeychain?
-    
+    //MARK: - 忽略持久化的字段
+    var btcKeychain: BTCKeychain?           //获取可扩展的私钥
     var qrCode: UIImage?                    //二维码缓存图
     var userBalance: UserBalance?           //余额缓存
     
@@ -52,13 +51,31 @@ class CHBTCAcount: Object {
         ]
     }
     
+    /// 从数据库加载余额缓存
+    /// 因为加载缓存文件会较消耗性能，为了流程，使用主动调用更新缓存对象，不做实时
+    func loadUserBalanceCache() {
+        let ub = UserBalance.getUserBalance(byAddress: self.address.string)
+        self.userBalance = ub
+    }
+    
     /// 根据HDM钱包索引获取用户
     ///
     /// - Parameter index: 索引位
     /// - Returns: 
-    class func getBTCAccount(by index: Int) -> CHBTCAcount? {
+    class func getBTCAccount(byIndex index: Int) -> CHBTCAcount? {
         let realm = RealmDBHelper.shared.acountDB  //Realm数据库
         let datas: Results<CHBTCAcount> = realm.objects(CHBTCAcount.self).filter(" index = \(index)").sorted(byProperty: "index", ascending: true)
+        return datas.first
+    }
+    
+    
+    /// 通过账户id（公钥hash-地址）查找用户
+    ///
+    /// - Parameter accountId: 账户id（公钥hash-地址）
+    /// - Returns: 账户
+    class func getBTCAccount(byID accountId: String) -> CHBTCAcount? {
+        let realm = RealmDBHelper.shared.acountDB  //Realm数据库
+        let datas: Results<CHBTCAcount> = realm.objects(CHBTCAcount.self).filter(" accountId = '\(accountId)'")
         return datas.first
     }
     

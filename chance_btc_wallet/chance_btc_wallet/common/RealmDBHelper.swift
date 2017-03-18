@@ -11,7 +11,7 @@ import RealmSwift
 
 class RealmDBHelper {
     
-    static let kRealmDBVersion: UInt64 = 3
+    static let kRealmDBVersion: UInt64 = 4
     
     //数据库路径
     static var databaseFilePath: URL {
@@ -76,11 +76,11 @@ class RealmDBHelper {
     }
     
     /// 全局唯一实例, 获取数字货币的交易记录数据库
-    func getTransactionDB(wallet: CHBTCWallet) -> Realm {
+    var txDB: Realm = {
         // 通过配置打开 Realm 数据库
-        var path = wallet.transactionDBFilePath
+        var path = CHBTCWallet.transactionDBFilePath
         
-        path.appendPathComponent(wallet.transactionFileName)
+        path.appendPathComponent(CHBTCWallet.transactionFileName)
         
         let config = Realm.Configuration(fileURL: path,
                                          schemaVersion: RealmDBHelper.kRealmDBVersion,
@@ -91,7 +91,7 @@ class RealmDBHelper {
         })
         let realm = try! Realm(configuration: config)
         return realm
-    }
+    }()
     
 
     /// 账户体系数据库

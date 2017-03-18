@@ -14,7 +14,7 @@ import UIKit
  所以待签名的交易单都是只有1个发送方和1个接收方。
  以后如果开发批量发送的交易单，将会以另一种界面形式呈现
  */
-class BTCMultiSigTransactionViewController: UIViewController {
+class BTCMultiSigTransactionViewController: BaseViewController {
     
 //    @IBOutlet var labelTransactionHex: UILabel!
     @IBOutlet var buttonSign: UIButton!
@@ -25,6 +25,7 @@ class BTCMultiSigTransactionViewController: UIViewController {
 //    @IBOutlet var labelTextFees: CHLabelTextField!
     
     var currentAccount: CHBTCAcount!
+    
     var multiSigTx: MultiSigTransaction!
     var currencyType: CurrencyType = .BTC
     
@@ -156,15 +157,6 @@ extension BTCMultiSigTransactionViewController {
         return allSignData
     }
     
-    
-    /// 查找钱包中可以签名的账户
-    ///
-    /// - Returns: 返回是否找到账户?
-    func searchAccountToSign() ->  CHBTCAcount? {
-        
-        return nil
-    }
-    
     /**
      点击复制
      
@@ -174,6 +166,9 @@ extension BTCMultiSigTransactionViewController {
         
         let doBlock = {
             () -> Void in
+            
+            
+            
             //签名HEX
             var signatureHexs = [String]()
             
@@ -263,12 +258,13 @@ extension BTCMultiSigTransactionViewController {
      - parameter tx:
      */
     func sendTransactionByWebservice(_ tx: BTCTransaction) {
+        SVProgressHUD.show()
         let nodeServer = CHWalletWrapper.selectedBlockchainNode.service
         nodeServer.sendTransaction(transactionHexString: tx.hex) {
             (message, txid) -> Void in
             if message.code == ApiResultCode.Success.rawValue {
                 SVProgressHUD.showSuccess(withStatus: "Transaction successed，waiting confirm".localized())
-                _ = self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popToRootViewController(animated: true)
             } else {
                 SVProgressHUD.showError(withStatus: message.message)
             }

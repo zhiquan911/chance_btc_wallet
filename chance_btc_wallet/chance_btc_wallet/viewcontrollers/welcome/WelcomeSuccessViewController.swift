@@ -14,9 +14,19 @@ class WelcomeSuccessViewController: UIViewController {
     @IBOutlet var buttonGo: UIButton!
     @IBOutlet var labelTips: UILabel!
 
+    //彩带飘落效果
+    var emitterView = CHEmitterView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+        
+        self.showCongratulations()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.emitterView.beginEmitter()
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,16 +34,13 @@ class WelcomeSuccessViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    /// 发礼炮
+    func showCongratulations() {
+        self.emitterView.backgroundImage = UIImage(named: "congalts")?.cgImage
+        self.emitterView.birthRate = 300
+        self.emitterView.delayTime = 2
     }
-    */
 
 }
 
@@ -44,8 +51,8 @@ extension WelcomeSuccessViewController {
     
     /// 配置UI
     func setupUI() {
-        
         self.navigationItem.title = "Congratulations".localized()
+        self.navigationItem.hidesBackButton = true
         self.labelTips.text = "Use Bitcoin To Change Your Life".localized()
         self.buttonGo.setTitle("Let's Go".localized(), for: .normal)
     }

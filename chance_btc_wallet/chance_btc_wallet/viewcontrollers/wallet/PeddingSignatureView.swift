@@ -29,6 +29,7 @@ class PeddingSignatureView: UIView {
         self.labelAddres?.font = UIFont.systemFont(ofSize: 14)
         self.labelAddres?.textColor = UIColor(hex: 0x999999)
         self.labelAddres?.minimumScaleFactor = 0.5
+        self.labelAddres?.adjustsFontSizeToFitWidth = true
         self.labelAddres?.numberOfLines = 1
         self.labelAddres?.text = ""
         self.addSubview(self.labelAddres!)

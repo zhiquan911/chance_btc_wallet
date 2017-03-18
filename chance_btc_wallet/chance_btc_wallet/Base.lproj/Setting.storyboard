@@ -32,7 +32,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="1" id="HeJ-hq-cw7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection id="ec2-ed-4La">
                                 <cells>
@@ -689,7 +689,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1MK-M4-38g" customClass="CHView" customModule="chance_btc_wallet" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="80" width="359" height="305"/>
+                                        <rect key="frame" x="8" y="80" width="359" height="276"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxK-1n-hk4">
                                                 <rect key="frame" x="20" y="15" width="319" height="67"/>
@@ -706,7 +706,7 @@
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="od7-jM-D3Z" customClass="CHTextView" customModule="chance_btc_wallet" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="140" width="319" height="80"/>
+                                                <rect key="frame" x="20" y="111" width="319" height="80"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="yca-AW-GZg"/>
@@ -731,7 +731,7 @@
                                                 </connections>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ms-V9-SDQ" customClass="CHButton" customModule="chance_btc_wallet" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="240" width="319" height="40"/>
+                                                <rect key="frame" x="20" y="211" width="319" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="peq-Wn-NFT"/>
                                                 </constraints>
@@ -755,15 +755,6 @@
                                                     <action selector="handleRestorePress:" destination="FB3-dq-PjY" eventType="touchUpInside" id="oKw-uA-ay4"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passphases：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFI-Dn-MyS">
-                                                <rect key="frame" x="20" y="107" width="319" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="l5C-XS-Uws"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -773,14 +764,11 @@
                                             <constraint firstAttribute="trailing" secondItem="jxK-1n-hk4" secondAttribute="trailing" constant="20" id="Nht-SI-T9Q"/>
                                             <constraint firstItem="4vb-ru-iJ5" firstAttribute="leading" secondItem="1MK-M4-38g" secondAttribute="leading" constant="15" id="QCB-IQ-1Da"/>
                                             <constraint firstItem="2Ms-V9-SDQ" firstAttribute="leading" secondItem="1MK-M4-38g" secondAttribute="leading" constant="20" id="Ru4-wy-0P2"/>
-                                            <constraint firstAttribute="trailing" secondItem="iFI-Dn-MyS" secondAttribute="trailing" constant="20" id="VPz-96-VbY"/>
-                                            <constraint firstItem="iFI-Dn-MyS" firstAttribute="top" secondItem="4vb-ru-iJ5" secondAttribute="bottom" constant="12" id="b2B-BV-xqt"/>
+                                            <constraint firstItem="od7-jM-D3Z" firstAttribute="top" secondItem="4vb-ru-iJ5" secondAttribute="bottom" constant="16" id="aQZ-Md-tP4"/>
                                             <constraint firstAttribute="bottom" secondItem="2Ms-V9-SDQ" secondAttribute="bottom" constant="25" id="fDz-VG-Eju"/>
                                             <constraint firstItem="4vb-ru-iJ5" firstAttribute="top" secondItem="jxK-1n-hk4" secondAttribute="bottom" constant="12" id="h9m-6N-I8W"/>
                                             <constraint firstAttribute="trailing" secondItem="4vb-ru-iJ5" secondAttribute="trailing" constant="15" id="hWB-i6-6KA"/>
-                                            <constraint firstItem="od7-jM-D3Z" firstAttribute="top" secondItem="iFI-Dn-MyS" secondAttribute="bottom" constant="12" id="hxa-gy-Xi4"/>
                                             <constraint firstAttribute="trailing" secondItem="2Ms-V9-SDQ" secondAttribute="trailing" constant="20" id="meH-U9-aOs"/>
-                                            <constraint firstItem="iFI-Dn-MyS" firstAttribute="leading" secondItem="1MK-M4-38g" secondAttribute="leading" constant="20" id="to5-x1-rDu"/>
                                             <constraint firstItem="jxK-1n-hk4" firstAttribute="leading" secondItem="1MK-M4-38g" secondAttribute="leading" constant="20" id="wzH-TU-Z3d"/>
                                             <constraint firstItem="jxK-1n-hk4" firstAttribute="top" secondItem="1MK-M4-38g" secondAttribute="top" constant="15" id="xWy-cS-UxZ"/>
                                         </constraints>
@@ -811,7 +799,6 @@
                     </view>
                     <connections>
                         <outlet property="buttonConfirm" destination="2Ms-V9-SDQ" id="Lht-Kf-7Go"/>
-                        <outlet property="labelPassphrases" destination="iFI-Dn-MyS" id="zon-ZA-n4J"/>
                         <outlet property="labelTips" destination="jxK-1n-hk4" id="Yn7-Hr-WgD"/>
                         <outlet property="textViewRestore" destination="od7-jM-D3Z" id="YMr-24-4bN"/>
                         <outlet property="viewStep" destination="zQ4-TG-c8b" id="7iG-Xw-t2p"/>
@@ -824,7 +811,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg_round_cell" width="18" height="18"/>
+        <image name="bg_round_cell" width="20" height="20"/>
         <image name="icon_step_1_selected" width="21" height="21"/>
         <image name="icon_step_2_selected" width="21" height="21"/>
         <image name="icon_step_3_normal" width="20" height="20"/>

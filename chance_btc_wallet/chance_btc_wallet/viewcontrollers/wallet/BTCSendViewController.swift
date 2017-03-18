@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BTCSendViewController: UITableViewController {
+class BTCSendViewController: BaseTableViewController {
     
     /// MARK: - 成员变量
     @IBOutlet var buttonConfirm: CHButton!
@@ -57,7 +57,8 @@ class BTCSendViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-
+        //加载余额缓存
+        self.btcAccount.loadUserBalanceCache()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,9 +109,9 @@ extension BTCSendViewController {
         self.labelTextAddress.placeholder = "e.g: bitcoin:1abcdefg.. or 1abcdefg...".localized()
         self.labelTextAddress.delegate = self
         self.labelTextAmount.title = "Transfer Amount".localized() + "(\(self.currencyType.rawValue))"
-        self.labelTextAmount.placeholder = "Amount of ".localized() + "(\(self.currencyType.rawValue))"
+        self.labelTextAmount.placeholder = "Amount of ".localized() + "\(self.currencyType.rawValue)"
         self.labelTextAmount.delegate = self
-        self.labelTextFees.title = "Fees".localized() + "\(self.currencyType.rawValue)"
+        self.labelTextFees.title = "Fees".localized() + "(\(self.currencyType.rawValue))"
         self.labelTextFees.text = self.selectedFees.toBTC()
         self.labelTextFees.delegate = self
         self.labelTextActualTotal.title = "Actual Total".localized() + "(\(self.currencyType.rawValue))"
@@ -151,21 +152,23 @@ extension BTCSendViewController {
     //计算实际发送数量
     func setupActualTotal() {
         
-        self.actualTotal = self.labelTextAmount.text.toBTCAmount()
+        var amount = self.labelTextAmount.text.toBTCAmount()
         
-        if self.actualTotal >= self.availableTotal {
+        if amount >= self.availableTotal {
+            //如果输入的转账数目大于当前余额，输入
             self.actualTotal = self.availableTotal
-            if self.availableTotal > 0 {
-                self.labelTextAmount.text = self.availableTotal.toBTC()
+            //输入的数量改为”余额 - 矿工费“
+            amount = self.availableTotal - self.selectedFees
+            if amount > 0 {
+                self.labelTextAmount.text = amount.toBTC()
             } else {
                 self.labelTextAmount.text = ""
             }
             
         } else {
-            self.actualTotal = self.actualTotal  + self.selectedFees
+            self.actualTotal = amount  + self.selectedFees
         }
         
-        self.actualTotal = self.actualTotal > 0 ? self.actualTotal : 0
         
         self.labelTextActualTotal.text = self.actualTotal.toBTC()
         
@@ -466,12 +469,12 @@ extension BTCSendViewController {
                             completionHandler(tx, nil, nil, MessageModule(code: ApiResultCode.Success.rawValue, message: "Success".localized()));
                         } else {
                             //如果是多签，需要发送交易单给地址生产的公钥持有者进行私钥签名
-                            completionHandler(tx, txHex, singnatureHex, MessageModule(code: "1101", message: "need other signatures".localized()));
+                            completionHandler(tx, txHex, singnatureHex, MessageModule(code: ApiResultCode.NeedOtherSignature.rawValue, message: "need other signatures".localized()));
                         }
                         
                     }
                 } else {
-                    completionHandler(nil, nil, nil, MessageModule(code: ApiResultCode.NeedOtherSignature.rawValue, message: "Balance not enough".localized()))
+                    completionHandler(nil, nil, nil, MessageModule(code: ApiResultCode.ErrorTips.rawValue, message: "Balance not enough".localized()))
                 }
             }
             
@@ -507,6 +510,7 @@ extension BTCSendViewController {
         ActionSheetStringPicker.show(withTitle: "Choose Fees".localized(), rows: feesSeletions, initialSelection: selectedIndex!, doneBlock: { (picker, index, item) in
             self.selectedFees = self.feesArray[index]
             self.labelTextFees.text = self.selectedFees.toBTC()
+            self.setupActualTotal()
         }, cancel: {
             (picker) in
             
@@ -521,6 +525,10 @@ extension BTCSendViewController: CHLabelTextFieldDelegate {
         ltf.resignFirstResponder()
         return true
     }
+    
+//    func textFieldShouldEndEditing(_ ltf: CHLabelTextField) -> Bool {
+//        return true
+//    }
     
     func textFieldDidEndEditing(_ ltf: CHLabelTextField) {
         self.setupActualTotal()
