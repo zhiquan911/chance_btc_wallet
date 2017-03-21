@@ -8,9 +8,9 @@
 
 ## 🤖公开版本
 
-### [iOS 1.0.0.b1](https://fir.im/d93r)
+### [iOS 1.0.0.b2](https://fir.im/Chance)
 
-### [iOS 0.6.0](https://beta.bugly.qq.com/cqze)
+![intro.jpg](https://github.com/zhiquan911/chance_btc_wallet/blob/master/original%20design/intro.jpg)
 
 ## ✨应用特点
 
@@ -95,13 +95,13 @@
 
 ## 🚀发展计划
 
-- 开发CoreBitcoin for swift（独立的一个项目），上面已经提到现在使用的一个objective-c版的，因为作者还没有计划编写swift版的，为了未来对钱包的更好支持，我会编写一个swift语言版的bitcoin核心库。这样做有很多好处：
+- 开发Swift版的Bitcoin Core（独立的一个项目）。目前使用的是Objective-C版的coreBitcoin开源库，这个库设计得非常好，很多好的BIP都实现了，代码稳定易用。问题是作者已经很少更新了，面对未来可能出现的“隔离验证”升级，我们需要自己改造。我已经开发Swift项目多年了，我也很喜欢Swfit语言，所以我就有了，开发Swift语言版的Bitcoin Core冲动。这样做有很多好处：
 
- - - swift现在已经开源，支持iOS/macOS/Linux，我对swift的未来非常有信心，也很喜欢用swift的特性重构项目。
- - - 隔离验证正在投票等待激活，可以在新的库做兼容隔离验证，一旦激活成功，这个库可以延伸更多能力。
+ - - 因为Swift的开源，新的库可以支持iOS/macOS/Linux，甚至有可能Windows。
+ - - 支持“隔离验证”升级，有利于日后开发更多扩展支持。
 
-- 开发支持比特币全球行情
-- 开发一个开放的钱包服务平台，用于应用内账户收发信息，收发比特币，多重签名账户创建，多重签名交易
+- 开发支持比特币全球行情订阅。
+- 开发一个开放的钱包服务平台，用于应用内账户收发信息，收发比特币，多重签名账户创建，多重签名交易。
 
 ## 👾风险提醒
 
