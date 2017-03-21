@@ -14,6 +14,8 @@ class AccountCreateCell: UICollectionViewCell {
     
     @IBOutlet var bgView: UIView!
     @IBOutlet var viewCenterLine: UIView!
+    @IBOutlet var buttonNormal: UIButton!
+    @IBOutlet var buttonMultiSig: UIButton!
     
     typealias NormalAccountPress =
         (_ cell: AccountCreateCell) -> Void
@@ -41,12 +43,15 @@ class AccountCreateCell: UICollectionViewCell {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowOpacity = 0.3
-        self.layer.shadowRadius = 4
+        self.layer.shadowRadius = 2
         self.layer.masksToBounds = false
         
         //将圆角加在cell的ContentView上
         self.contentView.layer.cornerRadius = 5
         self.contentView.layer.masksToBounds = true
+        
+        self.buttonNormal.setTitle("Normal Account".localized(), for: .normal)
+        self.buttonMultiSig.setTitle("Multi-Sig Account".localized(), for: .normal)
         
         //中间分割线
         self.viewCenterLine.backgroundColor = UIColor(patternImage: UIImage(named: "linedash")!)

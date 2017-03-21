@@ -738,7 +738,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonGo" destination="Bgh-GK-bOo" id="ews-dg-crv"/>
-                        <outlet property="labelSuccess" destination="vCq-X0-tr4" id="wqh-g2-3eu"/>
+                        <outlet property="labelSuccess" destination="rtk-jY-qWU" id="gL6-IA-wKp"/>
                         <outlet property="labelTips" destination="vCq-X0-tr4" id="vYj-y3-JKz"/>
                     </connections>
                 </viewController>

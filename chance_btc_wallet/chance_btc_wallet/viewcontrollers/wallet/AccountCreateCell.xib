@@ -84,7 +84,7 @@
                                                 <state key="normal" image="icon_add_big"/>
                                             </button>
                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXv-GL-wkZ">
-                                                <rect key="frame" x="19" y="90" width="102" height="30"/>
+                                                <rect key="frame" x="19" y="92" width="102" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="3d8-13-T9T"/>
                                                 </constraints>
@@ -101,7 +101,7 @@
                                             <constraint firstItem="JHl-yM-P1j" firstAttribute="centerY" secondItem="kLg-ua-Qbc" secondAttribute="centerY" constant="-15" id="OUa-bD-S3F"/>
                                             <constraint firstAttribute="trailing" secondItem="XHO-Jo-06e" secondAttribute="trailing" constant="-6" id="TpU-4o-WNX"/>
                                             <constraint firstItem="lXv-GL-wkZ" firstAttribute="centerX" secondItem="kLg-ua-Qbc" secondAttribute="centerX" id="WVz-1s-K44"/>
-                                            <constraint firstItem="lXv-GL-wkZ" firstAttribute="top" secondItem="JHl-yM-P1j" secondAttribute="bottom" constant="4" id="n1o-aA-azx"/>
+                                            <constraint firstItem="lXv-GL-wkZ" firstAttribute="top" secondItem="JHl-yM-P1j" secondAttribute="bottom" constant="6" id="n1o-aA-azx"/>
                                         </constraints>
                                         <connections>
                                             <action selector="handleMultisIGAccountPressWithSender:" destination="1Pf-r4-jm9" eventType="touchUpInside" id="yN3-qA-afV"/>
@@ -119,7 +119,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Get-Ig-W9L">
-                        <rect key="frame" x="139.5" y="0.0" width="1" height="170"/>
+                        <rect key="frame" x="140" y="0.0" width="1" height="170"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="kbx-Qk-Tsq"/>
@@ -139,6 +139,8 @@
             <size key="customSize" width="280" height="150"/>
             <connections>
                 <outlet property="bgView" destination="EbH-oU-AOU" id="kmM-sB-QG7"/>
+                <outlet property="buttonMultiSig" destination="lXv-GL-wkZ" id="zjn-fL-YT6"/>
+                <outlet property="buttonNormal" destination="5IR-tw-ztK" id="81E-Ig-sVf"/>
                 <outlet property="viewCenterLine" destination="Get-Ig-W9L" id="JBO-YT-ACW"/>
             </connections>
             <point key="canvasLocation" x="75" y="56"/>

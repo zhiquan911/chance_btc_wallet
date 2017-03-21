@@ -48,7 +48,7 @@ extension WelcomeCreateAccountViewController {
         self.labelTextNickname.textField?.keyboardType = .default
         self.labelTextNickname.delegate = self
         
-        self.labelTextPassword.title = "Wallet Passworde".localized()
+        self.labelTextPassword.title = "Wallet Password".localized()
         self.labelTextPassword.placeholder = "More complex the more secure".localized()
         self.labelTextPassword.textField?.isSecureTextEntry = true
         self.labelTextPassword.delegate = self

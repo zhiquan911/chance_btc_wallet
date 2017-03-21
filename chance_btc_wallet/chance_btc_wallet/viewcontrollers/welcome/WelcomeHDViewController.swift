@@ -85,7 +85,7 @@ extension WelcomeHDViewController: UITableViewDataSource, UITableViewDelegate {
     
         switch indexPath.section {
         case 0:             //恢复钱包，如果有icloud同时恢复用户体系数据
-            cell.labelTitle.text = "Restore Wallet By Passphrase".localized()
+            cell.labelTitle.text = "Restore Wallet By Passphrases".localized()
             cell.labelAbstract.text = "If you remember your passphrase, use this to restore wallet.".localized()
             cell.imageViewMode.image = UIImage(named: "icon_restore")
         case 1:             //创建新钱包，用随机密语

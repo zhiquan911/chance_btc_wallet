@@ -10,7 +10,30 @@ import UIKit
 
 class SettingViewController: BaseTableViewController {
     
-    @IBOutlet var switchICouldBackup: UISwitch!
+    /// 列表title
+    var rowsTitle: [[String]] = [
+        [
+            "Export Public Key".localized(),
+            "Export Private Key".localized(),
+            "Export RedeemScript".localized(),
+            ],
+        [
+            "Export Wallet Passphrases".localized(),
+            "Restore Wallet By Passphrases".localized(),
+            ],
+        [
+            "Security Setting".localized(),
+            ],
+        [
+            "Blockchain Nodes".localized(),
+            ],
+        [
+            "iCloud Auto Backup".localized(),
+            ],
+        [
+            "Reset Wallet".localized(),
+            ]
+    ]
     
     var currentAccount: CHBTCAcount? {
         let i = CHBTCWallet.sharedInstance.selectedAccountIndex
@@ -26,6 +49,11 @@ class SettingViewController: BaseTableViewController {
         self.setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //CloudUtils.shared.query()
@@ -36,24 +64,62 @@ class SettingViewController: BaseTableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.rowsTitle.count
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        
+        switch section {
+        case 0:
             
             if let account = self.currentAccount {
                 if account.accountType == .multiSig {
-                    return 3
+                    return self.rowsTitle[section].count
                 } else {
-                    return 2
+                    return self.rowsTitle[section].count - 1
                 }
             } else {
                 return 0
             }
-
-        } else if section == 1 {
-            return 2
-        } else {
-            return 1
+            
+        default:
+            return self.rowsTitle[section].count
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.cellIdentifier) as! SettingCell
+        cell.switchEnable.isHidden = true
+        cell.accessoryType = .disclosureIndicator
+        cell.labelTitle.text = self.rowsTitle[indexPath.section][indexPath.row]
+        switch indexPath.section {
+        case 4: //icloud同步开关
+            cell.accessoryType = .none
+            
+            cell.switchEnable.isHidden = false
+            cell.switchEnable.isOn = CHWalletWrapper.enableICloud
+            
+            //设置是否登录icloud账号
+            if CloudUtils.shared.iCloud {
+                cell.switchEnable.isEnabled = true
+            } else {
+                cell.switchEnable.isEnabled = false
+            }
+            
+            
+            //开关调用
+            cell.enableChange = {
+                (pressCell, sender) -> Void in
+                
+                self.handleICloudBackupChange(sender: sender)
+            }
+        default:
+            cell.switchEnable.isHidden = true
+            cell.accessoryType = .disclosureIndicator
+        }
+        
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -138,7 +204,7 @@ class SettingViewController: BaseTableViewController {
         }
         
         switch indexPath.section {
-        case 0, 1, 2: //需要密码
+        case 0, 1, 2, 5: //需要密码
             
             //需要提供指纹密码
             CHWalletWrapper.unlock(vc: self, complete: {
@@ -158,7 +224,7 @@ class SettingViewController: BaseTableViewController {
         
         
         
-
+        
     }
 }
 
@@ -172,14 +238,6 @@ extension SettingViewController {
         
         self.navigationItem.title = "Setting".localized()
         
-        self.switchICouldBackup.isOn = CHWalletWrapper.enableICloud
-        
-        //设置是否登录icloud账号
-        if CloudUtils.shared.iCloud {
-            self.switchICouldBackup.isEnabled = true
-        } else {
-            self.switchICouldBackup.isEnabled = false
-        }
     }
     
     

@@ -347,7 +347,7 @@ extension TabBarViewController {
         
         wallet.tabBarItem = ESTabBarItem(
             TBBouncesContentView(),
-            title: "Wallet",
+            title: "Wallet".localized(),
             image: UIImage(named: "tab_wallet_normal"),
             selectedImage: UIImage(named: "tab_wallet_selected"))
         
@@ -359,7 +359,7 @@ extension TabBarViewController {
         
         setting.tabBarItem = ESTabBarItem(
             TBBouncesContentView(),
-            title: "Setting",
+            title: "Setting".localized(),
             image: UIImage(named: "tab_setting_normal"),
             selectedImage: UIImage(named: "tab_setting_normal"))
         

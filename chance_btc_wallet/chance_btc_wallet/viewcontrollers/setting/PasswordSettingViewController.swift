@@ -48,7 +48,7 @@ class PasswordSettingViewController: BaseTableViewController {
      配置导航栏
      */
     func setupUI() {
-        self.navigationItem.title = "Security Center".localized()
+        self.navigationItem.title = "Security Setting".localized()
         //配置返回按钮文字
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back".localized(), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         

@@ -44,22 +44,22 @@ extension Date {
         var temp: Double = 0;
         var result = ""
         if (timeInterval < 60) {
-            result = NSLocalizedString("刚刚", comment: "")
+            result = NSLocalizedString("now", comment: "")
         } else if((timeInterval / 60) < 60){
             temp = timeInterval / 60
-            result = "\(Int(temp))" + NSLocalizedString("分钟前", comment: "")
+            result = "\(Int(temp)) " + NSLocalizedString("mins ago", comment: "")
         } else if((timeInterval / 60 / 60) < 24){
             temp = timeInterval / 60 / 60
-            result = "\(Int(temp))" + NSLocalizedString("小时前", comment: "")
+            result = "\(Int(temp)) " + NSLocalizedString("hours ago", comment: "")
         } else if((timeInterval / 60 / 60 / 24) < 30){
             temp = timeInterval / 60 / 60 / 24
-            result = "\(Int(temp))" + NSLocalizedString("天前", comment: "")
+            result = "\(Int(temp)) " + NSLocalizedString("days ago", comment: "")
         } else if((timeInterval / 60 / 60 / 24 / 30) < 12){
             temp = timeInterval / 60 / 60 / 24 / 30
-            result = "\(Int(temp))" + NSLocalizedString("个月前", comment: "")
+            result = "\(Int(temp)) " + NSLocalizedString("months ago", comment: "")
         } else {
             temp = timeInterval / 60 / 60 / 24 / 30 / 12;
-            result = "\(Int(temp))" + NSLocalizedString("年前", comment: "")
+            result = "\(Int(temp)) " + NSLocalizedString("years ago", comment: "")
         }
         
         return result

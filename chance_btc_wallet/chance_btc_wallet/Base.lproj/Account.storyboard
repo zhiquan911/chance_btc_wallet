@@ -511,7 +511,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg_round_cell" width="18" height="18"/>
+        <image name="bg_round_cell" width="20" height="20"/>
         <image name="icon_gray_avatar" width="18" height="18"/>
         <image name="icon_scan_gray" width="15" height="15"/>
     </resources>

@@ -53,6 +53,7 @@ extension WelcomeSuccessViewController {
     func setupUI() {
         self.navigationItem.title = "Congratulations".localized()
         self.navigationItem.hidesBackButton = true
+        self.labelSuccess.text = "Congratulations"
         self.labelTips.text = "Use Bitcoin To Change Your Life".localized()
         self.buttonGo.setTitle("Let's Go".localized(), for: .normal)
     }

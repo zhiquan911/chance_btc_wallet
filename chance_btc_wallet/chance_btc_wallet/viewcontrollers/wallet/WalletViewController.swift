@@ -163,7 +163,7 @@ extension WalletViewController {
         //self.pageCardView.fixCellSize = CGSize(width: 260, height: 170)
         
         //使用固定的内间距控制单元格的大小，这样可以做到不同手机尺寸自动约束布局
-        self.pageCardView.fixPadding = UIEdgeInsets(top: 26, left: 24, bottom: 26, right: 24)
+        self.pageCardView.fixPadding = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15)
         
         //清除空白表格
         self.tableViewTransactions.extraCellLineHidden()
