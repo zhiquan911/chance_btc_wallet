@@ -154,7 +154,7 @@ extension BTCSendViewController {
         
         var amount = self.labelTextAmount.text.toBTCAmount()
         
-        if amount >= self.availableTotal {
+        if amount + self.selectedFees >= self.availableTotal {
             //如果输入的转账数目大于当前余额，输入
             self.actualTotal = self.availableTotal
             //输入的数量改为”余额 - 矿工费“

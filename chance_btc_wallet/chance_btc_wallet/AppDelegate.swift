@@ -109,11 +109,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.rootTabController = TabBarViewController.walletTab
         
         //如果没有钱包数据，先到欢迎界面引导创建钱包
-        if !CHWalletWrapper.checkWalletRoot() {
-            
+        if !CHWalletWrapper.checkWalletRoot() || !CHBTCWallet.checkBTCWalletExist() {
             let welcome = StoryBoard.welcome.initView(name: "WelcomeNavController") as! UINavigationController
             self.window!.rootViewController = welcome
-            
         } else {
             //有钱包数据就直接进入首页tabbar
             self.window!.rootViewController = self.rootTabController

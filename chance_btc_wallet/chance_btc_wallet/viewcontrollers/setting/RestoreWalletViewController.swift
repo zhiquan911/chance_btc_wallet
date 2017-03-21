@@ -253,6 +253,11 @@ extension RestoreWalletViewController {
     
     /// 离开当前界面
     func leave() {
+        
+        //初始View默认为系统记录的账户卡片
+        WalletViewController.selectedCardIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
+        WalletViewController.scrollCardAnimated = false
+        
         switch self.restoreOperateType {
         case .passiveRestore:
             SVProgressHUD.dismiss()

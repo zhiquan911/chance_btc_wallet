@@ -186,6 +186,10 @@ extension WalletViewController {
             self?.loadMore()
         }
         
+        //修改footer的高度
+        let footer = self.tableViewTransactions.es_footer
+        footer?.animator.executeIncremental = 60
+        
         self.tableViewTransactions.refreshIdentifier = "Wallet"
         
     }

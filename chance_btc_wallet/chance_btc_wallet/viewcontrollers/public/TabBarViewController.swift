@@ -22,7 +22,9 @@ class TabBarViewController: ESTabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        /* 删除应用也不自动使用keychain恢复，防范用户删除应用后，把手机二手卖了的风险。
         if CHWalletWrapper.checkWalletRoot() {
+            
             
             if !CHBTCWallet.checkBTCWalletExist() {
                 //钱包不存在，需要恢复账户体系
@@ -46,6 +48,7 @@ class TabBarViewController: ESTabBarController {
                 
             }
         }
+        */
     }
     
     
