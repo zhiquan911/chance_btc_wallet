@@ -10,7 +10,7 @@
 
 ## 🤖公开版本
 
-### [iOS 1.0.0.b2](https://fir.im/Chance)
+### iOS 1.0.0（等待AppStore审核）
 
 ![intro.jpg](https://github.com/zhiquan911/chance_btc_wallet/blob/master/original%20design/intro.jpg)
 
