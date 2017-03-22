@@ -25,7 +25,7 @@
                                 <rect key="frame" x="8" y="127" width="264" height="25"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3G4NdQQyCJK1RS5URb4h5KogWEyR4Mk16A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="pE3-ms-hm4">
-                                        <rect key="frame" x="4" y="0.0" width="256" height="25"/>
+                                        <rect key="frame" x="4" y="2.5" width="256" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -34,10 +34,9 @@
                                 <color key="backgroundColor" white="1" alpha="0.29914607560000001" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="01M-u2-buA"/>
-                                    <constraint firstAttribute="bottom" secondItem="pE3-ms-hm4" secondAttribute="bottom" id="62z-nr-Wv6"/>
                                     <constraint firstAttribute="trailing" secondItem="pE3-ms-hm4" secondAttribute="trailing" constant="4" id="Kgr-hC-gwt"/>
                                     <constraint firstItem="pE3-ms-hm4" firstAttribute="leading" secondItem="mCB-ko-AP9" secondAttribute="leading" constant="4" id="R4c-xe-S5Y"/>
-                                    <constraint firstItem="pE3-ms-hm4" firstAttribute="top" secondItem="mCB-ko-AP9" secondAttribute="top" id="iiy-Zi-Ngj"/>
+                                    <constraint firstItem="pE3-ms-hm4" firstAttribute="centerY" secondItem="mCB-ko-AP9" secondAttribute="centerY" id="Svg-ED-hMT"/>
                                 </constraints>
                                 <connections>
                                     <action selector="handleAddressPressWithSender:" destination="naF-ux-nGn" eventType="touchUpInside" id="g0q-1l-zBb"/>

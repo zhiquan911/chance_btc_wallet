@@ -107,7 +107,9 @@ class CHBTCWallet: NSObject {
         guard let seed = self.seed else {
             return nil
         }
-        return seed.sha256().toHexString()
+        //采用BTC的双hash处理种子
+        let hash = BTCHash160(seed).hex()
+        return hash
     }
     
     //钱包的根钥匙串，不是整个模型的根

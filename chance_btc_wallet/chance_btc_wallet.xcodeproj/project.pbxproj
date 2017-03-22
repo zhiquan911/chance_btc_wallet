@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C503920B1E822A8E002B350A /* CHNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C503920A1E822A8E002B350A /* CHNavigationButton.swift */; };
 		C508D8861DE938AE00107EDA /* CHTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508D8851DE938AE00107EDA /* CHTextView.swift */; };
 		C509AADD1E6A87DE00390DE4 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C509AADC1E6A87DE00390DE4 /* QRCode.swift */; };
 		C50F70A71DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50F70A61DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift */; };
@@ -225,6 +226,7 @@
 		17C420A92FF35064B8AA449D /* Pods-chance_btc_wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.release.xcconfig"; sourceTree = "<group>"; };
 		3063C6882B76AA6951FBCFB5 /* Pods_chance_btc_wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chance_btc_wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A7CBBE2F1346BFB465697E /* Pods-chance_btc_wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chance_btc_wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet.debug.xcconfig"; sourceTree = "<group>"; };
+		C503920A1E822A8E002B350A /* CHNavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHNavigationButton.swift; sourceTree = "<group>"; };
 		C508D8851DE938AE00107EDA /* CHTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHTextView.swift; sourceTree = "<group>"; };
 		C509AADC1E6A87DE00390DE4 /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRCode.swift; path = SwiftQRCode/QRCode.swift; sourceTree = "<group>"; };
 		C50F70A61DF18CFB0018DFE2 /* BlockchainNodeSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockchainNodeSettingViewController.swift; path = viewcontrollers/setting/BlockchainNodeSettingViewController.swift; sourceTree = "<group>"; };
@@ -1051,6 +1053,7 @@
 				C594CFAF1DED4B1C008BBD6A /* CHButton.swift */,
 				C5675D4A1E6E5A0D00051947 /* CHView.swift */,
 				C59404741E7104F700652DEC /* CHLabelTextField.swift */,
+				C503920A1E822A8E002B350A /* CHNavigationButton.swift */,
 			);
 			path = local;
 			sourceTree = "<group>";
@@ -1299,7 +1302,7 @@
 					};
 					C588700E1DE3F37500C45B43 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 768U2S2GPR;
+						DevelopmentTeam = 2M2W6LSE6S;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -1449,6 +1452,7 @@
 				C59FA97C1E791D5F00627CBC /* PeddingSignatureView.swift in Sources */,
 				C588714B1DE3F3E600C45B43 /* BTCBigNumber+Tests.m in Sources */,
 				C59CD04E1DE5621100A23CE2 /* AddressScanViewController.swift in Sources */,
+				C503920B1E822A8E002B350A /* CHNavigationButton.swift in Sources */,
 				C54724D01DFFE6A9003DE322 /* CloudUtils.swift in Sources */,
 				C55F38981E7D4632009DD485 /* WorldTicker.swift in Sources */,
 				C588714F1DE3F3E600C45B43 /* BTCBlindSignature+Tests.m in Sources */,
@@ -1818,7 +1822,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = chance_btc_wallet/chance_btc_wallet.entitlements;
-				DEVELOPMENT_TEAM = 768U2S2GPR;
+				DEVELOPMENT_TEAM = 2M2W6LSE6S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1832,7 +1836,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/chance_btc_wallet/lib/3rd/openssl/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.chance.app.chance-btc-wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chance.app.store.chance-btc-wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "chance_btc_wallet/chance-btc-wallet-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1847,7 +1851,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = chance_btc_wallet/chance_btc_wallet.entitlements;
-				DEVELOPMENT_TEAM = 768U2S2GPR;
+				DEVELOPMENT_TEAM = 2M2W6LSE6S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1861,7 +1865,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/chance_btc_wallet/lib/3rd/openssl/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.chance.app.chance-btc-wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chance.app.store.chance-btc-wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "chance_btc_wallet/chance-btc-wallet-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

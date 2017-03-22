@@ -18,6 +18,7 @@ class WalletViewController: BaseViewController {
     static var scrollCardAnimated = false
     
     // MARK: - 成员变量
+    @IBOutlet var labelTitle: UILabel!
     @IBOutlet var labelUserName: UILabel!
     @IBOutlet var labelUserAccount: UILabel!
     @IBOutlet var viewUser: UIView!
@@ -146,6 +147,8 @@ extension WalletViewController {
      配置UI
      */
     func setupUI() {
+        
+        self.labelTitle.text = "Wallet".localized()
 
         self.pageCardView.delegate = self
         self.pageCardView.register(nib:

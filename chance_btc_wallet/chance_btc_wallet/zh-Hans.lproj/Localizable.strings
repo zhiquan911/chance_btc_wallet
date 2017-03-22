@@ -14,7 +14,7 @@
 "Address is empty" = "地址未填写";
 "Agree To Sign" = "同意签署";
 "Amount is empty" = "数量未填写";
-"Amount of " = "Amount of ";
+"Amount of " = "多少数量";
 "Authentication" = "进行认证";
 "Authentication was cancelled by the system" = "系统取消认证";
 "Authentication was cancelled by the user" = "用户取消认证";
@@ -54,7 +54,7 @@
 "Export Public Key" = "导出公钥";
 "Export RedeemScript" = "导出赎回脚本";
 "Export Wallet Passphrases" = "导出钱包密语";
-"Fees" = "Fees";
+"Fees" = "矿工费";
 "First Account Nickname" = "初始账户昵称";
 "Get PublicKeys" = "获取公钥集合";
 "Give your account a nickname" = "填写您的账户昵称";
@@ -176,3 +176,12 @@
 
 /******** 新增于: 2017-03-21 18:29 ********/
 "Wallet" = "钱包";
+
+/******** 新增于: 2017-03-22 10:41 ********/
+"Input passphrases to restore wallet" = "请输入恢复密语";
+
+/******** 新增于: 2017-03-22 10:45 ********/
+"Input the password if the passphrase has" = "如果密语要求密码，请输入密码";
+
+/******** 新增于: 2017-03-22 10:55 ********/
+"Please backup your passphrase before you do that.It's dangerous." = "在你重置钱包前，请先备份好数据，避免数据永远丢失。";

@@ -19,9 +19,7 @@ class BTCReceiveViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "BTC Address".localized()
-        self.buttonAddress.setTitle(self.address, for: UIControlState())
-        self.imageViewQRCode.image = QRCode.generateImage(self.currencyType.addressPrefix + self.address, avatarImage: nil)
+        self.setupUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +31,23 @@ class BTCReceiveViewController: BaseViewController {
 
 // MARK: - 控制器方法
 extension BTCReceiveViewController {
+    
+    /**
+     配置UI
+     */
+    func setupUI() {
+        
+        self.navigationItem.title = "BTC Address".localized()
+        let navBar = self.navigationController?.navigationBar
+        self.navigationItem.rightBarButtonItem = navBar?.getButtonWithTitle("Share".localized(), andActionBlock: {
+            () -> Void in
+            self.showShareMenuView(nil)
+            
+        })
+        
+        self.buttonAddress.setTitle(self.address, for: UIControlState())
+        self.imageViewQRCode.image = QRCode.generateImage(self.currencyType.addressPrefix + self.address, avatarImage: nil)
+    }
  
     @IBAction func handleAddressPress(_ sender: AnyObject?) {
         let actionSheet = UIAlertController(title: "Share".localized(), message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)

@@ -332,6 +332,12 @@ extension String {
         }
     }
     
+    //转换为Data类型
+    public func toData() -> Data? {
+        let data = self.data(using: String.Encoding.utf8)
+        return data
+    }
+    
     
     // 产生128位随机数
     

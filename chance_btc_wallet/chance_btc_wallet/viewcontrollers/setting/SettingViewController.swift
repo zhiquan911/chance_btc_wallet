@@ -127,7 +127,11 @@ class SettingViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
+        if section == self.numberOfSections(in: self.tableView) - 1 {
+            return 60
+        } else {
+            return 0.01
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -258,7 +262,7 @@ extension SettingViewController {
     /// 弹出重置钱包的警告
     func showResetWalletAlert() {
         
-        let actionSheet = UIAlertController(title: "Warning".localized(), message: "Please backup your passphrase before you do that.It's dangerous.", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet = UIAlertController(title: "Warning".localized(), message: "Please backup your passphrase before you do that.It's dangerous.".localized(), preferredStyle: UIAlertControllerStyle.actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Reset".localized(), style: UIAlertActionStyle.default, handler: {
             (action) -> Void in

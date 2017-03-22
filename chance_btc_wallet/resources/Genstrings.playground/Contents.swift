@@ -117,7 +117,7 @@ class GenStrings {
         //        let root = URL(fileURLWithPath: fileManager.currentDirectoryPath)
         
         //获取当前文件根路径/Users/imac/Documents/code/bter_app/resources/
-        let  root = URL(string: "/Users/maizhiquan/Documents/github/ios/chance_btc_wallet/chance_btc_wallet/chance_btc_wallet/")!
+        let  root = URL(string: projectFilePath)!
         print(root.absoluteString)
         //获取当前文件根路径的所有子文件路径集合
         print("======= 开始扫描文件夹 =======")
@@ -229,7 +229,6 @@ class GenStrings {
                             files.append(contentsOf: dirFiles)
                         }
                     } else {
-                        print(stringPath)
                         if acceptedFileExtensions.contains(pathExtension) && !excludedFileNames.contains(lastPathComponent) {
                             if acceptedFile != nil {
                                 if acceptedFile!.contains(lastPathComponent) {

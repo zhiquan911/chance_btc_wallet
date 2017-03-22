@@ -77,7 +77,7 @@
             <objects>
                 <navigationController storyboardIdentifier="WalletRootViewController" id="Rzx-vF-sta" customClass="RootNavigationController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Wallet" image="menu_ico_asset" id="zh2-FL-I9i"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="u7M-O0-Kva">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="u7M-O0-Kva">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -276,6 +276,7 @@
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="labelTitle" destination="3zD-es-OPp" id="18v-Eb-7ZZ"/>
                         <outlet property="labelUserAccount" destination="sSJ-Dm-G5T" id="h49-30-5bu"/>
                         <outlet property="labelUserName" destination="1v2-df-ExK" id="MuN-mZ-bpK"/>
                         <outlet property="pageCardView" destination="94z-LF-1ei" id="GVt-Xr-kJE"/>
@@ -304,14 +305,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ycL-Qd-RjT">
-                                <rect key="frame" x="87.5" y="50" width="200" height="200"/>
+                                <rect key="frame" x="88" y="50" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="AFj-2v-45g"/>
                                     <constraint firstAttribute="height" constant="200" id="QQX-LH-G2J"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1vY-gX-R16">
-                                <rect key="frame" x="42.5" y="300" width="290" height="60"/>
+                                <rect key="frame" x="43" y="300" width="290" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="290" id="fpX-zP-TmF"/>
                                     <constraint firstAttribute="height" constant="60" id="tBe-PB-mlZ"/>
@@ -339,14 +340,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="Um2-3l-N7j">
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="lOt-kE-CYm">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="showShareMenuView:" destination="FIT-Xp-7de" id="rtR-RF-H3F"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="buttonAddress" destination="1vY-gX-R16" id="KCT-Ft-aXs"/>
                         <outlet property="imageViewQRCode" destination="ycL-Qd-RjT" id="KH6-Mb-ZyL"/>

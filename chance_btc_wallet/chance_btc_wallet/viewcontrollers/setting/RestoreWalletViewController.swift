@@ -60,7 +60,9 @@ extension RestoreWalletViewController {
     func setupUI() {
         //默认不可用
         self.buttonConfirm.isEnabled = false
-        self.labelTips.text = "Passphases：".localized()
+        //self.labelTips.text = "Passphases：".localized()
+        self.buttonConfirm.setTitle("Restore".localized(), for: .normal)
+        self.textViewRestore.placeHolder = "Input passphrases to restore wallet".localized()
         
         //是否操作恢复钱包
         switch self.restoreOperateType {
@@ -199,7 +201,7 @@ extension RestoreWalletViewController {
     func showPasswordTextAlert(complete: @escaping (_ password: String) -> Void) {
         //弹出密码输入框
         let alertController = UIAlertController(title: "The passphrase's password".localized(),
-                                                message: "Input the password if the passphrase has",
+                                                message: "Input the password if the passphrase has".localized(),
                                                 preferredStyle: .alert)
         
         alertController.addTextField {
