@@ -12,7 +12,7 @@
 
 ### iOS 1.0.0（等待AppStore审核）
 
-![intro.jpg](https://github.com/zhiquan911/chance_btc_wallet/blob/master/original%20design/intro.jpg)
+![intro.jpg](https://github.com/zhiquan911/chance_btc_wallet/blob/master/introduction/intro.jpg)
 
 ## ✨应用特点
 
@@ -93,7 +93,7 @@
 
 ## 📦产品功能
 
-![产品功能](https://github.com/zhiquan911/chance_btc_wallet/blob/master/Chance%20Wallet.png?raw=true)
+![产品功能](https://github.com/zhiquan911/chance_btc_wallet/blob/master/introduction/Chance%20Wallet.png)
 
 ## 🚀发展计划
 
