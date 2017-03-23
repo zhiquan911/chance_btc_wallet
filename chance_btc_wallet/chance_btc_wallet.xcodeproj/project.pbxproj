@@ -1274,6 +1274,7 @@
 				B8D8CF1195C627F539A675F9 /* [CP] Embed Pods Frameworks */,
 				F707CBD7DAB0CE1A0D8E70F5 /* [CP] Copy Pods Resources */,
 				C59CD03F1DE5476100A23CE2 /* Embed Frameworks */,
+				C503920C1E8259DB002B350A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1403,6 +1404,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-chance_btc_wallet/Pods-chance_btc_wallet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C503920C1E8259DB002B350A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"";
 		};
 		F707CBD7DAB0CE1A0D8E70F5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1840,6 +1854,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "chance_btc_wallet/chance-btc-wallet-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
 			};
 			name = Debug;
@@ -1869,6 +1884,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "chance_btc_wallet/chance-btc-wallet-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
 			};
 			name = Release;
