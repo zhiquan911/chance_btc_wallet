@@ -102,7 +102,7 @@ class CHBTCWallet: NSObject {
         return mnemonic.seed
     }
     
-    //种子hash
+    //种子hash，这个值最好不要老是用根私钥取，避免私钥在内存驻留。通过UserDefault存储更安全
     var seedHash: String? {
         guard let seed = self.seed else {
             return nil

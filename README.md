@@ -14,7 +14,7 @@
 
 ## 🤖公开版本
 
-### iOS 1.0.0（等待AppStore审核）
+### [iOS 1.0.0](https://itunes.apple.com/us/app/chance-bitcoin-wallet/id1218089085)（简中，繁中，English）
 
 ![intro.jpg](https://github.com/zhiquan911/chance_btc_wallet/blob/master/introduction/intro.jpg)
 
