@@ -464,16 +464,16 @@ extension WalletViewController {
     
     /**
      选择何种账户类型创建
-     Normal Account：普通的HDM单签账户，由其私钥完全控制。
+     Normal Account：普通的HD单签账户，由其私钥完全控制。
      Multi-Sig Account：多重签名合约账户，由联合的公钥组成的一个赎回脚本导出的地址。
  
     func showCreateAccountTypeMenu() {
         let actionSheet = UIAlertController(title: "Create new account".localized(), message: "Which account type you need".localized(), preferredStyle: UIAlertControllerStyle.actionSheet)
         
-        /// 进入HDM账户创建界面
+        /// 进入HD账户创建界面
         actionSheet.addAction(UIAlertAction(title: "Normal Account".localized(), style: UIAlertActionStyle.default, handler: {
             (action) -> Void in
-            self.gotoCreateHDMAccount()
+            self.gotoCreateHDAccount()
         }))
         
         //进入创建多签账户界面
@@ -492,9 +492,9 @@ extension WalletViewController {
     }
     */
     
-    /// 进入HDM账户创建界面
-    func gotoCreateHDMAccount() {
-        guard let vc = StoryBoard.account.initView(type: CreateHDMAccountViewController.self) else {
+    /// 进入HD账户创建界面
+    func gotoCreateHDAccount() {
+        guard let vc = StoryBoard.account.initView(type: CreateHDAccountViewController.self) else {
             return
         }
         vc.hidesBottomBarWhenPushed = true
@@ -578,7 +578,7 @@ extension WalletViewController: CHPageCardViewDelegate {
             //配置控制器两个方法
             cell.normalAccountPress = {
                 (pressCell) -> Void in
-                self.gotoCreateHDMAccount()
+                self.gotoCreateHDAccount()
             }
             
             cell.multiSigAccountPress = {

@@ -1,5 +1,5 @@
 //
-//  CreateHDMAccountViewController.swift
+//  CreateHDAccountViewController.swift
 //  chance_btc_wallet
 //
 //  Created by Chance on 2016/12/2.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateHDMAccountViewController: UIViewController {
+class CreateHDAccountViewController: UIViewController {
     
     /// MARK: - 成员变量
     @IBOutlet var buttonConfirm: UIButton!
@@ -28,11 +28,11 @@ class CreateHDMAccountViewController: UIViewController {
 }
 
 // MARK: - 控制器方法
-extension CreateHDMAccountViewController {
+extension CreateHDAccountViewController {
     
     func setupUI() {
         self.navigationItem.title = "Create Acount".localized()
-        self.labelTitle.text = "Create HDM Acount".localized()
+        self.labelTitle.text = "Create HD Acount".localized()
         
         self.labelTextNickname.title = "Account Nickname".localized()
         self.labelTextNickname.placeholder = "Give your account a nickname".localized()
@@ -85,7 +85,7 @@ extension CreateHDMAccountViewController {
 }
 
 // MARK: - 实现输入框代理方法
-extension CreateHDMAccountViewController: CHLabelTextFieldDelegate {
+extension CreateHDAccountViewController: CHLabelTextFieldDelegate {
     
     func textFieldShouldReturn(_ ltf: CHLabelTextField) -> Bool {
         ltf.textField?.resignFirstResponder()

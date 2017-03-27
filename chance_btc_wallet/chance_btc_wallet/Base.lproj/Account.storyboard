@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--CreateHDMAccountViewController-->
+        <!--CreateHDAccountViewController-->
         <scene sceneID="6Uh-GI-xeY">
             <objects>
-                <viewController storyboardIdentifier="CreateHDMAccountViewController" id="lon-oS-wHr" userLabel="CreateHDMAccountViewController" customClass="CreateHDMAccountViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateHDAccountViewController" id="lon-oS-wHr" userLabel="CreateHDAccountViewController" customClass="CreateHDAccountViewController" customModule="chance_btc_wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D9u-BK-sq9"/>
                         <viewControllerLayoutGuide type="bottom" id="P6g-bU-YKM"/>

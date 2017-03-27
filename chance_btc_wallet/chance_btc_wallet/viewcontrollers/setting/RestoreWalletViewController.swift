@@ -40,7 +40,7 @@ class RestoreWalletViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //首先验证警告一下用户这是一个非常危险的操作，会完全破坏整个HDM钱包的用户信息。
+        //首先验证警告一下用户这是一个非常危险的操作，会完全破坏整个HD钱包的用户信息。
         //TODO:
     }
     
@@ -163,7 +163,7 @@ extension RestoreWalletViewController {
                     self.leave()
                     return
                 } else {    //恢复账户失败
-                    //4.默认新建一个HDM普通账户
+                    //4.默认新建一个HD普通账户
                     let account = wallet.createHDAccount(by: "Account 1")
                     
                     if account == nil {

@@ -123,7 +123,7 @@ extension TabBarViewController {
                     SVProgressHUD.showSuccess(withStatus: "The wallet & accounts have been restore successfully".localized())
                     return
                 } else {    //恢复账户失败
-                    //4.默认新建一个HDM普通账户
+                    //4.默认新建一个HD普通账户
                     let account = wallet.createHDAccount(by: "Account 1")
                     
                     if account == nil {

@@ -13,8 +13,8 @@ import RealmSwift
 
 /*
  比特币钱包账户，这是一个可以持久化的模型，它保存在数据库中，目标只有realm数据库支持
- 1.我们使用的比特币钱包账户模型为HDM——分层确定性钱包
- 2.为了记录子账户的在体系中的路径也记录HDM路径，如 "m/44'/0'/2'" (BIP44 bitcoin account #2)
+ 1.我们使用的比特币钱包账户模型为HD——分层确定性钱包
+ 2.为了记录子账户的在体系中的路径也记录HD路径，如 "m/44'/0'/2'" (BIP44 bitcoin account #2)
  3.为了实现可以保存多重签名账户，在账户创建同时，记录其赎回脚本redeemScript的hex串
  4.多重签名账户的创建，其实是创建了一个普通单签账户，再使用其公钥生成多重签名的赎回脚本
  5.无论是普通单签账户或多重签名账户，我们都已它的普通账户比特币地址作为唯一id
@@ -28,7 +28,7 @@ class CHBTCAcount: Object {
     dynamic var redeemScriptHex: String = ""        //账户的赎回脚本
     dynamic var userNickname: String = ""                   //昵称
     dynamic var isEnable: Bool = true                   //是否可用
-    dynamic var keyPath: String = ""                //HDM私钥路径，如："m/44'/0'/2'" (BIP44 bitcoin account #2)
+    dynamic var keyPath: String = ""                //HD私钥路径，如："m/44'/0'/2'" (BIP44 bitcoin account #2)
     
     //MARK: - 忽略持久化的字段
     var btcKeychain: BTCKeychain?           //获取可扩展的私钥
@@ -58,7 +58,7 @@ class CHBTCAcount: Object {
         self.userBalance = ub
     }
     
-    /// 根据HDM钱包索引获取用户
+    /// 根据HD钱包索引获取用户
     ///
     /// - Parameter index: 索引位
     /// - Returns: 

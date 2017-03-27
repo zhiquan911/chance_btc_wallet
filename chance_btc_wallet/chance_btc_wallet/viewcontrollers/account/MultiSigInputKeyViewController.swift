@@ -60,8 +60,8 @@ extension MultiSigInputKeyViewController {
     
     /**
      点击确认生成
-     1.先创建一个新的HDM账户
-     2.使用这个HDM账号公钥和其它公钥创建一个多重签名的账户
+     1.先创建一个新的HD账户
+     2.使用这个HD账号公钥和其它公钥创建一个多重签名的账户
      - parameter sender:
      */
     @IBAction func handleConfirmPress(_ sender: AnyObject?) {
