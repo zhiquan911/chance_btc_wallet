@@ -606,7 +606,7 @@ static int     ECDSA_SIG_recover_key_GFp(EC_KEY *eckey, ECDSA_SIG *ecsig, const 
 - (NSData*) compactSignatureForHash:(NSData*)hash {
     CHECK_IF_CLEARED;
     NSMutableData* sigdata = [NSMutableData dataWithLength:65];
-    unsigned char* sigbytes = sigdata.mutableBytes;
+    unsigned char* sigbytes = sigdata.mutableBytes; 
     const unsigned char* hashbytes = hash.bytes;
     int hashlength = (int)hash.length;
     
