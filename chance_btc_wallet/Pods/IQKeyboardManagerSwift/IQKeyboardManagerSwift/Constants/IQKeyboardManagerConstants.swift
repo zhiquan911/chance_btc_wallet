@@ -44,11 +44,43 @@ public enum IQAutoToolbarManageBehaviour : Int {
     case byPosition
 }
 
+/**
+ `IQPreviousNextDisplayModeDefault`
+ Show NextPrevious when there are more than 1 textField otherwise hide.
+ 
+ `IQPreviousNextDisplayModeAlwaysHide`
+ Do not show NextPrevious buttons in any case.
+ 
+ `IQPreviousNextDisplayModeAlwaysShow`
+ Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled.
+ */
+public enum IQPreviousNextDisplayMode : Int {
+    case Default
+    case alwaysHide
+    case alwaysShow
+}
+
+/**
+ `IQEnableModeDefault`
+ Pick default settings.
+ 
+ `IQEnableModeEnabled`
+ setting is enabled.
+ 
+ `IQEnableModeDisabled`
+ setting is disabled.
+ */
+public enum IQEnableMode : Int {
+    case Default
+    case enabled
+    case disabled
+}
+
 /*
  
  /---------------------------------------------------------------------------------------------------\
  \---------------------------------------------------------------------------------------------------/
- |                                   iOS NSNotification Mechanism                                    |
+ |                                   iOS Notification Mechanism                                    |
  /---------------------------------------------------------------------------------------------------\
  \---------------------------------------------------------------------------------------------------/
  

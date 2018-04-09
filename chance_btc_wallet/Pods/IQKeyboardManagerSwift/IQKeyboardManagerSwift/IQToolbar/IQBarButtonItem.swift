@@ -23,57 +23,104 @@
 
 
 import UIKit
+import Foundation
 
 open class IQBarButtonItem: UIBarButtonItem {
+
+    private static var _classInitialize: Void = classInitialize()
+    
+    public override init() {
+        _ = IQBarButtonItem._classInitialize
+          super.init()
+      }
+
+    public required init?(coder aDecoder: NSCoder) {
+        _ = IQBarButtonItem._classInitialize
+           super.init(coder: aDecoder)
+       }
+
    
-    override open class func initialize() {
+    private class func classInitialize() {
 
-        superclass()?.initialize()
+        let  appearanceProxy = self.appearance()
+
+        let states : [UIControlState] = [.normal,.highlighted,.disabled,.selected,.application,.reserved]
+
+        for state in states {
+
+            appearanceProxy.setBackgroundImage(nil, for: state, barMetrics: .default)
+            appearanceProxy.setBackgroundImage(nil, for: state, style: .done, barMetrics: .default)
+            appearanceProxy.setBackgroundImage(nil, for: state, style: .plain, barMetrics: .default)
+            appearanceProxy.setBackButtonBackgroundImage(nil, for: state, barMetrics: .default)
+        }
         
-        //Tint color
-        self.appearance().tintColor = nil
+        appearanceProxy.setTitlePositionAdjustment(UIOffset.zero, for: .default)
+        appearanceProxy.setBackgroundVerticalPositionAdjustment(0, for: .default)
+        appearanceProxy.setBackButtonBackgroundVerticalPositionAdjustment(0, for: .default)
+    }
+    
+    open override var tintColor: UIColor? {
+        didSet {
 
-        //Title
-        self.appearance().setTitlePositionAdjustment(UIOffset.zero, for: UIBarMetrics.default)
-        self.appearance().setTitleTextAttributes(nil, for: UIControlState())
-        self.appearance().setTitleTextAttributes(nil, for: UIControlState.highlighted)
-        self.appearance().setTitleTextAttributes(nil, for: UIControlState.disabled)
-        self.appearance().setTitleTextAttributes(nil, for: UIControlState.selected)
-        self.appearance().setTitleTextAttributes(nil, for: UIControlState.application)
-        self.appearance().setTitleTextAttributes(nil, for: UIControlState.reserved)
+            #if swift(>=4)
+                var textAttributes = [NSAttributedStringKey : Any]()
+                
+                if let attributes = titleTextAttributes(for: .normal) {
+                
+                    for (key, value) in attributes {
+                
+                        textAttributes[NSAttributedStringKey.init(key)] = value
+                    }
+                }
+                
+                textAttributes[NSAttributedStringKey.foregroundColor] = tintColor
+                
+                setTitleTextAttributes(textAttributes, for: .normal)
 
-        //Background Image
-        self.appearance().setBackgroundImage(nil, for: UIControlState(),      barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.highlighted, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.disabled,    barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.selected,    barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.application, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.reserved,    barMetrics: UIBarMetrics.default)
-        
-        self.appearance().setBackgroundImage(nil, for: UIControlState(),      style: UIBarButtonItemStyle.done, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.highlighted, style: UIBarButtonItemStyle.done, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.disabled,    style: UIBarButtonItemStyle.done, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.selected,    style: UIBarButtonItemStyle.done, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.application, style: UIBarButtonItemStyle.done, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.reserved,    style: UIBarButtonItemStyle.done, barMetrics: UIBarMetrics.default)
-        
-        self.appearance().setBackgroundImage(nil, for: UIControlState(),      style: UIBarButtonItemStyle.plain, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.highlighted, style: UIBarButtonItemStyle.plain, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.disabled,    style: UIBarButtonItemStyle.plain, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.selected,    style: UIBarButtonItemStyle.plain, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.application, style: UIBarButtonItemStyle.plain, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundImage(nil, for: UIControlState.reserved,    style: UIBarButtonItemStyle.plain, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackgroundVerticalPositionAdjustment(0, for: UIBarMetrics.default)
+            #else
 
-        //Back Button
-        self.appearance().setBackButtonBackgroundImage(nil, for: UIControlState(),      barMetrics: UIBarMetrics.default)
-        self.appearance().setBackButtonBackgroundImage(nil, for: UIControlState.highlighted, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackButtonBackgroundImage(nil, for: UIControlState.disabled,    barMetrics: UIBarMetrics.default)
-        self.appearance().setBackButtonBackgroundImage(nil, for: UIControlState.selected,    barMetrics: UIBarMetrics.default)
-        self.appearance().setBackButtonBackgroundImage(nil, for: UIControlState.application, barMetrics: UIBarMetrics.default)
-        self.appearance().setBackButtonBackgroundImage(nil, for: UIControlState.reserved,    barMetrics: UIBarMetrics.default)
+                var textAttributes = [String:Any]()
+                
+                if let attributes = titleTextAttributes(for: .normal) {
+                    textAttributes = attributes
+                }
+                
+                textAttributes[NSForegroundColorAttributeName] = tintColor
+                
+                setTitleTextAttributes(textAttributes, for: .normal)
 
-        self.appearance().setBackButtonTitlePositionAdjustment(UIOffset.zero, for: UIBarMetrics.default)
-        self.appearance().setBackButtonBackgroundVerticalPositionAdjustment(0, for: UIBarMetrics.default)
+            #endif
+        }
+    }
+
+    /**
+     Boolean to know if it's a system item or custom item, we are having a limitation that we cannot override a designated initializer, so we are manually setting this property once in initialization
+     */
+    @objc var isSystemItem = false
+    
+//    public override init(barButtonSystemItem systemItem: UIBarButtonSystemItem, target: Any?, action: Selector?) {
+//        return super.init(barButtonSystemItem: systemItem, target: target, action: action)
+//    }
+
+    /**
+     Additional target & action to do get callback action. Note that setting custom target & selector doesn't affect native functionality, this is just an additional target to get a callback.
+     
+     @param target Target object.
+     @param action Target Selector.
+     */
+    open func setTarget(_ target: AnyObject?, action: Selector?) {
+        invocation = (target, action)
+    }
+    
+    /**
+     Customized Invocation to be called when button is pressed. invocation is internally created using setTarget:action: method.
+     */
+    open var invocation : (target: AnyObject?, action: Selector?)?
+    
+    deinit {
+
+        target = nil
+        invocation?.target = nil
+        invocation = nil
     }
 }

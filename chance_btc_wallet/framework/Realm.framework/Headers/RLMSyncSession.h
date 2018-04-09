@@ -21,7 +21,7 @@
 #import "RLMRealm.h"
 
 /**
- The current state of the session represented by an `RLMSyncSession` object.
+ The current state of the session represented by a session object.
  */
 typedef NS_ENUM(NSUInteger, RLMSyncSessionState) {
     /// The sync session is bound to the Realm Object Server and communicating with it.
@@ -51,15 +51,15 @@ typedef NS_ENUM(NSUInteger, RLMSyncProgressDirection) {
  Progress notification blocks can be registered on sessions if your app wishes to be informed
  how many bytes have been uploaded or downloaded, for example to show progress indicator UIs.
  */
-typedef NS_ENUM(NSUInteger, RLMSyncProgress) {
+typedef NS_ENUM(NSUInteger, RLMSyncProgressMode) {
     /**
-     The block will be called forever, or until it is unregistered by calling
-     `-[RLMProgressNotificationToken stop]`.
+     The block will be called indefinitely, or until it is unregistered by calling
+     `-[RLMProgressNotificationToken invalidate]`.
 
      Notifications will always report the latest number of transferred bytes, and the
      most up-to-date number of total transferrable bytes.
      */
-    RLMSyncProgressReportIndefinitely,
+    RLMSyncProgressModeReportIndefinitely,
     /**
      The block will, upon registration, store the total number of bytes
      to be transferred. When invoked, it will always report the most up-to-date number
@@ -68,10 +68,10 @@ typedef NS_ENUM(NSUInteger, RLMSyncProgress) {
      When the number of transferred bytes reaches or exceeds the
      number of transferrable bytes, the block will be unregistered.
      */
-    RLMSyncProgressForCurrentlyOutstandingWork,
+    RLMSyncProgressModeForCurrentlyOutstandingWork,
 };
 
-@class RLMSyncUser, RLMSyncConfiguration;
+@class RLMSyncUser, RLMSyncConfiguration, RLMSyncErrorActionToken;
 
 /**
  The type of a progress notification block intended for reporting a session's network
@@ -85,9 +85,9 @@ typedef void(^RLMProgressNotificationBlock)(NSUInteger transferredBytes, NSUInte
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- A token object corresponding to a progress notification block on an `RLMSyncSession`.
+ A token object corresponding to a progress notification block on a session object.
 
- To stop notifications manually, call `-stop` on it. Notifications should be stopped before
+ To stop notifications manually, call `-invalidate` on it. Notifications should be stopped before
  the token goes out of scope or is destroyed.
  */
 @interface RLMProgressNotificationToken : RLMNotificationToken
@@ -98,8 +98,9 @@ NS_ASSUME_NONNULL_BEGIN
  communication between the client (and a local Realm file on disk), and the server
  (and a remote Realm at a given URL stored on a Realm Object Server).
 
- Sessions are always created by the SDK and vended out through various APIs. The lifespans
- of sessions associated with Realms are managed automatically.
+ Sessions are always created by the SDK and vended out through various APIs. The
+ lifespans of sessions associated with Realms are managed automatically. Session
+ objects can be accessed from any thread.
  */
 @interface RLMSyncSession : NSObject
 
@@ -123,13 +124,13 @@ NS_ASSUME_NONNULL_BEGIN
 
  Multiple blocks can be registered with the same session at once. Each block
  will be invoked on a side queue devoted to progress notifications.
- 
+
  If the session has already received progress information from the
  synchronization subsystem, the block will be called immediately. Otherwise, it
  will be called as soon as progress information becomes available.
 
  The token returned by this method must be retained as long as progress
- notifications are desired, and the `-stop` method should be called on it
+ notifications are desired, and the `-invalidate` method should be called on it
  when notifications are no longer needed and before the token is destroyed.
 
  If no token is returned, the notification block will never be called again.
@@ -149,9 +150,42 @@ NS_ASSUME_NONNULL_BEGIN
  @see `RLMSyncProgressDirection`, `RLMSyncProgress`, `RLMProgressNotificationBlock`, `RLMProgressNotificationToken`
  */
 - (nullable RLMProgressNotificationToken *)addProgressNotificationForDirection:(RLMSyncProgressDirection)direction
-                                                                          mode:(RLMSyncProgress)mode
+                                                                          mode:(RLMSyncProgressMode)mode
                                                                          block:(RLMProgressNotificationBlock)block
 NS_REFINED_FOR_SWIFT;
+
+/**
+ Given an error action token, immediately handle the corresponding action.
+ 
+ @see `RLMSyncErrorClientResetError`, `RLMSyncErrorPermissionDeniedError`
+ */
++ (void)immediatelyHandleError:(RLMSyncErrorActionToken *)token;
+
+/**
+ Get the sync session for the given Realm if it is a synchronized Realm, or `nil`
+ if it is not.
+ */
++ (nullable RLMSyncSession *)sessionForRealm:(RLMRealm *)realm;
+
+@end
+
+// MARK: - Error action token
+
+#pragma mark - Error action token
+
+/**
+ An opaque token returned as part of certain errors. It can be
+ passed into certain APIs to perform certain actions.
+
+ @see `RLMSyncErrorClientResetError`, `RLMSyncErrorPermissionDeniedError`
+ */
+@interface RLMSyncErrorActionToken : NSObject
+
+/// :nodoc:
+- (instancetype)init __attribute__((unavailable("This type cannot be created directly")));
+
+/// :nodoc:
++ (instancetype)new __attribute__((unavailable("This type cannot be created directly")));
 
 @end
 

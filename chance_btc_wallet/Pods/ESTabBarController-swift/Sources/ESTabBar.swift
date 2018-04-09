@@ -2,7 +2,7 @@
 //  ESTabBar.swift
 //
 //  Created by Vincent Li on 2017/2/8.
-//  Copyright (c) 2013-2016 ESTabBarController (https://github.com/eggswift/ESTabBarController)
+//  Copyright (c) 2013-2018 ESTabBarController (https://github.com/eggswift/ESTabBarController)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -277,7 +277,7 @@ internal extension ESTabBar /* Actions */ {
         self.setNeedsLayout()
     }
     
-    internal func highlightAction(_ sender: AnyObject?) {
+    @objc internal func highlightAction(_ sender: AnyObject?) {
         guard let container = sender as? ESTabBarItemContainer else {
             return
         }
@@ -297,7 +297,7 @@ internal extension ESTabBar /* Actions */ {
         }
     }
     
-    internal func dehighlightAction(_ sender: AnyObject?) {
+    @objc internal func dehighlightAction(_ sender: AnyObject?) {
         guard let container = sender as? ESTabBarItemContainer else {
             return
         }
@@ -317,14 +317,14 @@ internal extension ESTabBar /* Actions */ {
         }
     }
     
-    internal func selectAction(_ sender: AnyObject?) {
+    @objc internal func selectAction(_ sender: AnyObject?) {
         guard let container = sender as? ESTabBarItemContainer else {
             return
         }
         select(itemAtIndex: container.tag - 1000, animated: true)
     }
     
-    internal func select(itemAtIndex idx: Int, animated: Bool) {
+    @objc internal func select(itemAtIndex idx: Int, animated: Bool) {
         let newIndex = max(0, idx)
         let currentIndex = (selectedItem != nil) ? (items?.index(of: selectedItem!) ?? -1) : -1
         guard newIndex < items?.count ?? 0, let item = self.items?[newIndex], item.isEnabled == true else {
@@ -371,17 +371,55 @@ internal extension ESTabBar /* Actions */ {
             } else if self.isMoreItem(newIndex) {
                 moreContentView?.reselect(animated: animated, completion: nil)
             }
-            if let tabBarController = tabBarController, let navVC = tabBarController.selectedViewController?.navigationController {
-                if navVC.viewControllers.contains(tabBarController) {
-                    if navVC.viewControllers.count > 1 && navVC.viewControllers.last != tabBarController {
-                        navVC.popToViewController(tabBarController, animated: true);
-                    }
-                } else {
-                    if navVC.viewControllers.count > 1 {
-                        navVC.popToRootViewController(animated: animated)
+            
+            if let tabBarController = tabBarController {
+                var navVC: UINavigationController?
+                if let n = tabBarController.selectedViewController as? UINavigationController {
+                    navVC = n
+                } else if let n = tabBarController.selectedViewController?.navigationController {
+                    navVC = n
+                }
+                
+                if let navVC = navVC {
+                    if navVC.viewControllers.contains(tabBarController) {
+                        if navVC.viewControllers.count > 1 && navVC.viewControllers.last != tabBarController {
+                            navVC.popToViewController(tabBarController, animated: true);
+                        }
+                    } else {
+                        if navVC.viewControllers.count > 1 {
+                            navVC.popToRootViewController(animated: animated)
+                        }
                     }
                 }
+            
             }
+        }
+        
+        self.updateAccessibilityLabels()
+    }
+    
+    internal func updateAccessibilityLabels() {
+        guard let tabBarItems = self.items, tabBarItems.count == self.containers.count else {
+            return
+        }
+        
+        for (idx, item) in tabBarItems.enumerated() {
+            let container = self.containers[idx]
+            var accessibilityTitle = ""
+            
+            if let item = item as? ESTabBarItem {
+                accessibilityTitle = item.accessibilityLabel ?? item.title ?? ""
+            }
+            if self.isMoreItem(idx) {
+                accessibilityTitle = NSLocalizedString("More_TabBarItem", bundle: Bundle(for:ESTabBarController.self), comment: "")
+            }
+            
+            let formatString = NSLocalizedString(item == selectedItem ? "TabBarItem_Selected_AccessibilityLabel" : "TabBarItem_AccessibilityLabel",
+                                                 bundle: Bundle(for: ESTabBarController.self),
+                                                 comment: "")
+            container.accessibilityIdentifier = item.accessibilityIdentifier
+            container.accessibilityLabel = String(format: formatString, accessibilityTitle, idx + 1, tabBarItems.count)
+            
         }
     }
 }

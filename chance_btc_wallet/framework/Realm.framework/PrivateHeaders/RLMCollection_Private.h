@@ -16,21 +16,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////
 
-#import "RLMSyncPermissionOfferResponse.h"
+#import <Realm/RLMCollection.h>
 
-NS_ASSUME_NONNULL_BEGIN
+#import <Realm/RLMRealm.h>
 
-@interface RLMSyncPermissionOfferResponse()
+@protocol RLMFastEnumerable;
 
-@property (readwrite) NSString *id;
-@property (readwrite) NSDate *createdAt;
-@property (readwrite) NSDate *updatedAt;
-@property (nullable, readwrite) NSNumber<RLMInt> *statusCode;
-@property (nullable, readwrite) NSString *statusMessage;
-
-@property (readwrite) NSString *token;
-@property (nullable, readwrite) NSString *realmUrl;
-
-@end
-
-NS_ASSUME_NONNULL_END
+void RLMCollectionSetValueForKey(id<RLMFastEnumerable> collection, NSString *key, id value);
+FOUNDATION_EXTERN NSString *RLMDescriptionWithMaxDepth(NSString *name, id<RLMCollection> collection, NSUInteger depth);

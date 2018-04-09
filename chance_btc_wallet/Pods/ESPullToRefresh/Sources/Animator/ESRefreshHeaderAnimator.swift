@@ -29,15 +29,15 @@ import QuartzCore
 import UIKit
 
 open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol, ESRefreshImpactProtocol {
-    open var pullToRefreshDescription = "Pull to refresh" {
+    open var pullToRefreshDescription = NSLocalizedString("Pull to refresh", comment: "") {
         didSet {
             if pullToRefreshDescription != oldValue {
                 titleLabel.text = pullToRefreshDescription;
             }
         }
     }
-    open var releaseToRefreshDescription = "Release to refresh"
-    open var loadingDescription = "Loading..."
+    open var releaseToRefreshDescription = NSLocalizedString("Release to refresh", comment: "")
+    open var loadingDescription = NSLocalizedString("Loading...", comment: "")
 
     open var view: UIView { return self }
     open var insets: UIEdgeInsets = UIEdgeInsets.zero
@@ -47,9 +47,11 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
 
     fileprivate let imageView: UIImageView = {
         let imageView = UIImageView.init()
-        if #available(iOS 8, *) {
-            imageView.image = UIImage(named: "icon_pull_to_refresh_arrow", in: Bundle(for: ESRefreshHeaderAnimator.self), compatibleWith: nil)
-        } else {
+        if /* Carthage */ let bundle = Bundle.init(identifier: "com.eggswift.ESPullToRefresh") {
+            imageView.image = UIImage(named: "icon_pull_to_refresh_arrow", in: bundle, compatibleWith: nil)
+        } else if /* CocoaPods */ let bundle = Bundle.init(identifier: "org.cocoapods.ESPullToRefresh") {
+            imageView.image = UIImage(named: "ESPullToRefresh.bundle/icon_pull_to_refresh_arrow", in: bundle, compatibleWith: nil)
+        } else /* Manual */ {
             imageView.image = UIImage(named: "icon_pull_to_refresh_arrow")
         }
         return imageView
@@ -86,7 +88,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         indicatorView.isHidden = false
         imageView.isHidden = true
         titleLabel.text = loadingDescription
-        imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(M_PI))
+        imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat.pi)
     }
   
     open func refreshAnimationEnd(view: ESRefreshComponent) {
@@ -119,7 +121,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             self.impact()
             UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
                 [weak self] in
-                self?.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(M_PI))
+                self?.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat.pi)
             }) { (animated) in }
             break
         case .pullToRefresh:

@@ -18,6 +18,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class RLMRealmConfiguration;
 @class RLMSyncUser;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -33,10 +34,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  The URL of the remote Realm upon the Realm Object Server.
- 
+
  @warning The URL cannot end with `.realm`, `.realm.lock` or `.realm.management`.
  */
 @property (nonatomic, readonly) NSURL *realmURL;
+
+
+/**
+ Whether SSL certificate validation is enabled for the connection associated
+ with this configuration value. SSL certificate validation is ON by default.
+
+ @warning NEVER disable certificate validation for clients and servers in production.
+ */
+@property (nonatomic) BOOL enableSSLValidation;
+
+/**
+ Whether this Realm should be opened in 'partial synchronization' mode.
+ Partial synchronization mode means that no objects are synchronized from the remote Realm
+ except those matching queries that the user explicitly specifies.
+
+ @warning Partial synchronization is a tech preview. Its APIs are subject to change.
+*/
+@property (nonatomic) BOOL isPartial;
 
 /**
  Create a sync configuration instance.
@@ -48,6 +67,20 @@ NS_ASSUME_NONNULL_BEGIN
                 the user identity by the Realm Object Server.
  */
 - (instancetype)initWithUser:(RLMSyncUser *)user realmURL:(NSURL *)url;
+
+/**
+Return a Realm configuration for syncing with the default Realm of the currently logged-in sync user.
+
+Partial synchronization is enabled in the returned configuration.
+ */
++ (RLMRealmConfiguration *)automaticConfiguration;
+
+/**
+ Return a Realm configuration for syncing with the default Realm of the given sync user.
+
+ Partial synchronization is enabled in the returned configuration.
+ */
++ (RLMRealmConfiguration *)automaticConfigurationForUser:(RLMSyncUser *)user;
 
 /// :nodoc:
 - (instancetype)init __attribute__((unavailable("This type cannot be created directly")));

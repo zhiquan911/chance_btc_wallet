@@ -1,14 +1,12 @@
 
-<center>![logo](logo.png)</center>
+![logo](logo.png)
 
-<center>
 [![Travis](https://travis-ci.org/eggswift/pull-to-refresh.svg?branch=master)](https://travis-ci.org/eggswift/pull-to-refresh)
 [![CocoaPods](https://img.shields.io/cocoapods/v/ESPullToRefresh.svg)](http://cocoapods.org/pods/pull-to-refresh)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift v2.3 v3](https://img.shields.io/badge/Swift-v2.3 v3-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Twitter](https://img.shields.io/badge/Twitter-@lihao_iOS-blue.svg?style=flat)](https://twitter.com/lihao_iOS)
 [![Twitter](https://img.shields.io/badge/Weibo-@李昊_____-orange.svg?style=flat)](http://weibo.com/5120522686/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
-</center>
 
 ###[中文介绍](README_CN.md)
 
@@ -72,27 +70,27 @@ import ESPullToRefresh
 Add default pull-to-refresh
 
 ``` swift
-self.tableView.es_addPullToRefresh {
-	[weak self] in
+self.tableView.es.addPullToRefresh {
+	[unowned self] in
 	/// Do anything you want...
 	/// ...
 	/// Stop refresh when your job finished, it will reset refresh footer if completion is true
-	self?.tableView.es_stopPullToRefresh(completion: true)
+	self.tableView.es.stopPullToRefresh(completion: true)
 	/// Set ignore footer or not
-	self?.tableView.es_stopPullToRefresh(completion: true, ignoreFooter: false)
+	self.tableView.es.stopPullToRefresh(completion: true, ignoreFooter: false)
 }
 ```
 
 Add default infinite-scrolling
 ``` swift
-self.tableView.es_addInfiniteScrolling {
-	[weak self] in
+self.tableView.es.addInfiniteScrolling {
+	[unowned self] in
 	/// Do anything you want...
 	/// ...
 	/// If common end
-	self?.tableView.es_stopLoadingMore()
+	self.tableView.es.stopLoadingMore()
 	/// If no more data
-	self?.tableView.es_noticeNoMoreData()
+	self.tableView.es.noticeNoMoreData()
 }
 ```
 
@@ -113,13 +111,13 @@ Customize refresh need conform the **ESRefreshProtocol** and **ESRefreshAnimator
 Add customize pull-to-refresh
 
 ``` swift
-func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
+func es.addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
 ```
 
 Add customize infinite-scrolling
 
 ``` swift
-func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
+func es.addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
 ```
 
 ### Espried and auto refresh
@@ -129,9 +127,9 @@ ESPullToRefresh support for the latest expiration time and the cache refresh tim
 scrollView.refreshIdentifier = "Your Identifier" // Set refresh identifier
 scrollView.expriedTimeInterval = 20.0 // Set the expiration interval
 ```
-You can use `es_autoPullToRefresh()` method, when the time over the last refresh interval expires automatically refreshed.
+You can use `es.autoPullToRefresh()` method, when the time over the last refresh interval expires automatically refreshed.
 ``` swift
-scrollView.es_autoPullToRefresh()
+scrollView.es.autoPullToRefresh()
 
 let expried = scrollView.espried // expired or not
 ```
@@ -140,8 +138,8 @@ let expried = scrollView.espried // expired or not
 ### Remove
 
 ``` swift
-func es_removeRefreshHeader()
-func es_removeRefreshFooter()
+func es.removeRefreshHeader()
+func es.removeRefreshFooter()
 ```
 
 

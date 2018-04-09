@@ -1,13 +1,12 @@
 ![ESTabBarController](logo.png)
 
-<center>
 [![Travis](https://travis-ci.org/eggswift/ESTabBarController.svg?branch=master)](https://travis-ci.org/eggswift/ESTabBarController)
 [![CocoaPods](https://img.shields.io/cocoapods/v/ESTabBarController-swift.svg)](http://cocoapods.org/pods/ESTabBarController-swift)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Swift v3](https://img.shields.io/badge/Swift-3-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift v4](https://img.shields.io/badge/Swift-4-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Twitter](https://img.shields.io/badge/Twitter-@lihao_iOS-blue.svg?style=flat)](https://twitter.com/lihao_iOS)
 [![Twitter](https://img.shields.io/badge/Weibo-@李昊_____-orange.svg?style=flat)](http://weibo.com/5120522686/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
-</center>
+[![Chat Gitter.im](https://badges.gitter.im/ESTabBarController/Lobby.svg)](https://gitter.im/ESTabBarController/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ### [中文介绍](README_CN.md)
 
@@ -69,7 +68,7 @@ open ESTabBarController
 1. The Containers' layout is purely based on code，using Autolayout will be better.
 2. When there is "More", if edit it will occurs problem.
 3. Partial UITabBarItem attributes are not bridge to ESTabBarItem.
-4. The picture of "More" item in ESTabBarItemMoreContentView is not set into framework, plan to convert it to CGBitmap.
+4. ~~The picture of 'More' item in ESTabBarItemMoreContentView is not set into framework, plan to convert it to CGBitmap.~~
 
 
 ## Acknowledgement
@@ -85,6 +84,7 @@ If you want to contribute to ESTabBarController, Please submit [Pull Request](ht
 
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=https://github.com/eggswift/ESTabBarController)
 [![Twitter Follow](https://img.shields.io/twitter/follow/lihao_ios.svg?style=social)](https://twitter.com/lihao_iOS)
+
 
 ## License
 

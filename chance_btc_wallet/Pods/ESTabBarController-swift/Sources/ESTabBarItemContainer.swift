@@ -2,7 +2,7 @@
 //  ESTabBarItemContainer.swift
 //
 //  Created by Vincent Li on 2017/2/8.
-//  Copyright (c) 2013-2016 ESTabBarController (https://github.com/eggswift/ESTabBarController)
+//  Copyright (c) 2013-2018 ESTabBarController (https://github.com/eggswift/ESTabBarController)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -35,6 +35,7 @@ internal class ESTabBarItemContainer: UIControl {
         self.addTarget(target, action: #selector(ESTabBar.highlightAction(_:)), for: .touchDragEnter)
         self.addTarget(target, action: #selector(ESTabBar.dehighlightAction(_:)), for: .touchDragExit)
         self.backgroundColor = .clear
+        self.isAccessibilityElement = true
     }
     
     internal required init?(coder aDecoder: NSCoder) {

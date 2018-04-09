@@ -133,7 +133,7 @@ class RealmDBHelper {
         Realm.Configuration.defaultConfiguration = config
         
         //先停了之前开启的监听器
-        self.notificationToken?.stop()
+        self.notificationToken?.invalidate()
         //添加监听时间
         let acountDB = RealmDBHelper.shared.acountDB
         self.notificationToken = acountDB.addNotificationBlock({

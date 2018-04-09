@@ -88,9 +88,8 @@ open class ESRefreshComponent: UIView {
         /// Remove observer from superview immediately
         self.removeObserver()
         DispatchQueue.main.async { [weak self, newSuperview] in
-            guard let weakSelf = self else { return }
             /// Add observer to new superview in next runloop
-            weakSelf.addObserver(newSuperview)
+            self?.addObserver(newSuperview)
         }
     }
     
@@ -114,6 +113,46 @@ open class ESRefreshComponent: UIView {
                 ]
             }
         }
+    }
+    
+    // MARK: - Action
+    
+    public final func startRefreshing(isAuto: Bool = false) -> Void {
+        guard isRefreshing == false && isAutoRefreshing == false else {
+            return
+        }
+        
+        _isRefreshing = !isAuto
+        _isAutoRefreshing = isAuto
+        
+        self.start()
+    }
+    
+    public final func stopRefreshing() -> Void {
+        guard isRefreshing == true || isAutoRefreshing == true else {
+            return
+        }
+        
+        self.stop()
+    }
+    
+    public func start() {
+        
+    }
+    
+    public func stop() {
+        _isRefreshing = false
+        _isAutoRefreshing = false
+    }
+    
+    //  ScrollView contentSize change action
+    public func sizeChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
+        
+    }
+    
+    //  ScrollView offset change action
+    public func offsetChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
+        
     }
     
 }
@@ -164,48 +203,6 @@ extension ESRefreshComponent /* KVO methods */ {
         } else {
 
         }
-    }
-    
-}
-
-public extension ESRefreshComponent /* Action */ {
-
-    public final func startRefreshing(isAuto: Bool = false) -> Void {
-        guard isRefreshing == false && isAutoRefreshing == false else {
-            return
-        }
-        
-        _isRefreshing = !isAuto
-        _isAutoRefreshing = isAuto
-        
-        self.start()
-    }
-    
-    public final func stopRefreshing() -> Void {
-        guard isRefreshing == true || isAutoRefreshing == true else {
-            return
-        }
-        
-        self.stop()
-    }
-
-    public func start() {
-        
-    }
-    
-    public func stop() {
-        _isRefreshing = false
-        _isAutoRefreshing = false
-    }
-    
-    //  ScrollView contentSize change action
-    public func sizeChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
-        
-    }
-    
-    //  ScrollView offset change action
-    public func offsetChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
-        
     }
     
 }

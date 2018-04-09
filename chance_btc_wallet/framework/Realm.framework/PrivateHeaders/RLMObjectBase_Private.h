@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////
 //
-// Copyright 2016 Realm Inc.
+// Copyright 2017 Realm Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,20 +16,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////
 
-#import "RLMSyncPermission.h"
+#import <Realm/RLMObjectBase.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RLMSyncPermission()
-
-@property (readwrite) NSDate *updatedAt;
-@property (readwrite) NSString *userId;
-@property (readwrite) NSString *path;
-
-@property (readwrite) BOOL mayRead;
-@property (readwrite) BOOL mayWrite;
-@property (readwrite) BOOL mayManage;
-
+// RLMObjectBase private
+@interface RLMObjectBase ()
++ (void)initializeLinkedObjectSchemas;
 @end
 
 NS_ASSUME_NONNULL_END

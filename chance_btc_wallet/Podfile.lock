@@ -1,29 +1,29 @@
 PODS:
-  - ActionSheetPicker-3.0 (2.0.5)
-  - Alamofire (4.4.0)
+  - ActionSheetPicker-3.0 (2.3.0)
+  - Alamofire (4.7.1)
   - CHPageCardView (0.1.0)
-  - CryptoSwift (0.6.7)
-  - ESPullToRefresh (2.6)
-  - ESTabBarController-swift (2.3)
-  - IQKeyboardManagerSwift (4.0.6)
-  - KeychainSwift (7.0.0)
+  - CryptoSwift (0.9.0)
+  - ESPullToRefresh (2.7)
+  - ESTabBarController-swift (2.6.2)
+  - IQKeyboardManagerSwift (5.0.8)
+  - KeychainSwift (11.0.0)
   - LMDropdownView (1.0.3)
-  - Localize-Swift (1.7.1)
+  - Localize-Swift (2.0.0)
   - Log (1.0)
-  - SwiftyJSON (3.1.4)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
-  - ActionSheetPicker-3.0 (~> 2.0.5)
-  - Alamofire (~> 4.0)
+  - ActionSheetPicker-3.0
+  - Alamofire
   - CHPageCardView (from `https://github.com/zhiquan911/CHPageCardView.git`, branch `master`)
   - CryptoSwift
   - ESPullToRefresh
   - ESTabBarController-swift
-  - IQKeyboardManagerSwift (= 4.0.6)
-  - KeychainSwift (~> 7.0)
+  - IQKeyboardManagerSwift
+  - KeychainSwift (~> 11.0)
   - LMDropdownView
-  - Localize-Swift (~> 1.5)
-  - Log (~> 1.0)
+  - Localize-Swift
+  - Log
   - SwiftyJSON
 
 EXTERNAL SOURCES:
@@ -37,19 +37,19 @@ CHECKOUT OPTIONS:
     :git: https://github.com/zhiquan911/CHPageCardView.git
 
 SPEC CHECKSUMS:
-  ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
+  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   CHPageCardView: 744d04a9a86cc2e732900291195b0037214d8db9
-  CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
-  ESPullToRefresh: 85f4990acf87f78c6a1466bbbee7a75d7de24db9
-  ESTabBarController-swift: 23011ffbee6cd66a37309f00c7c21c9dd63c17de
-  IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
-  KeychainSwift: b6947435dd78cc442c64a84ae648dd0e871cf448
+  CryptoSwift: bca8c5b653dcc2d9734409242a070ff53bafac86
+  ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
+  ESTabBarController-swift: f0a8679e43df1e60b7b36bbcaf1dc98ba6273c7d
+  IQKeyboardManagerSwift: 2e7dc7f98c111458c1ea2b373f893e8cf95e2b97
+  KeychainSwift: bea6bd9f98af7b8d7ca4aa79fe105c00fab532db
   LMDropdownView: f03fadfe65908c735580f63d04c47e6d7c5325f3
-  Localize-Swift: 6cabc1087c0e910e77bfa87c2ed3f65c80c0b2df
+  Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
   Log: 5e368c9528db07517d18d2d04ff5fe2b6f5a1e21
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: f571c24758b4097feea5d806f03c78be853a64dc
+PODFILE CHECKSUM: 084c42aad65924bea8f5c24fe4273a4077b9360c
 
-COCOAPODS: 1.2.0.beta.3
+COCOAPODS: 1.3.1

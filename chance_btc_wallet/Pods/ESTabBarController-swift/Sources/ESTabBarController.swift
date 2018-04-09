@@ -2,7 +2,7 @@
 //  ESTabBarController.swift
 //
 //  Created by Vincent Li on 2017/2/8.
-//  Copyright (c) 2013-2016 ESTabBarController (https://github.com/eggswift/ESTabBarController)
+//  Copyright (c) 2013-2018 ESTabBarController (https://github.com/eggswift/ESTabBarController)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +55,8 @@ open class ESTabBarController: UITabBarController, ESTabBarDelegate {
     /// Observer tabBarController's selectedViewController. change its selection when it will-set.
     open override var selectedViewController: UIViewController? {
         willSet {
-            guard let newValue = selectedViewController else {
+            guard let newValue = newValue else {
+                // if newValue == nil ...
                 return
             }
             guard !ignoreNextSelection else {

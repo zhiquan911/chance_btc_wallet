@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////
 //
-// Copyright 2016 Realm Inc.
+// Copyright 2017 Realm Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,27 +16,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////
 
-#import "RLMSyncPermissionOffer.h"
+#import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+#import "RLMResults.h"
 
-@interface RLMSyncPermissionOffer()
+@class RLMSyncPermission;
 
-@property (readwrite) NSString *id;
-@property (readwrite) NSDate *createdAt;
-@property (readwrite) NSDate *updatedAt;
-@property (nullable, readwrite) NSNumber<RLMInt> *statusCode;
-@property (nullable, readwrite) NSString *statusMessage;
-
-@property (nullable, readwrite) NSString *token;
-@property (readwrite) NSString *realmUrl;
-
-@property (readwrite) BOOL mayRead;
-@property (readwrite) BOOL mayWrite;
-@property (readwrite) BOOL mayManage;
-
-@property (nullable, readwrite) NSDate *expiresAt;
-
+// A private subclass of `RLMResults`.
+@interface RLMSyncPermissionResults : RLMResults<RLMSyncPermission *>
 @end
-
-NS_ASSUME_NONNULL_END
