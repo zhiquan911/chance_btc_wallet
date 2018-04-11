@@ -49,7 +49,7 @@ class CHTextView: UITextView {
     
     // mark - Notifications
     
-    func didReceiveTextDidChangeNotification(notification: NSNotification) {
+    @objc func didReceiveTextDidChangeNotification(notification: NSNotification) {
         self.setNeedsDisplay()
     }
     
@@ -91,10 +91,10 @@ class CHTextView: UITextView {
             paragraphStyle.alignment = self.textAlignment;
             
             let textFontAttributes = [
-                NSFontAttributeName: self.font!,
-                NSForegroundColorAttributeName: self.placeHolderColor,
-                NSParagraphStyleAttributeName: paragraphStyle
-                ] as [String : Any]
+                NSAttributedStringKey.font: self.font!,
+                NSAttributedStringKey.foregroundColor: self.placeHolderColor,
+                NSAttributedStringKey.paragraphStyle: paragraphStyle
+                ]
             
             NSString(string: self.placeHolder).draw(
                 in: placeHolderRect,

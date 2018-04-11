@@ -136,7 +136,7 @@ class RealmDBHelper {
         self.notificationToken?.invalidate()
         //添加监听时间
         let acountDB = RealmDBHelper.shared.acountDB
-        self.notificationToken = acountDB.addNotificationBlock({
+        self.notificationToken = acountDB.observe({
             (notification, realm) in
             self.iCloudSynchronize(notification: notification, db: realm)
         })
@@ -152,10 +152,10 @@ extension Results {
      
      - returns:
      */
-    func toArray() -> [T] {
+    func toArray<T:Object>() -> [T] {
         var arr = [T]()
         for obj in self {
-            arr.append(obj)
+            arr.append(obj as! T)
         }
         return arr
     }

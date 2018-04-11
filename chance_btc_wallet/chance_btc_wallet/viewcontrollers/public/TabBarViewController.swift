@@ -92,11 +92,11 @@ extension TabBarViewController {
         
         //改变UITabBarItem 字体颜色
         UITabBarItem.appearance().setTitleTextAttributes(
-            [NSForegroundColorAttributeName: UIColor(hex: 0x505050)],
+            [NSAttributedStringKey.foregroundColor: UIColor(hex: 0x505050)],
             for: UIControlState())
         
         UITabBarItem.appearance().setTitleTextAttributes(
-            [NSForegroundColorAttributeName: UIColor(hex: 0xE30B17)],
+            [NSAttributedStringKey.foregroundColor: UIColor(hex: 0xE30B17)],
             for: UIControlState.selected)
         
         

@@ -16,10 +16,9 @@ extension UILabel {
         ) {
             self.text = number
             if number.range(of: ".") != nil && color != nil {
-                let colorDict: [String: AnyObject] = [NSForegroundColorAttributeName: color!]
-                
+                let colorDict = [NSAttributedStringKey.foregroundColor: color!]
                 let re_range = number.range(of: ".")!
-                let index: Int = number.characters.distance(from: number.startIndex, to: re_range.lowerBound)
+                let index: Int = number.distance(from: number.startIndex, to: re_range.lowerBound)
                 let last = number.length
                 let length = last - index
                 let newRange = NSMakeRange(index, length)

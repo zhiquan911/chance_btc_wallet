@@ -65,7 +65,7 @@ extension CloudUtils {
     /// 获取icloud文档列表
     ///
     /// - Parameter noti:
-    func metadataQueryDidFinishGathering(noti: Notification){
+    @objc func metadataQueryDidFinishGathering(noti: Notification){
         Log.debug("MetadataQueryDidFinishGathering")
         let items = self.myMetadataQuery.results        //查询结果集
         for obj in items {

@@ -65,7 +65,7 @@ class WalletViewController: BaseViewController {
             object: nil)
         
         //初始化完成后把刷新过期重置为过期，让列表自动刷新
-        self.tableViewTransactions.expriedTimeInterval = 0
+        self.tableViewTransactions.expiredTimeInterval = 0
         
         //初始View默认为系统记录的账户卡片
         WalletViewController.selectedCardIndex = CHBTCWallet.sharedInstance.selectedAccountIndex
@@ -98,10 +98,10 @@ class WalletViewController: BaseViewController {
         }
         
         //【2】下拉刷新，获取最新的余额和交易记录
-        self.tableViewTransactions.es_autoPullToRefresh()
+        self.tableViewTransactions.es.autoPullToRefresh()
         
         //【3】刷新设置定时X秒过期才执行
-        self.tableViewTransactions.expriedTimeInterval = kAutoRefreshTime
+        self.tableViewTransactions.expiredTimeInterval = kAutoRefreshTime
         
         //【4】获取行情最新价格
         self.getTickerByWebservice()
@@ -180,17 +180,17 @@ extension WalletViewController {
     func addPullRefreshComponent() {
         
         let header = WalletRefreshHeaderAnimator(frame: CGRect.zero)
-        self.tableViewTransactions.es_addPullToRefresh(animator: header) {
+        self.tableViewTransactions.es.addPullToRefresh(animator: header) {
             [weak self] in
             self?.refresh()
         }
-        self.tableViewTransactions.es_addInfiniteScrolling {
+        self.tableViewTransactions.es.addInfiniteScrolling {
             [weak self] in
             self?.loadMore()
         }
         
         //修改footer的高度
-        let footer = self.tableViewTransactions.es_footer
+        let footer = self.tableViewTransactions.footer
         footer?.animator.executeIncremental = 60
         
         self.tableViewTransactions.refreshIdentifier = "Wallet"
@@ -227,7 +227,7 @@ extension WalletViewController {
      */
     
     //刷新全部钱包数据
-    func reloadAllWalletAcount() {
+    @objc func reloadAllWalletAcount() {
         
         //保证钱包是存在
         guard CHBTCWallet.checkBTCWalletExist() else {
@@ -356,7 +356,7 @@ extension WalletViewController {
     
     
     /// 获取最新价格
-    func getTickerByWebservice() {
+    @objc func getTickerByWebservice() {
         BlockchainRemoteService.sharedInstance.ticker {
             (message, tickers) in
             if message.code == ApiResultCode.Success.rawValue {
@@ -528,14 +528,14 @@ extension WalletViewController {
         
         self.getUserTransactionsByWebservice(true) {
             (dataCount) in
-            self.tableViewTransactions.es_stopPullToRefresh()
+            self.tableViewTransactions.es.stopPullToRefresh()
             if dataCount < self.page.pageSize {
-                self.tableViewTransactions.es_noticeNoMoreData()
+                self.tableViewTransactions.es.noticeNoMoreData()
             }
             if self.transactions.count == 0 {
-                self.tableViewTransactions.es_footer?.isHidden = true
+                self.tableViewTransactions.footer?.isHidden = true
             } else {
-                self.tableViewTransactions.es_footer?.isHidden = false
+                self.tableViewTransactions.footer?.isHidden = false
             }
             
         }
@@ -550,9 +550,9 @@ extension WalletViewController {
         self.getUserTransactionsByWebservice(false) {
             (dataCount) in
             if dataCount < self.page.pageSize {
-                self.tableViewTransactions.es_noticeNoMoreData()
+                self.tableViewTransactions.es.noticeNoMoreData()
             } else {
-                self.tableViewTransactions.es_stopLoadingMore()
+                self.tableViewTransactions.es.stopLoadingMore()
             }
         }
     }
@@ -635,10 +635,10 @@ extension WalletViewController: CHPageCardViewDelegate {
         
         //切换后更新选中账户的余额和交易记录，先停了旧的任务
         self.cancel(self.updateWalletTask)
-        self.tableViewTransactions.es_stopPullToRefresh()
+        self.tableViewTransactions.es.stopPullToRefresh()
         self.updateWalletTask = self.delay(1, task: {
             //刷新数据
-            self.tableViewTransactions.es_startPullToRefresh()
+            self.tableViewTransactions.es.startPullToRefresh()
         })
         
     }

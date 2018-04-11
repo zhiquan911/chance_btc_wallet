@@ -130,7 +130,7 @@ class CHEmitterView: UIView {
         
         //        emitterCell.scaleSpeed = -0.2// 缩放比例 超大火苗
         emitterCell.scale = 0.5
-        emitterCell.color = UIColor(colorLiteralRed: 0, green: 1, blue: 0, alpha: 0.2).cgColor
+        emitterCell.color = UIColor(red: 0, green: 1, blue: 0, alpha: 0.2).cgColor
         emitterCell.alphaRange = 1
         emitterCell.redRange = 255
         emitterCell.blueRange = 22

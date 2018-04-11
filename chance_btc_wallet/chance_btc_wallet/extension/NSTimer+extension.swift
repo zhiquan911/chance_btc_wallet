@@ -9,7 +9,7 @@
 import Foundation
 
 /// Empty arguments and non-return value closure
-public typealias VoidClosure = (Void) ->Void
+public typealias VoidClosure = () ->Void
 
 /// Private void closure key
 let private_voidClosureKey = "private_voidClosureKey"
@@ -47,7 +47,7 @@ public extension Timer {
     }
     
     // MARK: Private
-    internal class func  private_onTimerCallback(_ timer: Timer) {
+    @objc internal class func  private_onTimerCallback(_ timer: Timer) {
         struct private_count {
             static var s_timerCallbackCount: Int = NSNotFound
         }

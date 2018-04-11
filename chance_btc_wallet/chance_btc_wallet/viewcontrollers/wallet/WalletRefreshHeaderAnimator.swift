@@ -87,7 +87,7 @@ public class WalletRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAn
         self.state = state
     }
     
-    func timerAction() {
+    @objc func timerAction() {
         timerProgress += 0.01
         self.imageViewLoadingCircular.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI) * CGFloat(timerProgress))
     }

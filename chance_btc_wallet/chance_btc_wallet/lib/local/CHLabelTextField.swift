@@ -275,7 +275,7 @@ extension CHLabelTextField {
             views:views))
         
         //buttonAccessory的宽度压缩优先，这样buttonAccessory不需要写死宽度，当它宽度变长，textField就会缩短
-        self.buttonAccessory?.setContentHuggingPriority(251, for: .horizontal)
+        self.buttonAccessory?.setContentHuggingPriority(UILayoutPriority(rawValue: 251), for: .horizontal)
         
     }
     
@@ -293,13 +293,13 @@ extension CHLabelTextField {
     }
     
     /// 点击功能力按钮
-    public func handleAccessoryButtonPress() {
+    @objc public func handleAccessoryButtonPress() {
         //Log.debug("handleAccessoryButtonPress")
         self.accessoryPress?(self)
     }
     
     /// 点击TextField
-    public func handleTextFieldPress() {
+    @objc public func handleTextFieldPress() {
         //Log.debug("handleTextFieldPress")
         self.textPress?(self)
     }

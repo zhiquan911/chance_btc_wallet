@@ -69,7 +69,7 @@ extension String {
     
     /// 字符串长度
     var length: Int {
-        return self.characters.count;
+        return self.count;
     }  // Swift 1.2
     
     
@@ -85,11 +85,11 @@ extension String {
         var textSize:CGSize!
         let newStr = NSString(string: self)
         if size.equalTo(CGSize.zero) {
-            let attributes = [NSFontAttributeName: font]
-            textSize = newStr.size(attributes: attributes)
+            let attributes = [NSAttributedStringKey.font: font]
+            textSize = newStr.size(withAttributes: attributes)
         } else {
             let option = NSStringDrawingOptions.usesLineFragmentOrigin
-            let attributes = [NSFontAttributeName: font]
+            let attributes = [NSAttributedStringKey.font: font]
             let stringRect = newStr.boundingRect(with: size, options: option, attributes: attributes, context: nil)
             textSize = stringRect.size
         }

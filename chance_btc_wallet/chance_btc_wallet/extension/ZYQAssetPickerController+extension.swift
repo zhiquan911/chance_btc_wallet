@@ -30,8 +30,8 @@ extension ZYQAssetPickerController {
         //文字颜色
         navBar.tintColor = textColor
         navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: textColor,
-            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17),
+            NSAttributedStringKey.foregroundColor: textColor,
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17),
             
         ]
         UINavigationBar.appearance().tintColor = textColor

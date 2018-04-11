@@ -121,7 +121,7 @@ extension MultiSigTransaction {
             throw MultiSigError.decodeError
         }
         
-        let jsonData = JSON(data: dataFromString)
+        let jsonData = try JSON(data: dataFromString)
         
         //4.记录各个字段
         self.rawTx = jsonData["rawTx"].stringValue

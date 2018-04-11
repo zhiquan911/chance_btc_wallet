@@ -30,8 +30,8 @@ class RootNavigationController: UINavigationController {
         //文字颜色
         self.navigationBar.tintColor = UIColor.white
         self.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont(name: "Menlo-Bold", size: 17)!
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "Menlo-Bold", size: 17)!
         ]
         UINavigationBar.appearance().tintColor = UIColor.white
         self.navigationBar.shadowImage = UIImage()

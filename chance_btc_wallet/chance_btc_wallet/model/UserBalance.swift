@@ -12,18 +12,18 @@ import RealmSwift
 class UserBalance: Object {
 
     //MARK: - 数据库的字段
-    dynamic var address = ""
-    dynamic var balance: Double = 0
-    dynamic var balanceSat: Int = 0
-    dynamic var totalReceived: Double = 0
-    dynamic var totalReceivedSat: Int = 0
-    dynamic var totalSent: Double = 0
-    dynamic var totalSentSat: Int = 0
-    dynamic var unconfirmedBalance: Double = 0
-    dynamic var unconfirmedBalanceSat: Int = 0
-    dynamic var unconfirmedTxApperances: Int = 0
-    dynamic var txApperances: Int = 0
-    dynamic var currency: String = ""
+    @objc dynamic var address = ""
+    @objc dynamic var balance: Double = 0
+    @objc dynamic var balanceSat: Int = 0
+    @objc dynamic var totalReceived: Double = 0
+    @objc dynamic var totalReceivedSat: Int = 0
+    @objc dynamic var totalSent: Double = 0
+    @objc dynamic var totalSentSat: Int = 0
+    @objc dynamic var unconfirmedBalance: Double = 0
+    @objc dynamic var unconfirmedBalanceSat: Int = 0
+    @objc dynamic var unconfirmedTxApperances: Int = 0
+    @objc dynamic var txApperances: Int = 0
+    @objc dynamic var currency: String = ""
     
     //MARK: - 忽略持久化的字段
     var currencyType: CurrencyType = .BTC

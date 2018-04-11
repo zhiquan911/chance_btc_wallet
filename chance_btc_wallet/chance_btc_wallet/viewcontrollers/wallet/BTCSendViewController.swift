@@ -145,7 +145,7 @@ extension BTCSendViewController {
     /// 关闭键盘
     ///
     /// - Parameter sender:
-    func keyboardDoneAction() {
+    @objc func keyboardDoneAction() {
         AppDelegate.sharedInstance().closeKeyBoard()
     }
     

@@ -74,7 +74,7 @@ public class CHNavigationButton: UIButton {
     }
     
     //点击按钮事件
-    func buttonPress() {
+    @objc func buttonPress() {
         self.doWhat?()
     }
     

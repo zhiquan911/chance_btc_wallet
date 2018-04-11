@@ -96,7 +96,7 @@ extension BTCMultiSigTransactionViewController {
         //已签的改为另一个颜色
         let attributedStr = NSMutableAttributedString(string: text)
         let newRange = NSMakeRange(0, signed.toString().length)
-        let colorDict: [String: AnyObject] = [NSForegroundColorAttributeName: UIColor(hex: 0xFF230D)]
+        let colorDict = [NSAttributedStringKey.foregroundColor: UIColor(hex: 0xFF230D)]
         attributedStr.addAttributes(colorDict, range: newRange)
         self.labelTextSignature.textField?.attributedText = attributedStr
     }
@@ -114,8 +114,8 @@ extension BTCMultiSigTransactionViewController {
         for signHex in signsArray {
             //获取头部的序号
             let header = "0x\(signHex.substring(0, length: 2)!)"
-            let index = signHex.characters.index(signHex.startIndex, offsetBy: 2)
-            let dataHex = signHex.substring(from: index)
+            let index = signHex.index(signHex.startIndex, offsetBy: 2)
+            let dataHex = String(signHex[index...])
             let seq = strtoul(header,nil,16)
             dic[Int(seq)] = BTCDataFromHex(dataHex)
         }
@@ -205,7 +205,7 @@ extension BTCMultiSigTransactionViewController {
                         txin.signatureScript.appendData(redeemScript?.data)
                     } catch let error as NSError {
                         Log.debug("error = \(error.description)")
-                        Log.debug("tx.hex = \(tx?.hex)")
+                        Log.debug("tx.hex = \(String(describing: tx?.hex))")
                         //验证不通过，还需要继续签名
                         isComplete = false
                         

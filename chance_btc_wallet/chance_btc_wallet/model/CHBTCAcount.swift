@@ -23,12 +23,12 @@ import RealmSwift
 class CHBTCAcount: Object {
     
     //MARK: - 数据库字段
-    dynamic var index: Int = 0                          //账户所在钱包的索引位
-    dynamic var accountId: String = ""                  //用账户的地址作为id
-    dynamic var redeemScriptHex: String = ""        //账户的赎回脚本
-    dynamic var userNickname: String = ""                   //昵称
-    dynamic var isEnable: Bool = true                   //是否可用
-    dynamic var keyPath: String = ""                //HD私钥路径，如："m/44'/0'/2'" (BIP44 bitcoin account #2)
+    @objc dynamic var index: Int = 0                          //账户所在钱包的索引位
+    @objc dynamic var accountId: String = ""                  //用账户的地址作为id
+    @objc dynamic var redeemScriptHex: String = ""        //账户的赎回脚本
+    @objc dynamic var userNickname: String = ""                   //昵称
+    @objc dynamic var isEnable: Bool = true                   //是否可用
+    @objc dynamic var keyPath: String = ""                //HD私钥路径，如："m/44'/0'/2'" (BIP44 bitcoin account #2)
     
     //MARK: - 忽略持久化的字段
     var btcKeychain: BTCKeychain?           //获取可扩展的私钥
@@ -64,7 +64,7 @@ class CHBTCAcount: Object {
     /// - Returns: 
     class func getBTCAccount(byIndex index: Int) -> CHBTCAcount? {
         let realm = RealmDBHelper.shared.acountDB  //Realm数据库
-        let datas: Results<CHBTCAcount> = realm.objects(CHBTCAcount.self).filter(" index = \(index)").sorted(byProperty: "index", ascending: true)
+        let datas: Results<CHBTCAcount> = realm.objects(CHBTCAcount.self).filter(" index = \(index)").sorted(byKeyPath: "index", ascending: true)
         return datas.first
     }
     
@@ -84,7 +84,7 @@ class CHBTCAcount: Object {
     /// - Returns:
     class func getBTCAccounts() -> [CHBTCAcount] {
         let realm = RealmDBHelper.shared.acountDB  //Realm数据库
-        let datas: Results<CHBTCAcount> = realm.objects(CHBTCAcount.self).sorted(byProperty: "index", ascending: true)
+        let datas: Results<CHBTCAcount> = realm.objects(CHBTCAcount.self).sorted(byKeyPath: "index", ascending: true)
         return datas.toArray()
     }
     
@@ -135,9 +135,9 @@ extension CHBTCAcount {
     
     /// 获取公钥
     var publicKey: BTCKey {
-        let pubkey = self.privateKey?.compressedPublicKey
-        let key = BTCKey(publicKey: pubkey as Data!)
-        return key!;
+        let pubkey = self.privateKey?.compressedPublicKey ?? NSMutableData()
+        let key = BTCKey(publicKey: pubkey as Data)
+        return key!
     }
     
     /// 获取多重签名的赎回脚本
