@@ -95,6 +95,16 @@
 
 最后，解析协议和封装协议的工作由我的钱包程序处理，在MultiSigTransaction类中实现。注意，这个协议并非比特币促进协议（BIP）里头的，仅仅适合这个钱包应用。
 
+## 🛠测试网调试
+
+在Setting - Blockchain Node，选择testnet的在线节点。
+
+![测试网](https://github.com/zhiquan911/chance_btc_wallet/blob/master/introduction/testnet.jpg)
+
+可以在这个网站获取一些Bitcoin测试币。
+https://testnet.manu.backend.hamburg/faucet
+
+
 ## 📦产品功能
 
 ![产品功能](https://github.com/zhiquan911/chance_btc_wallet/blob/master/introduction/Chance%20Wallet.png)
