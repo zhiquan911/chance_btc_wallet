@@ -36,6 +36,12 @@ extension Int {
     func toFloat() -> Float {
         return Float(self)
     }
+    
+    /// 系统的整数型是否使用little-endian方式编码
+    /// swift默认使用littlt-endian字节序
+    public static var isLittleEndian: Bool {
+        return Int(littleEndian: 42) == 42
+    }
 }
 
 

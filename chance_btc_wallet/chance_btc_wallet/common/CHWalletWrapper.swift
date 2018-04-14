@@ -87,6 +87,20 @@ class CHWalletWrapper: NSObject {
         }
     }
     
+    /// 获取默认选择区块链网络
+    class var selectedBlockchainNetwork: BlockchainNetwork {
+        get {
+            let value = UserDefaults.standard.value(forKey: CHWalletsKeys.SelectedBlockchainNetwork) as? UInt32
+            let node = value ?? BlockchainNetwork.main.rawValue
+            return BlockchainNetwork(rawValue: node)!
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: CHWalletsKeys.SelectedBlockchainNetwork)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     /// 是否开启icloud自动同步
     class var enableICloud: Bool {
         get {

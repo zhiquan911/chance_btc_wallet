@@ -62,6 +62,8 @@ extension BlockchainNodeSettingViewController: UITableViewDelegate, UITableViewD
         tableView.deselectRow(at: indexPath, animated: true)
         let node = self.nodes[indexPath.row]
         CHWalletWrapper.selectedBlockchainNode = node
+        CHWalletWrapper.selectedBlockchainNetwork = node.network
+        
         self.selectedNode = node
         //let cell = tableView.cellForRow(at: indexPath)
         tableView.reloadData()

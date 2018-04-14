@@ -12,7 +12,15 @@ import SwiftyJSON
 
 class BlockchainRemoteService: RemoteService {
     
-    var apiUrl = "https://blockchain.info/";
+    var apiUrl: String {
+        let network = CHWalletWrapper.selectedBlockchainNetwork
+        switch network {
+        case .main:
+            return "https://blockchain.info/"
+        case .test:
+            return "https://testnet.blockchain.info/"
+        }
+    }
     
     /// 全局唯一实例
     static let sharedInstance: BlockchainRemoteService = {
@@ -78,70 +86,70 @@ class BlockchainRemoteService: RemoteService {
             if data.exists() {
                 let items = data["txs"].arrayValue
                 for dic in items {
-//                    "ver":1,
-//                    "inputs":[
-//                    {
-//                    "sequence":4294967295,
-//                    "prev_out":{
-//                    "spent":true,
-//                    "tx_index":129980108,
-//                    "type":0,
-//                    "addr":"1HvgRTi2CmaSHUkfWUCAqkYjF7AiBohzbB",
-//                    "value":10000,
-//                    "n":0,
-//                    "script":"76a914b9a8f753a620aa27836db34e28a3582cbd25c71588ac"
-//                    },
-//                    "script":"483045022100a260961b93d3b283ef76c161a81f30911ee313dfadd10fe455bcdaf65c42107602204f6824ac4e95c3b2a81de493e0e7521a1af202e2bcaa22b44b5a3fb0b4e2cf6c012103306e60b8c65a7b1338ae632a9b78fd627477dcc8e4d02a547df034a974144fe9"
-//                    },
-//                    {
-//                    "sequence":4294967295,
-//                    "prev_out":{
-//                    "spent":true,
-//                    "tx_index":129817786,
-//                    "type":0,
-//                    "addr":"1HvgRTi2CmaSHUkfWUCAqkYjF7AiBohzbB",
-//                    "value":10000,
-//                    "n":0,
-//                    "script":"76a914b9a8f753a620aa27836db34e28a3582cbd25c71588ac"
-//                    },
-//                    "script":"473044022068c10112ae2dd16ea02a0930df17456e3fec05f28b77d5912723850d9a1c2b16022075ceff91b598a70785f33f39953cde5336c0d6693b8a5059f9dc0e2e88adf82e012103306e60b8c65a7b1338ae632a9b78fd627477dcc8e4d02a547df034a974144fe9"
-//                    },
-//                    {
-//                    "sequence":4294967295,
-//                    "prev_out":{
-//                    "spent":true,
-//                    "tx_index":129816887,
-//                    "type":0,
-//                    "addr":"1HvgRTi2CmaSHUkfWUCAqkYjF7AiBohzbB",
-//                    "value":10000,
-//                    "n":0,
-//                    "script":"76a914b9a8f753a620aa27836db34e28a3582cbd25c71588ac"
-//                    },
-//                    "script":"483045022100b9b000e11ce3b2641084f277c1837694ae30384ca99a4eaaf4cd986025dae373022007cfd399c5271d1f37331dc238cb72247b4191c56cd131971c29eae8c0bf65f1012103306e60b8c65a7b1338ae632a9b78fd627477dcc8e4d02a547df034a974144fe9"
-//                    }
-//                    ],
-//
-//                    "out":[
-//                    {
-//                    "spent":true,
-//                    "tx_index":129980308,
-//                    "type":0,
-//                    "addr":"1L8WssQRCrDKRSF5MwUb2E4HhGzkVTP93U",
-//                    "value":20000,
-//                    "n":0,
-//                    "script":"76a914d1d63de21e37c2845b9c134edd02a74881a53d1e88ac"
-//                    }
-//                    ],
-//                    "lock_time":0,
-//                    "result":0,
-//                    "size":487,
-//                    "time":1455932732,
-//                    "tx_index":129980308,
-//                    "vin_sz":3,
-//                    "hash":"d756d527db180e646189daf667dfca4d3127607fb790c2542652d9809816b23e",
-//                    "vout_sz":1
-//                    "block_height":399242,
-//                    "relayed_by":"37.205.10.140",
+                    //                    "ver":1,
+                    //                    "inputs":[
+                    //                    {
+                    //                    "sequence":4294967295,
+                    //                    "prev_out":{
+                    //                    "spent":true,
+                    //                    "tx_index":129980108,
+                    //                    "type":0,
+                    //                    "addr":"1HvgRTi2CmaSHUkfWUCAqkYjF7AiBohzbB",
+                    //                    "value":10000,
+                    //                    "n":0,
+                    //                    "script":"76a914b9a8f753a620aa27836db34e28a3582cbd25c71588ac"
+                    //                    },
+                    //                    "script":"483045022100a260961b93d3b283ef76c161a81f30911ee313dfadd10fe455bcdaf65c42107602204f6824ac4e95c3b2a81de493e0e7521a1af202e2bcaa22b44b5a3fb0b4e2cf6c012103306e60b8c65a7b1338ae632a9b78fd627477dcc8e4d02a547df034a974144fe9"
+                    //                    },
+                    //                    {
+                    //                    "sequence":4294967295,
+                    //                    "prev_out":{
+                    //                    "spent":true,
+                    //                    "tx_index":129817786,
+                    //                    "type":0,
+                    //                    "addr":"1HvgRTi2CmaSHUkfWUCAqkYjF7AiBohzbB",
+                    //                    "value":10000,
+                    //                    "n":0,
+                    //                    "script":"76a914b9a8f753a620aa27836db34e28a3582cbd25c71588ac"
+                    //                    },
+                    //                    "script":"473044022068c10112ae2dd16ea02a0930df17456e3fec05f28b77d5912723850d9a1c2b16022075ceff91b598a70785f33f39953cde5336c0d6693b8a5059f9dc0e2e88adf82e012103306e60b8c65a7b1338ae632a9b78fd627477dcc8e4d02a547df034a974144fe9"
+                    //                    },
+                    //                    {
+                    //                    "sequence":4294967295,
+                    //                    "prev_out":{
+                    //                    "spent":true,
+                    //                    "tx_index":129816887,
+                    //                    "type":0,
+                    //                    "addr":"1HvgRTi2CmaSHUkfWUCAqkYjF7AiBohzbB",
+                    //                    "value":10000,
+                    //                    "n":0,
+                    //                    "script":"76a914b9a8f753a620aa27836db34e28a3582cbd25c71588ac"
+                    //                    },
+                    //                    "script":"483045022100b9b000e11ce3b2641084f277c1837694ae30384ca99a4eaaf4cd986025dae373022007cfd399c5271d1f37331dc238cb72247b4191c56cd131971c29eae8c0bf65f1012103306e60b8c65a7b1338ae632a9b78fd627477dcc8e4d02a547df034a974144fe9"
+                    //                    }
+                    //                    ],
+                    //
+                    //                    "out":[
+                    //                    {
+                    //                    "spent":true,
+                    //                    "tx_index":129980308,
+                    //                    "type":0,
+                    //                    "addr":"1L8WssQRCrDKRSF5MwUb2E4HhGzkVTP93U",
+                    //                    "value":20000,
+                    //                    "n":0,
+                    //                    "script":"76a914d1d63de21e37c2845b9c134edd02a74881a53d1e88ac"
+                    //                    }
+                    //                    ],
+                    //                    "lock_time":0,
+                    //                    "result":0,
+                    //                    "size":487,
+                    //                    "time":1455932732,
+                    //                    "tx_index":129980308,
+                    //                    "vin_sz":3,
+                    //                    "hash":"d756d527db180e646189daf667dfca4d3127607fb790c2542652d9809816b23e",
+                    //                    "vout_sz":1
+                    //                    "block_height":399242,
+                    //                    "relayed_by":"37.205.10.140",
                     
                     let tx = UserTransaction()
                     tx.txid = dic["hash"].stringValue
@@ -195,43 +203,43 @@ class BlockchainRemoteService: RemoteService {
      - parameter callback:
      */
     func userUnspentTransactions(address: String,
-        callback: @escaping (MessageModule, [UnspentTransaction]) -> Void) {
-            let params: [String: Any] = [
-                "active": address
-            ]
-            
-            let url = apiUrl + "unspent"
-            
-            self.sendJsonRequest(url, parameters: params) {
-                (json, isCache) -> Void in
-                let message = MessageModule(json: json["resMsg"])
-                let data = json["datas"]
-                let items = data["unspent_outputs"].arrayValue
-                var unspentUserTransactions = [UnspentTransaction]()
-                for dic in items {
-//                    "tx_hash":"0387d2b856a4e4d69ceb8b73e13d5d03a44419b19f00ee7b30f8afbf57df033f",
-//                    "tx_hash_big_endian":"3f03df57bfaff8307bee009fb11944a4035d3de1738beb9cd6e4a456b8d28703",
-//                    "tx_index":132619844,
-//                    "tx_output_n": 1,
-//                    "script":"76a914b9a8f753a620aa27836db34e28a3582cbd25c71588ac",
-//                    "value": 90000,
-//                    "value_hex": "015f90",
-//                    "confirmations":0
-                    
-                    let tx = UnspentTransaction()
-                    tx.txid = dic["tx_hash_big_endian"].stringValue
-//                    tx.address = dic["address"].stringValue
-                    tx.vout = dic["tx_output_n"].intValue
-                    tx.timestamp = dic["ts"].intValue
-                    tx.confirmations = dic["confirmations"].intValue
-                    tx.scriptPubKey = dic["script"].stringValue
-                    tx.amount = BTCAmount(dic["value"].intValue)
-                    
-                    unspentUserTransactions.append(tx)
-                }
+                                 callback: @escaping (MessageModule, [UnspentTransaction]) -> Void) {
+        let params: [String: Any] = [
+            "active": address
+        ]
+        
+        let url = apiUrl + "unspent"
+        
+        self.sendJsonRequest(url, parameters: params) {
+            (json, isCache) -> Void in
+            let message = MessageModule(json: json["resMsg"])
+            let data = json["datas"]
+            let items = data["unspent_outputs"].arrayValue
+            var unspentUserTransactions = [UnspentTransaction]()
+            for dic in items {
+                //                    "tx_hash":"0387d2b856a4e4d69ceb8b73e13d5d03a44419b19f00ee7b30f8afbf57df033f",
+                //                    "tx_hash_big_endian":"3f03df57bfaff8307bee009fb11944a4035d3de1738beb9cd6e4a456b8d28703",
+                //                    "tx_index":132619844,
+                //                    "tx_output_n": 1,
+                //                    "script":"76a914b9a8f753a620aa27836db34e28a3582cbd25c71588ac",
+                //                    "value": 90000,
+                //                    "value_hex": "015f90",
+                //                    "confirmations":0
                 
-                callback(message, unspentUserTransactions)
+                let tx = UnspentTransaction()
+                tx.txid = dic["tx_hash_big_endian"].stringValue
+                //                    tx.address = dic["address"].stringValue
+                tx.vout = dic["tx_output_n"].intValue
+                tx.timestamp = dic["ts"].intValue
+                tx.confirmations = dic["confirmations"].intValue
+                tx.scriptPubKey = dic["script"].stringValue
+                tx.amount = BTCAmount(dic["value"].intValue)
+                
+                unspentUserTransactions.append(tx)
             }
+            
+            callback(message, unspentUserTransactions)
+        }
     }
     
     

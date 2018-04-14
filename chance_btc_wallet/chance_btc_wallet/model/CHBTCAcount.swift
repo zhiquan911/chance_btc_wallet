@@ -152,9 +152,19 @@ extension CHBTCAcount {
     //比特币地址
     var address: BTCAddress {
         if self.accountType == .normal {
-            return self.publicKey.address   //普通地址
+            switch CHWalletWrapper.selectedBlockchainNetwork {
+            case .main:
+                return self.publicKey.address   //普通地址
+            case .test:
+                return self.publicKey.addressTestnet   //普通地址
+            }
         } else {
-            return self.redeemScript!.scriptHashAddress     //多重签名地址
+            switch CHWalletWrapper.selectedBlockchainNetwork {
+            case .main:
+                return self.redeemScript!.scriptHashAddress     //多重签名地址
+            case .test:
+                return self.redeemScript!.scriptHashAddressTestnet     //多重签名地址
+            }
         }
         
     }
@@ -168,8 +178,18 @@ extension CHBTCAcount {
     func index(of redeemScript: BTCScript) -> Int {
         //获取赎回脚本公钥的顺序列表
         let pubkeys = redeemScript.getMultisigPublicKeys()
-        
-        let index = pubkeys!.1.index(of: self.accountId)
+        //以前使用的主网的地址做id，所以这里通过主网
+//        let index = pubkeys!.1.index(of: self.accountId)
+        let index = pubkeys!.0.index {
+            (data) -> Bool in
+            if let publicKey = BTCKey(publicKey: data) {
+                let mainAddress = publicKey.compressedPublicKeyAddress.string   //普通地址
+                if mainAddress == self.accountId {
+                    return true
+                }
+            }
+            return false
+        }
         
         return index ?? -1
     }

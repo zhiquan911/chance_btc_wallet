@@ -148,6 +148,8 @@ open class QRCode: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     
     /// start scan
     open func startScan() {
+        clearDrawLayer()
+        
         if session.isRunning {
             print("the  capture session is running")
             
@@ -169,7 +171,7 @@ open class QRCode: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     func setupLayers(_ view: UIView) {
         drawLayer.frame = view.bounds
         view.layer.insertSublayer(drawLayer, at: 0)
-        previewLayer.frame = view.bounds
+        previewLayer.frame = view.layer.bounds
         view.layer.insertSublayer(previewLayer, at: 0)
     }
     
@@ -196,8 +198,7 @@ open class QRCode: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         dataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
     }
     
-    open func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
-        
+    public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         clearDrawLayer()
         
         for dataObject in metadataObjects {
@@ -256,13 +257,13 @@ open class QRCode: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     func createPath(_ points: NSArray) -> UIBezierPath {
         let path = UIBezierPath()
         
-        var point = CGPoint(dictionaryRepresentation: points[0] as! CFDictionary)
-        path.move(to: point!)
+        var point = points[0] as! CGPoint
+        path.move(to: point)
         
         var index = 1
         while index < points.count {
-            point = CGPoint(dictionaryRepresentation: points[index] as! CFDictionary)
-            path.addLine(to: point!)
+            point = points[index] as! CGPoint
+            path.addLine(to: point)
             
             index = index + 1
         }
@@ -284,8 +285,7 @@ open class QRCode: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     lazy var session = AVCaptureSession()
     /// input
     lazy var videoInput: AVCaptureDeviceInput? = {
-        
-        if let device = AVCaptureDevice.default(for: AVMediaType.video) {
+        if let device = AVCaptureDevice.default(for: .video) {
             return try? AVCaptureDeviceInput(device: device)
         }
         return nil

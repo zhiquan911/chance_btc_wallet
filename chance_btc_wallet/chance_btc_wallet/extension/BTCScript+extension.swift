@@ -26,9 +26,21 @@ extension BTCScript {
             self.enumerateOperations({
                 (i, opcode, pushdata, stop) -> Void in
                 if opcode == BTCOpcode.OP_INVALIDOPCODE {
-                    let publicKey = BTCKey(publicKey: pushdata)
-                    addresses.append((publicKey?.compressedPublicKeyAddress.string)!)
-                    list.append(pushdata!)
+                    
+                    if let publicKey = BTCKey(publicKey: pushdata) {
+                        switch CHWalletWrapper.selectedBlockchainNetwork {
+                        case .main:
+                            addresses.append(publicKey.compressedPublicKeyAddress.string)   //普通地址
+                        case .test:
+                            addresses.append(publicKey.addressTestnet.string)   //测试地址
+                        }
+                        list.append(pushdata!)
+                    }
+                    
+                    
+//                    let publicKey = BTCKey(publicKey: pushdata)
+//                    addresses.append((publicKey?.compressedPublicKeyAddress.string)!)
+//                    list.append(pushdata!)
                 }
             })
             

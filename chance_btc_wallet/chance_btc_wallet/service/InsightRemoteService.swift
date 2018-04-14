@@ -12,7 +12,15 @@ import SwiftyJSON
 
 class InsightRemoteService: RemoteService {
     
-    var apiUrl = "https://insight.bitpay.com/api/"
+    var apiUrl: String {
+        let network = CHWalletWrapper.selectedBlockchainNetwork
+        switch network {
+        case .main:
+            return "https://insight.bitpay.com/api/"
+        case .test:
+            return "https://test-insight.bitpay.com/api/"
+        }
+    }
     
     /// 全局唯一实例
     static let sharedInstance: InsightRemoteService = {

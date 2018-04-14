@@ -496,6 +496,28 @@ class CHBTCWallet: NSObject {
         return account
     }
     
+    /// 获取HD账户，目前钱包默认一个
+    ///
+    /// - Parameter data: 通过公钥
+    /// - Returns:
+    func getAccount(byPublickey data: Data) -> CHBTCAcount? {
+        
+        guard let publicKey = BTCKey(publicKey: data) else {
+            return nil
+        }
+        
+        let accountId = publicKey.compressedPublicKeyAddress.string   //普通地址
+        
+        guard let account = CHBTCAcount.getBTCAccount(byID: accountId) else {
+            return nil
+        }
+        
+        let childKeys = self.rootKeys.derivedKeychain(at: UInt32(account.index),
+                                                      hardened: true)
+        account.btcKeychain = childKeys
+        return account
+    }
+    
     /**
      获取HD账户，目前钱包默认一个
      

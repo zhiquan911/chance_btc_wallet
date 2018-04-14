@@ -686,6 +686,8 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         //清除重复地址
         var filteredAddresses = Array(Set(addresses))
         
+        filteredAddresses = filteredAddresses.filter { !$0.isEmpty }
+        
         let indexForCurrentUser = filteredAddresses.index(of: self.address)
         if indexForCurrentUser != nil && indexForCurrentUser != NSNotFound {
             filteredAddresses.remove(at: indexForCurrentUser!)

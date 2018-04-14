@@ -96,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //开启键盘自动适应高度
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
+//        IQKeyboardManager.sharedManager().canAdjustAdditionalSafeAreaInsets = true
         IQKeyboardManager.sharedManager().disabledDistanceHandlingClasses.append(RestoreWalletViewController.self)
     }
     

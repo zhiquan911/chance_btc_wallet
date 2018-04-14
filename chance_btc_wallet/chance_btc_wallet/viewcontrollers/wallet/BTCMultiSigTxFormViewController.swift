@@ -116,12 +116,12 @@ extension BTCMultiSigTxFormViewController {
             return nil
         }
         
-        guard let (_, addrs) = rs.getMultisigPublicKeys() else {
+        guard let (publickeys, _) = rs.getMultisigPublicKeys() else {
             return nil
         }
         
-        for address in addrs {
-            guard let account = CHBTCWallet.sharedInstance.getAccount(byID: address) else {
+        for publickey in publickeys {
+            guard let account = CHBTCWallet.sharedInstance.getAccount(byPublickey: publickey) else {
                 continue
             }
             return account

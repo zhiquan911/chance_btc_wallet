@@ -76,14 +76,26 @@ extension BTCMultiSigTransactionViewController {
             return
         }
         
-        
-        self.labelTextSender.text = rs.scriptHashAddress.string
+        switch CHWalletWrapper.selectedBlockchainNetwork {
+        case .main:
+            self.labelTextSender.text = rs.scriptHashAddress.string
+        case .test:
+            self.labelTextSender.text = rs.scriptHashAddressTestnet.string
+        }
         
         //转账数量 = 输出方的数量
         if tx.outputs.count > 0 {
             let output = tx.outputs[0] as! BTCTransactionOutput
-            self.labelTextReceiver.text = output.script.standardAddress.string
+            
             self.labelTextAmount.text = output.value.toBTC()
+            
+            switch CHWalletWrapper.selectedBlockchainNetwork {
+            case .main:
+                self.labelTextReceiver.text = output.script.standardAddress.string
+            case .test:
+                self.labelTextReceiver.text = BTCPublicKeyAddressTestnet(data: output.script.standardAddress.data)?.string ?? ""
+            }
+            
         }
         
         

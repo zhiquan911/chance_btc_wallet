@@ -56,7 +56,6 @@ class TBBouncesContentView: TBBaseContentView {
     }
 }
 
-
 class TBIrregularityContentView: ESTabBarItemContentView {
     
     override init(frame: CGRect) {
@@ -77,6 +76,7 @@ class TBIrregularityContentView: ESTabBarItemContentView {
         highlightIconColor = UIColor.white
         backdropColor = .clear
         highlightBackdropColor = .clear
+
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -88,6 +88,12 @@ class TBIrregularityContentView: ESTabBarItemContentView {
         return sqrt(pow(imageView.bounds.size.width / 2.0 - p.x, 2) + pow(imageView.bounds.size.height / 2.0 - p.y, 2)) < imageView.bounds.size.width / 2.0
     }
     
+    override func updateLayout() {
+        super.updateLayout()
+        self.imageView.sizeToFit()
+        self.imageView.center = CGPoint.init(x: self.bounds.size.width / 2.0, y: self.bounds.size.height / 2.0)
+    }
+    
     /*
     public override func selectAnimation(animated: Bool, completion: (() -> ())?) {
         let view = UIView.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize(width: 2.0, height: 2.0)))
@@ -95,7 +101,6 @@ class TBIrregularityContentView: ESTabBarItemContentView {
         view.layer.opacity = 0.5
         view.backgroundColor = UIColor.init(red: 10/255.0, green: 66/255.0, blue: 91/255.0, alpha: 1.0)
         self.addSubview(view)
-        
         playMaskAnimation(animateView: view, target: self.imageView, completion: {
             [weak view] in
             view?.removeFromSuperview()
@@ -157,6 +162,5 @@ class TBIrregularityContentView: ESTabBarItemContentView {
             completion?()
         })
     }
- */
-    
+    */
 }

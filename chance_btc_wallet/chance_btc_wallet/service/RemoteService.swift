@@ -11,6 +11,34 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
+/// 公链网络
+enum BlockchainNetwork: UInt32 {
+    
+    case main = 0xf9beb4d9
+    case test = 0xfabfb5da
+    
+    /// 用于识别消息的来源网络，当流状态位置时，它还用于寻找下一条消息
+    var magic: UInt32 {
+        
+        var value: UInt32 = 0
+        switch self {
+        case .main:
+            value = 0xf9beb4d9
+        case .test:
+            value = 0xfabfb5da
+        }
+        
+        //绝大多数整数都都使用little endian编码，只有IP地址或端口号使用big endian编码。
+        //先判断系统是否littleEndian，如果是则要把字节序翻转初始一个新值
+        if Int.isLittleEndian {
+            return UInt32(value.byteSwapped)
+        } else {
+            return value
+        }
+    }
+    
+}
+
 /// 远端节点枚举
 enum BlockchainNode: String {
     
@@ -20,12 +48,18 @@ enum BlockchainNode: String {
     //https://insight.bitpay.com
     case insight_bitpay = "insight.bitpay.com"
     
+    //https://blockchain.info/
+    case blockchain_info_testnet = "testnet.blockchain.info"
+    
+    //https://insight.bitpay.com
+    case insight_bitpay_testnet = "test-insight.bitpay.com"
+    
     //服务实例
     var service: RemoteService {
         switch self {
-        case .blockchain_info:
+        case .blockchain_info, .blockchain_info_testnet:
             return BlockchainRemoteService.sharedInstance
-        case .insight_bitpay:
+        case .insight_bitpay, .insight_bitpay_testnet:
             return InsightRemoteService.sharedInstance
         }
     }
@@ -37,6 +71,10 @@ enum BlockchainNode: String {
             return "blockchain.info"
         case .insight_bitpay:
             return "insight.bitpay"
+        case .blockchain_info_testnet:
+            return "testnet.blockchain.info"
+        case .insight_bitpay_testnet:
+            return "test-insight.bitpay"
         }
     }
     
@@ -47,6 +85,10 @@ enum BlockchainNode: String {
             return "https://blockchain.info/"
         case .insight_bitpay:
             return "https://insight.bitpay.com/"
+        case .blockchain_info_testnet:
+            return "https://testnet.blockchain.info/"
+        case .insight_bitpay_testnet:
+            return "https://test-insight.bitpay.com/"
         }
     }
     
@@ -62,11 +104,23 @@ enum BlockchainNode: String {
 
     }
     
+    /// 网络
+    var network: BlockchainNetwork {
+        switch self {
+        case .blockchain_info, .insight_bitpay:
+            return BlockchainNetwork.main
+        case .blockchain_info_testnet, .insight_bitpay_testnet:
+            return BlockchainNetwork.test
+        }
+    }
+    
     //所有节点数组
     static var allNodes: [BlockchainNode] {
         return [
             BlockchainNode.blockchain_info,
-            BlockchainNode.insight_bitpay
+            BlockchainNode.insight_bitpay,
+            BlockchainNode.blockchain_info_testnet,
+//            BlockchainNode.insight_bitpay_testnet,
         ]
     }
     

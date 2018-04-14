@@ -36,14 +36,19 @@ class AddressScanViewController: UIViewController {
             self.delegate?.didScanQRCodeSuccess(vc: self, result: result)
             self.dismiss(animated: true, completion: nil)
         }
-        // test scan frame
-        scanner.scanFrame = view.bounds
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         scanner.startScan()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // test scan frame
+//        scanner.scanFrame = view.bounds
     }
     
     override func didReceiveMemoryWarning() {
